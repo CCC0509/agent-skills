@@ -95,6 +95,9 @@ for name in "${SKILL_ARR[@]}"; do
     multi-angle-review)
       POINTER_LINES="${POINTER_LINES}Read-only review（PR / commit range / plan / fix-confirmation）套 [$DEST/multi-angle-review/SKILL.md]($DEST/multi-angle-review/SKILL.md)。
 " ;;
+    skill-authoring)
+      POINTER_LINES="${POINTER_LINES}撰寫 / 萃取 / 發佈可攜 agent skill 或 plugin doctrine 時讀 [$DEST/skill-authoring/SKILL.md]($DEST/skill-authoring/SKILL.md)。
+" ;;
   esac
 done
 
@@ -104,7 +107,7 @@ printf '%s\n' "$PIN" > "$TARGET/.agent-skills/pin"
 
 # --- Pointer block injection ---
 BLOCK="$MARKER_BEGIN
-<!-- managed by agent-skills $PIN；手動編輯會在下次 install 被覆蓋 -->
+<!-- managed by agent-skills ${PIN}；手動編輯會在下次 install 被覆蓋 -->
 ${POINTER_LINES}$MARKER_END"
 
 for entry in "${CREATE_ENTRIES[@]+"${CREATE_ENTRIES[@]}"}"; do

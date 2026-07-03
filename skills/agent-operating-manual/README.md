@@ -28,6 +28,20 @@
 
 per-repo 檔（00-diagnosis / LESSONS / 50-letter）由採用 repo 自建，指引見 40-maintenance.md §6。
 
+## Outcome triage loop
+
+若採用 repo 使用 Agent Trigger Kit，`session-check` / `closeout` 看到新的
+failure category、unmarked outcome，或 outcome store 的 `events.jsonl` 證據時：
+
+1. 先處理當輪 gating：mark outcome、修正觸發層或明確列出 blocked 原因。
+2. 把可重用的踩坑追加到該 repo 的 `LESSONS.md`，保留 append-only 脈絡。
+3. 同一類 lesson 第 3 次出現時，把它升級成 `20-judgment-rubrics.md` 的正式
+   rubric 或採用 repo 的同等規則。
+
+資料流固定是：ATK `events.jsonl` / session-check summary → repo-local
+`LESSONS.md` → 第 3 次同類 → rubric。ATK 只提供客觀收集器；agent-skills
+只提供消化 doctrine；repo 自己保留記憶資料。
+
 ---
 
 ## 誠實：這套補得了什麼、補不了什麼

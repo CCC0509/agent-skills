@@ -25,6 +25,8 @@ for s in agent-operating-manual multi-angle-review; do
   [ -f "$TMP/target/docs/imported-skills/$s/SKILL.md" ] || fail "missing $s/SKILL.md"
   [ -f "$TMP/target/docs/imported-skills/$s/.managed-by-agent-skills" ] || fail "missing $s sentinel"
 done
+[ ! -e "$TMP/target/docs/imported-skills/skill-authoring" ] \
+  || fail "skill-authoring installed by default"
 [ "$(cat "$TMP/target/.agent-skills/pin")" = "CCC0509/agent-skills@v$VER" ] || fail "pin content"
 for f in CLAUDE.md AGENTS.md GEMINI.md; do
   [ "$(grep -Fc '<!-- agent-skills:begin -->' "$TMP/target/$f")" = 1 ] || fail "$f begin marker"
@@ -86,5 +88,15 @@ OUT="$(bash "$TMP/src/install.sh" "$TMP/target" --create-entry CLAUDE.md)"
 [ ! -f "$TMP/target/GEMINI.md" ] || fail "GEMINI.md created without --create-entry"
 printf '%s\n' "$OUT" | grep -q 'skipped missing entry files:.*AGENTS\.md' || fail "expected AGENTS.md in skipped list"
 printf '%s\n' "$OUT" | grep -q 'skipped missing entry files:.*GEMINI\.md' || fail "expected GEMINI.md in skipped list"
+
+# 9) optional skill-authoring installs only when explicitly requested
+mktarget
+bash "$TMP/src/install.sh" "$TMP/target" --skills agent-operating-manual,multi-angle-review,skill-authoring
+[ -f "$TMP/target/docs/imported-skills/skill-authoring/SKILL.md" ] \
+  || fail "missing skill-authoring/SKILL.md"
+[ -f "$TMP/target/docs/imported-skills/skill-authoring/.managed-by-agent-skills" ] \
+  || fail "missing skill-authoring sentinel"
+[ "$(grep -Fc 'docs/imported-skills/skill-authoring/SKILL.md' "$TMP/target/CLAUDE.md")" = 1 ] \
+  || fail "CLAUDE.md missing skill-authoring pointer"
 
 echo "install smoke ok"
