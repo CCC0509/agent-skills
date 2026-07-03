@@ -37,6 +37,17 @@
 
 **同一類坑出現第 3 次** → 它不該只待在 log 裡，要**升級成 D 的正式 rubric**（見 §4 精簡）。
 
+若採用 repo 同時使用 Agent Trigger Kit，優先把 `session-check` / `closeout`
+裡的新 failure category、unmarked outcome、或 `events.jsonl` 事件當成客觀輸入：
+
+1. 先完成當輪 outcome mark / gating closeout。
+2. 將可重用教訓追加到 repo-local `LESSONS.md`。
+3. 同類第 3 次出現時，再升級到 `20-judgment-rubrics.md` 或該 repo 的同等
+   rubric。
+
+不要把 outcome store 搬進 agent-skills；收集器留在 ATK，消化 doctrine 留在
+本 manual，記憶資料永遠留在各 repo。
+
 ## §4 累積多長要精簡（防止 manual 變成它要修的問題）
 
 **觸發**：`LESSONS.md` 超過 **30 條** 或 **~400 行**。
