@@ -12,6 +12,7 @@ release scope.
 | agent-skills doctrine | Plan/spec lifecycle header convention text | agent-skills | Doctrine belongs here; validator stays out of the markdown-only repo. |
 | agent-skills doctrine | MCP three-state fallback doctrine | agent-skills | Shared operating rule, but should land with validator template alignment. |
 | agent-skills doctrine | Codebase MCP graph-first tracing doctrine | agent-skills | Generalize when to use code graph tools, how to handle stale/unindexed graphs, and how to disclose `rg` fallback gaps. |
+| agent-skills doctrine | Codex / Gemini model adapter doctrine | agent-skills | Claude Code model, effort, and workflow sections are fenced; other harnesses need executable adapters without copying Claude-specific assumptions. |
 | ATK templates | `agent-impact-file-sets.mjs` classifier template | agent-trigger-kit | Mechanism/script, not doctrine. |
 | ATK templates | Plan/spec lifecycle checker template | agent-trigger-kit | Validator template belongs with trigger-layer mechanisms. |
 | ATK templates | MCP config validator template | agent-trigger-kit | Reusable validator; pair with agent-skills fallback doctrine later. |
