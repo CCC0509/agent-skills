@@ -1,0 +1,125 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+REPO_SLUG="CCC0509/agent-skills"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DEFAULT_SKILLS="agent-operating-manual,multi-angle-review"
+ENTRY_FILES=("CLAUDE.md" "AGENTS.md" "GEMINI.md")
+MARKER_BEGIN="<!-- agent-skills:begin -->"
+MARKER_END="<!-- agent-skills:end -->"
+
+usage() {
+  cat <<'EOF'
+usage: install.sh <target-repo-path> [--dest docs/imported-skills]
+                  [--skills a,b] [--dev] [--create-entry <CLAUDE.md|AGENTS.md|GEMINI.md>]
+EOF
+}
+
+TARGET="" DEST="docs/imported-skills" SKILLS="$DEFAULT_SKILLS" DEV=0
+CREATE_ENTRIES=()
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --dest) DEST="$2"; shift 2 ;;
+    --skills) SKILLS="$2"; shift 2 ;;
+    --dev) DEV=1; shift ;;
+    --create-entry)
+      case "$2" in
+        CLAUDE.md|AGENTS.md|GEMINI.md) CREATE_ENTRIES+=("$2") ;;
+        *) echo "invalid --create-entry: $2" >&2; exit 1 ;;
+      esac; shift 2 ;;
+    -h|--help) usage; exit 0 ;;
+    -*) echo "unknown flag: $1" >&2; usage >&2; exit 1 ;;
+    *)
+      if [ -n "$TARGET" ]; then echo "unexpected arg: $1" >&2; exit 1; fi
+      TARGET="$1"; shift ;;
+  esac
+done
+[ -n "$TARGET" ] || { usage >&2; exit 1; }
+[ -d "$TARGET" ] || { echo "target not a directory: $TARGET" >&2; exit 1; }
+
+# --- Source gate: clean worktree always; exact tag unless --dev ---
+if [ -n "$(git -C "$SCRIPT_DIR" status --porcelain)" ]; then
+  echo "source_dirty: install requires a clean agent-skills checkout" >&2
+  exit 1
+fi
+TAG="$(git -C "$SCRIPT_DIR" describe --exact-match --tags 2>/dev/null || true)"
+if [ -n "$TAG" ]; then
+  VER="${TAG#v}"
+  for mf in .claude-plugin/plugin.json .claude-plugin/marketplace.json; do
+    MFV="$(sed -n 's/.*"version"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' \
+      "$SCRIPT_DIR/$mf" | head -1)"
+    if [ "$MFV" != "$VER" ]; then
+      echo "release_metadata_mismatch: $mf version=$MFV tag=$TAG" >&2
+      exit 1
+    fi
+  done
+  PIN="$REPO_SLUG@$TAG"
+elif [ "$DEV" = 1 ]; then
+  PIN="$REPO_SLUG@dev-$(git -C "$SCRIPT_DIR" rev-parse --short HEAD)"
+  echo "WARNING verification-gap: dev install ($PIN); consumer closeout must list this" >&2
+else
+  echo "source_untagged: HEAD is not at an exact tag (use --dev for a dev install)" >&2
+  exit 1
+fi
+
+# --- Copy skills (managed replace) ---
+IFS=',' read -r -a SKILL_ARR <<<"$SKILLS"
+POINTER_LINES=""
+for name in "${SKILL_ARR[@]}"; do
+  SRC="$SCRIPT_DIR/skills/$name"
+  [ -d "$SRC" ] || { echo "unknown skill: $name" >&2; exit 1; }
+  DST="$TARGET/$DEST/$name"
+  if [ -d "$DST" ] && [ ! -f "$DST/.managed-by-agent-skills" ]; then
+    echo "destination_exists_unmanaged: $DST" >&2
+    exit 1
+  fi
+  rm -rf "$DST"
+  mkdir -p "$DST"
+  cp -R "$SRC/." "$DST/"
+  printf '%s\n' "$PIN" > "$DST/.managed-by-agent-skills"
+  case "$name" in
+    agent-operating-manual)
+      POINTER_LINES="${POINTER_LINES}非 trivial 任務（委派、選模型、驗證、何時停）先讀 [$DEST/agent-operating-manual/SKILL.md]($DEST/agent-operating-manual/SKILL.md)。
+" ;;
+    multi-angle-review)
+      POINTER_LINES="${POINTER_LINES}Read-only review（PR / commit range / plan / fix-confirmation）套 [$DEST/multi-angle-review/SKILL.md]($DEST/multi-angle-review/SKILL.md)。
+" ;;
+  esac
+done
+
+# --- Pin ---
+mkdir -p "$TARGET/.agent-skills"
+printf '%s\n' "$PIN" > "$TARGET/.agent-skills/pin"
+
+# --- Pointer block injection ---
+BLOCK="$MARKER_BEGIN
+<!-- managed by agent-skills $PIN；手動編輯會在下次 install 被覆蓋 -->
+${POINTER_LINES}$MARKER_END"
+
+for entry in "${CREATE_ENTRIES[@]+"${CREATE_ENTRIES[@]}"}"; do
+  [ -f "$TARGET/$entry" ] || printf '%s\n' "$BLOCK" > "$TARGET/$entry"
+done
+
+SKIPPED=""
+for entry in "${ENTRY_FILES[@]}"; do
+  F="$TARGET/$entry"
+  if [ ! -f "$F" ]; then SKIPPED="$SKIPPED $entry"; continue; fi
+  NB="$(grep -Fc "$MARKER_BEGIN" "$F" || true)"
+  NE="$(grep -Fc "$MARKER_END" "$F" || true)"
+  if [ "$NB" = 0 ] && [ "$NE" = 0 ]; then
+    printf '\n%s\n' "$BLOCK" >> "$F"
+  elif [ "$NB" = 1 ] && [ "$NE" = 1 ]; then
+    awk -v begin="$MARKER_BEGIN" -v end="$MARKER_END" -v block="$BLOCK" '
+      $0 == begin { print block; skipping = 1; next }
+      $0 == end { skipping = 0; next }
+      !skipping { print }
+    ' "$F" > "$F.agent-skills.tmp"
+    mv "$F.agent-skills.tmp" "$F"
+  else
+    echo "marker_mismatch: $entry begin=$NB end=$NE" >&2
+    exit 1
+  fi
+done
+
+echo "installed $PIN -> $TARGET/$DEST (${SKILLS})"
+[ -z "$SKIPPED" ] || echo "skipped missing entry files:$SKIPPED (use --create-entry to create)"
