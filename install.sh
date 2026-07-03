@@ -37,6 +37,18 @@ done
 [ -n "$TARGET" ] || { usage >&2; exit 1; }
 [ -d "$TARGET" ] || { echo "target not a directory: $TARGET" >&2; exit 1; }
 
+# --- Input validation: keep all write paths inside the target repo ---
+case "$DEST" in
+  /*|*..*) echo "invalid --dest: $DEST (absolute paths and '..' not allowed)" >&2; exit 1 ;;
+esac
+[ -n "$SKILLS" ] || { echo "invalid --skills entry: empty" >&2; exit 1; }
+IFS=',' read -r -a SKILL_ARR <<<"$SKILLS"
+for name in "${SKILL_ARR[@]+"${SKILL_ARR[@]}"}"; do
+  case "$name" in
+    ""|*/*|*..*) echo "invalid --skills entry: '$name' (empty, '/', and '..' not allowed)" >&2; exit 1 ;;
+  esac
+done
+
 # --- Source gate: clean worktree always; exact tag unless --dev ---
 if [ -n "$(git -C "$SCRIPT_DIR" status --porcelain)" ]; then
   echo "source_dirty: install requires a clean agent-skills checkout" >&2
@@ -63,7 +75,6 @@ else
 fi
 
 # --- Copy skills (managed replace) ---
-IFS=',' read -r -a SKILL_ARR <<<"$SKILLS"
 POINTER_LINES=""
 for name in "${SKILL_ARR[@]}"; do
   SRC="$SCRIPT_DIR/skills/$name"
