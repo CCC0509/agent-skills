@@ -30,6 +30,10 @@ for f in CLAUDE.md AGENTS.md GEMINI.md; do
   [ "$(grep -Fc '<!-- agent-skills:begin -->' "$TMP/target/$f")" = 1 ] || fail "$f begin marker"
   [ "$(grep -Fc '<!-- agent-skills:end -->' "$TMP/target/$f")" = 1 ] || fail "$f end marker"
   grep -q 'existing content' "$TMP/target/$f" || fail "$f lost existing content"
+  grep -Fq 'docs/imported-skills/agent-operating-manual/SKILL.md' "$TMP/target/$f" \
+    || fail "$f missing agent-operating-manual pointer"
+  grep -Fq 'docs/imported-skills/multi-angle-review/SKILL.md' "$TMP/target/$f" \
+    || fail "$f missing multi-angle-review pointer"
 done
 
 # 2) idempotency: second run must be byte-identical
@@ -65,5 +69,22 @@ mkdir -p "$TMP/target/docs/imported-skills/agent-operating-manual"
 touch "$TMP/target/docs/imported-skills/agent-operating-manual/hand-authored.md"
 if bash "$TMP/src/install.sh" "$TMP/target" 2>"$TMP/err"; then fail "unmanaged dest accepted"; fi
 grep -q destination_exists_unmanaged "$TMP/err" || fail "expected destination_exists_unmanaged"
+
+# 7) single-sided marker fails
+mktarget
+printf '<!-- agent-skills:begin -->\n' >> "$TMP/target/CLAUDE.md"
+if bash "$TMP/src/install.sh" "$TMP/target" 2>"$TMP/err"; then fail "single-sided marker accepted"; fi
+grep -q marker_mismatch "$TMP/err" || fail "expected marker_mismatch"
+
+# 8) --create-entry creates named entry; other missing entries reported skipped
+rm -rf "$TMP/target"; mkdir "$TMP/target"; git -C "$TMP/target" init -q
+OUT="$(bash "$TMP/src/install.sh" "$TMP/target" --create-entry CLAUDE.md)"
+[ -f "$TMP/target/CLAUDE.md" ] || fail "create-entry did not create CLAUDE.md"
+[ "$(grep -Fc '<!-- agent-skills:begin -->' "$TMP/target/CLAUDE.md")" = 1 ] || fail "created CLAUDE.md begin marker"
+[ "$(grep -Fc '<!-- agent-skills:end -->' "$TMP/target/CLAUDE.md")" = 1 ] || fail "created CLAUDE.md end marker"
+[ ! -f "$TMP/target/AGENTS.md" ] || fail "AGENTS.md created without --create-entry"
+[ ! -f "$TMP/target/GEMINI.md" ] || fail "GEMINI.md created without --create-entry"
+printf '%s\n' "$OUT" | grep -q 'skipped missing entry files:.*AGENTS\.md' || fail "expected AGENTS.md in skipped list"
+printf '%s\n' "$OUT" | grep -q 'skipped missing entry files:.*GEMINI\.md' || fail "expected GEMINI.md in skipped list"
 
 echo "install smoke ok"
