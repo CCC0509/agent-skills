@@ -109,8 +109,8 @@ for entry in "${ENTRY_FILES[@]}"; do
   if [ "$NB" = 0 ] && [ "$NE" = 0 ]; then
     printf '\n%s\n' "$BLOCK" >> "$F"
   elif [ "$NB" = 1 ] && [ "$NE" = 1 ]; then
-    awk -v begin="$MARKER_BEGIN" -v end="$MARKER_END" -v block="$BLOCK" '
-      $0 == begin { print block; skipping = 1; next }
+    BLOCK="$BLOCK" awk -v begin="$MARKER_BEGIN" -v end="$MARKER_END" '
+      $0 == begin { print ENVIRON["BLOCK"]; skipping = 1; next }
       $0 == end { skipping = 0; next }
       !skipping { print }
     ' "$F" > "$F.agent-skills.tmp"
