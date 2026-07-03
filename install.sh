@@ -109,11 +109,19 @@ for entry in "${ENTRY_FILES[@]}"; do
   if [ "$NB" = 0 ] && [ "$NE" = 0 ]; then
     printf '\n%s\n' "$BLOCK" >> "$F"
   elif [ "$NB" = 1 ] && [ "$NE" = 1 ]; then
+    # index() substring match keeps the transform consistent with the grep -Fc
+    # detection above (tolerates CRLF or indented marker lines).
     BLOCK="$BLOCK" awk -v begin="$MARKER_BEGIN" -v end="$MARKER_END" '
-      $0 == begin { print ENVIRON["BLOCK"]; skipping = 1; next }
-      $0 == end { skipping = 0; next }
+      index($0, begin) { print ENVIRON["BLOCK"]; skipping = 1; next }
+      index($0, end) { skipping = 0; next }
       !skipping { print }
     ' "$F" > "$F.agent-skills.tmp"
+    if ! grep -Fq "$MARKER_BEGIN" "$F.agent-skills.tmp" || \
+       ! grep -Fq "$MARKER_END" "$F.agent-skills.tmp"; then
+      rm -f "$F.agent-skills.tmp"
+      echo "marker_replace_failed: $entry" >&2
+      exit 1
+    fi
     mv "$F.agent-skills.tmp" "$F"
   else
     echo "marker_mismatch: $entry begin=$NB end=$NE" >&2
