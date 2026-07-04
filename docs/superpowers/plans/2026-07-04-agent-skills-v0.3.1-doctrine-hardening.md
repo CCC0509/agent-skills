@@ -274,7 +274,7 @@ git commit -m "chore: prepare agent-skills v0.3.1"
 **Files:**
 - No additional planned file edits.
 
-- [ ] **Step 1: Run formatting and smoke gates**
+- [x] **Step 1: Run formatting and smoke gates**
 
 Run:
 
@@ -287,7 +287,7 @@ shellcheck install.sh tests/install-smoke.sh
 
 Expected: all commands exit 0. If `shellcheck` is unavailable, record the exact command failure as a verification gap instead of claiming it passed.
 
-- [ ] **Step 2: Run plugin and skill validation**
+- [x] **Step 2: Run plugin and skill validation**
 
 Run:
 
@@ -299,7 +299,7 @@ python3 ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py skills/m
 
 Expected: plugin validation passes and both skills report valid. If the system `python3` lacks PyYAML, use the known local Python with PyYAML and record the interpreter path in the PR notes.
 
-- [ ] **Step 3: Run doctrine-specific grep gates**
+- [x] **Step 3: Run doctrine-specific grep gates**
 
 Run:
 
