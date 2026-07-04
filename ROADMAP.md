@@ -10,14 +10,22 @@ release scope.
 - v0.3.1: reviewer conduct doctrine, attribution labels for review findings,
   task-tracking capability adapters, active-clock prioritization, and
   verification side-effect / kill-switch discipline.
+- v0.4.0: change-discipline doctrine for convention migrations,
+  verifiability-driven commit structure, approval-bound identifiers, and public
+  evidence hygiene boundaries.
 
-## v0.3+ Extraction Candidates
+## Extraction Candidates
 
 | Bucket | Candidate | Likely home | Why deferred |
 |---|---|---|---|
 | agent-skills doctrine | Preflight / closeout self-report contract | agent-skills | Pure text doctrine, but separate from v0.2.0 skill-authoring and outcome triage. |
 | agent-skills doctrine | Plan / PR lifecycle discipline: branch-first, PR stop, explicit approval, squash merge | agent-skills | High-value shared state machine; needs careful wording across consumer repos. |
 | agent-skills doctrine | Plan/spec lifecycle header convention text | agent-skills | Doctrine belongs here; validator stays out of the markdown-only repo. |
+| agent-skills doctrine | Shared checkout concurrency etiquette | agent-skills | Useful but outside v0.4 change-discipline scope; needs wording that fits multiple harnesses and shared-worktree policies. |
+| agent-skills doctrine | Named absence statuses for missing closeout evidence | agent-skills / ATK | Mechanism exists in some adopters; doctrine should wait for the closeout self-report work so categories do not drift. |
+| agent-skills doctrine | Harness warning triage contract | agent-skills | Needs more portable examples so known harness noise is classified without normalizing ignored warnings. |
+| agent-skills doctrine | Probe catalog appendix | agent-skills | v0.4 adds examples inline; a full catalog should wait until enough probes justify an appendix. |
+| agent-skills doctrine | Extraction-candidate closeout protocol | agent-skills | Manual success-pattern extraction has happened twice (v0.3.1 and v0.4); wake on the third manual extraction or when closeout self-report is designed. |
 | ATK templates | `agent-impact-file-sets.mjs` classifier template | agent-trigger-kit | Mechanism/script, not doctrine. |
 | ATK templates | Plan/spec lifecycle checker template | agent-trigger-kit | Validator template belongs with trigger-layer mechanisms. |
 | ATK templates | MCP config validator template | agent-trigger-kit | Reusable validator; pair with agent-skills fallback doctrine later. |
