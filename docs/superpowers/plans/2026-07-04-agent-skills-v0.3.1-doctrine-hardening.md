@@ -311,7 +311,7 @@ rg -n "haiku|sonnet|opus|fable" skills/agent-operating-manual/*-model-adapter.md
 
 Expected: first two commands find the new doctrine. Third command finds no matches.
 
-- [ ] **Step 4: Open PR and stop for review**
+- [x] **Step 4: Open PR and stop for review**
 
 Push the branch and open a PR against `main`. The PR body must state:
 
