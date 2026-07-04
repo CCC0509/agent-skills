@@ -166,12 +166,16 @@ agent actually has in the current session.
 - `install.sh`
   - Create starter `docs/agent-memory-index.md` only if absent.
   - Add the managed-block pointer line.
+  - Keep the index path fixed at `docs/agent-memory-index.md` relative to the
+    target repo root; it does not follow `--dest`, which only controls imported
+    skill copies.
 - `tests/install-smoke.sh`
   - Add v0.3 smoke coverage.
 - `skills/agent-operating-manual/README.md`
   - Add `15-repo-memory.md` to the map and quick memory guidance.
 - `skills/agent-operating-manual/SKILL.md`
-  - Link the repo-memory section and adapter docs as needed.
+  - Add a quick-reference memory entry and link `15-repo-memory.md`,
+    `codex-model-adapter.md`, and `gemini-model-adapter.md`.
 - `skills/agent-operating-manual/10-model-dispatch.md`
   - Point non-Claude agents to adapter docs without copying Claude aliases.
 - `skills/agent-operating-manual/40-maintenance.md`
@@ -181,7 +185,9 @@ agent actually has in the current session.
 - `README.md`
   - Document the new index baseline, optional skill status, and v0.3 install behavior.
 - `ROADMAP.md`
-  - Mark v0.3 landed items and leave ATK-template items deferred.
+  - Mark v0.3 landed items, leave ATK-template items deferred, and keep the
+    remaining doctrine rows (preflight / closeout self-report, plan / PR
+    lifecycle) deferred as v0.3.1+ candidates.
 - `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`
   - Bump to `0.3.0` only in the implementation PR, together with the release
     tag.
