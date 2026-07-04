@@ -27,6 +27,8 @@
 | [`20-judgment-rubrics.md`](20-judgment-rubrics.md) | **D** 何時升級/算完成/停下問人/該換路/驗品質（各附正反例） | 卡在判斷時查對應 § |
 | [`30-dispatch-templates.md`](30-dispatch-templates.md) | **E** 搜尋/實作/重構/研究/審查 派工填空模板 | 要委派時複製套用 |
 | [`40-maintenance.md`](40-maintenance.md) | **F** 怎麼安全更新這套 + 如何 skill 化給所有 agent/repo | 要改這套、或要發佈成 skill 時 |
+| [`codex-model-adapter.md`](codex-model-adapter.md) | Codex capability adapter for model / worker / verification doctrine | Codex sessions reading 🟦 Claude Code sections |
+| [`gemini-model-adapter.md`](gemini-model-adapter.md) | Gemini capability adapter for model / worker / verification doctrine | Gemini sessions reading 🟦 Claude Code sections |
 
 per-repo 檔（00-diagnosis / LESSONS / 50-letter）由採用 repo 自建，指引見 40-maintenance.md §6。
 

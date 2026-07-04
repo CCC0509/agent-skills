@@ -3,6 +3,8 @@
 > 讀者：較弱模型（Sonnet / Haiku 等）當「指揮官」時。
 > 目的：修 `00-diagnosis.md` 的 **Leak 3**（inline 讀爆 context、失焦、假性完成）。
 > 這一節多數是**跨 harness 通則**；只有「§5 模型別名 / §6 effort / §7 Agent vs Workflow」是 **Claude Code 專屬**，已用 🟦 標出，搬到別的 agent 要換掉。
+> Codex users: read [`codex-model-adapter.md`](codex-model-adapter.md) instead of copying §5-§7 literally.
+> Gemini users: read [`gemini-model-adapter.md`](gemini-model-adapter.md) instead of copying §5-§7 literally.
 
 ---
 
