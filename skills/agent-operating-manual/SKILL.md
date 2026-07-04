@@ -1,6 +1,6 @@
 ---
 name: agent-operating-manual
-description: Use at the start of any non-trivial session or task, and whenever deciding whether to delegate vs read inline, which model to launch a subagent with, how to verify a change is truly done, when to escalate a model, or when to stop and ask the user. Externalizes strong-model judgment into executable rules for weaker models — commander-stays-off-the-field delegation, the dispatch triple, model/effort selection, escalation ladder, and verify-not-self-verify. Keywords: delegate, subagent, which model, haiku/sonnet/opus, escalate, is this done, verify, context blowout, when to ask the user.
+description: "Use at the start of any non-trivial session or task, and whenever deciding whether to delegate vs read inline, which model to launch a subagent with, how to verify a change is truly done, when to escalate a model, or when to stop and ask the user. Externalizes strong-model judgment into executable rules for weaker models — commander-stays-off-the-field delegation, the dispatch triple, model/effort selection, escalation ladder, and verify-not-self-verify. Keywords: delegate, subagent, which model, haiku/sonnet/opus, escalate, is this done, verify, context blowout, when to ask the user."
 ---
 
 # Agent Operating Manual (trigger shim)
