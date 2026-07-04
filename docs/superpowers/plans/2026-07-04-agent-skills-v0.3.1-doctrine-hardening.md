@@ -230,7 +230,7 @@ git commit -m "docs: add task-tracking adapter capability"
 - Modify: `.claude-plugin/plugin.json`
 - Modify: `.claude-plugin/marketplace.json`
 
-- [ ] **Step 1: Mark v0.3.1 landed**
+- [x] **Step 1: Mark v0.3.1 landed**
 
 Add this bullet under `## Landed`, after the v0.3.0 bullet:
 
@@ -242,7 +242,7 @@ Add this bullet under `## Landed`, after the v0.3.0 bullet:
 
 Do not remove any deferred rows from `## v0.3+ Extraction Candidates`.
 
-- [ ] **Step 2: Bump plugin metadata versions**
+- [x] **Step 2: Bump plugin metadata versions**
 
 Change both version fields from `0.3.0` to `0.3.1`:
 
@@ -260,7 +260,7 @@ rg -n '"version": "0\.3\.1"' .claude-plugin/plugin.json .claude-plugin/marketpla
 
 reports two matches.
 
-- [ ] **Step 3: Commit Task 4**
+- [x] **Step 3: Commit Task 4**
 
 ```bash
 git add ROADMAP.md .claude-plugin/plugin.json .claude-plugin/marketplace.json

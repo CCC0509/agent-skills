@@ -7,6 +7,9 @@ release scope.
 
 - v0.3.0: repo-memory protocol, memory-index install baseline, MCP graph-first /
   fallback doctrine, Codex / Gemini model adapters.
+- v0.3.1: reviewer conduct doctrine, attribution labels for review findings,
+  task-tracking capability adapters, active-clock prioritization, and
+  verification side-effect / kill-switch discipline.
 
 ## v0.3+ Extraction Candidates
 
