@@ -23,6 +23,7 @@
 - Modify `skills/multi-angle-review/SKILL.md`: add cross-phase reviewer conduct rules and make `attribution` a required candidate / finding field.
 - Modify `skills/agent-operating-manual/10-model-dispatch.md`: add progress, active-clock ordering, side-effect, and environment kill-switch discipline.
 - Modify `skills/agent-operating-manual/SKILL.md`: add the same execution-discipline rule to the quick reference card.
+- Modify `skills/agent-operating-manual/README.md`: keep the user-facing quick reference card in sync with `SKILL.md`.
 - Modify `skills/agent-operating-manual/codex-model-adapter.md`: add a `Task-tracking surface` capability row.
 - Modify `skills/agent-operating-manual/gemini-model-adapter.md`: add the same capability row using Gemini-neutral wording.
 - Modify `ROADMAP.md`: mark v0.3.1 as landed while preserving deferred rows.
@@ -114,6 +115,7 @@ git commit -m "docs: add reviewer conduct doctrine"
 **Files:**
 - Modify: `skills/agent-operating-manual/10-model-dispatch.md`
 - Modify: `skills/agent-operating-manual/SKILL.md`
+- Modify: `skills/agent-operating-manual/README.md`
 
 - [ ] **Step 1: Add a new execution-discipline section after §4**
 
@@ -149,20 +151,31 @@ Add this numbered rule before the repo-memory rule:
 
 Then renumber the existing repo-memory rule from `6.` to `7.`.
 
-- [ ] **Step 4: Verify the manual vocabulary**
+- [ ] **Step 4: Update the README.md quick reference card**
+
+In `skills/agent-operating-manual/README.md`, add the same numbered rule before
+the repo-memory rule:
+
+```markdown
+6. 有 TodoWrite 類工具也要同步 plan checkbox；沒有工具時 checkbox 就是 todo list。排序看正在跑的時鐘，驗證副作用與 env kill switch 影響要揭露。
+```
+
+Then renumber the existing repo-memory rule from `6.` to `7.`.
+
+- [ ] **Step 5: Verify the manual vocabulary**
 
 Run:
 
 ```bash
-rg -n "TodoWrite|task-tracking|plan checkbox|正在跑的時鐘|kill switch|env var" skills/agent-operating-manual/10-model-dispatch.md skills/agent-operating-manual/SKILL.md
+rg -n "TodoWrite|task-tracking|plan checkbox|正在跑的時鐘|kill switch|env var" skills/agent-operating-manual/10-model-dispatch.md skills/agent-operating-manual/SKILL.md skills/agent-operating-manual/README.md
 ```
 
-Expected: output includes the new §4.1 section, the §9 quick reference bullet, and the SKILL.md quick reference rule.
+Expected: output includes the new §4.1 section, the §9 quick reference bullet, the SKILL.md quick reference rule, and the README.md quick reference rule.
 
-- [ ] **Step 5: Commit Task 2**
+- [ ] **Step 6: Commit Task 2**
 
 ```bash
-git add skills/agent-operating-manual/10-model-dispatch.md skills/agent-operating-manual/SKILL.md
+git add skills/agent-operating-manual/10-model-dispatch.md skills/agent-operating-manual/SKILL.md skills/agent-operating-manual/README.md
 git commit -m "docs: add execution discipline to manual"
 ```
 
