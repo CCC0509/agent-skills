@@ -117,7 +117,7 @@ git commit -m "docs: add reviewer conduct doctrine"
 - Modify: `skills/agent-operating-manual/SKILL.md`
 - Modify: `skills/agent-operating-manual/README.md`
 
-- [ ] **Step 1: Add a new execution-discipline section after §4**
+- [x] **Step 1: Add a new execution-discipline section after §4**
 
 Insert this section after the §4 verify-not-self-verify table and before `## §5`:
 
@@ -133,7 +133,7 @@ Insert this section after the §4 verify-not-self-verify table and before `## §
 - 環境 kill switch 只包住目標命令。跑整個 test suite 前先判斷 env var 會不會被 spawned child process 繼承；會污染子行程預期時，不要把它掛在整輪測試外層。
 ```
 
-- [ ] **Step 2: Update the §9 quick reference card**
+- [x] **Step 2: Update the §9 quick reference card**
 
 Add this bullet before the final escalation bullet:
 
@@ -141,7 +141,7 @@ Add this bullet before the final escalation bullet:
 - 有 TodoWrite 類工具也要同步 plan checkbox；沒有工具時 checkbox 就是 todo list。排序看正在跑的時鐘，驗證副作用與 env kill switch 影響要揭露。
 ```
 
-- [ ] **Step 3: Update the SKILL.md quick reference card**
+- [x] **Step 3: Update the SKILL.md quick reference card**
 
 Add this numbered rule before the repo-memory rule:
 
@@ -151,7 +151,7 @@ Add this numbered rule before the repo-memory rule:
 
 Then renumber the existing repo-memory rule from `6.` to `7.`.
 
-- [ ] **Step 4: Update the README.md quick reference card**
+- [x] **Step 4: Update the README.md quick reference card**
 
 In `skills/agent-operating-manual/README.md`, add the same numbered rule before
 the repo-memory rule:
@@ -162,7 +162,7 @@ the repo-memory rule:
 
 Then renumber the existing repo-memory rule from `6.` to `7.`.
 
-- [ ] **Step 5: Verify the manual vocabulary**
+- [x] **Step 5: Verify the manual vocabulary**
 
 Run:
 
@@ -172,7 +172,7 @@ rg -n "TodoWrite|task-tracking|plan checkbox|正在跑的時鐘|kill switch|env 
 
 Expected: output includes the new §4.1 section, the §9 quick reference bullet, the SKILL.md quick reference rule, and the README.md quick reference rule.
 
-- [ ] **Step 6: Commit Task 2**
+- [x] **Step 6: Commit Task 2**
 
 ```bash
 git add skills/agent-operating-manual/10-model-dispatch.md skills/agent-operating-manual/SKILL.md skills/agent-operating-manual/README.md

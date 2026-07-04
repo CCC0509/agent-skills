@@ -73,6 +73,18 @@ subagent 回給主線的東西，**預設只有兩種**：
 
 ---
 
+## §4.1 進度、時鐘、驗證副作用（Progress / Clock / Side-effect Discipline）
+
+進度記錄分兩層：session-local tracker 管當下執行，repo-local plan / spec checkbox 管跨 agent、跨 session 的耐久狀態。
+
+- 如果 harness 有 TodoWrite / task-tracking surface，用它管理當下執行；但它不是 plan checkbox 的替代品。每個 checkpoint / commit 點都要把 plan / spec 裡已完成、已驗證的 `- [ ]` 同步改成 `- [x]`。
+- 如果 harness 沒有 task-tracking surface，plan / spec checkbox 就是你的 todo list。完成一步就更新 checkbox，不要等 closeout 才一次補。
+- 排序看正在跑的時鐘，不只看概念順序。會燒 quota、會 automerge、會過期、會阻塞別人的事，優先級高於沒有時鐘壓力的 doctrine polish。
+- 驗證會留下副作用時要記帳：暫存檔、gitignored outcome store、cache、remote check run、外部服務 read-back，都要在回報中揭露。
+- 環境 kill switch 只包住目標命令。跑整個 test suite 前先判斷 env var 會不會被 spawned child process 繼承；會污染子行程預期時，不要把它掛在整輪測試外層。
+
+---
+
 ## §5 🟦 模型選擇表（Claude Code 專屬）
 
 **已查證事實**：Agent 工具的 `model` 可指定 `haiku` / `sonnet` / `opus` / `fable`（或完整 model ID）；不指定時**繼承主對話模型**。
@@ -140,4 +152,5 @@ subagent 回給主線的東西，**預設只有兩種**：
 - subagent 只回**結論 + `file:line`**；長產物**落檔傳路徑**。
 - 驗收派**新 context**：檔案 read-back、程式碼實跑、高風險加第二意見。
 - 選模型／effort（🟦 Claude Code 專屬；其他 agent 讀各自 adapter，勿照搬）：機械批量 **haiku**、預設 **sonnet**、最難推理 **opus**、max-stakes 且 **operator 授權**才 **fable**；逐次能設 **model**、**不能**設 effort。
+- 有 TodoWrite 類工具也要同步 plan checkbox；沒有工具時 checkbox 就是 todo list。排序看正在跑的時鐘，驗證副作用與 env kill switch 影響要揭露。
 - 小模型錯一次直接升；中階同任務錯兩次帶軌跡升；**最多 2 輪，之後問人**。
