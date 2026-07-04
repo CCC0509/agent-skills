@@ -17,6 +17,8 @@
 產出：`<target>/docs/imported-skills/<skill>/`、`<target>/.agent-skills/pin`
 （單行 `CCC0509/agent-skills@vX.Y.Z`），並向存在的 `CLAUDE.md` / `AGENTS.md` /
 `GEMINI.md` 注入 `<!-- agent-skills:begin/end -->` 指標區塊（重跑冪等 = 升級）。
+`docs/agent-memory-index.md` is created once if absent. It is repo-owned and not
+overwritten by later installs.
 `--dev` 只放寬 exact-tag（dirty 一律 fail loud），pin 記 `dev-<shortsha>`。
 其他 flags：`--dest <dir>`、`--skills a,b`、`--create-entry <file>`。
 
@@ -33,7 +35,9 @@ Default install 只包含 `agent-operating-manual,multi-angle-review`。
 ## 採用 checklist（新 repo）
 
 1. install.sh（如上）。
-2. 自建 per-repo `00-diagnosis.md` / `LESSONS.md`（永遠 per-repo，不搬）。
+2. Review `docs/agent-memory-index.md`; choose repo-owned status / lesson /
+   audit memory paths. `LESSONS.md` does not need to exist until the first
+   reusable lesson appears.
 3. Optional：在支援的環境安裝 superpowers 取得 SDD lifecycle；agent-skills
    本身仍保持 framework-agnostic。
 4. 把 `docs/imported-skills/**` 與 `.agent-skills/**` 納入該 repo 變更治理。
