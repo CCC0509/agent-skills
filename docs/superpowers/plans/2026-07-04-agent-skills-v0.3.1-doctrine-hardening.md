@@ -187,7 +187,7 @@ git commit -m "docs: add execution discipline to manual"
 - Modify: `skills/agent-operating-manual/codex-model-adapter.md`
 - Modify: `skills/agent-operating-manual/gemini-model-adapter.md`
 
-- [ ] **Step 1: Add the Codex task-tracking row**
+- [x] **Step 1: Add the Codex task-tracking row**
 
 In the Codex capability table, add this row after `Parallel workers`:
 
@@ -195,7 +195,7 @@ In the Codex capability table, add this row after `Parallel workers`:
 | Task-tracking surface | Use TodoWrite or the harness task tracker for current-session execution, and sync durable plan / spec checkboxes at each checkpoint or commit. | Treat the plan / spec checkbox list as the task tracker; tick completed steps as they become true and commit those ticks with the work. |
 ```
 
-- [ ] **Step 2: Add the Gemini task-tracking row**
+- [x] **Step 2: Add the Gemini task-tracking row**
 
 In the Gemini capability table, add this row after `Background review`:
 
@@ -203,7 +203,7 @@ In the Gemini capability table, add this row after `Background review`:
 | Task-tracking surface | Use the environment's task tracker for current-session execution, and sync durable plan / spec checkboxes at each checkpoint or commit. | Treat the plan / spec checkbox list as the task tracker; tick completed steps as they become true and commit those ticks with the work. |
 ```
 
-- [ ] **Step 3: Verify adapter rows and absence of Claude aliases**
+- [x] **Step 3: Verify adapter rows and absence of Claude aliases**
 
 Run:
 
@@ -214,7 +214,7 @@ rg -n "haiku|sonnet|opus|fable" skills/agent-operating-manual/*-model-adapter.md
 
 Expected: first command reports both adapters. Second command reports no matches.
 
-- [ ] **Step 4: Commit Task 3**
+- [x] **Step 4: Commit Task 3**
 
 ```bash
 git add skills/agent-operating-manual/codex-model-adapter.md skills/agent-operating-manual/gemini-model-adapter.md
