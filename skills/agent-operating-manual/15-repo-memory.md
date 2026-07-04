@@ -33,6 +33,7 @@ that future agents must read and update.
 - Do not centralize repo memory into agent-skills.
 - Do not move ATK outcome stores into agent-skills.
 - Do not use MCP caches as canonical memory.
+- Do not write graph persistence artifacts into the repo.
 - Do not auto-create `LESSONS.md` from install.sh.
 
 ## MCP graph state

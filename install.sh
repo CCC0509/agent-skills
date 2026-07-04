@@ -109,7 +109,7 @@ printf '%s\n' "$PIN" > "$TARGET/.agent-skills/pin"
 
 # --- Repo-owned memory index ---
 MEMORY_INDEX_PATH="$TARGET/$MEMORY_INDEX"
-if [ ! -e "$MEMORY_INDEX_PATH" ]; then
+if [ ! -e "$MEMORY_INDEX_PATH" ] && [ ! -L "$MEMORY_INDEX_PATH" ]; then
   mkdir -p "$(dirname "$MEMORY_INDEX_PATH")"
   cat > "$MEMORY_INDEX_PATH" <<'EOF'
 # Agent Memory Index
