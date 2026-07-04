@@ -34,3 +34,14 @@ that future agents must read and update.
 - Do not move ATK outcome stores into agent-skills.
 - Do not use MCP caches as canonical memory.
 - Do not auto-create `LESSONS.md` from install.sh.
+
+## MCP graph state
+
+| State | Meaning | Behavior |
+|---|---|---|
+| `available_indexed` | Graph tool starts and reports a usable index | Prefer graph tools for exported symbols, call paths, architecture lookups, and cross-file tracing |
+| `available_unindexed_or_stale` | Tool starts but the graph is missing or stale | Use graph only for safe discovery if useful; otherwise use `rg`; disclose the gap |
+| `unavailable` | Tool is absent, cannot spawn, or returns errors such as `Transport closed` | Fall back to `rg` / local file reads; disclose the fallback when cross-file tracing matters |
+
+Do not change shared repo MCP config from portable bare commands to absolute
+machine paths. PATH fixes belong in user or machine configuration.
