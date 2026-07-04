@@ -12,6 +12,8 @@ Canonical content lives alongside this file in this skill directory ([README.md]
 - [`10-model-dispatch.md`](10-model-dispatch.md) — 核心：指揮官不下場、派工三件套、模型/effort、升降級、驗證不自驗。
 - [`15-repo-memory.md`](15-repo-memory.md) — repo-owned shared memory：index、LESSONS lifecycle、audit boundaries、ATK / MCP 非 canonical。
 
+For convention migrations, release PRs, approval-bound merge / deploy / runtime actions, or public evidence tables, also read [`25-change-discipline.md`](25-change-discipline.md).
+
 Codex / Gemini sessions must read their adapter file before applying Claude Code model / effort / workflow sections.
 
 ## Core rules (quick reference card)
