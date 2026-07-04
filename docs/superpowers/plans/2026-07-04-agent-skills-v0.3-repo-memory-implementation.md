@@ -93,7 +93,7 @@ bash tests/install-smoke.sh
 Expected: FAIL with `SMOKE FAIL: missing agent-memory-index.md` or missing
 memory pointer. This proves the test is live.
 
-- [ ] **Step 3: Add upgrade-path and custom-dest smoke contracts**
+- [ ] **Step 3: Add upgrade-path, custom-dest, and no-overwrite smoke contracts**
 
 Append this scenario after idempotency and before dirty-source checks:
 
@@ -131,6 +131,19 @@ grep -Fq 'vendor/imported-skills/agent-operating-manual/SKILL.md' "$TMP/target/C
   || fail "custom dest missing skill pointer"
 grep -Fq 'docs/agent-memory-index.md' "$TMP/target/CLAUDE.md" \
   || fail "custom dest missing fixed memory pointer"
+```
+
+Then append the no-overwrite contract for repo-owned memory:
+
+```bash
+# 5) user-edited memory index survives reinstall
+mktarget
+mkdir -p "$TMP/target/docs"
+printf '# My Custom Index\ncustom content\n' > "$TMP/target/docs/agent-memory-index.md"
+bash "$TMP/src/install.sh" "$TMP/target"
+grep -Fq 'custom content' "$TMP/target/docs/agent-memory-index.md" || fail "user index overwritten"
+grep -Fq '# Agent Memory Index' "$TMP/target/docs/agent-memory-index.md" \
+  && fail "starter clobbered user index"
 ```
 
 Then renumber existing scenario comments if desired; the numbers are comments
@@ -836,6 +849,15 @@ After review approval, the merge turn must:
 - Spec coverage: every v0.3 scope item maps to Tasks 2-6; validation and PR
   handoff map to Tasks 7-8.
 - Placeholder scan: no unresolved placeholder markers are intentionally present.
+- Smoke requirements traceability:
+  1. Fresh index creation: Task 1 Step 1.
+  2. Managed-block pointer injection: Task 1 Step 1.
+  3. Idempotent reinstall: existing smoke scenario, extended by Task 1.
+  4. Existing index not overwritten: Task 1 Step 3 no-overwrite scenario.
+  5. v0.2 marker-replace upgrade path: Task 1 Step 3 upgrade scenario.
+  6. `--create-entry` pointer: Task 1 Step 4.
+  7. Optional `skill-authoring` pointer: Task 1 Step 5.
+  8. Missing `LESSONS.md` remains valid: Task 1 Step 1 and Task 7 Step 7.
 - Type / path consistency: index path is always `docs/agent-memory-index.md`;
   imported skill path remains controlled by `--dest`; adapters live under
   `skills/agent-operating-manual/`.
