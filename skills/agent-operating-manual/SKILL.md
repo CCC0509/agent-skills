@@ -20,4 +20,5 @@ Codex / Gemini sessions must read their adapter file before applying Claude Code
 3. 選模型（🟦 Claude Code 專屬；其他 agent 讀各自 model adapter，勿照搬）：機械批量 `haiku`、預設 `sonnet`、最難推理 `opus`、max-stakes 且 operator 授權才 `fable`。逐次能設 model、**不能**設 effort。
 4. **驗證不自驗**：檔案 read-back、程式碼實跑、高風險加第二意見——都派新 context。
 5. 小模型錯一次直接升、中階同任務錯兩次帶軌跡升、**最多 2 輪、之後停下問人**；不確定就查、查不到就明說。
-6. Repo memory 先讀 `docs/agent-memory-index.md`；狀態記憶可關閉，教訓記憶 append-only 到第 3 次升 rubric，audit 記憶永久 append。
+6. 有 TodoWrite 類工具也要同步 plan checkbox；沒有工具時 checkbox 就是 todo list。排序看正在跑的時鐘，驗證副作用與 env kill switch 影響要揭露。
+7. Repo memory 先讀 `docs/agent-memory-index.md`；狀態記憶可關閉，教訓記憶 append-only 到第 3 次升 rubric，audit 記憶永久 append。
