@@ -28,6 +28,13 @@ done
 [ ! -e "$TMP/target/docs/imported-skills/skill-authoring" ] \
   || fail "skill-authoring installed by default"
 [ "$(cat "$TMP/target/.agent-skills/pin")" = "CCC0509/agent-skills@v$VER" ] || fail "pin content"
+[ -f "$TMP/target/docs/agent-memory-index.md" ] || fail "missing agent-memory-index.md"
+grep -Fq '# Agent Memory Index' "$TMP/target/docs/agent-memory-index.md" \
+  || fail "agent-memory-index missing heading"
+grep -Fq '`LESSONS.md`: not created yet; create it at the repo' \
+  "$TMP/target/docs/agent-memory-index.md" \
+  || fail "agent-memory-index missing not-yet-created LESSONS line"
+[ ! -e "$TMP/target/LESSONS.md" ] || fail "LESSONS.md auto-created"
 for f in CLAUDE.md AGENTS.md GEMINI.md; do
   [ "$(grep -Fc '<!-- agent-skills:begin -->' "$TMP/target/$f")" = 1 ] || fail "$f begin marker"
   [ "$(grep -Fc '<!-- agent-skills:end -->' "$TMP/target/$f")" = 1 ] || fail "$f end marker"
@@ -36,6 +43,8 @@ for f in CLAUDE.md AGENTS.md GEMINI.md; do
     || fail "$f missing agent-operating-manual pointer"
   grep -Fq 'docs/imported-skills/multi-angle-review/SKILL.md' "$TMP/target/$f" \
     || fail "$f missing multi-angle-review pointer"
+  grep -Fq 'docs/agent-memory-index.md' "$TMP/target/$f" \
+    || fail "$f missing repo memory index pointer"
 done
 
 # 2) idempotency: second run must be byte-identical
@@ -44,13 +53,56 @@ bash "$TMP/src/install.sh" "$TMP/target"
 SNAP2="$(cd "$TMP/target" && find . -path ./.git -prune -o -type f -print0 | sort -z | xargs -0 shasum)"
 [ "$SNAP1" = "$SNAP2" ] || fail "second install not idempotent"
 
-# 3) dirty source fails even with --dev
+# 3) v0.2-style managed block is replaced in place and gains memory pointer
+mktarget
+for f in CLAUDE.md AGENTS.md GEMINI.md; do
+  cat > "$TMP/target/$f" <<'EOF'
+# entry
+before
+<!-- agent-skills:begin -->
+<!-- managed by agent-skills CCC0509/agent-skills@v0.2.0；手動編輯會在下次 install 被覆蓋 -->
+非 trivial 任務（委派、選模型、驗證、何時停）先讀 [docs/imported-skills/agent-operating-manual/SKILL.md](docs/imported-skills/agent-operating-manual/SKILL.md)。
+Read-only review（PR / commit range / plan / fix-confirmation）套 [docs/imported-skills/multi-angle-review/SKILL.md](docs/imported-skills/multi-angle-review/SKILL.md)。
+<!-- agent-skills:end -->
+after
+EOF
+done
+bash "$TMP/src/install.sh" "$TMP/target"
+for f in CLAUDE.md AGENTS.md GEMINI.md; do
+  [ "$(grep -Fc '<!-- agent-skills:begin -->' "$TMP/target/$f")" = 1 ] || fail "$f upgrade begin marker"
+  [ "$(grep -Fc 'docs/agent-memory-index.md' "$TMP/target/$f")" = 1 ] || fail "$f upgrade missing memory pointer"
+  grep -Fq 'before' "$TMP/target/$f" || fail "$f upgrade lost pre-block content"
+  grep -Fq 'after' "$TMP/target/$f" || fail "$f upgrade lost post-block content"
+done
+
+# 4) custom --dest does not move the fixed repo memory index
+mktarget
+bash "$TMP/src/install.sh" "$TMP/target" --dest vendor/imported-skills
+[ -f "$TMP/target/vendor/imported-skills/agent-operating-manual/SKILL.md" ] \
+  || fail "custom dest missing agent-operating-manual"
+[ -f "$TMP/target/docs/agent-memory-index.md" ] || fail "custom dest missing fixed memory index"
+[ ! -e "$TMP/target/vendor/agent-memory-index.md" ] || fail "memory index followed custom dest"
+grep -Fq 'vendor/imported-skills/agent-operating-manual/SKILL.md' "$TMP/target/CLAUDE.md" \
+  || fail "custom dest missing skill pointer"
+grep -Fq 'docs/agent-memory-index.md' "$TMP/target/CLAUDE.md" \
+  || fail "custom dest missing fixed memory pointer"
+
+# 5) user-edited memory index survives reinstall
+mktarget
+mkdir -p "$TMP/target/docs"
+printf '# My Custom Index\ncustom content\n' > "$TMP/target/docs/agent-memory-index.md"
+bash "$TMP/src/install.sh" "$TMP/target"
+grep -Fq 'custom content' "$TMP/target/docs/agent-memory-index.md" || fail "user index overwritten"
+grep -Fq '# Agent Memory Index' "$TMP/target/docs/agent-memory-index.md" \
+  && fail "starter clobbered user index"
+
+# 6) dirty source fails even with --dev
 touch "$TMP/src/dirty.tmp"
 if bash "$TMP/src/install.sh" "$TMP/target" --dev 2>"$TMP/err" ; then fail "dirty source accepted"; fi
 grep -q source_dirty "$TMP/err" || fail "expected source_dirty"
 rm "$TMP/src/dirty.tmp"
 
-# 4) untagged without --dev fails; with --dev pins dev-<sha>
+# 7) untagged without --dev fails; with --dev pins dev-<sha>
 git -C "$TMP/src" commit -q --allow-empty -m tmp
 if bash "$TMP/src/install.sh" "$TMP/target" 2>"$TMP/err"; then fail "untagged accepted"; fi
 grep -q source_untagged "$TMP/err" || fail "expected source_untagged"
@@ -58,12 +110,12 @@ mktarget
 bash "$TMP/src/install.sh" "$TMP/target" --dev 2>/dev/null
 grep -q '@dev-' "$TMP/target/.agent-skills/pin" || fail "dev pin format"
 
-# 5) release metadata mismatch fails
+# 8) release metadata mismatch fails
 git -C "$TMP/src" tag -f v9.9.9 >/dev/null
 if bash "$TMP/src/install.sh" "$TMP/target" 2>"$TMP/err"; then fail "metadata mismatch accepted"; fi
 grep -q release_metadata_mismatch "$TMP/err" || fail "expected release_metadata_mismatch"
 
-# 6) unmanaged destination fails
+# 9) unmanaged destination fails
 git -C "$TMP/src" tag -d v9.9.9 >/dev/null; git -C "$TMP/src" reset -q --hard HEAD~1
 git -C "$TMP/src" tag -f "v$VER" >/dev/null
 mktarget
@@ -72,24 +124,28 @@ touch "$TMP/target/docs/imported-skills/agent-operating-manual/hand-authored.md"
 if bash "$TMP/src/install.sh" "$TMP/target" 2>"$TMP/err"; then fail "unmanaged dest accepted"; fi
 grep -q destination_exists_unmanaged "$TMP/err" || fail "expected destination_exists_unmanaged"
 
-# 7) single-sided marker fails
+# 10) single-sided marker fails
 mktarget
 printf '<!-- agent-skills:begin -->\n' >> "$TMP/target/CLAUDE.md"
 if bash "$TMP/src/install.sh" "$TMP/target" 2>"$TMP/err"; then fail "single-sided marker accepted"; fi
 grep -q marker_mismatch "$TMP/err" || fail "expected marker_mismatch"
 
-# 8) --create-entry creates named entry; other missing entries reported skipped
+# 11) --create-entry creates named entry; other missing entries reported skipped
 rm -rf "$TMP/target"; mkdir "$TMP/target"; git -C "$TMP/target" init -q
 OUT="$(bash "$TMP/src/install.sh" "$TMP/target" --create-entry CLAUDE.md)"
 [ -f "$TMP/target/CLAUDE.md" ] || fail "create-entry did not create CLAUDE.md"
 [ "$(grep -Fc '<!-- agent-skills:begin -->' "$TMP/target/CLAUDE.md")" = 1 ] || fail "created CLAUDE.md begin marker"
 [ "$(grep -Fc '<!-- agent-skills:end -->' "$TMP/target/CLAUDE.md")" = 1 ] || fail "created CLAUDE.md end marker"
+grep -Fq 'docs/agent-memory-index.md' "$TMP/target/CLAUDE.md" \
+  || fail "created CLAUDE.md missing memory pointer"
+[ -f "$TMP/target/docs/agent-memory-index.md" ] \
+  || fail "create-entry missing memory index"
 [ ! -f "$TMP/target/AGENTS.md" ] || fail "AGENTS.md created without --create-entry"
 [ ! -f "$TMP/target/GEMINI.md" ] || fail "GEMINI.md created without --create-entry"
 printf '%s\n' "$OUT" | grep -q 'skipped missing entry files:.*AGENTS\.md' || fail "expected AGENTS.md in skipped list"
 printf '%s\n' "$OUT" | grep -q 'skipped missing entry files:.*GEMINI\.md' || fail "expected GEMINI.md in skipped list"
 
-# 9) optional skill-authoring installs only when explicitly requested
+# 12) optional skill-authoring installs only when explicitly requested
 mktarget
 bash "$TMP/src/install.sh" "$TMP/target" --skills agent-operating-manual,multi-angle-review,skill-authoring
 [ -f "$TMP/target/docs/imported-skills/skill-authoring/SKILL.md" ] \
@@ -98,5 +154,7 @@ bash "$TMP/src/install.sh" "$TMP/target" --skills agent-operating-manual,multi-a
   || fail "missing skill-authoring sentinel"
 [ "$(grep -Fc 'docs/imported-skills/skill-authoring/SKILL.md' "$TMP/target/CLAUDE.md")" = 1 ] \
   || fail "CLAUDE.md missing skill-authoring pointer"
+[ "$(grep -Fc 'docs/agent-memory-index.md' "$TMP/target/CLAUDE.md")" = 1 ] \
+  || fail "CLAUDE.md missing memory pointer with skill-authoring"
 
 echo "install smoke ok"
