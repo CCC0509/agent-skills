@@ -7,13 +7,14 @@
 
 ---
 
-## 新 session 先讀這 5 行（快速參考卡）
+## 新 session 先讀（快速參考卡）
 
 1. 讀 >2 未讀檔（**探索性、得邊讀邊找**）/ 掃 repo / 查網頁 / 批次改檔 → **派 subagent**，主線只吃**結論 + `file:line`**。
 2. 每次派工 = **目標與動機 + 驗收條件 + 回報格式**（缺一不可）。
 3. **選模型（🟦 此條 Claude Code 專屬；Codex/Gemini 讀各自 model adapter，勿照搬）**：機械批量 `haiku`、預設 `sonnet`、最難推理 `opus`、max-stakes 且 **operator 授權**才 `fable`。逐次能設 **model**、**不能**設 effort。
 4. **驗證不自驗**：檔案 read-back、程式碼實跑、高風險加第二意見——都派**新 context**。
 5. 小模型錯一次直接升、中階同任務錯兩次帶軌跡升、**最多 2 輪，之後停下問人**；不確定就查，查不到就明說。
+6. Repo memory 先讀 `docs/agent-memory-index.md`；狀態記憶可關閉，教訓記憶 append-only 到第 3 次升 rubric，audit 記憶永久 append。
 
 ---
 
@@ -22,6 +23,7 @@
 | 檔 | 內容 | 何時讀 |
 |---|---|---|
 | [`10-model-dispatch.md`](10-model-dispatch.md) | **C** 指揮官不下場、派工三件套、模型/effort、升降級、驗證不自驗 | **每個 session 的核心；不熟就從這開始** |
+| [`15-repo-memory.md`](15-repo-memory.md) | **B** repo-owned shared memory：index、status / lesson / audit lifecycle、ATK / MCP boundaries | Session start、closeout、或要寫 repo memory 時 |
 | [`20-judgment-rubrics.md`](20-judgment-rubrics.md) | **D** 何時升級/算完成/停下問人/該換路/驗品質（各附正反例） | 卡在判斷時查對應 § |
 | [`30-dispatch-templates.md`](30-dispatch-templates.md) | **E** 搜尋/實作/重構/研究/審查 派工填空模板 | 要委派時複製套用 |
 | [`40-maintenance.md`](40-maintenance.md) | **F** 怎麼安全更新這套 + 如何 skill 化給所有 agent/repo | 要改這套、或要發佈成 skill 時 |

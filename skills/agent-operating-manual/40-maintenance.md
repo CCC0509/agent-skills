@@ -75,8 +75,10 @@
 1. 從 agent-skills 的 exact tag checkout 跑 `./install.sh <target-repo>`（詳見
    repo README）；產出 `docs/imported-skills/**`、`.agent-skills/pin`、
    入口指標區塊。
-2. 為該 repo 建立自己的 `00-diagnosis.md` 與 `LESSONS.md`（永遠 per-repo，
-   要重測，不搬）。
+2. Review `docs/agent-memory-index.md` and choose repo-owned paths for status,
+   lesson, and audit memory. A missing `LESSONS.md` is valid until the first
+   reusable lesson appears, if the index says where to create it. Memory data is
+   always per-repo; do not move it into agent-skills.
 3. 把 `docs/imported-skills/**` 與 `.agent-skills/**` 納入該 repo 的變更治理
    （例：behavior-impact file-set），避免升級被當一般 docs 繞過 review。
 4. 升級：agent-skills checkout 到新 tag → 重跑 install.sh；不手改 imported
