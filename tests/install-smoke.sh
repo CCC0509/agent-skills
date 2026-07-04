@@ -96,13 +96,21 @@ grep -Fq 'custom content' "$TMP/target/docs/agent-memory-index.md" || fail "user
 grep -Fq '# Agent Memory Index' "$TMP/target/docs/agent-memory-index.md" \
   && fail "starter clobbered user index"
 
-# 6) dirty source fails even with --dev
+# 6) broken memory-index symlink is not followed outside the target repo
+mktarget
+mkdir -p "$TMP/target/docs"
+ln -s "$TMP/outside-index.md" "$TMP/target/docs/agent-memory-index.md"
+bash "$TMP/src/install.sh" "$TMP/target"
+[ -L "$TMP/target/docs/agent-memory-index.md" ] || fail "memory index symlink replaced"
+[ ! -e "$TMP/outside-index.md" ] || fail "memory index symlink wrote outside target"
+
+# 7) dirty source fails even with --dev
 touch "$TMP/src/dirty.tmp"
 if bash "$TMP/src/install.sh" "$TMP/target" --dev 2>"$TMP/err" ; then fail "dirty source accepted"; fi
 grep -q source_dirty "$TMP/err" || fail "expected source_dirty"
 rm "$TMP/src/dirty.tmp"
 
-# 7) untagged without --dev fails; with --dev pins dev-<sha>
+# 8) untagged without --dev fails; with --dev pins dev-<sha>
 git -C "$TMP/src" commit -q --allow-empty -m tmp
 if bash "$TMP/src/install.sh" "$TMP/target" 2>"$TMP/err"; then fail "untagged accepted"; fi
 grep -q source_untagged "$TMP/err" || fail "expected source_untagged"
@@ -110,12 +118,12 @@ mktarget
 bash "$TMP/src/install.sh" "$TMP/target" --dev 2>/dev/null
 grep -q '@dev-' "$TMP/target/.agent-skills/pin" || fail "dev pin format"
 
-# 8) release metadata mismatch fails
+# 9) release metadata mismatch fails
 git -C "$TMP/src" tag -f v9.9.9 >/dev/null
 if bash "$TMP/src/install.sh" "$TMP/target" 2>"$TMP/err"; then fail "metadata mismatch accepted"; fi
 grep -q release_metadata_mismatch "$TMP/err" || fail "expected release_metadata_mismatch"
 
-# 9) unmanaged destination fails
+# 10) unmanaged destination fails
 git -C "$TMP/src" tag -d v9.9.9 >/dev/null; git -C "$TMP/src" reset -q --hard HEAD~1
 git -C "$TMP/src" tag -f "v$VER" >/dev/null
 mktarget
@@ -124,28 +132,28 @@ touch "$TMP/target/docs/imported-skills/agent-operating-manual/hand-authored.md"
 if bash "$TMP/src/install.sh" "$TMP/target" 2>"$TMP/err"; then fail "unmanaged dest accepted"; fi
 grep -q destination_exists_unmanaged "$TMP/err" || fail "expected destination_exists_unmanaged"
 
-# 10) single-sided marker fails
+# 11) single-sided marker fails
 mktarget
 printf '<!-- agent-skills:begin -->\n' >> "$TMP/target/CLAUDE.md"
 if bash "$TMP/src/install.sh" "$TMP/target" 2>"$TMP/err"; then fail "single-sided marker accepted"; fi
 grep -q marker_mismatch "$TMP/err" || fail "expected marker_mismatch"
 
-# 11) --create-entry creates named entry; other missing entries reported skipped
+# 12) --create-entry creates named entry; other missing entries reported skipped
 rm -rf "$TMP/target"; mkdir "$TMP/target"; git -C "$TMP/target" init -q
-OUT="$(bash "$TMP/src/install.sh" "$TMP/target" --create-entry CLAUDE.md)"
-[ -f "$TMP/target/CLAUDE.md" ] || fail "create-entry did not create CLAUDE.md"
-[ "$(grep -Fc '<!-- agent-skills:begin -->' "$TMP/target/CLAUDE.md")" = 1 ] || fail "created CLAUDE.md begin marker"
-[ "$(grep -Fc '<!-- agent-skills:end -->' "$TMP/target/CLAUDE.md")" = 1 ] || fail "created CLAUDE.md end marker"
-grep -Fq 'docs/agent-memory-index.md' "$TMP/target/CLAUDE.md" \
-  || fail "created CLAUDE.md missing memory pointer"
+OUT="$(bash "$TMP/src/install.sh" "$TMP/target" --create-entry AGENTS.md)"
+[ -f "$TMP/target/AGENTS.md" ] || fail "create-entry did not create AGENTS.md"
+[ "$(grep -Fc '<!-- agent-skills:begin -->' "$TMP/target/AGENTS.md")" = 1 ] || fail "created AGENTS.md begin marker"
+[ "$(grep -Fc '<!-- agent-skills:end -->' "$TMP/target/AGENTS.md")" = 1 ] || fail "created AGENTS.md end marker"
+grep -Fq 'docs/agent-memory-index.md' "$TMP/target/AGENTS.md" \
+  || fail "created AGENTS.md missing memory pointer"
 [ -f "$TMP/target/docs/agent-memory-index.md" ] \
   || fail "create-entry missing memory index"
-[ ! -f "$TMP/target/AGENTS.md" ] || fail "AGENTS.md created without --create-entry"
+[ ! -f "$TMP/target/CLAUDE.md" ] || fail "CLAUDE.md created without --create-entry"
 [ ! -f "$TMP/target/GEMINI.md" ] || fail "GEMINI.md created without --create-entry"
-printf '%s\n' "$OUT" | grep -q 'skipped missing entry files:.*AGENTS\.md' || fail "expected AGENTS.md in skipped list"
+printf '%s\n' "$OUT" | grep -q 'skipped missing entry files:.*CLAUDE\.md' || fail "expected CLAUDE.md in skipped list"
 printf '%s\n' "$OUT" | grep -q 'skipped missing entry files:.*GEMINI\.md' || fail "expected GEMINI.md in skipped list"
 
-# 12) optional skill-authoring installs only when explicitly requested
+# 13) optional skill-authoring installs only when explicitly requested
 mktarget
 bash "$TMP/src/install.sh" "$TMP/target" --skills agent-operating-manual,multi-angle-review,skill-authoring
 [ -f "$TMP/target/docs/imported-skills/skill-authoring/SKILL.md" ] \
