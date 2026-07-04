@@ -7,6 +7,7 @@ DEFAULT_SKILLS="agent-operating-manual,multi-angle-review"
 ENTRY_FILES=("CLAUDE.md" "AGENTS.md" "GEMINI.md")
 MARKER_BEGIN="<!-- agent-skills:begin -->"
 MARKER_END="<!-- agent-skills:end -->"
+MEMORY_INDEX="docs/agent-memory-index.md"
 
 usage() {
   cat <<'EOF'
@@ -75,7 +76,8 @@ else
 fi
 
 # --- Copy skills (managed replace) ---
-POINTER_LINES=""
+POINTER_LINES="Repo memory index: [$MEMORY_INDEX]($MEMORY_INDEX).
+"
 for name in "${SKILL_ARR[@]}"; do
   SRC="$SCRIPT_DIR/skills/$name"
   [ -d "$SRC" ] || { echo "unknown skill: $name" >&2; exit 1; }
@@ -104,6 +106,31 @@ done
 # --- Pin ---
 mkdir -p "$TARGET/.agent-skills"
 printf '%s\n' "$PIN" > "$TARGET/.agent-skills/pin"
+
+# --- Repo-owned memory index ---
+MEMORY_INDEX_PATH="$TARGET/$MEMORY_INDEX"
+if [ ! -e "$MEMORY_INDEX_PATH" ]; then
+  mkdir -p "$(dirname "$MEMORY_INDEX_PATH")"
+  cat > "$MEMORY_INDEX_PATH" <<'EOF'
+# Agent Memory Index
+
+This repo owns this file. agent-skills creates it once as a starter index and
+does not overwrite local edits.
+
+## Canonical Memory
+
+- `LESSONS.md`: not created yet; create it at the repo's chosen lesson-memory path when the first reusable lesson appears.
+- Status memory: repo-owned todo / diagnosis / future-session notes.
+- Audit memory: repo-owned review log, done log, observations, or release notes.
+
+## Not Canonical Memory
+
+- Imported skill copies under `docs/imported-skills/**`.
+- Agent Trigger Kit outcome stores.
+- MCP graph caches.
+- Local scratch files.
+EOF
+fi
 
 # --- Pointer block injection ---
 BLOCK="$MARKER_BEGIN
