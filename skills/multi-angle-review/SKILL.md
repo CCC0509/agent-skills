@@ -11,6 +11,33 @@ prior findings. Framework-agnostic：不假設任何 process framework；在有
 superpowers 的 repo 可直接作為 requesting-code-review checkpoint 的 reviewer
 方法論。
 
+### Cross-phase rule — Reviewer conduct
+
+These rules apply across every phase. They are the read-only counterpart to the
+Agent Operating Manual's verify-not-self-verify rule: a reviewer preserves
+independence by not becoming the author.
+
+- Reviewer legal write surface is session memory plus scratch artifacts only. Do
+  not edit the reviewed worktree, even for a one-line fix. Attach a suggested
+  patch or exact replacement text in the report and leave implementation to the
+  author.
+- Before reporting a failure, classify it with one attribution:
+  `pr_introduced`, `pre_existing`, or `environment`. A code path untouched by the
+  diff cannot be reported as a PR regression unless the changed contract newly
+  exposes it.
+- Treat every disclosed verification gap as a reviewer action item, not a waiver. Try
+  to close the gap from your own environment; if policy, credentials, network, or
+  tooling blocks it, report the remaining gap explicitly.
+- When new evidence weakens or refutes your earlier warning, say so in the
+  report. Do not leave stale alarms implicit.
+- Policy denial is a verification gap, not an invitation to route around the
+  boundary. If production access, credentials, or host policy blocks a probe,
+  stop at the boundary and state what remains author-attested.
+- Prefer decisive cheap probes before expensive reruns or speculation. Examples:
+  if a squash merge tree hash equals the reviewed head tree hash, reviewed gates
+  transfer to the merge commit; for annotated tags, verify the peeled `^{}` target
+  instead of trusting the tag object alone.
+
 ### Phase 0 — Pin the scope
 
 - Fetch the exact target yourself before reviewing. For a PR / commit range, save `gh pr diff <N>` or `git diff <A>..<B>` to a scratch file. For a plan review, save the full plan file snapshot, not only the current diff, because stale or missing Verification checkboxes can live outside changed hunks. The saved artifact is the review scope.
@@ -19,7 +46,7 @@ superpowers 的 repo 可直接作為 requesting-code-review checkpoint 的 revie
 
 ### Phase 1 — Independent finder angles
 
-Run each angle as an independent pass over the same pinned scope. With subagent support, fan the angles out in parallel; without subagents, run them sequentially one at a time and write candidates to a scratch file before starting the next angle. Every candidate needs `file`, `line`, a one-line `summary`, and a concrete `failure_scenario` (inputs/state -> wrong output). Pass every candidate with a nameable failure scenario into Phase 2; do not self-censor before verification.
+Run each angle as an independent pass over the same pinned scope. With subagent support, fan the angles out in parallel; without subagents, run them sequentially one at a time and write candidates to a scratch file before starting the next angle. Every candidate needs `file`, `line`, a one-line `summary`, a concrete `failure_scenario` (inputs/state -> wrong output), and `attribution` (`pr_introduced`, `pre_existing`, or `environment`). Pass every candidate with a nameable failure scenario into Phase 2; do not self-censor before verification.
 
 1. **Line-by-line + removed behavior**: read the full enclosing function / section of every hunk, not just the hunk. For every deleted or replaced line, name the invariant it enforced and find where the new code re-establishes it.
 2. **Cross-file tracer**: for every changed exported symbol, prefer code-graph tools when state is `available_indexed` (for example codebase-memory MCP `search_graph`, `trace_path`, `get_code_snippet`, `query_graph`, `search_code`). If graph state is `available_unindexed_or_stale`, use graph only for safe discovery or fall back to `rg` and disclose the stale / unindexed gap. If graph state is `unavailable` (`Transport closed`, missing tool, spawn failure), use `rg` / local file reads and disclose the fallback when cross-file tracing affects confidence. Check new preconditions, changed return shapes, newly thrown error types, and any path where a new error gets silently swallowed (warn-only catch, empty catch, continue-quietly loop).
@@ -46,5 +73,6 @@ Run each angle as an independent pass over the same pinned scope. With subagent 
 
 - Verdict first, findings ranked most-severe first, in the repo's reply language.
 - Bucket findings: must-fix before merge / needs the user's decision / accepted residual with a named follow-up owner (roadmap step or worklist item; no orphan follow-ups).
+- For each finding, include `attribution` (`pr_introduced`, `pre_existing`, or `environment`) so the report distinguishes PR regressions from inherited defects and tooling / environment failures.
 - Do not re-litigate decisions the user already pinned. When new evidence changes a pinned decision's cost, report it as evidence with options, not as re-litigation.
 - Fix-confirmation mode: diff `previous-reviewed-tip..new-tip`, verify each claimed fix independently as its own contract, re-run the affected gates, and do not re-review the world.

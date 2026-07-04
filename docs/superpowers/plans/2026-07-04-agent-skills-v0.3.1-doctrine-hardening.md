@@ -36,7 +36,7 @@
 **Files:**
 - Modify: `skills/multi-angle-review/SKILL.md`
 
-- [ ] **Step 1: Insert a cross-phase conduct section before Phase 0**
+- [x] **Step 1: Insert a cross-phase conduct section before Phase 0**
 
 Add this section after the introductory paragraph and before `### Phase 0 — Pin the scope`:
 
@@ -69,7 +69,7 @@ independence by not becoming the author.
   instead of trusting the tag object alone.
 ```
 
-- [ ] **Step 2: Add `attribution` to the Phase 1 candidate format**
+- [x] **Step 2: Add `attribution` to the Phase 1 candidate format**
 
 Replace the Phase 1 candidate-format sentence:
 
@@ -83,7 +83,7 @@ with:
 Every candidate needs `file`, `line`, a one-line `summary`, a concrete `failure_scenario` (inputs/state -> wrong output), and `attribution` (`pr_introduced`, `pre_existing`, or `environment`).
 ```
 
-- [ ] **Step 3: Add attribution to the report contract**
+- [x] **Step 3: Add attribution to the report contract**
 
 In Phase 4, add this bullet after the finding-bucket bullet:
 
@@ -91,7 +91,7 @@ In Phase 4, add this bullet after the finding-bucket bullet:
 - For each finding, include `attribution` (`pr_introduced`, `pre_existing`, or `environment`) so the report distinguishes PR regressions from inherited defects and tooling / environment failures.
 ```
 
-- [ ] **Step 4: Verify conduct vocabulary is present**
+- [x] **Step 4: Verify conduct vocabulary is present**
 
 Run:
 
@@ -101,7 +101,7 @@ rg -n "Reviewer conduct|pr_introduced|pre_existing|environment|squash merge tree
 
 Expected: output includes the new section, all three snake_case attribution labels, and both cheap-probe examples.
 
-- [ ] **Step 5: Commit Task 1**
+- [x] **Step 5: Commit Task 1**
 
 ```bash
 git add skills/multi-angle-review/SKILL.md
