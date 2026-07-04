@@ -6,7 +6,7 @@
 
 ## §1 你可以自己改、不用先問
 
-- **在 `LESSONS.md` 追加一條教訓**（append-only，只加不改舊的）。
+- **在 repo lesson memory 追加一條教訓**（append-only，只加不改舊的；路徑以 `docs/agent-memory-index.md` 為準）。
 - 修**明顯的 typo / 壞連結 / 錯路徑**（改前先驗證正確值：`ls` / `grep` 確認再改）。
 - 在既有 rubric（D）**補一個正例或反例**，只要**不改動規則本身的意思**。
 - 更新檔尾的 `last reviewed` 日期。
@@ -24,7 +24,8 @@
 
 ## §3 踩坑 → 教訓：寫回哪、什麼格式
 
-每次踩坑後，在 `LESSONS.md` 追加一條，用這個格式：
+每次踩坑後，在 `docs/agent-memory-index.md` 指定的 lesson memory（常見檔名是
+`LESSONS.md`）追加一條，用這個格式：
 
 ```
 ## YYYY-MM-DD — <一句話標題>
@@ -41,7 +42,8 @@
 裡的新 failure category、unmarked outcome、或 `events.jsonl` 事件當成客觀輸入：
 
 1. 先完成當輪 outcome mark / gating closeout。
-2. 將可重用教訓追加到 repo-local `LESSONS.md`。
+2. 將可重用教訓追加到 repo-local lesson memory（以
+   `docs/agent-memory-index.md` 指定的路徑為準）。
 3. 同類第 3 次出現時，再升級到 `20-judgment-rubrics.md` 或該 repo 的同等
    rubric。
 
@@ -50,11 +52,11 @@
 
 ## §4 累積多長要精簡（防止 manual 變成它要修的問題）
 
-**觸發**：`LESSONS.md` 超過 **30 條** 或 **~400 行**。
+**觸發**：repo lesson memory 超過 **30 條** 或 **~400 行**。
 **動作**（派一個 `sonnet` subagent 做）：
 1. 合併重複的教訓。
 2. **把出現 ≥3 次的教訓，提升成 D 的正式 rubric**（附正反例）。
-3. 把原始 log 歸檔到 `LESSONS-archive-<YYYY>.md`，`LESSONS.md` 保持精簡。
+3. 依 repo 慣例歸檔原始 log，讓 active lesson memory 保持精簡。
 
 **長度上限**：每個 doctrine 檔控制在 **~250 行內**；超過就拆。
 **核心自省**：整套 manual（常載指標 + 被讀到的內容）**絕不能大到反過來變成 `00-diagnosis.md` Leak 2 那種負擔**。若它省下的 token < 它自己吃掉的，就是該精簡的訊號。
@@ -75,8 +77,10 @@
 1. 從 agent-skills 的 exact tag checkout 跑 `./install.sh <target-repo>`（詳見
    repo README）；產出 `docs/imported-skills/**`、`.agent-skills/pin`、
    入口指標區塊。
-2. 為該 repo 建立自己的 `00-diagnosis.md` 與 `LESSONS.md`（永遠 per-repo，
-   要重測，不搬）。
+2. Review `docs/agent-memory-index.md` and choose repo-owned paths for status,
+   lesson, and audit memory. A missing `LESSONS.md` is valid until the first
+   reusable lesson appears, if the index says where to create it. Memory data is
+   always per-repo; do not move it into agent-skills.
 3. 把 `docs/imported-skills/**` 與 `.agent-skills/**` 納入該 repo 的變更治理
    （例：behavior-impact file-set），避免升級被當一般 docs 繞過 review。
 4. 升級：agent-skills checkout 到新 tag → 重跑 install.sh；不手改 imported
