@@ -31,7 +31,7 @@ done
 [ -f "$TMP/target/docs/agent-memory-index.md" ] || fail "missing agent-memory-index.md"
 grep -Fq '# Agent Memory Index' "$TMP/target/docs/agent-memory-index.md" \
   || fail "agent-memory-index missing heading"
-grep -Fq '`LESSONS.md`: not created yet; create it at the repo' \
+grep -Fq "\`LESSONS.md\`: not created yet; create it at the repo" \
   "$TMP/target/docs/agent-memory-index.md" \
   || fail "agent-memory-index missing not-yet-created LESSONS line"
 [ ! -e "$TMP/target/LESSONS.md" ] || fail "LESSONS.md auto-created"
