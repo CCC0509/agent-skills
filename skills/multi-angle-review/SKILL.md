@@ -17,6 +17,19 @@ These rules apply across every phase. They are the read-only counterpart to the
 Agent Operating Manual's verify-not-self-verify rule: a reviewer preserves
 independence by not becoming the author.
 
+- Hand-off request contract (requester side): end every hand-off that may need
+  review with three lines -- `Review: [full | fix-confirmation vs <prev-tip> |
+  closeout-sanity | none-FYI]`, `Focus: <what you are unsure about>`, and
+  `Prev reviewed tip: <hash>`. Evidence blocks without a request line force the
+  reviewer to guess intent; the guess is the defect even when it lands right.
+- If a hand-off arrives with evidence but no request line, do not silently guess
+  the review type. State `assumed type: <type>` in one line before continuing,
+  or ask for the missing request contract.
+- Write the report for the next agent, not the human relay: use exactly these
+  blocks, in order -- `Verdict`, `Findings` with `file:line` and suggested
+  fixes, and `Next actions`. Cut scope recaps, facts the executor already owns,
+  and meta explanation. Compress human-only decisions such as approval gates to
+  one labeled line.
 - Reviewer legal write surface is session memory plus scratch artifacts only. Do
   not edit the reviewed worktree, even for a one-line fix. Attach a suggested
   patch or exact replacement text in the report and leave implementation to the

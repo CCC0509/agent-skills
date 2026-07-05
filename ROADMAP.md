@@ -15,6 +15,9 @@ release scope.
   evidence hygiene boundaries.
 - v0.4.1: reviewer opening / closeout conduct hardening plus small installer
   marker, README companion-boundary, and verify-not-self-verify wording polish.
+- v0.4.2: review I/O contract for request hand-offs, assumed-type handling, and
+  paste-ready reports; public evidence provenance wording; requester-side
+  prompt-contract candidate absorbed into multi-angle-review.
 
 ## Extraction Candidates
 
@@ -27,7 +30,7 @@ release scope.
 | agent-skills doctrine | Named absence statuses for missing closeout evidence | agent-skills / ATK | Mechanism exists in some adopters; doctrine should wait for the closeout self-report work so categories do not drift. |
 | agent-skills doctrine | Harness warning triage contract | agent-skills | Needs more portable examples so known harness noise is classified without normalizing ignored warnings. |
 | agent-skills doctrine | Probe catalog appendix | agent-skills | v0.4 adds examples inline; a full catalog should wait until enough probes justify an appendix. |
-| agent-skills doctrine | Extraction-candidate closeout protocol | agent-skills | Manual success-pattern extraction has happened twice (v0.3.1 and v0.4); wake on the third manual extraction or when closeout self-report is designed. |
+| agent-skills doctrine | Extraction-candidate closeout protocol | agent-skills | Wake condition reached by the v0.4.1 reviewer-conduct extraction and v0.4.2 review I/O contract shaping. Keep the protocol design out of v0.4.2; schedule it for v0.5.0. |
 | ATK templates | `agent-impact-file-sets.mjs` classifier template | agent-trigger-kit | Mechanism/script, not doctrine. |
 | ATK templates | Plan/spec lifecycle checker template | agent-trigger-kit | Validator template belongs with trigger-layer mechanisms. |
 | ATK templates | MCP config validator template | agent-trigger-kit | Reusable validator; pair with agent-skills fallback doctrine later. |

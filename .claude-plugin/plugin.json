@@ -1,6 +1,6 @@
 {
   "name": "agent-skills",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Portable agent doctrine skills: agent-operating-manual (dispatch economy), multi-angle-review (adversarial review pipeline), and optional skill-authoring.",
   "skills": [
     "./skills/"
