@@ -13,6 +13,8 @@ release scope.
 - v0.4.0: change-discipline doctrine for convention migrations,
   verifiability-driven commit structure, approval-bound identifiers, and public
   evidence hygiene boundaries.
+- v0.4.1: reviewer opening / closeout conduct hardening plus small installer
+  marker, README companion-boundary, and verify-not-self-verify wording polish.
 
 ## Extraction Candidates
 

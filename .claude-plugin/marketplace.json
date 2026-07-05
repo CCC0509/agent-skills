@@ -11,7 +11,7 @@
       "name": "agent-skills",
       "source": "./",
       "description": "Portable agent doctrine skills: agent-operating-manual (dispatch economy), multi-angle-review (adversarial review pipeline), and optional skill-authoring.",
-      "version": "0.4.0",
+      "version": "0.4.1",
       "author": {
         "name": "Jack Chou"
       },
