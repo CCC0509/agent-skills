@@ -55,6 +55,13 @@ Approval is evidence only for the concrete object it names. Do not transfer appr
 
 Doctrine releases can cite evidence, but public evidence must be sanitized.
 
+Treat public references as provenance pointers unless the public artifact itself
+contains the full, reviewable evidence. A PR number, commit, or tag can say where
+a decision came from; it must not imply that private logs, local paths, or
+credentialed probes are publicly verifiable. Keep raw private evidence in the
+adopting repo's audit memory and publish only the sanitized conclusion plus the
+public-safe pointer.
+
 Allowed in public doctrine / PR bodies:
 
 - public repo name
@@ -71,7 +78,8 @@ Not allowed in public doctrine / PR bodies:
 - private repo paths or private artifact paths
 - raw logs, account identifiers, IP addresses, order IDs, or secret-like values
 
-When evidence is local or private, write a compact public summary and keep the raw detail in the adopting repo's audit memory.
+When evidence is local or private, write a compact public summary and keep the
+raw detail in the adopting repo's audit memory.
 
 ## Evidence Seeds
 
