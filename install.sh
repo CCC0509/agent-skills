@@ -134,7 +134,7 @@ fi
 
 # --- Pointer block injection ---
 BLOCK="$MARKER_BEGIN
-<!-- managed by agent-skills ${PIN}；手動編輯會在下次 install 被覆蓋 -->
+<!-- managed by agent-skills ${PIN}；升級時重跑 install.sh 會替換本區塊；手動編輯會在下次 install 被覆蓋 -->
 ${POINTER_LINES}$MARKER_END"
 
 for entry in "${CREATE_ENTRIES[@]+"${CREATE_ENTRIES[@]}"}"; do

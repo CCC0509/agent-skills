@@ -61,7 +61,9 @@ subagent 回給主線的東西，**預設只有兩種**：
 
 ## §4 驗證不自驗（Verify, not self-verify）
 
-**做事的 agent 不能當自己的驗收官。** 驗收永遠派**新 context** 的 agent 或用機器判定。按產物類型：
+**做事的 agent 不能當自己的驗收官。** 驗收要交給**新 context** 的 agent 或
+機器判定；如果 harness 沒有 fresh-context worker，就用決定性 probe 並揭露
+剩下的驗證缺口，不要把作者自己的語氣當驗收。按產物類型：
 
 | 產物 | 驗收方式 |
 |---|---|

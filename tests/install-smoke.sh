@@ -38,6 +38,8 @@ grep -Fq "\`LESSONS.md\`: not created yet; create it at the repo" \
 for f in CLAUDE.md AGENTS.md GEMINI.md; do
   [ "$(grep -Fc '<!-- agent-skills:begin -->' "$TMP/target/$f")" = 1 ] || fail "$f begin marker"
   [ "$(grep -Fc '<!-- agent-skills:end -->' "$TMP/target/$f")" = 1 ] || fail "$f end marker"
+  grep -Fq '升級時重跑 install.sh 會替換本區塊' "$TMP/target/$f" \
+    || fail "$f missing upgrade marker notice"
   grep -q 'existing content' "$TMP/target/$f" || fail "$f lost existing content"
   grep -Fq 'docs/imported-skills/agent-operating-manual/SKILL.md' "$TMP/target/$f" \
     || fail "$f missing agent-operating-manual pointer"
@@ -70,6 +72,9 @@ done
 bash "$TMP/src/install.sh" "$TMP/target"
 for f in CLAUDE.md AGENTS.md GEMINI.md; do
   [ "$(grep -Fc '<!-- agent-skills:begin -->' "$TMP/target/$f")" = 1 ] || fail "$f upgrade begin marker"
+  [ "$(grep -Fc '<!-- agent-skills:end -->' "$TMP/target/$f")" = 1 ] || fail "$f upgrade end marker"
+  grep -Fq '升級時重跑 install.sh 會替換本區塊' "$TMP/target/$f" \
+    || fail "$f upgrade missing upgrade marker notice"
   [ "$(grep -Fc 'docs/agent-memory-index.md' "$TMP/target/$f")" = 1 ] || fail "$f upgrade missing memory pointer"
   grep -Fq 'before' "$TMP/target/$f" || fail "$f upgrade lost pre-block content"
   grep -Fq 'after' "$TMP/target/$f" || fail "$f upgrade lost post-block content"
@@ -144,6 +149,8 @@ OUT="$(bash "$TMP/src/install.sh" "$TMP/target" --create-entry AGENTS.md)"
 [ -f "$TMP/target/AGENTS.md" ] || fail "create-entry did not create AGENTS.md"
 [ "$(grep -Fc '<!-- agent-skills:begin -->' "$TMP/target/AGENTS.md")" = 1 ] || fail "created AGENTS.md begin marker"
 [ "$(grep -Fc '<!-- agent-skills:end -->' "$TMP/target/AGENTS.md")" = 1 ] || fail "created AGENTS.md end marker"
+grep -Fq '升級時重跑 install.sh 會替換本區塊' "$TMP/target/AGENTS.md" \
+  || fail "created AGENTS.md missing upgrade marker notice"
 grep -Fq 'docs/agent-memory-index.md' "$TMP/target/AGENTS.md" \
   || fail "created AGENTS.md missing memory pointer"
 [ -f "$TMP/target/docs/agent-memory-index.md" ] \

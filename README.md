@@ -19,8 +19,15 @@
 `GEMINI.md` 注入 `<!-- agent-skills:begin/end -->` 指標區塊（重跑冪等 = 升級）。
 `docs/agent-memory-index.md` is created once if absent. It is repo-owned and not
 overwritten by later installs.
+`<!-- agent-skills:begin -->` / `<!-- agent-skills:end -->` sentinel lines are a
+frozen compatibility boundary. Do not rename them; upgrades replace only the
+managed block between those markers.
 `--dev` 只放寬 exact-tag（dirty 一律 fail loud），pin 記 `dev-<shortsha>`。
 其他 flags：`--dest <dir>`、`--skills a,b`、`--create-entry <file>`。
+
+Companion boundary: agent-skills is the portable doctrine half. Mechanisms such
+as trigger validators, hook templates, and outcome collectors belong in their
+own tooling repos; adopting repos connect the two in local playbooks.
 
 Default install 只包含 `agent-operating-manual,multi-angle-review`。
 `skill-authoring` 是 maintainer / extraction 用 optional skill，需要時明確指定：
