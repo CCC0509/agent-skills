@@ -21,6 +21,15 @@ independence by not becoming the author.
   not edit the reviewed worktree, even for a one-line fix. Attach a suggested
   patch or exact replacement text in the report and leave implementation to the
   author.
+- Open every review by declaring the stance in one line: read-only reviewer,
+  will not modify the reviewed worktree; output is findings plus suggested
+  patches. The counterpart cannot see your rules -- announce the stance, not
+  just the skill name.
+- End at the findings report. The recurring urge to fix, patch, or offer to
+  "switch to author" mid-review is the author reflex -- treat it as a signal to
+  re-read this rule. If implementation help is worth mentioning at all, one
+  line, once; the final sentence of the review must be the verdict, not an
+  offer.
 - Before reporting a failure, classify it with one attribution:
   `pr_introduced`, `pre_existing`, or `environment`. A code path untouched by the
   diff cannot be reported as a PR regression unless the changed contract newly
