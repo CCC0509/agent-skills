@@ -18,6 +18,9 @@ release scope.
 - v0.4.2: review I/O contract for request hand-offs, assumed-type handling, and
   paste-ready reports; public evidence provenance wording; requester-side
   prompt-contract candidate absorbed into multi-angle-review.
+- v0.4.3: review opening header is probeable with `Review stance:`, review
+  closeout wording ends at `Next actions`, and named-absence deferral points to
+  Agent Trigger Kit's durable no-report classification home.
 
 ## Extraction Candidates
 
@@ -27,7 +30,7 @@ release scope.
 | agent-skills doctrine | Plan / PR lifecycle discipline: branch-first, PR stop, explicit approval, squash merge | agent-skills | High-value shared state machine; needs careful wording across consumer repos. |
 | agent-skills doctrine | Plan/spec lifecycle header convention text | agent-skills | Doctrine belongs here; validator stays out of the markdown-only repo. |
 | agent-skills doctrine | Shared checkout concurrency etiquette | agent-skills | Useful but outside v0.4 change-discipline scope; needs wording that fits multiple harnesses and shared-worktree policies. |
-| agent-skills doctrine | Named absence statuses for missing closeout evidence | agent-skills / ATK | Mechanism exists in some adopters; doctrine should wait for the closeout self-report work so categories do not drift. |
+| agent-skills doctrine | Named absence statuses for missing closeout evidence | agent-skills / ATK | Agent Trigger Kit now owns the canonical mechanism home for durable no-report classification; agent-skills doctrine should still wait for the closeout self-report work so categories do not drift. |
 | agent-skills doctrine | Harness warning triage contract | agent-skills | Needs more portable examples so known harness noise is classified without normalizing ignored warnings. |
 | agent-skills doctrine | Probe catalog appendix | agent-skills | v0.4 adds examples inline; a full catalog should wait until enough probes justify an appendix. |
 | agent-skills doctrine | Extraction-candidate closeout protocol | agent-skills | Wake condition reached by the v0.4.1 reviewer-conduct extraction and v0.4.2 review I/O contract shaping. Keep the protocol design out of v0.4.2; schedule it for v0.5.0. |
