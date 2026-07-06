@@ -73,6 +73,14 @@ Prev reviewed tip: <hash or n/a>
 狀態、不要求審查。`Focus:` 說明你最不確定的地方；`Prev reviewed tip:` 綁定
 上一輪已審過的 commit / PR head，沒有就寫 `n/a`。
 
+Co-occurrence tie-breaker：三行 `Review:` 合約是 reviewer-facing context；`Status:`
+relay block 是 user-facing / next-action control signal。兩者同時出現時，consuming
+agent MUST follow `Status:` block 來判斷 immediate next action、approval state、
+blockers、accepted residuals。若作者想要 review，`Status` 必須是 `review-needed`；
+`Review:` alone must not override a `Status: complete-no-action-needed` relay。Contract
+block 欄位優先於 fenced block 外散文；只有 `Review:` 而沒有 `Status:` 的交接不授權
+execution、approval、merge、deploy 或 release。
+
 若交接文字是要讓使用者複製給另一個 agent，請把「要複製的完整內容」放進單一
 `text` fenced code block。區塊外只放人類說明、風險或狀態；不要把不需要轉貼的
 敘述混進區塊。沒有這個合約時，下一個 agent 必須猜意圖；猜對也算交接缺陷。
@@ -82,12 +90,19 @@ Prev reviewed tip: <hash or n/a>
 
 ```text
 Status: <review-needed | ready-for-user-approval | complete-no-action-needed | not-ready>
+Target repo: <owner/repo or absolute local repo path, or n/a>
 Target: <PR/branch/task + head SHA, or n/a>
-Required user text: <exact approval/merge text, or n/a>
+Required user text: <exact approval/merge text, required user input, or n/a>
 Next agent action: <what another agent should do, or none>
 Blockers: <none, or concise blockers>
 Accepted residuals: <none | short finding label + disposition + durable tracker/owner>
 ```
+
+`Target repo` 是 cross-repo handoff 的 durable routing field。已知 remote identity 時用
+`owner/repo`；下一步依賴 local checkout 時用 absolute local repo path；只有沒有
+repo-specific next action 時才用 `n/a`。`Target` 保持原本語意，只描述該 repo 內的
+PR、branch、task、head SHA 或其他 work item。不要只把 intended repo 藏在 relay
+block 外的散文。
 
 `Accepted residuals` 是 non-blocking findings、FYI、out-of-repo follow-ups、
 accepted residuals 的唯一 home。若報告仍有 LOW / FYI / accepted residual /
@@ -108,6 +123,11 @@ Status 判準：
   這是提醒使用者不要再把同一段 closeout 貼給另一個 agent 空跑。若
   `Accepted residuals` 不是 `none`，每個 residual 都必須已有 durable tracker/owner；
   否則用 `not-ready`。
+
+Relay readiness rule：`Status: not-ready` 不能搭配可立即執行的 `Next agent action`。
+若 blocker 是 pending user disposition，`Required user text` 必須明確寫出需要的裁決
+或文字，且 `Next agent action` 必須是 `none until user provides dispositions` 或同等
+不可執行描述。
 
 若 blocker 來自 GitHub / credential-store / network / remote metadata 類操作，且目前
 環境有 sanctioned sandbox escalation 或 outside-sandbox retry 機制，先用該機制重跑
@@ -141,6 +161,17 @@ Route 判準：
 
 只有 route 會改變產品方向、風險、成本、production 狀態、破壞性操作或授權邊界時，
 才問使用者。若不確定是否需要授權，merge、destructive、production 一律偏向詢問。
+
+Normative control-contract changes：任何改變 handoff、relay、approval、review、route、
+blocker 或 completion semantics 的變更都需要額外謹慎。這類變更預設在 implementation
+前使用 `Execution route: plan-first`，implementation 後使用 `Status: review-needed`。
+作者可以為 docs-only changes 使用較小的 inline plan，但 final relay 必須要求 fresh
+review，除非使用者在同一 session 明確 waive review。
+
+這類變更 in flight 時，governing contract 是最後已 merge 的 doctrine；對 adopting
+repos 則是最後已 released tag，不是正在編輯的文字。新文字只在 fresh review 與
+merge/release 後生效。Proposed text 只有在比 effective contract 更保守時可提前演練；
+絕不能用來授權、放寬或跳過 effective contract 要求的步驟。
 
 ---
 
