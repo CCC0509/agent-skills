@@ -51,6 +51,18 @@ for f in CLAUDE.md AGENTS.md GEMINI.md; do
   grep -Fq 'complete-no-action-needed' \
     "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
     || fail "$f imported manual missing completion relay signal"
+  grep -Fq 'Co-occurrence tie-breaker' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    || fail "$f imported manual missing Review/Status tie-breaker"
+  grep -Fq 'Target repo: <owner/repo or absolute local repo path, or n/a>' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    || fail "$f imported manual missing target repo relay field"
+  grep -Fq 'Relay readiness rule' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    || fail "$f imported manual missing not-ready relay authority rule"
+  grep -Fq 'Normative control-contract changes' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    || fail "$f imported manual missing control-contract review gate"
   grep -Fq 'Execution route: <direct-apply | plan-first | subagent-driven | inline-execution>' \
     "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
     || fail "$f imported manual missing execution route contract"
