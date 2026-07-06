@@ -19,7 +19,7 @@
 - Do not run `./install.sh` against this repository to adopt its own skills.
 - Do not change `install.sh`, `README.md`, `skills/**`, adopting repos, operator-bootstrap files, Agent Trigger Kit files, release tags, or generated imported skill copies.
 - Do not delete any existing `.claude/worktrees/**` local residue. F4 documents and ignores future scratch state; it is not a cleanup task.
-- Because multiple worktrees are open, confirm writes land in `/private/tmp/agent-skills-f4-source-entrypoint`. After the first edit, verify both the intended worktree and the main checkout status.
+- Because multiple worktrees may be open, record the intended worktree path at session start outside committed text. Confirm writes land in the current checkout with `git rev-parse --show-toplevel`, and derive any other checkout path at runtime from `git worktree list`.
 - Final implementation closeout must include `Status: review-needed`, `User action: self-review -> to-reviewer`, and the accepted residual `ATK root-source boundary / documented in AGENTS.md / mechanism owner: Agent Trigger Kit follow-up` whenever the session-check root-source failure is still present.
 
 ## File Plan
@@ -49,13 +49,15 @@
 Run:
 
 ```bash
-git status -sb
-git rev-parse --show-toplevel
-git rev-parse --short HEAD
+INTENDED_WORKTREE_FILE="${TMPDIR:-/tmp}/agent-skills-f4-intended-worktree"
+git rev-parse --show-toplevel > "$INTENDED_WORKTREE_FILE"
+git rev-parse --abbrev-ref HEAD
+git merge-base --is-ancestor f02bf71 HEAD && echo spec-ancestor-ok
+git status --porcelain
 agent-trigger-kit session-check
 ```
 
-Expected: `git status -sb` reports `## worktree-f4-source-entrypoint...origin/main [ahead 3]` with no modified files, `git rev-parse --show-toplevel` reports `/private/tmp/agent-skills-f4-source-entrypoint`, `git rev-parse --short HEAD` reports `f02bf71`, and `agent-trigger-kit session-check` exits `1` with `agent-skills: plugin directory missing`.
+Expected: the first two commands record the intended checkout path in a session-local temp file outside the repo, `git rev-parse --abbrev-ref HEAD` reports `worktree-f4-source-entrypoint`, the merge-base command prints `spec-ancestor-ok`, `git status --porcelain` prints nothing, and `agent-trigger-kit session-check` exits `1` with `agent-skills: plugin directory missing`. Do not commit or paste the recorded worktree path into repo files.
 
 - [ ] **Step 2: Create the failing source-entrypoint smoke test**
 
@@ -82,6 +84,12 @@ require_contains() {
   local file="$1"
   local token="$2"
   grep -Fq "$token" "$file" || fail "$file missing token: $token"
+}
+
+require_exact_line() {
+  local file="$1"
+  local line="$2"
+  grep -Fxq "$line" "$file" || fail "$file missing exact line: $line"
 }
 
 require_not_contains() {
@@ -131,6 +139,7 @@ require_contains AGENTS.md 'agent-skills: plugin directory missing'
 require_contains AGENTS.md 'root-level plugin layout'
 require_contains AGENTS.md 'source: "./"'
 require_contains AGENTS.md 'ATK root-source boundary / documented in AGENTS.md / mechanism owner: Agent Trigger Kit follow-up'
+require_contains AGENTS.md 'Verification notes may add detail, but they are not a substitute for `Accepted residuals`'
 
 require_contains CLAUDE.md 'See [AGENTS.md](AGENTS.md)'
 require_contains CLAUDE.md 'thin pointer for Claude Code'
@@ -140,9 +149,9 @@ require_max_lines CLAUDE.md 6
 require_max_lines GEMINI.md 6
 
 require_file .gitignore
-require_contains .gitignore '.claude/worktrees/'
-require_contains .gitignore '/.worktrees/'
-require_contains .gitignore '/worktrees/'
+require_exact_line .gitignore '.claude/worktrees/'
+require_exact_line .gitignore '/.worktrees/'
+require_exact_line .gitignore '/worktrees/'
 
 echo "source entrypoint smoke ok"
 ```
@@ -208,6 +217,8 @@ Do not create a fake plugin directory to silence that result. Continue with docs
 
 When a relay signal is present and this is the only trigger-layer failure, list this canonical accepted residual:
 `ATK root-source boundary / documented in AGENTS.md / mechanism owner: Agent Trigger Kit follow-up`
+
+Verification notes may add detail, but they are not a substitute for `Accepted residuals`.
 ```
 
 - [ ] **Step 5: Add thin `CLAUDE.md` and `GEMINI.md` pointers**
@@ -258,11 +269,16 @@ Expected: PASS with `source entrypoint smoke ok`.
 Run:
 
 ```bash
+INTENDED_WORKTREE_FILE="${TMPDIR:-/tmp}/agent-skills-f4-intended-worktree"
+INTENDED_WORKTREE="$(cat "$INTENDED_WORKTREE_FILE")"
+CURRENT_WORKTREE="$(git rev-parse --show-toplevel)"
+[ "$CURRENT_WORKTREE" = "$INTENDED_WORKTREE" ] && echo intended-worktree-ok
+MAIN_WORKTREE="$(git worktree list --porcelain | sed -n '1s/^worktree //p')"
 git status -sb
-git -C /Users/jackchou/Desktop/agent-skills status -sb
+git -C "$MAIN_WORKTREE" status -sb
 ```
 
-Expected: the F4 worktree shows new `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.gitignore`, and `tests/source-entrypoint-smoke.sh`. The main checkout remains on `main`; the only pre-existing untracked entry there should be `.claude/`.
+Expected: the checkout comparison prints `intended-worktree-ok`. The F4 worktree shows new `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.gitignore`, and `tests/source-entrypoint-smoke.sh`. The main checkout remains on its original branch and its status is unchanged from the pre-edit baseline; do not delete or commit local residue.
 
 - [ ] **Step 9: Commit Task 1**
 
@@ -437,11 +453,16 @@ Run:
 
 ```bash
 git diff --check
+INTENDED_WORKTREE_FILE="${TMPDIR:-/tmp}/agent-skills-f4-intended-worktree"
+INTENDED_WORKTREE="$(cat "$INTENDED_WORKTREE_FILE")"
+CURRENT_WORKTREE="$(git rev-parse --show-toplevel)"
+[ "$CURRENT_WORKTREE" = "$INTENDED_WORKTREE" ] && echo intended-worktree-ok
+MAIN_WORKTREE="$(git worktree list --porcelain | sed -n '1s/^worktree //p')"
 git status -sb
-git -C /Users/jackchou/Desktop/agent-skills status -sb
+git -C "$MAIN_WORKTREE" status -sb
 ```
 
-Expected: `git diff --check` exits `0`. The F4 worktree status shows only this plan file modified for Task 3 checkbox updates before the final commit. The main checkout remains on `main`; the pre-existing untracked `.claude/` residue is not deleted or committed.
+Expected: `git diff --check` exits `0` and the checkout comparison prints `intended-worktree-ok`. The F4 worktree status shows only this plan file modified for Task 3 checkbox updates before the final commit. The main checkout remains on its original branch and its status is unchanged from the pre-edit baseline; local residue is not deleted or committed.
 
 - [ ] **Step 7: Commit verification checkbox updates**
 
@@ -464,13 +485,15 @@ agent-trigger-kit session-check --closeout
 
 Expected: exit code `1` with `agent-skills: plugin directory missing` and no unmarked outcome events. Report it as the same accepted residual, not as an implementation blocker.
 
+If closeout exits `4` because implementation work recorded unmarked outcome events, mark those events according to the session-check guidance when possible, then rerun closeout. After markable events are handled, the expected remaining closeout result is exit code `1` with only the known `agent-skills: plugin directory missing` boundary.
+
 - [ ] **Step 9: Capture final review handoff fields**
 
 Run:
 
 ```bash
 git status -sb
-git rev-parse --short HEAD
+git rev-parse HEAD
 ```
 
 Expected: worktree clean on `worktree-f4-source-entrypoint`. The final implementation handoff uses these tokens:
