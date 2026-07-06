@@ -26,11 +26,14 @@ There is also a repeatable source-repo health signal:
 agent-skills: plugin directory missing
 ```
 
-`agent-trigger-kit session-check` emits this because ATK validates trigger-layer
-plugin directories such as `plugins/<plugin-name>`, while this repo carries
-plugin metadata at `.claude-plugin/*` and source skills at `skills/**`. F4 should
-make that boundary visible to agents, without changing ATK's validator in this
-repo.
+`agent-trigger-kit session-check` emits this because ATK's trigger-layer
+validator reads `.claude-plugin/marketplace.json` and cannot represent this
+repo's root-level plugin layout: the `agent-skills` entry uses `source: "./"`,
+which the validator normalizes to an empty plugin directory and reports as
+missing. The plugin content is the repo root itself; nothing is missing on disk.
+Whether ATK should support root sources, or this repo should express its layout
+differently, is the deferred ATK follow-up. F4 only makes the boundary visible,
+without changing ATK's validator or this repo's plugin layout.
 
 ## Design
 
@@ -64,27 +67,35 @@ requires.
 The mechanical check for proposal status is:
 
 ```bash
-git diff --name-only "$(git merge-base HEAD origin/main)"..HEAD -- skills/
+git diff --name-only "$(git merge-base HEAD origin/main)"..HEAD -- skills/ AGENTS.md CLAUDE.md GEMINI.md
 ```
 
-If that command lists doctrine files, new text in those files is proposal text
-inside the branch. Reviewers and implementers may inspect it, but they must not
-treat it as already-effective authority for the same branch.
+If that command lists doctrine or entrypoint files, new text in those files is
+proposal text inside the branch. Reviewers and implementers may inspect it, but
+they must not treat it as already-effective authority for the same branch.
 
 ## Worktree Hygiene
 
 F4 should not delete existing local worktrees. It should prevent future repo
 pollution by documenting and ignoring local agent worktree directories:
 
-- Prefer external scratch worktrees such as `/private/tmp/<repo>-<branch>` for
-  planning and implementation work.
+- Prefer external scratch worktrees in a system temp directory outside the repo,
+  such as `/tmp/<repo>-<branch>` or the platform equivalent, for planning and
+  implementation work.
 - If a project-local worktree is needed, use an ignored `.worktrees/` directory.
 - Do not create new worktrees under `.claude/worktrees/`.
 - If `.claude/worktrees/` already exists, treat it as local hygiene residue:
   report it, do not commit it, and do not let it influence scope review.
+- Before writing files, confirm the intended checkout with `git status -sb` or
+  `git rev-parse --show-toplevel`. If an edit tool does not accept a workdir or
+  there are multiple worktrees open, use paths rooted in the intended worktree
+  and verify `git status -sb` in both the intended worktree and the main
+  checkout after the first edit. If an accidental write lands in the wrong
+  checkout, remove only the file or change just created after confirming it is
+  not user work, then report the incident in the handoff.
 
-Add `.gitignore` entries for `.claude/worktrees/`, `.worktrees/`, and
-`worktrees/`. This keeps the current source checkout from advertising local
+Add `.gitignore` entries for `.claude/worktrees/`, `/.worktrees/`, and
+`/worktrees/`. This keeps the current source checkout from advertising local
 agent scratch state as repo work while preserving the option to track future
 intentional `.claude/` configuration files.
 
@@ -99,11 +110,15 @@ F4 should require agents to:
 
 - Run `agent-trigger-kit session-check` before source-repo edits when available.
 - If the only trigger-layer failure is `agent-skills: plugin directory missing`,
-  record it as a known source-repo boundary in the relay `Accepted residuals` or
-  verification notes.
+  record it as a known source-repo boundary in the relay `Accepted residuals`
+  whenever a relay signal is present; verification notes may add detail, but
+  they are not a substitute for `Accepted residuals`. Use this canonical form:
+  `ATK root-source boundary / documented in AGENTS.md / mechanism owner: Agent
+  Trigger Kit follow-up`.
 - Continue with docs/planning work only when ordinary repo gates still pass.
-- Defer changes to ATK validate/session-check semantics to an Agent Trigger Kit
-  follow-up, because that is mechanism, not doctrine source text.
+- Defer changes to ATK root-`"./"` source handling, validate/session-check
+  semantics, and plugin layout to an Agent Trigger Kit follow-up, because that
+  is mechanism, not doctrine source text.
 
 ## Scope
 
@@ -113,7 +128,8 @@ In scope:
 - Add `CLAUDE.md` and `GEMINI.md` as thin pointers to `AGENTS.md`.
 - Add `.gitignore` entries for local agent worktree scratch directories.
 - Add a source-entrypoint smoke test that checks the entrypoint, pointers,
-  ignore rules, staging-boundary wording, and ATK health-boundary wording.
+  ignore rules, staging-boundary wording, ATK health-boundary wording, and
+  absence of self-install managed blocks in root entry files.
 - Add a v0.4.10 `ROADMAP.md` landed entry for F4.
 - Remove or retire the F4 Extraction Candidate row after the landed entry exists.
 - Bump `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json` to
@@ -140,10 +156,12 @@ Implementation should verify:
 - `./tests/install-smoke.sh`
 - `./tests/source-entrypoint-smoke.sh`
 - `git diff --check`
+- A self-install pollution probe that fails if root `AGENTS.md`, `CLAUDE.md`, or
+  `GEMINI.md` contains `<!-- agent-skills:begin -->`.
 - A token scan such as:
 
 ```bash
-rg -n "source repo|not an install target|last merged doctrine|proposal text|agent-skills: plugin directory missing|\\.claude/worktrees|v0\\.4\\.10|F4 source-repo" AGENTS.md CLAUDE.md GEMINI.md .gitignore ROADMAP.md tests .claude-plugin
+rg -n "source repo|not an install target|last merged doctrine|proposal text|agent-skills: plugin directory missing|root-level plugin layout|\\.claude/worktrees|edit tool|self-install|v0\\.4\\.10|F4 source-repo" AGENTS.md CLAUDE.md GEMINI.md .gitignore ROADMAP.md tests .claude-plugin
 ```
 
 The final implementation closeout should use `Status: review-needed` and
@@ -154,8 +172,7 @@ The final implementation closeout should use `Status: review-needed` and
 - F4 intentionally handles source-repo entrypoint and staging mechanics only.
 - F5 remains a separate cross-repo reference map.
 - ATK mechanism changes remain separate even though F4 documents the current
-  `session-check` failure.
-- The existing `.claude/worktrees/feature+handoff-relay-control-contract`
-  directory in the main checkout is local residue. F4 should prevent that class
-  of residue from appearing in status, but should not delete it without an
-  explicit cleanup request.
+  `session-check` root-source failure.
+- Any existing directory under `.claude/worktrees/` is local residue. F4 should
+  prevent that class of residue from appearing in status, but should not delete
+  it without an explicit cleanup request.
