@@ -22,7 +22,7 @@ release scope.
   closeout wording ends at `Next actions`, and named-absence deferral points to
   Agent Trigger Kit's durable no-report classification home.
 - v0.4.4: shared hand-off request contract moved into Agent Operating Manual;
-  review enum adds `plan/rule-review`, and install pointers name rule-review.
+  review enum adds `plan/rule-review`, and install pointers name `plan/rule-review`.
 
 ## Extraction Candidates
 

@@ -45,6 +45,8 @@ for f in CLAUDE.md AGENTS.md GEMINI.md; do
     || fail "$f missing agent-operating-manual pointer"
   grep -Fq 'docs/imported-skills/multi-angle-review/SKILL.md' "$TMP/target/$f" \
     || fail "$f missing multi-angle-review pointer"
+  grep -Fq 'plan/rule-review / fix-confirmation' "$TMP/target/$f" \
+    || fail "$f pointer missing plan/rule-review scenario"
   grep -Fq 'docs/agent-memory-index.md' "$TMP/target/$f" \
     || fail "$f missing repo memory index pointer"
 done
@@ -64,7 +66,7 @@ before
 <!-- agent-skills:begin -->
 <!-- managed by agent-skills CCC0509/agent-skills@v0.2.0；手動編輯會在下次 install 被覆蓋 -->
 非 trivial 任務（委派、選模型、驗證、何時停）先讀 [docs/imported-skills/agent-operating-manual/SKILL.md](docs/imported-skills/agent-operating-manual/SKILL.md)。
-Read-only review（PR / commit range / plan / rule-review / fix-confirmation）套 [docs/imported-skills/multi-angle-review/SKILL.md](docs/imported-skills/multi-angle-review/SKILL.md)。
+Read-only review（PR / commit range / plan/rule-review / fix-confirmation）套 [docs/imported-skills/multi-angle-review/SKILL.md](docs/imported-skills/multi-angle-review/SKILL.md)。
 <!-- agent-skills:end -->
 after
 EOF

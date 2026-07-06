@@ -71,8 +71,11 @@ Prev reviewed tip: <hash or n/a>
 這三行不是只給 code review。`Review:` 是下一個 agent 的工作模式：
 `plan/rule-review` 用於流程、治理、規則草案或 plan 審查；`none-FYI` 表示只同步
 狀態、不要求審查。`Focus:` 說明你最不確定的地方；`Prev reviewed tip:` 綁定
-上一輪已審過的 commit / PR head，沒有就寫 `n/a`。沒有這個合約時，下一個 agent
-必須猜意圖；猜對也算交接缺陷。
+上一輪已審過的 commit / PR head，沒有就寫 `n/a`。
+
+若交接文字是要讓使用者複製給另一個 agent，請把「要複製的完整內容」放進單一
+`text` fenced code block。區塊外只放人類說明、風險或狀態；不要把不需要轉貼的
+敘述混進區塊。沒有這個合約時，下一個 agent 必須猜意圖；猜對也算交接缺陷。
 
 ---
 
