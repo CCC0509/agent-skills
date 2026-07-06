@@ -95,7 +95,7 @@ for name in "${SKILL_ARR[@]}"; do
       POINTER_LINES="${POINTER_LINES}非 trivial 任務（委派、選模型、驗證、何時停）先讀 [$DEST/agent-operating-manual/SKILL.md]($DEST/agent-operating-manual/SKILL.md)。
 " ;;
     multi-angle-review)
-      POINTER_LINES="${POINTER_LINES}Read-only review（PR / commit range / plan / fix-confirmation）套 [$DEST/multi-angle-review/SKILL.md]($DEST/multi-angle-review/SKILL.md)。
+      POINTER_LINES="${POINTER_LINES}Read-only review（PR / commit range / plan/rule-review / fix-confirmation）套 [$DEST/multi-angle-review/SKILL.md]($DEST/multi-angle-review/SKILL.md)。
 " ;;
     skill-authoring)
       POINTER_LINES="${POINTER_LINES}撰寫 / 萃取 / 發佈可攜 agent skill 或 plugin doctrine 時讀 [$DEST/skill-authoring/SKILL.md]($DEST/skill-authoring/SKILL.md)。

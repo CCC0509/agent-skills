@@ -57,6 +57,26 @@ subagent 回給主線的東西，**預設只有兩種**：
 
 > 一句檢查：subagent 回來的東西，如果你**還要再讀一次原始檔才懂**，代表它沒做壓縮的工作，退回去要它重寫回報。
 
+### §3.1 交接請求合約（Hand-off Request Contract）
+
+凡是把工作交給下一個 agent 繼續、merge、execute、或 review，且對方需要知道
+你期待它做什麼時，在交接尾端加三行請求合約：
+
+```text
+Review: <full | plan/rule-review | fix-confirmation vs <prev-tip> | closeout-sanity | none-FYI>
+Focus: <what you are unsure about or want checked>
+Prev reviewed tip: <hash or n/a>
+```
+
+這三行不是只給 code review。`Review:` 是下一個 agent 的工作模式：
+`plan/rule-review` 用於流程、治理、規則草案或 plan 審查；`none-FYI` 表示只同步
+狀態、不要求審查。`Focus:` 說明你最不確定的地方；`Prev reviewed tip:` 綁定
+上一輪已審過的 commit / PR head，沒有就寫 `n/a`。
+
+若交接文字是要讓使用者複製給另一個 agent，請把「要複製的完整內容」放進單一
+`text` fenced code block。區塊外只放人類說明、風險或狀態；不要把不需要轉貼的
+敘述混進區塊。沒有這個合約時，下一個 agent 必須猜意圖；猜對也算交接缺陷。
+
 ---
 
 ## §4 驗證不自驗（Verify, not self-verify）

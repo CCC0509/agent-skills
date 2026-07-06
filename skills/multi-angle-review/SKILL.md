@@ -1,13 +1,13 @@
 ---
 name: multi-angle-review
-description: "Use when running a read-only review of a PR / commit range, an implementation plan before its Approved flip, or a fix-confirmation pass. Runs independent finder angles, then an adversarial anti-hallucination verify pass, then independent re-verification of claimed evidence before reporting."
+description: "Use when running a read-only review of a PR / commit range, an implementation plan or governance rule before approval, or a fix-confirmation pass. Runs independent finder angles, then an adversarial anti-hallucination verify pass, then independent re-verification of claimed evidence before reporting."
 ---
 
 # Multi-Angle Review
 
 Use this methodology for read-only review of a PR / commit range, an
-implementation plan before its approval flip, or a fix-confirmation pass after
-prior findings. Framework-agnostic：不假設任何 process framework；在有
+implementation plan or governance rule before approval, or a fix-confirmation
+pass after prior findings. Framework-agnostic：不假設任何 process framework；在有
 superpowers 的 repo 可直接作為 requesting-code-review checkpoint 的 reviewer
 方法論。
 
@@ -17,11 +17,11 @@ These rules apply across every phase. They are the read-only counterpart to the
 Agent Operating Manual's verify-not-self-verify rule: a reviewer preserves
 independence by not becoming the author.
 
-- Hand-off request contract (requester side): end every hand-off that may need
-  review with three lines -- `Review: [full | fix-confirmation vs <prev-tip> |
-  closeout-sanity | none-FYI]`, `Focus: <what you are unsure about>`, and
-  `Prev reviewed tip: <hash>`. Evidence blocks without a request line force the
-  reviewer to guess intent; the guess is the defect even when it lands right.
+- Hand-off request contract (requester side): follow Agent Operating Manual
+  `10-model-dispatch.md` §3.1. For review hand-offs, the `Review:` line is one
+  of `full`, `plan/rule-review`, `fix-confirmation vs <prev-tip>`,
+  `closeout-sanity`, or `none-FYI`. Evidence blocks without a request line force
+  the reviewer to guess intent; the guess is the defect even when it lands right.
 - If a hand-off arrives with evidence but no request line, do not silently guess
   the review type. State `assumed type: <type>` in one line before continuing,
   or ask for the missing request contract.
