@@ -57,6 +57,15 @@ for f in CLAUDE.md AGENTS.md GEMINI.md; do
   grep -Fq 'Target repo: <owner/repo or absolute local repo path, or n/a>' \
     "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
     || fail "$f imported manual missing target repo relay field"
+  grep -Fq 'User action: <self-review | to-reviewer | to-agent | reply-required-text | none>[ -> ...]' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    || fail "$f imported manual missing user action relay field"
+  grep -Fq 'Full-context copy rule' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    || fail "$f imported manual missing full-context copy rule"
+  grep -Fq 'User action consistency rule' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    || fail "$f imported manual missing user action consistency rule"
   grep -Fq 'Relay readiness rule' \
     "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
     || fail "$f imported manual missing not-ready relay authority rule"
