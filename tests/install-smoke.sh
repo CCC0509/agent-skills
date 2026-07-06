@@ -57,6 +57,9 @@ for f in CLAUDE.md AGENTS.md GEMINI.md; do
   grep -Fq 'Accepted residuals: <none | short finding label + disposition + durable tracker/owner>' \
     "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
     || fail "$f imported manual missing accepted residuals contract"
+  grep -Fq 'sanctioned sandbox escalation 或 outside-sandbox retry' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    || fail "$f imported manual missing sandbox escalation retry rule"
   grep -Fq 'exact wording lives in Required user text' \
     "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
     || fail "$f imported manual missing approval-text home rule"
