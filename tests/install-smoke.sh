@@ -45,6 +45,12 @@ for f in CLAUDE.md AGENTS.md GEMINI.md; do
     || fail "$f missing agent-operating-manual pointer"
   grep -Fq 'docs/imported-skills/multi-angle-review/SKILL.md' "$TMP/target/$f" \
     || fail "$f missing multi-angle-review pointer"
+  grep -Fq 'ready-for-user-approval' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    || fail "$f imported manual missing merge relay signal"
+  grep -Fq 'complete-no-action-needed' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    || fail "$f imported manual missing completion relay signal"
   grep -Fq 'plan/rule-review / fix-confirmation' "$TMP/target/$f" \
     || fail "$f pointer missing plan/rule-review scenario"
   grep -Fq 'docs/agent-memory-index.md' "$TMP/target/$f" \

@@ -77,6 +77,23 @@ Prev reviewed tip: <hash or n/a>
 `text` fenced code block。區塊外只放人類說明、風險或狀態；不要把不需要轉貼的
 敘述混進區塊。沒有這個合約時，下一個 agent 必須猜意圖；猜對也算交接缺陷。
 
+當交接是要告訴使用者「現在能不能交給下一個 agent / 核准 merge / 停止轉貼」時，
+同樣用單一 `text` block 給 relay signal：
+
+```text
+Status: <review-needed | ready-for-user-approval | complete-no-action-needed | not-ready>
+Target: <PR/branch/task + head SHA, or n/a>
+Required user text: <exact approval/merge text, or n/a>
+Next agent action: <what another agent should do, or none>
+Blockers: <none, or concise blockers>
+```
+
+只在所有 review / fix-confirmation 都解完、目前 head 已核對、驗證與 accepted gaps
+都列明時，才能用 `ready-for-user-approval`。只有工作已完全收尾、沒有下一個 agent
+或使用者動作時，才能用 `complete-no-action-needed`；這是提醒使用者不要再把同一段
+closeout 貼給另一個 agent 空跑。若還需要 review、修正、merge、tag、deploy、或
+任何外部證據，就用 `review-needed` 或 `not-ready` 並列 blocker。
+
 ---
 
 ## §4 驗證不自驗（Verify, not self-verify）
