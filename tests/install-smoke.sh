@@ -54,6 +54,9 @@ for f in CLAUDE.md AGENTS.md GEMINI.md; do
   grep -Fq 'Execution route: <direct-apply | plan-first | subagent-driven | inline-execution>' \
     "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
     || fail "$f imported manual missing execution route contract"
+  grep -Fq 'Accepted residuals: <none | short finding label + disposition + durable tracker/owner>' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    || fail "$f imported manual missing accepted residuals contract"
   grep -Fq 'exact wording lives in Required user text' \
     "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
     || fail "$f imported manual missing approval-text home rule"
