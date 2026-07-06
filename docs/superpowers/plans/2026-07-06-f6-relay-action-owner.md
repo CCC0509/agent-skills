@@ -157,7 +157,7 @@ git commit -m "docs: add relay user action contract"
 - Modify: `.claude-plugin/marketplace.json`
 - Update: `docs/superpowers/plans/2026-07-06-f6-relay-action-owner.md`
 
-- [ ] **Step 1: Add v0.4.9 landed entry**
+- [x] **Step 1: Add v0.4.9 landed entry**
 
 In `ROADMAP.md`, add this entry immediately after the v0.4.8 entry:
 
@@ -168,7 +168,7 @@ In `ROADMAP.md`, add this entry immediately after the v0.4.8 entry:
   agent, reply with required text, or stop.
 ```
 
-- [ ] **Step 2: Add F5 Extraction Candidate row**
+- [x] **Step 2: Add F5 Extraction Candidate row**
 
 In the `agent-skills doctrine` bucket, after the F4 row, add:
 
@@ -178,7 +178,7 @@ In the `agent-skills doctrine` bucket, after the F4 row, add:
 
 Do not add an F6 Extraction Candidate row. F6 is this release scope and is tracked by the v0.4.9 landed entry.
 
-- [ ] **Step 3: Bump plugin metadata to 0.4.9**
+- [x] **Step 3: Bump plugin metadata to 0.4.9**
 
 Change `.claude-plugin/plugin.json`:
 
@@ -195,7 +195,7 @@ Change `.claude-plugin/plugin.json`:
 
 Change the `plugins[0].version` in `.claude-plugin/marketplace.json` from `0.4.8` to `0.4.9`. Leave all other fields unchanged.
 
-- [ ] **Step 4: Verify ROADMAP and metadata**
+- [x] **Step 4: Verify ROADMAP and metadata**
 
 Run:
 
@@ -205,7 +205,7 @@ rg -n "v0\\.4\\.9|F5 cross-repo reference map|\"version\": \"0\\.4\\.9\"" ROADMA
 
 Expected: output includes the v0.4.9 ROADMAP entry, F5 row, `.claude-plugin/plugin.json` version, and `.claude-plugin/marketplace.json` plugin version.
 
-- [ ] **Step 5: Commit Task 2**
+- [x] **Step 5: Commit Task 2**
 
 ```bash
 git add ROADMAP.md .claude-plugin/plugin.json .claude-plugin/marketplace.json docs/superpowers/plans/2026-07-06-f6-relay-action-owner.md
