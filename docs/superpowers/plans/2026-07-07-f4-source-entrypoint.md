@@ -394,7 +394,7 @@ Expected: commit succeeds and contains only ROADMAP, plugin metadata, and this p
 **Files:**
 - Update: `docs/superpowers/plans/2026-07-07-f4-source-entrypoint.md`
 
-- [ ] **Step 1: Run session-check and classify the known boundary**
+- [x] **Step 1: Run session-check and classify the known boundary**
 
 Run:
 
@@ -404,7 +404,7 @@ agent-trigger-kit session-check
 
 Expected: exit code `1` with `agent-skills: plugin directory missing`. Record this in verification notes as `ATK root-source boundary / documented in AGENTS.md / mechanism owner: Agent Trigger Kit follow-up`. Continue only if ordinary repo gates below pass.
 
-- [ ] **Step 2: Run installer smoke**
+- [x] **Step 2: Run installer smoke**
 
 Run:
 
@@ -414,7 +414,7 @@ Run:
 
 Expected: PASS with `install smoke ok`.
 
-- [ ] **Step 3: Run source-entrypoint smoke**
+- [x] **Step 3: Run source-entrypoint smoke**
 
 Run:
 
@@ -424,7 +424,7 @@ Run:
 
 Expected: PASS with `source entrypoint smoke ok`.
 
-- [ ] **Step 4: Run the explicit self-install pollution probe**
+- [x] **Step 4: Run the explicit self-install pollution probe**
 
 Run:
 
@@ -437,7 +437,7 @@ fi
 
 Expected: exit code `0` with no `rg` matches and no `self-install pollution found` output.
 
-- [ ] **Step 5: Run the F4 token scan**
+- [x] **Step 5: Run the F4 token scan**
 
 Run:
 
@@ -447,7 +447,7 @@ rg -n "source repo|not an install target|last merged doctrine|proposal text|agen
 
 Expected: output includes source-repo and self-install boundary hits in `AGENTS.md`, `.claude/worktrees` hits in `AGENTS.md`, `.gitignore`, and `tests/source-entrypoint-smoke.sh`, v0.4.10 and F4 source-repo hits in `ROADMAP.md` and `.claude-plugin/**`, and smoke-test coverage hits in `tests/source-entrypoint-smoke.sh`.
 
-- [ ] **Step 6: Run whitespace and status checks**
+- [x] **Step 6: Run whitespace and status checks**
 
 Run:
 
@@ -464,7 +464,7 @@ git -C "$MAIN_WORKTREE" status -sb
 
 Expected: `git diff --check` exits `0` and the checkout comparison prints `intended-worktree-ok`. The F4 worktree status shows only this plan file modified for Task 3 checkbox updates before the final commit. The main checkout remains on its original branch and its status is unchanged from the pre-edit baseline; local residue is not deleted or committed.
 
-- [ ] **Step 7: Commit verification checkbox updates**
+- [x] **Step 7: Commit verification checkbox updates**
 
 Run:
 
