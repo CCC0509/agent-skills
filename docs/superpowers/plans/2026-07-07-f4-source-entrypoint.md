@@ -475,7 +475,7 @@ git commit -m "docs: mark source entrypoint verification"
 
 Expected: commit succeeds and contains only this plan checkbox update.
 
-- [ ] **Step 8: Run closeout session-check**
+- [x] **Step 8: Run closeout session-check**
 
 Run:
 
@@ -487,7 +487,7 @@ Expected: exit code `1` with `agent-skills: plugin directory missing` and no unm
 
 If closeout exits `4` because implementation work recorded unmarked outcome events, mark those events according to the session-check guidance when possible, then rerun closeout. After markable events are handled, the expected remaining closeout result is exit code `1` with only the known `agent-skills: plugin directory missing` boundary.
 
-- [ ] **Step 9: Capture final review handoff fields**
+- [x] **Step 9: Capture final review handoff fields**
 
 Run:
 
