@@ -39,7 +39,7 @@ Token meanings:
 | `to-reviewer` | Paste the complete copy block to a reviewer agent. |
 | `to-agent` | Paste the complete copy block to the next acting agent; `Next agent action` says what that agent does. |
 | `reply-required-text` | Reply in the current chat with the exact text or disposition named in `Required user text`. |
-| `none` | No user action and no next-agent action is required. |
+| `none` | The user does not need to reply or forward the block. |
 
 Common mappings:
 
@@ -49,6 +49,7 @@ Common mappings:
 | `Status: ready-for-user-approval` | `self-review -> reply-required-text` |
 | `Status: not-ready` because user disposition is pending | `self-review -> reply-required-text` |
 | `Status: not-ready` because another acting agent must revise work already scoped by the relay | `self-review -> to-agent` |
+| `Status: not-ready` because external evidence, CI, policy escalation, or remote metadata is pending and no user input or next-agent revision is available yet | `none` |
 | `Status: complete-no-action-needed` | `none` |
 | Pure FYI with no review, approval, blocker, or next action | `none` |
 
@@ -80,11 +81,14 @@ almost every handoff.
 ## Consistency Rules
 
 - `Status: complete-no-action-needed` must use `User action: none`.
+- `User action: none` only says the user does not need to reply or forward the
+  block; it does not override `Next agent action`.
 - `Review: none-FYI` must not pair with a `User action` sequence containing
   `to-reviewer`.
 - `Status: not-ready` must not pair with a `User action` sequence containing
   `to-agent` unless the blocker is explicitly "another acting agent must revise
-  scoped work" and `Next agent action` names that revision.
+  scoped work" and `Next agent action` names that revision. This requires the
+  existing Relay readiness rule to carry the same carve-out.
 - `Status: not-ready` with pending user disposition must use
   `reply-required-text`, must name the needed input in `Required user text`, and
   must keep `Next agent action` non-executable until that input exists.
