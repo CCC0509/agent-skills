@@ -218,7 +218,7 @@ git commit -m "docs: record relay action owner roadmap"
 - Modify: `tests/install-smoke.sh:54-75`
 - Update: `docs/superpowers/plans/2026-07-06-f6-relay-action-owner.md`
 
-- [ ] **Step 1: Add imported-manual token checks**
+- [x] **Step 1: Add imported-manual token checks**
 
 In `tests/install-smoke.sh`, after the `Target repo:` assertion, add:
 
@@ -234,7 +234,7 @@ In `tests/install-smoke.sh`, after the `Target repo:` assertion, add:
     || fail "$f imported manual missing user action consistency rule"
 ```
 
-- [ ] **Step 2: Run smoke test**
+- [x] **Step 2: Run smoke test**
 
 Run:
 
@@ -244,7 +244,7 @@ Run:
 
 Expected: exits 0 and prints `install smoke ok`.
 
-- [ ] **Step 3: Commit Task 3**
+- [x] **Step 3: Commit Task 3**
 
 ```bash
 git add tests/install-smoke.sh docs/superpowers/plans/2026-07-06-f6-relay-action-owner.md
