@@ -91,8 +91,11 @@ pollution by documenting and ignoring local agent worktree directories:
   there are multiple worktrees open, use paths rooted in the intended worktree
   and verify `git status -sb` in both the intended worktree and the main
   checkout after the first edit. If an accidental write lands in the wrong
-  checkout, remove only the file or change just created after confirming it is
-  not user work, then report the incident in the handoff.
+  checkout, revert only what the write changed: delete the file only if it did
+  not exist before the write and is untracked; if the write modified a tracked
+  file, restore it with `git restore <path>` (or `git checkout -- <path>`)
+  rather than deleting it; never delete pre-existing or user-authored content.
+  Then report the incident in the handoff.
 
 Add `.gitignore` entries for `.claude/worktrees/`, `/.worktrees/`, and
 `/worktrees/`. This keeps the current source checkout from advertising local
@@ -173,6 +176,9 @@ The final implementation closeout should use `Status: review-needed` and
 - F5 remains a separate cross-repo reference map.
 - ATK mechanism changes remain separate even though F4 documents the current
   `session-check` root-source failure.
+- The write-target sanity rule is portable doctrine, but F4 should use the
+  existing ROADMAP `Shared checkout concurrency etiquette` Extraction Candidate
+  row as its durable tracker instead of adding a duplicate row.
 - Any existing directory under `.claude/worktrees/` is local residue. F4 should
   prevent that class of residue from appearing in status, but should not delete
   it without an explicit cleanup request.
