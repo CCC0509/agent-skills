@@ -111,9 +111,9 @@ Status 判準：
 
 若 blocker 來自 GitHub / credential-store / network / remote metadata 類操作，且目前
 環境有 sanctioned sandbox escalation 或 outside-sandbox retry 機制，先用該機制重跑
-同一個最小命令，再把它寫進 `Blockers`。若 policy 不允許 escalation，就把 gap 標成
-`blocked_by_policy`；若 escalation 後成功，繼續執行，不要把 sandbox 內的失敗當成
-最終狀態。
+同一個最小命令，再把它寫進 `Blockers`。若 policy 不允許 escalation，就用 Agent
+Trigger Kit durable no-report taxonomy 的 `blocked_by_policy` 標記 gap；若 escalation
+後成功，繼續執行，不要把 sandbox 內的失敗當成最終狀態。
 
 若 relay signal 是要取得開始實作或開始執行的核准，`Required user text` 仍是 exact
 approval text 的唯一 home；使用者送出該文字後，下一個 agent 應直接執行

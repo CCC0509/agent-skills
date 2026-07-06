@@ -95,9 +95,9 @@ Run each angle as an independent pass over the same pinned scope. With subagent 
 ### Phase 4 — Report
 
 - Verdict first, findings ranked most-severe first, in the repo's reply language.
-- Bucket findings: must-fix before merge / needs the user's decision / accepted residual with a named follow-up owner (roadmap step or worklist item; no orphan follow-ups). Finding numbers are optional; relay signals may use a short finding label + disposition + tracker/owner instead.
+- Bucket findings: must-fix before merge / needs the user's decision / accepted residual with a named follow-up owner (roadmap step or worklist item; no orphan follow-ups). Finding numbers are optional; relay signals may use a short finding label + disposition + durable tracker/owner instead.
 - For each finding, include `attribution` (`pr_introduced`, `pre_existing`, or `environment`) so the report distinguishes PR regressions from inherited defects and tooling / environment failures.
 - If the report includes a relay signal from Agent Operating Manual `10-model-dispatch.md` §3.1, every non-blocking finding, FYI, environment note, and out-of-repo follow-up must appear in `Accepted residuals`. A ready / complete signal that leaves those items only in prose is incomplete; if any residual lacks a durable tracker/owner, do not present the work as ready or fully closed.
-- If the maintainer chooses to fix a non-blocking finding before merge, use the shared status boundary: before the fix is pushed, the work is `not-ready`; after the fix is pushed and the next action is reviewer confirmation, it is `review-needed`.
+- If the maintainer chooses to fix a non-blocking finding before merge, use the shared status boundary in Agent Operating Manual `10-model-dispatch.md` §3.1 instead of restating a local status rule in this skill.
 - Do not re-litigate decisions the user already pinned. When new evidence changes a pinned decision's cost, report it as evidence with options, not as re-litigation.
 - Fix-confirmation mode: diff `previous-reviewed-tip..new-tip`, verify each claimed fix independently as its own contract, re-run the affected gates, and do not re-review the world.
