@@ -86,13 +86,38 @@ Target: <PR/branch/task + head SHA, or n/a>
 Required user text: <exact approval/merge text, or n/a>
 Next agent action: <what another agent should do, or none>
 Blockers: <none, or concise blockers>
+Accepted residuals: <none | short finding label + disposition + durable tracker/owner>
 ```
 
-只在所有 review / fix-confirmation 都解完、目前 head 已核對、驗證與 accepted gaps
-都列明時，才能用 `ready-for-user-approval`。只有工作已完全收尾、沒有下一個 agent
-或使用者動作時，才能用 `complete-no-action-needed`；這是提醒使用者不要再把同一段
-closeout 貼給另一個 agent 空跑。若還需要 review、修正、merge、tag、deploy、或
-任何外部證據，就用 `review-needed` 或 `not-ready` 並列 blocker。
+`Accepted residuals` 是 non-blocking findings、FYI、out-of-repo follow-ups、
+accepted residuals 的唯一 home。若報告仍有 LOW / FYI / accepted residual /
+out-of-repo follow-up，這欄不能寫 `none`，也不能只把它留在 fenced block 外的
+散文。格式用 short finding label + disposition + durable tracker/owner；沒有
+durable tracker/owner 的 residual 不能被當成已安全收尾。
+
+Status 判準：
+- `ready-for-user-approval`：只用於 merge / tag / deploy / release 等 final
+  approval gate，且所有 review / fix-confirmation 都解完、目前 head 已核對、驗證完成、
+  accepted residuals 已列在 `Accepted residuals` 欄、沒有 blocker。
+- `review-needed`：下一步是 review、scope confirmation，或對已推送且目前 head 的
+  fix-confirmation。
+- `not-ready`：仍有 blocker、驗證未跑或失敗、head stale / 尚未推送 / 尚未可審、決定
+  要修的 finding 尚未推上去、residual 缺 durable tracker/owner，或 review / approval
+  前還需要外部證據或外部動作。
+- `complete-no-action-needed`：只有工作已完全收尾、沒有下一個 agent 或使用者動作時才能用；
+  這是提醒使用者不要再把同一段 closeout 貼給另一個 agent 空跑。若
+  `Accepted residuals` 不是 `none`，每個 residual 都必須已有 durable tracker/owner；
+  否則用 `not-ready`。
+
+若 blocker 來自 GitHub / credential-store / network / remote metadata 類操作，且目前
+環境有 sanctioned sandbox escalation 或 outside-sandbox retry 機制，先用該機制重跑
+同一個最小命令，再把它寫進 `Blockers`。若 policy 不允許 escalation，就用 Agent
+Trigger Kit durable no-report taxonomy 的 `blocked_by_policy` 標記 gap；若 escalation
+後成功，繼續執行，不要把 sandbox 內的失敗當成最終狀態。
+
+若 relay signal 是要取得開始實作或開始執行的核准，`Required user text` 仍是 exact
+approval text 的唯一 home；使用者送出該文字後，下一個 agent 應直接執行
+`Next agent action`，不要把同一個 `review-needed` 訊號再貼回去要求二次 review。
 
 當下一個 agent 還需要選擇執行方式時，預設由交接者直接推薦 route，不要把例行的
 「用哪種方式執行」丟回給使用者選。把 route 接在 relay signal 後面：

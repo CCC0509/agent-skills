@@ -27,6 +27,8 @@ release scope.
   approval timing and `complete-no-action-needed` for fully closed work.
 - v0.4.6: shared execution route contract tells the next agent how to execute
   remaining work without asking the user to choose routine process mechanics.
+- v0.4.7: relay signals preserve accepted residuals and clarify review-needed
+  versus not-ready boundaries before downstream agents act.
 
 ## Extraction Candidates
 
