@@ -256,7 +256,7 @@ git commit -m "test: assert relay user action tokens"
 **Files:**
 - Update: `docs/superpowers/plans/2026-07-06-f6-relay-action-owner.md`
 
-- [ ] **Step 1: Run final verification**
+- [x] **Step 1: Run final verification**
 
 Run:
 
@@ -273,7 +273,7 @@ Expected:
 - smoke prints `install smoke ok`.
 - `rg` output includes manual doctrine, smoke assertions, ROADMAP v0.4.9, ROADMAP F5, and both plugin metadata files.
 
-- [ ] **Step 2: Verify scope**
+- [x] **Step 2: Verify scope**
 
 Run:
 
@@ -288,13 +288,14 @@ Expected files only:
 .claude-plugin/plugin.json
 ROADMAP.md
 docs/superpowers/plans/2026-07-06-f6-relay-action-owner.md
+docs/superpowers/specs/2026-07-06-f6-relay-action-owner-design.md
 skills/agent-operating-manual/10-model-dispatch.md
 tests/install-smoke.sh
 ```
 
 No `install.sh`, generated imported files, adopting repo files, operator-bootstrap files, Agent Trigger Kit files, F4 entrypoint files, or F5 reference-map content should appear.
 
-- [ ] **Step 3: Update plan progress and commit**
+- [x] **Step 3: Update plan progress and commit**
 
 Mark completed checkboxes in this plan, then run:
 
@@ -303,7 +304,7 @@ git add docs/superpowers/plans/2026-07-06-f6-relay-action-owner.md
 git commit -m "docs: update relay action owner plan progress"
 ```
 
-- [ ] **Step 4: Stop for fresh review**
+- [x] **Step 4: Stop for fresh review**
 
 Do not merge, tag, release, or update adopting repos. Send a full-context copy block to the user with this relay shape:
 
