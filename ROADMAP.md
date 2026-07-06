@@ -21,6 +21,8 @@ release scope.
 - v0.4.3: review opening header is probeable with `Review stance:`, review
   closeout wording ends at `Next actions`, and named-absence deferral points to
   Agent Trigger Kit's durable no-report classification home.
+- v0.4.4: shared hand-off request contract moved into Agent Operating Manual;
+  review enum adds `plan/rule-review`, and install pointers name rule-review.
 
 ## Extraction Candidates
 
