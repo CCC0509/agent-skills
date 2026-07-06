@@ -14,6 +14,8 @@ Canonical content lives alongside this file in this skill directory ([README.md]
 
 For convention migrations, release PRs, approval-bound merge / deploy / runtime actions, or public evidence tables, also read [`25-change-discipline.md`](25-change-discipline.md).
 
+For cross-repo routing, ownership, codebase MCP availability, or residual owner questions, also read [`cross-repo-reference-map.md`](cross-repo-reference-map.md).
+
 Codex / Gemini sessions must read their adapter file before applying Claude Code model / effort / workflow sections.
 
 ## Core rules (quick reference card)

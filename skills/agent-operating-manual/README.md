@@ -25,6 +25,7 @@
 |---|---|---|
 | [`10-model-dispatch.md`](10-model-dispatch.md) | **C** 指揮官不下場、派工三件套、模型/effort、升降級、驗證不自驗 | **每個 session 的核心；不熟就從這開始** |
 | [`15-repo-memory.md`](15-repo-memory.md) | **B** repo-owned shared memory：index、status / lesson / audit lifecycle、ATK / MCP boundaries | Session start、closeout、或要寫 repo memory 時 |
+| [`cross-repo-reference-map.md`](cross-repo-reference-map.md) | Cross-repo ownership map for doctrine, bootstrap, mechanism, adopting-repo, and MCP routing | When a task crosses repo boundaries or asks where a change belongs |
 | [`20-judgment-rubrics.md`](20-judgment-rubrics.md) | **D** 何時升級/算完成/停下問人/該換路/驗品質（各附正反例） | 卡在判斷時查對應 § |
 | [`25-change-discipline.md`](25-change-discipline.md) | **H** convention migration、verifiable commit structure、approval-bound identifiers、public evidence hygiene | 改制 / 改名 / migration / release PR / explicit approval closeout 時 |
 | [`30-dispatch-templates.md`](30-dispatch-templates.md) | **E** 搜尋/實作/重構/研究/審查 派工填空模板 | 要委派時複製套用 |

@@ -213,7 +213,7 @@ Expected: commit succeeds. The smoke test is allowed to fail at this point becau
 - Modify: `.claude-plugin/marketplace.json`
 - Modify: `docs/superpowers/plans/2026-07-07-f5-cross-repo-reference-map.md`
 
-- [ ] **Step 1: Add the standalone appendix**
+- [x] **Step 1: Add the standalone appendix**
 
 Create `skills/agent-operating-manual/cross-repo-reference-map.md`:
 
@@ -272,7 +272,7 @@ skill copies, MCP / codebase-index tooling, or cross-repo residual ownership.
   inside the existing skill directory.
 ```
 
-- [ ] **Step 2: Add the README conditional pointer**
+- [x] **Step 2: Add the README conditional pointer**
 
 In `skills/agent-operating-manual/README.md`, add a row to the file map after
 `15-repo-memory.md`:
@@ -283,7 +283,7 @@ In `skills/agent-operating-manual/README.md`, add a row to the file map after
 
 Expected: this row is in the table only. Do not add the appendix to the quick-reference startup list.
 
-- [ ] **Step 3: Add the SKILL conditional pointer**
+- [x] **Step 3: Add the SKILL conditional pointer**
 
 In `skills/agent-operating-manual/SKILL.md`, add this sentence after the existing conditional sentence for `25-change-discipline.md`:
 
@@ -293,7 +293,7 @@ For cross-repo routing, ownership, codebase MCP availability, or residual owner 
 
 Expected: the `## Must Read` list remains exactly `README.md`, `10-model-dispatch.md`, and `15-repo-memory.md`. The appendix pointer appears only after that list in a conditional paragraph.
 
-- [ ] **Step 4: Update ROADMAP landed and extraction candidate rows**
+- [x] **Step 4: Update ROADMAP landed and extraction candidate rows**
 
 In `ROADMAP.md`, add this landed entry after `v0.4.10`:
 
@@ -319,7 +319,7 @@ Add these Extraction Candidate rows near the other `agent-skills doctrine` rows:
 
 Expected: the existing `Shared checkout concurrency etiquette` row remains unchanged.
 
-- [ ] **Step 5: Bump release metadata to 0.4.11**
+- [x] **Step 5: Bump release metadata to 0.4.11**
 
 In `.claude-plugin/plugin.json`, change:
 
@@ -347,7 +347,7 @@ to:
 
 Expected: no other metadata fields change.
 
-- [ ] **Step 6: Run the F5 smoke test to verify it now passes**
+- [x] **Step 6: Run the F5 smoke test to verify it now passes**
 
 Run:
 
@@ -357,7 +357,7 @@ Run:
 
 Expected: exit `0` and prints `cross-repo reference map smoke ok`.
 
-- [ ] **Step 7: Verify Must Read exclusion directly**
+- [x] **Step 7: Verify Must Read exclusion directly**
 
 Run:
 
@@ -372,7 +372,7 @@ fi
 
 Expected: exit `0` and prints `must-read-clean`. This proves the appendix is not in the default `Must Read` list.
 
-- [ ] **Step 8: Commit appendix, pointers, roadmap, metadata, smoke pass, and plan checkbox update**
+- [x] **Step 8: Commit appendix, pointers, roadmap, metadata, smoke pass, and plan checkbox update**
 
 Run:
 
