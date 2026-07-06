@@ -23,6 +23,8 @@ release scope.
   Agent Trigger Kit's durable no-report classification home.
 - v0.4.4: shared hand-off request contract moved into Agent Operating Manual;
   review enum adds `plan/rule-review`, and install pointers name `plan/rule-review`.
+- v0.4.5: shared relay signals define `ready-for-user-approval` for merge
+  approval timing and `complete-no-action-needed` for fully closed work.
 
 ## Extraction Candidates
 
