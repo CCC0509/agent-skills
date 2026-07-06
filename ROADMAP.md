@@ -29,6 +29,10 @@ release scope.
   remaining work without asking the user to choose routine process mechanics.
 - v0.4.7: relay signals preserve accepted residuals and clarify review-needed
   versus not-ready boundaries before downstream agents act.
+- v0.4.8: handoff / relay control contract clarifies `Review:` versus
+  `Status:` precedence, adds `Target repo:` routing, hardens `not-ready`
+  relay authority, and requires plan-first plus fresh review for normative
+  control-contract changes.
 
 ## Extraction Candidates
 
@@ -42,6 +46,8 @@ release scope.
 | agent-skills doctrine | Harness warning triage contract | agent-skills | Needs more portable examples so known harness noise is classified without normalizing ignored warnings. |
 | agent-skills doctrine | Probe catalog appendix | agent-skills | v0.4 adds examples inline; a full catalog should wait until enough probes justify an appendix. |
 | agent-skills doctrine | Extraction-candidate closeout protocol | agent-skills | Wake condition reached by the v0.4.1 reviewer-conduct extraction and v0.4.2 review I/O contract shaping. Keep the protocol design out of v0.4.2; schedule it for v0.5.0. |
+| agent-skills doctrine | F2 handoff-contract file split | agent-skills | Deferred from v0.4.8; splitting §3.1 needs anchor / link / residual scan after relay control semantics stabilize. |
+| agent-skills doctrine | F4 source-repo entrypoint and staging-boundary mechanics | agent-skills | Follow-up branch for AGENTS.md source entrypoint, optional thin CLAUDE.md / GEMINI.md pointers, merge-base proposal checks, and scratch target / temp worktree adoption testing. |
 | ATK templates | `agent-impact-file-sets.mjs` classifier template | agent-trigger-kit | Mechanism/script, not doctrine. |
 | ATK templates | Plan/spec lifecycle checker template | agent-trigger-kit | Validator template belongs with trigger-layer mechanisms. |
 | ATK templates | MCP config validator template | agent-trigger-kit | Reusable validator; pair with agent-skills fallback doctrine later. |
