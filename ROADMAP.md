@@ -25,6 +25,8 @@ release scope.
   review enum adds `plan/rule-review`, and install pointers name `plan/rule-review`.
 - v0.4.5: shared relay signals define `ready-for-user-approval` for merge
   approval timing and `complete-no-action-needed` for fully closed work.
+- v0.4.6: shared execution route contract tells the next agent how to execute
+  remaining work without asking the user to choose routine process mechanics.
 
 ## Extraction Candidates
 

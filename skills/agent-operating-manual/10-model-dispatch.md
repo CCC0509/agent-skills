@@ -94,6 +94,29 @@ Blockers: <none, or concise blockers>
 closeout 貼給另一個 agent 空跑。若還需要 review、修正、merge、tag、deploy、或
 任何外部證據，就用 `review-needed` 或 `not-ready` 並列 blocker。
 
+當下一個 agent 還需要選擇執行方式時，預設由交接者直接推薦 route，不要把例行的
+「用哪種方式執行」丟回給使用者選。把 route 接在 relay signal 後面：
+
+```text
+Execution route: <direct-apply | plan-first | subagent-driven | inline-execution>
+Route reason: <why this immediate next action fits>
+User approval needed: <yes | no; exact wording lives in Required user text>
+```
+
+`Status` 說明現在在哪裡；`Execution route` 只說剩下的工作要怎麼做，兩者不得互相
+重寫。`review-only`、`merge-closeout`、`stop` 不是 route 值；那些狀態應由
+`Status`、`Next agent action`、`Blockers` 表達。`Required user text` 是核准文字的
+唯一 home；route block 只寫是否需要使用者核准，不重複貼 exact text。
+
+Route 判準：
+- `direct-apply`：小型、低風險、scope 已清楚，下一個 agent 可直接修改或執行。
+- `plan-first`：還沒有可信 plan；下一步是先拆 scope / 寫 plan，不是執行 plan。
+- `subagent-driven`：已有 plan，任務可切分，適合一 task 一 agent 加 review loop。
+- `inline-execution`：已有 plan，但任務凝聚、較小，適合同一 agent 連續執行並 checkpoint。
+
+只有 route 會改變產品方向、風險、成本、production 狀態、破壞性操作或授權邊界時，
+才問使用者。若不確定是否需要授權，merge、destructive、production 一律偏向詢問。
+
 ---
 
 ## §4 驗證不自驗（Verify, not self-verify）
