@@ -25,6 +25,17 @@ for s in agent-operating-manual multi-angle-review; do
   [ -f "$TMP/target/docs/imported-skills/$s/SKILL.md" ] || fail "missing $s/SKILL.md"
   [ -f "$TMP/target/docs/imported-skills/$s/.managed-by-agent-skills" ] || fail "missing $s sentinel"
 done
+MAP="$TMP/target/docs/imported-skills/agent-operating-manual/cross-repo-reference-map.md"
+[ -f "$MAP" ] || fail "missing cross-repo reference map"
+grep -Fq 'operator-bootstrap' "$MAP" || fail "reference map missing operator-bootstrap"
+grep -Fq 'Agent Trigger Kit' "$MAP" || fail "reference map missing Agent Trigger Kit"
+grep -Fq '15-repo-memory.md' "$MAP" || fail "reference map missing repo-memory routing"
+grep -Fq 'cross-repo-reference-map.md' \
+  "$TMP/target/docs/imported-skills/agent-operating-manual/README.md" \
+  || fail "imported manual README missing reference map pointer"
+grep -Fq 'cross-repo-reference-map.md' \
+  "$TMP/target/docs/imported-skills/agent-operating-manual/SKILL.md" \
+  || fail "imported manual SKILL missing reference map pointer"
 [ ! -e "$TMP/target/docs/imported-skills/skill-authoring" ] \
   || fail "skill-authoring installed by default"
 [ "$(cat "$TMP/target/.agent-skills/pin")" = "CCC0509/agent-skills@v$VER" ] || fail "pin content"

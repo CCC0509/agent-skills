@@ -391,7 +391,7 @@ Expected: commit succeeds. The dedicated F5 smoke test passed before commit.
 - Modify: `tests/install-smoke.sh`
 - Modify: `docs/superpowers/plans/2026-07-07-f5-cross-repo-reference-map.md`
 
-- [ ] **Step 1: Add installed-copy assertions to install smoke**
+- [x] **Step 1: Add installed-copy assertions to install smoke**
 
 In `tests/install-smoke.sh`, after the default installed-skill sentinel loop:
 
@@ -418,7 +418,7 @@ grep -Fq 'cross-repo-reference-map.md' \
   || fail "imported manual SKILL missing reference map pointer"
 ```
 
-- [ ] **Step 2: Run install smoke**
+- [x] **Step 2: Run install smoke**
 
 Run:
 
@@ -428,7 +428,7 @@ Run:
 
 Expected: exit `0` and prints `install smoke ok`.
 
-- [ ] **Step 3: Commit install smoke reinforcement and plan checkbox update**
+- [x] **Step 3: Commit install smoke reinforcement and plan checkbox update**
 
 Run:
 
