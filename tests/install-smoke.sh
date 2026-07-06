@@ -51,6 +51,12 @@ for f in CLAUDE.md AGENTS.md GEMINI.md; do
   grep -Fq 'complete-no-action-needed' \
     "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
     || fail "$f imported manual missing completion relay signal"
+  grep -Fq 'Execution route: <direct-apply | plan-first | subagent-driven | inline-execution>' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    || fail "$f imported manual missing execution route contract"
+  grep -Fq 'exact wording lives in Required user text' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    || fail "$f imported manual missing approval-text home rule"
   grep -Fq 'plan/rule-review / fix-confirmation' "$TMP/target/$f" \
     || fail "$f pointer missing plan/rule-review scenario"
   grep -Fq 'docs/agent-memory-index.md' "$TMP/target/$f" \
