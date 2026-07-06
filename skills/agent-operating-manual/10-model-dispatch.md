@@ -93,6 +93,7 @@ Status: <review-needed | ready-for-user-approval | complete-no-action-needed | n
 Target repo: <owner/repo or absolute local repo path, or n/a>
 Target: <PR/branch/task + head SHA, or n/a>
 Required user text: <exact approval/merge text, required user input, or n/a>
+User action: <self-review | to-reviewer | to-agent | reply-required-text | none>[ -> ...]
 Next agent action: <what another agent should do, or none>
 Blockers: <none, or concise blockers>
 Accepted residuals: <none | short finding label + disposition + durable tracker/owner>
@@ -103,6 +104,32 @@ Accepted residuals: <none | short finding label + disposition + durable tracker/
 repo-specific next action 時才用 `n/a`。`Target` 保持原本語意，只描述該 repo 內的
 PR、branch、task、head SHA 或其他 work item。不要只把 intended repo 藏在 relay
 block 外的散文。
+
+`User action` 是給使用者的人類 routing hint，使用 short tokens 串成有序 sequence；
+token 之間用 ` -> `。`self-review` 表示使用者應先自行閱讀 / 判斷；`to-reviewer`
+表示把完整 copy block 貼給 reviewer agent；`to-agent` 表示貼給下一個 acting agent，
+由 `Next agent action` 說明該 agent 要做什麼；`reply-required-text` 表示在目前 chat
+回覆 `Required user text` 指定的精確文字或裁決；`none` 只表示使用者不需回覆或轉貼。
+常見預設：
+`review-needed` + review 類 `Review:` 用 `self-review -> to-reviewer`；
+`ready-for-user-approval` 用 `self-review -> reply-required-text`；
+pending user disposition 的 `not-ready` 用 `self-review -> reply-required-text`；
+已 scoped 且需要下一個 acting agent 修正的 `not-ready` 用 `self-review -> to-agent`；
+等待外部證據、CI、policy escalation 或 remote metadata，且沒有 user input 或 next-agent
+revision 可用的 `not-ready` 用 `none`；
+`complete-no-action-needed` 用 `none`。
+
+Full-context copy rule：spec、plan、rule-review、full review、fix-confirmation 類交接，
+預設把下一個 agent 判斷或行動需要的完整脈絡放進單一 `text` fenced copy block：
+使用者需要 reviewer 看到的補充、review findings、author dispositions、target repo /
+target、verification state、final relay block，以及三行 `Review:` 合約。純機械續接時，
+若 relay block + named target 已足夠，copy block 可以較短；不確定時偏向 full-context
+copy，不要讓使用者猜哪些 finding 要保留。
+
+User notes rule：不要新增 `User notes handling:` 欄位。使用者在 fenced block 外補充的
+意見可以作為 reviewer 背景，但不覆寫 contract fields。若 author 要求下一個 agent
+必須處理使用者補充，應把該補充納入 copy block 脈絡，或在 `Required user text` 明確
+點名需要的裁決；`Required user text` 仍是 exact approval / disposition text 的唯一 home。
 
 `Accepted residuals` 是 non-blocking findings、FYI、out-of-repo follow-ups、
 accepted residuals 的唯一 home。若報告仍有 LOW / FYI / accepted residual /
@@ -124,10 +151,22 @@ Status 判準：
   `Accepted residuals` 不是 `none`，每個 residual 都必須已有 durable tracker/owner；
   否則用 `not-ready`。
 
-Relay readiness rule：`Status: not-ready` 不能搭配可立即執行的 `Next agent action`。
-若 blocker 是 pending user disposition，`Required user text` 必須明確寫出需要的裁決
-或文字，且 `Next agent action` 必須是 `none until user provides dispositions` 或同等
-不可執行描述。
+Relay readiness rule：`Status: not-ready` 不能搭配可立即執行的 `Next agent action`，
+除非 `User action` 含 `to-agent`、blocker 是另一個 acting agent 必須修正已 scoped work，
+且 `Next agent action` 明確寫出該修正。若 blocker 是 pending user disposition，
+`Required user text` 必須明確寫出需要的裁決或文字，且 `Next agent action` 必須是
+`none until user provides dispositions` 或同等不可執行描述。
+
+User action consistency rule：`Status: complete-no-action-needed` 必須搭配
+`User action: none`。`User action: none` 只表示使用者不需回覆或轉貼，不覆寫
+`Next agent action`。`Review: none-FYI` 不能搭配含 `to-reviewer` 的 `User action`。
+`Status: not-ready` 不能搭配含 `to-agent` 的 `User action`，除非 blocker 是另一個
+acting agent 必須修正已 scoped work，且 `Next agent action` 明確寫出該修正。
+pending user disposition 的 `not-ready` 必須使用 `reply-required-text`、在
+`Required user text` 寫出需要的輸入，並讓 `Next agent action` 維持不可執行直到輸入存在。
+`Status: ready-for-user-approval` 必須使用 `reply-required-text`，且 `Required user text`
+必須命名 exact approval text。`User action` 含 `to-reviewer` 或 `to-agent` 時，copy block
+必須包含完整 fenced relay block 與三行 `Review:` 合約。
 
 若 blocker 來自 GitHub / credential-store / network / remote metadata 類操作，且目前
 環境有 sanctioned sandbox escalation 或 outside-sandbox retry 機制，先用該機制重跑

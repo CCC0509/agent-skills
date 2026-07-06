@@ -34,7 +34,7 @@
 - Modify: `skills/agent-operating-manual/10-model-dispatch.md:88-140`
 - Update: `docs/superpowers/plans/2026-07-06-f6-relay-action-owner.md`
 
-- [ ] **Step 1: Add `User action:` to the relay block**
+- [x] **Step 1: Add `User action:` to the relay block**
 
 In `skills/agent-operating-manual/10-model-dispatch.md`, change the relay block from:
 
@@ -61,7 +61,7 @@ Blockers: <none, or concise blockers>
 Accepted residuals: <none | short finding label + disposition + durable tracker/owner>
 ```
 
-- [ ] **Step 2: Add token definitions after the `Target repo` paragraph**
+- [x] **Step 2: Add token definitions after the `Target repo` paragraph**
 
 Insert this paragraph after the paragraph ending with `block 外的散文。`:
 
@@ -81,7 +81,7 @@ revision 可用的 `not-ready` 用 `none`；
 `complete-no-action-needed` 用 `none`。
 ```
 
-- [ ] **Step 3: Add full-context copy and user-notes prose**
+- [x] **Step 3: Add full-context copy and user-notes prose**
 
 Insert this paragraph after Step 2's new paragraph:
 
@@ -99,7 +99,7 @@ User notes rule：不要新增 `User notes handling:` 欄位。使用者在 fenc
 點名需要的裁決；`Required user text` 仍是 exact approval / disposition text 的唯一 home。
 ```
 
-- [ ] **Step 4: Amend the existing Relay readiness rule**
+- [x] **Step 4: Amend the existing Relay readiness rule**
 
 Replace the paragraph that starts with `Relay readiness rule：` and ends with
 `不可執行描述。` with:
@@ -115,7 +115,7 @@ Relay readiness rule：`Status: not-ready` 不能搭配可立即執行的 `Next 
 Keep the `Relay readiness rule` label unchanged because `tests/install-smoke.sh`
 already uses it as a stable token.
 
-- [ ] **Step 5: Add consistency rules after the amended Relay readiness rule**
+- [x] **Step 5: Add consistency rules after the amended Relay readiness rule**
 
 Insert this paragraph after the amended Relay readiness rule paragraph:
 
@@ -132,7 +132,7 @@ pending user disposition 的 `not-ready` 必須使用 `reply-required-text`、�
 必須包含完整 fenced relay block 與三行 `Review:` 合約。
 ```
 
-- [ ] **Step 6: Verify doctrine tokens**
+- [x] **Step 6: Verify doctrine tokens**
 
 Run:
 
@@ -142,7 +142,7 @@ rg -n "User action|self-review|to-reviewer|to-agent|reply-required-text|Full-con
 
 Expected: output includes the relay block field, token definitions, full-context copy rule, user notes rule, and consistency rule.
 
-- [ ] **Step 7: Commit Task 1**
+- [x] **Step 7: Commit Task 1**
 
 ```bash
 git add skills/agent-operating-manual/10-model-dispatch.md docs/superpowers/plans/2026-07-06-f6-relay-action-owner.md
