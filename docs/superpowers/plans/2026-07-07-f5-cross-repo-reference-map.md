@@ -43,7 +43,7 @@
 - Create: `tests/cross-repo-reference-map-smoke.sh`
 - Modify: `docs/superpowers/plans/2026-07-07-f5-cross-repo-reference-map.md`
 
-- [ ] **Step 1: Confirm branch, spec ancestor, clean state, and session health**
+- [x] **Step 1: Confirm branch, spec ancestor, clean state, and session health**
 
 Run:
 
@@ -56,7 +56,7 @@ agent-trigger-kit session-check
 
 Expected: branch is `worktree-f5-cross-repo-reference-map`; the merge-base command prints `spec-ancestor-ok`; `git status --porcelain` is empty before implementation; session-check exits `1` with `agent-skills: plugin directory missing` and no unmarked outcome events.
 
-- [ ] **Step 2: Add the failing F5 smoke test**
+- [x] **Step 2: Add the failing F5 smoke test**
 
 Create `tests/cross-repo-reference-map-smoke.sh`:
 
@@ -179,7 +179,7 @@ Make it executable:
 chmod +x tests/cross-repo-reference-map-smoke.sh
 ```
 
-- [ ] **Step 3: Run the F5 smoke test to verify it fails for the right reason**
+- [x] **Step 3: Run the F5 smoke test to verify it fails for the right reason**
 
 Run:
 
@@ -189,7 +189,7 @@ Run:
 
 Expected: exit `1` with `CROSS-REPO REFERENCE MAP SMOKE FAIL: missing required file: skills/agent-operating-manual/cross-repo-reference-map.md`.
 
-- [ ] **Step 4: Commit the failing smoke test and plan checkbox update**
+- [x] **Step 4: Commit the failing smoke test and plan checkbox update**
 
 Run:
 
