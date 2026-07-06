@@ -446,7 +446,7 @@ Expected: commit succeeds.
 **Files:**
 - Modify: `docs/superpowers/plans/2026-07-07-f5-cross-repo-reference-map.md`
 
-- [ ] **Step 1: Run full source and install smokes**
+- [x] **Step 1: Run full source and install smokes**
 
 Run:
 
@@ -458,7 +458,7 @@ Run:
 
 Expected: each exits `0`; outputs include `cross-repo reference map smoke ok`, `source entrypoint smoke ok`, and `install smoke ok`.
 
-- [ ] **Step 2: Run diff whitespace check**
+- [x] **Step 2: Run diff whitespace check**
 
 Run:
 
@@ -468,7 +468,7 @@ git diff --check "$(git merge-base HEAD main)"..HEAD
 
 Expected: exit `0` with no output.
 
-- [ ] **Step 3: Run public-evidence hygiene scan**
+- [x] **Step 3: Run public-evidence hygiene scan**
 
 Run:
 
@@ -480,7 +480,7 @@ rg -n "$LOCAL_PATH_RE|$LOCAL_USER" docs/superpowers/specs/2026-07-07-f5-cross-re
 
 Expected: exit `1` with no output.
 
-- [ ] **Step 4: Run token scan**
+- [x] **Step 4: Run token scan**
 
 Run:
 
@@ -490,7 +490,7 @@ rg -n "cross-repo reference map|operator-bootstrap|Agent Trigger Kit|adopting re
 
 Expected: output includes hits in `skills/agent-operating-manual/cross-repo-reference-map.md`, `skills/agent-operating-manual/README.md`, `skills/agent-operating-manual/SKILL.md`, `ROADMAP.md`, `tests/cross-repo-reference-map-smoke.sh`, `tests/install-smoke.sh`, and `.claude-plugin/**`.
 
-- [ ] **Step 5: Verify F5 candidate retired and tracker rows present**
+- [x] **Step 5: Verify F5 candidate retired and tracker rows present**
 
 Run:
 
@@ -507,7 +507,7 @@ grep -F '| agent-skills doctrine | Relay copy-block completeness self-check |' R
 
 Expected: the first block prints `f5-candidate-retired`; second and third commands print the new tracker rows.
 
-- [ ] **Step 6: Run session-check closeout**
+- [x] **Step 6: Run session-check closeout**
 
 Run:
 
@@ -517,7 +517,7 @@ agent-trigger-kit session-check --closeout
 
 Expected: exit `1` with `agent-skills: plugin directory missing`; plugin-version-freshness may be indeterminate from the same root-source cause; no unmarked outcome events. If exit `4` reports unmarked events, mark them per the session-check skill when possible, rerun closeout, and report any remaining blocker precisely.
 
-- [ ] **Step 7: Verify worktree clean except final plan checkbox update**
+- [x] **Step 7: Verify worktree clean except final plan checkbox update**
 
 Run:
 
@@ -528,7 +528,7 @@ git rev-parse HEAD
 
 Expected: before the final commit, status shows only this plan file modified for Task 4 checkbox updates. HEAD prints the implementation commit.
 
-- [ ] **Step 8: Commit final plan checkbox update**
+- [x] **Step 8: Commit final plan checkbox update**
 
 Run:
 
@@ -539,7 +539,7 @@ git commit -m "docs: mark f5 implementation closeout"
 
 Expected: commit succeeds.
 
-- [ ] **Step 9: Final handoff**
+- [x] **Step 9: Final handoff**
 
 Use this relay shape, filling in the final HEAD:
 
