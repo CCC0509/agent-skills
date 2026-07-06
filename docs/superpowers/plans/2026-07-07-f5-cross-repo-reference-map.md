@@ -94,7 +94,7 @@ require_must_read_not_contains() {
   local file="$1"
   local token="$2"
   local section
-  section="$(awk '/^## Must Read/{flag=1; next} /^## / && flag{flag=0} flag{print}' "$file")"
+  section="$(awk '/^## Must Read/{flag=1; next} flag && /^[[:space:]]*$/{exit} flag{print}' "$file")"
   ! printf '%s\n' "$section" | grep -Fq "$token" \
     || fail "$file Must Read section contains conditional appendix: $token"
 }
@@ -144,6 +144,7 @@ require_contains ROADMAP.md '| agent-skills doctrine | Branch / worker lifecycle
 require_contains ROADMAP.md 'simultaneous editing in shared checkouts'
 require_contains ROADMAP.md '| agent-skills doctrine | Relay copy-block completeness self-check |'
 require_contains ROADMAP.md 'pre-handoff checklist'
+require_contains ROADMAP.md '`Review:` contract for the immediate next agent'
 require_contains ROADMAP.md 'preserves review findings inside the fenced copy block'
 
 require_contains .claude-plugin/plugin.json '"version": "0.4.11"'
@@ -312,8 +313,8 @@ Remove this Extraction Candidate row:
 Add these Extraction Candidate rows near the other `agent-skills doctrine` rows:
 
 ```markdown
-| agent-skills doctrine | Branch / worker lifecycle hygiene | agent-skills / ATK | Separate from Shared checkout concurrency etiquette: this covers worker spawn / wait / consume / close, concurrency caps, post-merge push state, and cleanup of merged worktrees / local branches after scoped work reaches review or merge; any validator mechanism belongs with ATK. |
-| agent-skills doctrine | Relay copy-block completeness self-check | agent-skills | Needs a pre-handoff checklist that validates legal `Status:` values, `User action:` / `Next agent action:` pairing, a single fenced copy block when forwarding to another agent, and preserves review findings inside the fenced copy block. |
+| agent-skills doctrine | Branch / worker lifecycle hygiene | agent-skills | Separate from Shared checkout concurrency etiquette: the existing row covers simultaneous editing in shared checkouts; this covers worker spawn / wait / consume / close, concurrency caps, post-merge push state, and cleanup of merged worktrees / local branches after scoped work reaches review or merge; any validator mechanism belongs with ATK. |
+| agent-skills doctrine | Relay copy-block completeness self-check | agent-skills | Needs a pre-handoff checklist that validates legal `Status:` values, `User action:` / `Next agent action:` pairing, a single fenced copy block when forwarding to another agent, the `Review:` contract for the immediate next agent, and preserves review findings inside the fenced copy block. |
 ```
 
 Expected: the existing `Shared checkout concurrency etiquette` row remains unchanged.
@@ -361,7 +362,7 @@ Expected: exit `0` and prints `cross-repo reference map smoke ok`.
 Run:
 
 ```bash
-if awk '/^## Must Read/{flag=1; next} /^## / && flag{flag=0} flag{print}' skills/agent-operating-manual/SKILL.md | grep -Fq 'cross-repo-reference-map.md'; then
+if awk '/^## Must Read/{flag=1; next} flag && /^[[:space:]]*$/{exit} flag{print}' skills/agent-operating-manual/SKILL.md | grep -Fq 'cross-repo-reference-map.md'; then
   echo must-read-leak
   exit 1
 else
@@ -554,7 +555,7 @@ Accepted residuals: ATK root-source boundary / documented in AGENTS.md / mechani
 
 Review: full
 Focus: F5 cross-repo ownership map, conditional Must Read exclusion, MCP fallback canonical-home routing to 15-repo-memory.md, installed-copy smoke coverage, ROADMAP F5 retirement plus branch/worker lifecycle and relay copy-block tracker rows
-Prev reviewed tip: f517c6f
+Prev reviewed tip: <tip approved by plan review>
 ```
 
 Expected: the `Next agent action` names exactly what the reviewer should inspect, and any findings from review or implementation are preserved inside the fenced copy block before handoff.
