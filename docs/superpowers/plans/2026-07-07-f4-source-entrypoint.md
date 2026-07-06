@@ -299,7 +299,7 @@ Expected: commit succeeds and contains only the root entrypoint files, `.gitigno
 - Modify: `.claude-plugin/marketplace.json:14`
 - Update: `docs/superpowers/plans/2026-07-07-f4-source-entrypoint.md`
 
-- [ ] **Step 1: Add the v0.4.10 landed entry**
+- [x] **Step 1: Add the v0.4.10 landed entry**
 
 In `ROADMAP.md`, add this entry immediately after the v0.4.9 entry:
 
@@ -310,7 +310,7 @@ In `ROADMAP.md`, add this entry immediately after the v0.4.9 entry:
   pollution, and the documented ATK root-source health boundary.
 ```
 
-- [ ] **Step 2: Remove the retired F4 Extraction Candidate row**
+- [x] **Step 2: Remove the retired F4 Extraction Candidate row**
 
 Remove this exact row from `ROADMAP.md` after the landed entry exists:
 
@@ -325,7 +325,7 @@ Leave these two rows in place:
 | agent-skills doctrine | F5 cross-repo reference map | agent-skills | Separate follow-up for documenting operator-bootstrap as machine/user layer, agent-skills as doctrine, and Agent Trigger Kit as mechanism without creating circular install dependencies. |
 ```
 
-- [ ] **Step 3: Bump plugin metadata to 0.4.10**
+- [x] **Step 3: Bump plugin metadata to 0.4.10**
 
 Change `.claude-plugin/plugin.json` to this exact content:
 
@@ -367,7 +367,7 @@ Change `.claude-plugin/marketplace.json` to this exact content:
 }
 ```
 
-- [ ] **Step 4: Verify ROADMAP and metadata tokens**
+- [x] **Step 4: Verify ROADMAP and metadata tokens**
 
 Run:
 
@@ -378,7 +378,7 @@ rg -n "F4 source-repo entrypoint and staging-boundary mechanics" ROADMAP.md
 
 Expected: the first command shows the v0.4.10 ROADMAP entry and both metadata versions. The second command exits `1` with no output because the F4 Extraction Candidate row has been retired.
 
-- [ ] **Step 5: Commit Task 2**
+- [x] **Step 5: Commit Task 2**
 
 Run:
 

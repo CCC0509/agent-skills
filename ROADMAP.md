@@ -37,6 +37,10 @@ release scope.
   copy defaults for spec / plan / review handoffs, and consistency rules so
   users know whether to self-review, forward to a reviewer, forward to an acting
   agent, reply with required text, or stop.
+- v0.4.10: F4 source-repo entrypoint adds canonical root AGENTS.md guidance,
+  thin Claude / Gemini pointers, local worktree scratch ignore rules, and
+  source-entrypoint smoke coverage for proposal boundaries, self-install
+  pollution, and the documented ATK root-source health boundary.
 
 ## Extraction Candidates
 
@@ -51,7 +55,6 @@ release scope.
 | agent-skills doctrine | Probe catalog appendix | agent-skills | v0.4 adds examples inline; a full catalog should wait until enough probes justify an appendix. |
 | agent-skills doctrine | Extraction-candidate closeout protocol | agent-skills | Wake condition reached by the v0.4.1 reviewer-conduct extraction and v0.4.2 review I/O contract shaping. Keep the protocol design out of v0.4.2; schedule it for v0.5.0. |
 | agent-skills doctrine | F2 handoff-contract file split | agent-skills | Deferred from v0.4.8; splitting §3.1 needs anchor / link / residual scan after relay control semantics stabilize. |
-| agent-skills doctrine | F4 source-repo entrypoint and staging-boundary mechanics | agent-skills | Follow-up branch for AGENTS.md source entrypoint, optional thin CLAUDE.md / GEMINI.md pointers, merge-base proposal checks, and scratch target / temp worktree adoption testing. |
 | agent-skills doctrine | F5 cross-repo reference map | agent-skills | Separate follow-up for documenting operator-bootstrap as machine/user layer, agent-skills as doctrine, and Agent Trigger Kit as mechanism without creating circular install dependencies. |
 | ATK templates | `agent-impact-file-sets.mjs` classifier template | agent-trigger-kit | Mechanism/script, not doctrine. |
 | ATK templates | Plan/spec lifecycle checker template | agent-trigger-kit | Validator template belongs with trigger-layer mechanisms. |
