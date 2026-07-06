@@ -27,11 +27,11 @@ adopting repo, ask for mechanism changes in `agent-skills`, or commit
 machine-local MCP configuration while trying to solve a portable doctrine
 problem.
 
-There is also a related but separate operator concern: subagent / worker
-lifecycle and concurrency hygiene. That topic affects dispatch economy, but it
-is not the same problem as cross-repo ownership. F5 should create a durable
-tracker for it without expanding this release into new worker-lifecycle
-doctrine.
+There are also related but separate operator concerns: subagent / worker
+lifecycle, post-merge push / cleanup state, and relay copy-block completeness.
+Those topics affect dispatch economy and handoff quality, but they are not the
+same problem as cross-repo ownership. F5 should create durable trackers for
+them without expanding this release into new lifecycle or relay doctrine.
 
 ## Design
 
@@ -51,8 +51,8 @@ adopting-repo owners.
 The appendix should contain:
 
 - A short purpose statement: this file routes ownership; it does not replace
-  repo-local instructions, release notes, ATK validators, or adopting-repo
-  memory.
+  sibling manual docs, repo-local instructions, release notes, ATK validators,
+  or adopting-repo memory.
 - A responsibility table with these rows: `operator-bootstrap`, `agent-skills`,
   Agent Trigger Kit, adopting repos, and MCP / codebase-index tooling.
 - For each row: what the layer owns, what it does not own, when to change it,
@@ -94,22 +94,34 @@ adopting repo.
 
 MCP / codebase-index tooling is optional discovery infrastructure. It can help
 trace symbols, call paths, and architecture, but it is not canonical memory and
-must not be required for ordinary doctrine maintenance. If unavailable, stale,
-or unindexed, agents fall back to `rg` and local file reads, then disclose the
-gap when cross-file tracing matters. Machine-local MCP paths, indexes, and
-caches should not be committed to `agent-skills` by default.
+must not be required for ordinary doctrine maintenance. The appendix should
+route graph-state, fallback, and disclosure rules to
+`skills/agent-operating-manual/15-repo-memory.md` instead of creating a second
+normative home for those rules. Machine-local MCP paths, indexes, and caches
+should not be committed to `agent-skills` by default.
 
-## Subagent Lifecycle Follow-Up
+## Lifecycle And Relay Follow-Ups
 
-F5 should add a ROADMAP Extraction Candidate row for `Subagent lifecycle
+F5 should add a ROADMAP Extraction Candidate row for `Branch / worker lifecycle
 hygiene`. The row should route to `agent-skills` unless implementation later
 proves that a mechanism portion belongs in Agent Trigger Kit.
 
 The deferred topic should cover worker lifecycle language such as spawn / wait /
 consume / close, concurrency caps, when to prefer inline execution for small
-plans, and how Codex surfaces should report unavailable fresh-context workers.
-F5 must not define those rules in the appendix body beyond pointing to the
-durable follow-up.
+plans, how Codex surfaces should report unavailable fresh-context workers,
+post-merge push state, and cleanup of merged worktrees / local branches. Its
+`Why deferred` wording must distinguish it from the existing `Shared checkout
+concurrency etiquette` candidate: that existing row is about simultaneous
+editing in shared checkouts, while this follow-up is about worker and branch
+lifecycle after scoped work reaches review or merge.
+
+F5 should also add a ROADMAP Extraction Candidate row for `Relay copy-block
+completeness self-check`. The row should route to `agent-skills` and capture the
+need for a pre-handoff checklist that validates the relay `Status:` enum, the
+`User action:` / `Next agent action:` pairing, the single fenced copy block when
+`to-reviewer` or `to-agent` is used, and the `Review:` contract for the
+immediate next agent. F5 must not define those relay rules in the appendix body
+beyond pointing to the durable follow-up.
 
 ## Scope
 
@@ -124,7 +136,8 @@ In scope:
 - Add a v0.4.11 `ROADMAP.md` landed entry for F5.
 - Remove or retire the F5 Extraction Candidate row after the landed entry
   exists.
-- Add a `Subagent lifecycle hygiene` Extraction Candidate row.
+- Add a `Branch / worker lifecycle hygiene` Extraction Candidate row.
+- Add a `Relay copy-block completeness self-check` Extraction Candidate row.
 - Bump `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json` to
   `0.4.11`.
 
@@ -137,8 +150,8 @@ Out of scope:
 - Installing or configuring codebase MCP servers.
 - Committing MCP indexes, caches, machine-local paths, usernames, or private
   local evidence.
-- Changing the subagent lifecycle / concurrency doctrine body beyond adding the
-  durable extraction candidate.
+- Changing worker lifecycle, post-merge push / cleanup, or relay copy-block
+  doctrine beyond adding the durable extraction candidates.
 - Tagging or releasing `v0.4.11`.
 
 ## Verification
@@ -151,15 +164,21 @@ Implementation should verify:
   advisory from the same root-source cause, relay it as the existing ATK
   residual family.
 - `./tests/install-smoke.sh`
-- The F5 smoke test added by implementation, covering source and installed-copy
-  reference-map tokens.
+- The F5 smoke test added by implementation, covering source reference-map
+  tokens, README pointer, SKILL pointer, installed-copy presence, and key
+  ownership tokens.
+- A smoke assertion that `skills/agent-operating-manual/SKILL.md` keeps the
+  appendix out of the default `Must Read` list; the appendix pointer should
+  appear only in a conditional section.
+- A smoke assertion that the Extraction Candidates table no longer contains the
+  F5 cross-repo reference map row after the v0.4.11 landed entry exists.
 - `git diff --check`
 - A public-evidence hygiene scan that fails on committed absolute local paths,
   home-directory names, or usernames in the new spec / plan / appendix text.
 - A token scan such as:
 
 ```bash
-rg -n "cross-repo reference map|operator-bootstrap|Agent Trigger Kit|adopting repos|codebase MCP|not canonical memory|Subagent lifecycle hygiene|v0\\.4\\.11|0\\.4\\.11" skills/agent-operating-manual ROADMAP.md tests .claude-plugin
+rg -n "cross-repo reference map|operator-bootstrap|Agent Trigger Kit|adopting repos|codebase MCP|15-repo-memory\\.md|not canonical memory|Branch / worker lifecycle hygiene|Relay copy-block completeness self-check|Must Read|v0\\.4\\.11|0\\.4\\.11" skills/agent-operating-manual ROADMAP.md tests .claude-plugin
 ```
 
 The final implementation closeout should use `Status: review-needed`,
@@ -170,9 +189,15 @@ The final implementation closeout should use `Status: review-needed`,
 - Other repos do not need direct edits for F5. The map may name external owners,
   but implementation must keep all committed changes inside `agent-skills`.
 - Codebase MCP remains optional tooling. F5 should document how to route and
-  disclose availability, not install a server or require a graph index.
-- Subagent limit / cleanup behavior is intentionally tracked as the next
-  follow-up candidate, not solved inside F5.
+  disclose availability, not install a server, require a graph index, or
+  duplicate the canonical fallback rules in `15-repo-memory.md`.
+- Subagent limit, post-merge push / cleanup, and relay copy-block completeness
+  behavior are intentionally tracked as follow-up candidates, not solved inside
+  F5.
 - The appendix must avoid becoming daily startup load. It is a conditional
   reference for cross-repo routing questions, not part of the default Must Read
   set.
+- The circular install-dependency concern is addressed by making F5 a
+  doctrine-text appendix inside the existing skill directory. Implementation
+  should not add new external repo dependencies or install-time cross-repo
+  lookups.
