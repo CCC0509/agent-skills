@@ -44,7 +44,7 @@
 - Create: `.gitignore`
 - Update: `docs/superpowers/plans/2026-07-07-f4-source-entrypoint.md`
 
-- [ ] **Step 1: Verify the intended checkout before edits**
+- [x] **Step 1: Verify the intended checkout before edits**
 
 Run:
 
@@ -59,7 +59,7 @@ agent-trigger-kit session-check
 
 Expected: the first two commands record the intended checkout path in a session-local temp file outside the repo, `git rev-parse --abbrev-ref HEAD` reports `worktree-f4-source-entrypoint`, the merge-base command prints `spec-ancestor-ok`, `git status --porcelain` prints nothing, and `agent-trigger-kit session-check` exits `1` with `agent-skills: plugin directory missing`. Do not commit or paste the recorded worktree path into repo files.
 
-- [ ] **Step 2: Create the failing source-entrypoint smoke test**
+- [x] **Step 2: Create the failing source-entrypoint smoke test**
 
 Create `tests/source-entrypoint-smoke.sh` with this exact content:
 
@@ -156,7 +156,7 @@ require_exact_line .gitignore '/worktrees/'
 echo "source entrypoint smoke ok"
 ```
 
-- [ ] **Step 3: Run the new smoke test and confirm it fails for the right reason**
+- [x] **Step 3: Run the new smoke test and confirm it fails for the right reason**
 
 Run:
 
@@ -166,7 +166,7 @@ bash tests/source-entrypoint-smoke.sh
 
 Expected: FAIL with `SOURCE ENTRYPOINT SMOKE FAIL: missing required file: AGENTS.md`.
 
-- [ ] **Step 4: Add the canonical `AGENTS.md` source entrypoint**
+- [x] **Step 4: Add the canonical `AGENTS.md` source entrypoint**
 
 Create `AGENTS.md` with this exact content:
 
@@ -221,7 +221,7 @@ When a relay signal is present and this is the only trigger-layer failure, list 
 Verification notes may add detail, but they are not a substitute for `Accepted residuals`.
 ```
 
-- [ ] **Step 5: Add thin `CLAUDE.md` and `GEMINI.md` pointers**
+- [x] **Step 5: Add thin `CLAUDE.md` and `GEMINI.md` pointers**
 
 Create `CLAUDE.md` with this exact content:
 
@@ -243,7 +243,7 @@ See [AGENTS.md](AGENTS.md) for this repo's source-repo rules, effective-contract
 Do not add an `agent-skills` managed install block here; this file is only a thin pointer for Gemini.
 ```
 
-- [ ] **Step 6: Add local worktree scratch ignores**
+- [x] **Step 6: Add local worktree scratch ignores**
 
 Create `.gitignore` with this exact content:
 
@@ -253,7 +253,7 @@ Create `.gitignore` with this exact content:
 /worktrees/
 ```
 
-- [ ] **Step 7: Make the smoke test executable and verify it passes**
+- [x] **Step 7: Make the smoke test executable and verify it passes**
 
 Run:
 
@@ -264,7 +264,7 @@ chmod +x tests/source-entrypoint-smoke.sh
 
 Expected: PASS with `source entrypoint smoke ok`.
 
-- [ ] **Step 8: Verify writes landed in the intended worktree**
+- [x] **Step 8: Verify writes landed in the intended worktree**
 
 Run:
 
@@ -280,7 +280,7 @@ git -C "$MAIN_WORKTREE" status -sb
 
 Expected: the checkout comparison prints `intended-worktree-ok`. The F4 worktree shows new `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.gitignore`, and `tests/source-entrypoint-smoke.sh`. The main checkout remains on its original branch and its status is unchanged from the pre-edit baseline; do not delete or commit local residue.
 
-- [ ] **Step 9: Commit Task 1**
+- [x] **Step 9: Commit Task 1**
 
 Run:
 
