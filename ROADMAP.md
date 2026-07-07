@@ -86,14 +86,22 @@ release scope.
   overlap audit`, and `Plan/spec lifecycle header convention text`. This lane
   owns rule discovery, trigger wording, context-load reduction, and the
   doctrine / ATK / adopting-repo split for generated or local trigger surfaces.
-- **Portable Wrapper Pattern:** `Portable work-discipline /
-  Karpathy-guidelines uplift`. This lane studies the Stock Scanner wrapper shape
-  while preserving upstream attribution, removing domain overrides, and avoiding
-  duplicate homes for existing TDD / verification doctrine.
+- **Portable Wrapper Pattern:** `Repo-wide skill-surface audit /
+  simplification pass` and `Portable work-discipline / Karpathy-guidelines
+  uplift`. This lane studies the Stock Scanner wrapper shape while preserving
+  upstream attribution, removing domain overrides, auditing existing trigger
+  surfaces before splitting more wrappers, and avoiding duplicate homes for
+  existing TDD / verification doctrine.
 - **Release Lifecycle Gap:** `Release tag / publish lifecycle discipline`. This
   lane should later define metadata bump, push, tag, publish, version
   consistency, post-tag / post-publish smoke, and exact approval gates as a
   separate irreversible-action lifecycle.
+- **Public Artifact / Release Hygiene:** `Public repo PR / release train
+  discipline`, `Private superpowers plan artifact boundary`, and
+  `Post-push complete-no-action-needed closeout examples`. This lane owns public
+  main-history hygiene, private/public planning artifact boundaries, and
+  terminal closeout examples; it stays adjacent to but separate from the
+  release lifecycle state machine.
 - **Execution / Worker Hygiene:** `Branch / worker lifecycle hygiene` and
   `Shared checkout concurrency etiquette`. This lane owns worker spawn / wait /
   consume / close, concurrency caps, post-merge push state, local branch cleanup,
@@ -114,6 +122,7 @@ routes them.
 | Bucket | Candidate | Likely home | Why deferred |
 |---|---|---|---|
 | agent-skills doctrine | Preflight self-report contract | agent-skills | Remaining half of the former preflight / closeout row; current session-start memory-index doctrine covers reading repo memory, but not whether agents should report preflight memory state. |
+| agent-skills doctrine | Repo-wide skill-surface audit / simplification pass | agent-skills | Use the Stock Scanner `karpathy-guidelines` lens to audit every current skill and manual file for overbroad triggers, duplicated canonical homes, oversized must-read sets, and overbuilt process text before splitting more wrappers. |
 | agent-skills doctrine | Portable work-discipline / Karpathy-guidelines uplift | agent-skills | Extract the reusable core of the Stock Scanner repo-local `karpathy-guidelines` wrapper -- clarify assumptions, keep designs simple, make surgical diffs, and define verification success -- while preserving attribution, removing domain overrides, and avoiding duplicate homes for existing TDD / verification doctrine. |
 | agent-skills doctrine | Plan/spec lifecycle header convention text | agent-skills | Doctrine belongs here; validator stays out of the markdown-only repo. |
 | agent-skills doctrine / tooling | Skill context loading / retrieval strategy | agent-skills / Agent Trigger Kit / optional MCP tooling | The Agent Operating Manual is large enough that agents may fail to apply all loaded rules under context pressure; investigate split, routing, retrieval, vector-index, or MCP-backed loading strategy separately so v0.5.2 remains lifecycle-only. |
@@ -125,6 +134,9 @@ routes them.
 | agent-skills doctrine | F2 handoff-contract file split | agent-skills | Deferred from v0.4.8; splitting §3.1 needs anchor / link / residual scan after relay control semantics stabilize. |
 | agent-skills doctrine | Branch / worker lifecycle hygiene | agent-skills | Separate from Shared checkout concurrency etiquette: the existing row covers simultaneous editing in shared checkouts; this covers worker spawn / wait / consume / close, concurrency caps, post-merge push state, and cleanup of merged worktrees / local branches after scoped work reaches review or merge; any validator mechanism belongs with ATK. |
 | agent-skills doctrine | Release tag / publish lifecycle discipline | agent-skills | Existing guardrails cover metadata / tag consistency and approval-bound tag identifiers, but no lifecycle owns metadata bump, push, tag, publish, post-tag / post-publish smoke, and exact approval gates as one irreversible-action flow. |
+| agent-skills doctrine / release process | Public repo PR / release train discipline | agent-skills | Direct-main trains through `9ebdfce` should not be rewritten, but future public-repo work needs a branch / PR / review / squash-or-release-commit lifecycle and a clear rule for when main closeout should be version-only versus evidence-bearing. |
+| agent-skills doctrine / artifact boundary | Private superpowers plan artifact boundary | agent-skills / private planning repo | Public specs and summaries can live here, but detailed superpowers plans, review paste blocks, local paths, and private evidence may belong in a private planning or audit repo; define the boundary before moving files. |
+| agent-skills doctrine | Post-push complete-no-action-needed closeout examples | agent-skills | Recent push closeout discussion showed agents can omit the no-action terminal status when a push truly has no remaining user or agent action; decide whether examples belong in handoff-relay, `10-model-dispatch.md`, or release lifecycle after the skill-surface audit. |
 | agent-skills doctrine | Brainstorming decision-assist protocol | agent-skills | Advisory workflow for when the user or agent cannot choose during brainstorming; separate from closeout memory routing. |
 | agent-skills doctrine | Starter memory templates | agent-skills / adopting repos | Useful after closeout routing stabilizes, but templates would create stronger file-shape opinions than v0.5.0 needs. |
 | agent-skills doctrine | Obsidian vault convention | adopting repo or separate doctrine candidate | Cross-project vault layout and backlink conventions are personal or organization-specific; canonical repo memory remains portable markdown. |
