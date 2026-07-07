@@ -79,7 +79,7 @@ metadata, `rg`, `git`, Agent Trigger Kit session-check.
 - Produces: failing smoke assertions that define the required wrapper install
   surface for Task 2.
 
-- [ ] **Step 1: Confirm baseline and source health**
+- [x] **Step 1: Confirm baseline and source health**
 
 Run:
 
@@ -99,7 +99,7 @@ Expected:
   `agent-skills: plugin directory missing`, no failure categories, and no
   failure drivers.
 
-- [ ] **Step 2: Extend the default-skill sentinel assertions**
+- [x] **Step 2: Extend the default-skill sentinel assertions**
 
 In `tests/install-smoke.sh`, replace:
 
@@ -113,7 +113,7 @@ with:
 for s in agent-operating-manual handoff-relay multi-angle-review; do
 ```
 
-- [ ] **Step 3: Assert the managed entry pointer is injected**
+- [x] **Step 3: Assert the managed entry pointer is injected**
 
 In the first install loop over `CLAUDE.md`, `AGENTS.md`, and `GEMINI.md`, after
 the existing `agent-operating-manual` pointer assertion, add:
@@ -123,7 +123,7 @@ the existing `agent-operating-manual` pointer assertion, add:
     || fail "$f missing handoff-relay pointer"
 ```
 
-- [ ] **Step 4: Assert the installed wrapper keeps the trigger-only boundary**
+- [x] **Step 4: Assert the installed wrapper keeps the trigger-only boundary**
 
 In the same first install loop, after the `multi-angle-review` pointer assertion
 and before the existing imported manual relay-token checks, add:
@@ -149,7 +149,7 @@ and before the existing imported manual relay-token checks, add:
     || fail "$f imported handoff relay missing accepted-residuals reminder"
 ```
 
-- [ ] **Step 5: Keep explicit optional install aligned with the new default set**
+- [x] **Step 5: Keep explicit optional install aligned with the new default set**
 
 In the optional `skill-authoring` section, replace:
 
@@ -170,7 +170,7 @@ After the existing `CLAUDE.md missing skill-authoring pointer` assertion, add:
   || fail "CLAUDE.md missing handoff-relay pointer with skill-authoring"
 ```
 
-- [ ] **Step 6: Run the smoke test and verify the red failure**
+- [x] **Step 6: Run the smoke test and verify the red failure**
 
 Run:
 
@@ -184,7 +184,7 @@ Expected: exit `1` with this failure:
 SMOKE FAIL: missing handoff-relay/SKILL.md
 ```
 
-- [ ] **Step 7: Commit the red smoke coverage and checkbox update**
+- [x] **Step 7: Commit the red smoke coverage and checkbox update**
 
 Run:
 

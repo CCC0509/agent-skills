@@ -21,7 +21,7 @@ mktarget() {
 # 1) tagged install
 mktarget
 bash "$TMP/src/install.sh" "$TMP/target"
-for s in agent-operating-manual multi-angle-review; do
+for s in agent-operating-manual handoff-relay multi-angle-review; do
   [ -f "$TMP/target/docs/imported-skills/$s/SKILL.md" ] || fail "missing $s/SKILL.md"
   [ -f "$TMP/target/docs/imported-skills/$s/.managed-by-agent-skills" ] || fail "missing $s sentinel"
 done
@@ -54,8 +54,28 @@ for f in CLAUDE.md AGENTS.md GEMINI.md; do
   grep -q 'existing content' "$TMP/target/$f" || fail "$f lost existing content"
   grep -Fq 'docs/imported-skills/agent-operating-manual/SKILL.md' "$TMP/target/$f" \
     || fail "$f missing agent-operating-manual pointer"
+  grep -Fq 'docs/imported-skills/handoff-relay/SKILL.md' "$TMP/target/$f" \
+    || fail "$f missing handoff-relay pointer"
   grep -Fq 'docs/imported-skills/multi-angle-review/SKILL.md' "$TMP/target/$f" \
     || fail "$f missing multi-angle-review pointer"
+  grep -Fq 'trigger layer only' \
+    "$TMP/target/docs/imported-skills/handoff-relay/SKILL.md" \
+    || fail "$f imported handoff relay missing trigger-only boundary"
+  grep -Fq '10-model-dispatch.md' \
+    "$TMP/target/docs/imported-skills/handoff-relay/SKILL.md" \
+    || fail "$f imported handoff relay missing relay canonical pointer"
+  grep -Fq 'multi-angle-review/SKILL.md' \
+    "$TMP/target/docs/imported-skills/handoff-relay/SKILL.md" \
+    || fail "$f imported handoff relay missing review canonical pointer"
+  grep -Fq '25-change-discipline.md' \
+    "$TMP/target/docs/imported-skills/handoff-relay/SKILL.md" \
+    || fail "$f imported handoff relay missing approval-bound pointer"
+  grep -Fq 'Required user text' \
+    "$TMP/target/docs/imported-skills/handoff-relay/SKILL.md" \
+    || fail "$f imported handoff relay missing required-user-text reminder"
+  grep -Fq 'Accepted residuals' \
+    "$TMP/target/docs/imported-skills/handoff-relay/SKILL.md" \
+    || fail "$f imported handoff relay missing accepted-residuals reminder"
   grep -Fq 'ready-for-user-approval' \
     "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
     || fail "$f imported manual missing merge relay signal"
@@ -301,13 +321,15 @@ printf '%s\n' "$OUT" | grep -q 'skipped missing entry files:.*GEMINI\.md' || fai
 
 # 13) optional skill-authoring installs only when explicitly requested
 mktarget
-bash "$TMP/src/install.sh" "$TMP/target" --skills agent-operating-manual,multi-angle-review,skill-authoring
+bash "$TMP/src/install.sh" "$TMP/target" --skills agent-operating-manual,handoff-relay,multi-angle-review,skill-authoring
 [ -f "$TMP/target/docs/imported-skills/skill-authoring/SKILL.md" ] \
   || fail "missing skill-authoring/SKILL.md"
 [ -f "$TMP/target/docs/imported-skills/skill-authoring/.managed-by-agent-skills" ] \
   || fail "missing skill-authoring sentinel"
 [ "$(grep -Fc 'docs/imported-skills/skill-authoring/SKILL.md' "$TMP/target/CLAUDE.md")" = 1 ] \
   || fail "CLAUDE.md missing skill-authoring pointer"
+[ "$(grep -Fc 'docs/imported-skills/handoff-relay/SKILL.md' "$TMP/target/CLAUDE.md")" = 1 ] \
+  || fail "CLAUDE.md missing handoff-relay pointer with skill-authoring"
 [ "$(grep -Fc 'docs/agent-memory-index.md' "$TMP/target/CLAUDE.md")" = 1 ] \
   || fail "CLAUDE.md missing memory pointer with skill-authoring"
 
