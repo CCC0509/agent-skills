@@ -546,9 +546,11 @@ git log --oneline --decorate -6
 
 Expected:
 
-- The changed-file list contains only this plan, `skills/work-discipline`,
-  `install.sh`, `tests/install-smoke.sh`, `README.md`, `.claude-plugin`
-  metadata, and `ROADMAP.md`.
+- The changed-file list contains only the approved spec file
+  `docs/superpowers/specs/2026-07-07-skill-surface-karpathy-audit-design.md`,
+  this plan, `skills/work-discipline`, `install.sh`,
+  `tests/install-smoke.sh`, `README.md`, `.claude-plugin` metadata, and
+  `ROADMAP.md`.
 - `git tag --points-at HEAD` prints nothing.
 - `git log --oneline --decorate -6` shows the local branch commits only; no
   merge commit, tag, or publish action.
