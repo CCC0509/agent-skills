@@ -41,12 +41,15 @@ an attestation line, checklist dump, new relay field, or new `Status:` value. If
 the check fails, the author fixes the handoff before emitting it; the final
 handoff artifact is the evidence.
 
-The checklist should stay capped at roughly eight one-line questions:
+The checklist should stay capped at roughly eight compact questions:
 
 - Is `Status:` one of the legal relay statuses?
 - Does `Review:` cohere with `Status:` and `User action:`?
 - When exact approval or disposition text is required, is
-  `Required user text:` non-`n/a` and exact?
+  `Required user text:` non-`n/a` and exact, and does any
+  `reply-required-text` handoff make clear outside the copy block that the
+  current chat is waiting for a user reply without duplicating the exact
+  text?
 - When a repo-specific next action exists, is `Target repo:` non-`n/a`?
 - When `User action:` includes `to-reviewer` or `to-agent`, is there exactly
   one `text` fenced copy block for the user to forward?
@@ -65,6 +68,11 @@ Co-occurrence tie-breaker, Full-context copy rule, User notes rule,
 `Accepted residuals`, Status criteria, Relay readiness rule, User action
 consistency rule, `Required user text`, `Target repo`, and Normative
 control-contract changes.
+
+The `reply-required-text` prompt is a human-facing clarity check, not a second
+approval-text authority. The exact approval or disposition text still lives only
+in `Required user text`; prose outside the copy block should only say that the
+current chat is waiting for a user reply.
 
 ## Pre-Spec Review Disposition
 
@@ -95,6 +103,10 @@ contract `main` at `b74f29a`.
   pre-spec framing review as process hygiene, but v0.4.12 must not make
   pre-spec review a new mandatory doctrine gate. If the pattern proves useful
   across multiple increments, track it separately as an optional author tool.
+- User approval UX feedback: accepted as a narrow checklist refinement. When
+  `User action:` includes `reply-required-text`, human-facing prose outside the
+  copy block should make the pending user reply obvious without duplicating the
+  exact approval or disposition text.
 
 ## Scope
 
@@ -139,7 +151,7 @@ Implementation should verify:
 - A token scan such as:
 
 ```bash
-rg -n 'Pre-handoff self-check|exactly one `text` fenced copy block|three-line `Review:` contract|Target repo|Required user text|Accepted residuals|v0\.4\.12|0\.4\.12' skills/agent-operating-manual ROADMAP.md tests .claude-plugin
+rg -n 'Pre-handoff self-check|current chat is waiting for a user reply|exactly one `text` fenced copy block|three-line `Review:` contract|Target repo|Required user text|Accepted residuals|v0\.4\.12|0\.4\.12' skills/agent-operating-manual ROADMAP.md tests .claude-plugin
 ```
 
 The implementation closeout should use `Status: review-needed`,
