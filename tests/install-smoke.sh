@@ -349,6 +349,21 @@ bash "$TMP/src/install.sh" "$TMP/target" --skills agent-operating-manual,handoff
 grep -Fq 'Release tag / publish lifecycle discipline' \
   "$TMP/target/docs/imported-skills/skill-authoring/SKILL.md" \
   || fail "imported skill-authoring missing release lifecycle pointer"
+grep -Fq 'Skill Surface Disposition' \
+  "$TMP/target/docs/imported-skills/skill-authoring/SKILL.md" \
+  || fail "imported skill-authoring missing skill surface disposition"
+grep -Fq 'trigger-focused frontmatter' \
+  "$TMP/target/docs/imported-skills/skill-authoring/SKILL.md" \
+  || fail "imported skill-authoring missing trigger frontmatter rule"
+grep -Fq 'directly or as part of a later reviewed batch' \
+  "$TMP/target/docs/imported-skills/skill-authoring/SKILL.md" \
+  || fail "imported skill-authoring missing batched release cadence"
+grep -Fq 'then-current manifest version' \
+  "$TMP/target/docs/imported-skills/skill-authoring/SKILL.md" \
+  || fail "imported skill-authoring missing then-current manifest rule"
+grep -Fq 'intermediate bump-only versions' \
+  "$TMP/target/docs/imported-skills/skill-authoring/SKILL.md" \
+  || fail "imported skill-authoring missing bump-only version rule"
 [ -f "$TMP/target/docs/imported-skills/work-discipline/SKILL.md" ] \
   || fail "missing work-discipline/SKILL.md"
 [ -f "$TMP/target/docs/imported-skills/work-discipline/.managed-by-agent-skills" ] \
