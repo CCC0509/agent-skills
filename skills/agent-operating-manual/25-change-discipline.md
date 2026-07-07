@@ -72,7 +72,10 @@ here.
    verification, stop at PR or review handoff. The author does not merge,
    squash merge, tag, publish, deploy, or clean up branches as part of
    implementation closeout unless the user gave a separate approval-bound
-   command for that exact action and identifier.
+   command for that exact action and identifier. If no hosted PR exists, the
+   local equivalent is still a stop point: identify the branch/head and ask for
+   review of the exact range. Do not convert "local only" into permission to
+   skip review.
 4. **review-passed is not merge approval**: A passed full review or
    fix-confirmation satisfies only the review gate. Merge approval is a separate
    exact-text gate and must name the concrete object, such as `PR #123 at
