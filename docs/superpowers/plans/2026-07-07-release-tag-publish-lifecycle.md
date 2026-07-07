@@ -212,7 +212,7 @@ release lifecycle doctrine.
 - Produces: canonical release lifecycle doctrine, metadata `0.5.6`, and
   ROADMAP closeout for the solved release-lifecycle row.
 
-- [ ] **Step 1: Add release lifecycle doctrine**
+- [x] **Step 1: Add release lifecycle doctrine**
 
 In `skills/agent-operating-manual/25-change-discipline.md`, first replace the
 existing `§3.1 Plan / PR Lifecycle Discipline` boundary paragraph:
@@ -300,7 +300,7 @@ reviewed release-repair plan authorizes that exact backfill. The normal path is
 to tag the reviewed release head with the current manifest version.
 ```
 
-- [ ] **Step 2: Add the skill-authoring release checklist pointer**
+- [x] **Step 2: Add the skill-authoring release checklist pointer**
 
 In `skills/skill-authoring/SKILL.md`, replace:
 
@@ -317,7 +317,7 @@ with:
   tag / publish lifecycle discipline.
 ```
 
-- [ ] **Step 3: Add a short README lifecycle pointer**
+- [x] **Step 3: Add a short README lifecycle pointer**
 
 In `README.md`, after:
 
@@ -334,7 +334,7 @@ tag push, publish inventory, and post-tag / post-publish smoke follow
 `skills/agent-operating-manual/25-change-discipline.md` §3.2.
 ```
 
-- [ ] **Step 4: Bump plugin metadata to 0.5.6**
+- [x] **Step 4: Bump plugin metadata to 0.5.6**
 
 Replace `.claude-plugin/plugin.json` with:
 
@@ -358,7 +358,7 @@ In `.claude-plugin/marketplace.json`, replace the plugin object version with:
 Do not change `source`, `strict`, `category`, owner metadata, or descriptions in
 this task.
 
-- [ ] **Step 5: Update ROADMAP landed entry and solved release row**
+- [x] **Step 5: Update ROADMAP landed entry and solved release row**
 
 In `ROADMAP.md`, after the v0.5.5 Landed entry, add:
 
@@ -397,7 +397,7 @@ Do not remove these rows:
 | agent-skills doctrine | Branch / worker lifecycle hygiene | agent-skills | Separate from Shared checkout concurrency etiquette: the existing row covers simultaneous editing in shared checkouts; this covers worker spawn / wait / consume / close, concurrency caps, post-merge push state, and cleanup of merged worktrees / local branches after scoped work reaches review or merge; any validator mechanism belongs with ATK. |
 ```
 
-- [ ] **Step 6: Commit implementation surfaces before smoke**
+- [x] **Step 6: Commit implementation surfaces before smoke**
 
 Run:
 
@@ -420,7 +420,7 @@ Expected:
 - Do not stage this plan file in this step. Plan checkbox ticks ride Task 3
   Step 5 after verification.
 
-- [ ] **Step 7: Run smoke and token checks after the implementation commit**
+- [x] **Step 7: Run smoke and token checks after the implementation commit**
 
 Run:
 
@@ -467,7 +467,7 @@ Expected:
   handoff. Produces no tag, tag push, publish, merge, remote push, or adopting
   repo install.
 
-- [ ] **Step 1: Run source closeout and repo checks**
+- [x] **Step 1: Run source closeout and repo checks**
 
 Run:
 
@@ -490,7 +490,7 @@ Expected:
   checkbox update is committed.
 - `bash tests/install-smoke.sh` exits `0` with `install smoke ok`.
 
-- [ ] **Step 2: Verify scope boundaries**
+- [x] **Step 2: Verify scope boundaries**
 
 Run:
 
@@ -512,7 +512,7 @@ Expected:
 - `git log --oneline --decorate -8` shows local branch commits only; no merge
   commit, tag, or publish action.
 
-- [ ] **Step 3: Verify lifecycle and version anchors directly**
+- [x] **Step 3: Verify lifecycle and version anchors directly**
 
 Run:
 
@@ -532,7 +532,7 @@ Expected:
 - The authoring checklist, README, and ROADMAP all hit
   `Release tag / publish lifecycle discipline`.
 
-- [ ] **Step 4: Verify token coverage without plan self-match**
+- [x] **Step 4: Verify token coverage without plan self-match**
 
 Run:
 
@@ -565,7 +565,7 @@ Expected:
 - Preserve the printed counts in the implementation review handoff's author
   verification block.
 
-- [ ] **Step 5: Commit verification checkbox update**
+- [x] **Step 5: Commit verification checkbox update**
 
 Run:
 
