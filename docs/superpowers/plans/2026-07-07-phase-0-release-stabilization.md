@@ -124,6 +124,7 @@ agent-trigger-kit session-check
 tests/install-smoke.sh
 tests/source-entrypoint-smoke.sh
 tests/cross-repo-reference-map-smoke.sh
+git diff --check
 git diff --check origin/main..HEAD
 git status -sb
 ```
@@ -155,10 +156,11 @@ cross-repo reference map smoke ok
 Expected git checks:
 
 ```text
+git diff --check
 git diff --check origin/main..HEAD
 ```
 
-prints nothing and exits 0. `git status -sb` shows only the intended modified plan/test files before the commit.
+both print nothing and exit 0. `git status -sb` shows only the intended modified plan/test files before the commit.
 
 - [ ] **Step 6: Commit the smoke repair and plan progress**
 
@@ -197,6 +199,7 @@ Run:
 
 ```bash
 HEAD_SHA="$(git rev-parse --short HEAD)"
+: "${PLAN_REVIEWED_TIP:?set PLAN_REVIEWED_TIP to the Phase 0 plan-review pass tip named in the approval relay}"
 printf '%s\n' \
   'Status: review-needed' \
   'Target repo: /Users/jackchou/Desktop/agent-skills' \
@@ -209,11 +212,14 @@ printf '%s\n' \
   '' \
   'Review: full' \
   'Focus: Confirm only moving-state pins at cross-repo-reference-map-smoke.sh lines 80-85 and 87-88 were removed, stable F5 invariants remain, and no current release state was re-pinned.' \
-  'Prev reviewed tip: 843ba4d'
+  "Prev reviewed tip: $PLAN_REVIEWED_TIP"
 ```
 
 Expected: the command prints a relay block with the actual short `HEAD` SHA
-embedded in the `Target:` line.
+embedded in the `Target:` line and the Phase 0 plan-review pass tip from the
+approval relay embedded in the `Prev reviewed tip:` line. If
+`PLAN_REVIEWED_TIP` is unset, the command fails before printing a malformed
+relay.
 
 - [ ] **Step 3: Commit final plan checkbox progress if changed**
 
