@@ -39,7 +39,10 @@ surface. Keep the boundary sharp:
 - The skill is optional unless it is needed by most consumer sessions.
 - Installer tests cover default install, explicit install, idempotency, and
   managed sentinel files.
-- Release metadata and tag agree before publishing.
+- Release metadata and tag agree before publishing; for tag creation, tag push,
+  publish approval, post-tag smoke, post-publish verification, and no-backfill
+  policy, follow `agent-operating-manual/25-change-discipline.md` §3.2
+  `Release tag / publish lifecycle discipline`.
 - Consumer repos upgrade by re-running the installer; imported skill files are
   managed artifacts, not hand-edited local doctrine.
 

@@ -92,10 +92,72 @@ here.
    approved PR/head tree. If the environment cannot check tree equivalence,
    disclose the gap and name the remaining evidence.
 
-This lifecycle does not define release tagging, publishing, deploys, runtime
-actions, worker spawn / wait / consume / close, concurrency caps, worktree
-cleanup, local branch cleanup, post-merge push-state cleanup, Agent Trigger Kit
-validators, hooks, or outcome taxonomy.
+This Plan / PR lifecycle does not define deploys, runtime actions, worker spawn
+/ wait / consume / close, concurrency caps, worktree cleanup, local branch
+cleanup, post-merge push-state cleanup, Agent Trigger Kit validators, hooks, or
+outcome taxonomy; release tagging and publishing are defined in §3.2 below.
+
+## §3.2 Release Tag / Publish Lifecycle Discipline
+
+Use this lifecycle for release actions after reviewed content exists. This
+section owns release object identity and irreversible stop points. Relay fields,
+copy-block formatting, and exact approval text placement remain in
+[`10-model-dispatch.md`](10-model-dispatch.md) §3.1. Install mechanics remain in
+`README.md`, `install.sh`, and `tests/install-smoke.sh`.
+
+1. **Implementation / metadata train**: a reviewed branch may bump
+   `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json` when it
+   changes install-facing doctrine or plugin surface. A metadata bump is not a
+   tag, tag-push, publish, install, deploy, merge, or adopting-repo
+   authorization.
+2. **Reviewed main candidate**: the candidate commit is on `main` or a reviewed
+   release branch, required review or fix-confirmation has passed, the worktree
+   is clean, and both manifests agree on the intended version.
+3. **Pre-tag approval gate**: stop with `Status: ready-for-user-approval`.
+   Required text must name the exact annotated tag and target commit, for
+   example `approve create annotated tag v0.5.6 at COMMIT_SHA`.
+4. **Local annotated tag created**: after exact approval, create an annotated
+   tag and verify the peeled target with `git rev-parse vX.Y.Z^{}`. The peeled
+   target must equal the approved commit. Prefer annotated tags; the old
+   `v0.1.0` lightweight tag is historical.
+5. **Pre-tag-push approval gate**: if the tag is not on the remote, stop again
+   unless prior approval explicitly named pushing that tag to that remote.
+   Required text must name tag, target commit, and remote, for example
+   `approve push tag v0.5.6 targeting COMMIT_SHA to origin`.
+6. **Remote tag verified**: after tag push, verify the remote tag identity with
+   `git ls-remote --tags origin vX.Y.Z` and, when available, a fetched local
+   peeled-target check.
+7. **Post-tag smoke**: from a clean checkout at the exact tag, prove normal
+   install no longer needs `--dev`. At minimum, run `bash tests/install-smoke.sh`
+   and a direct tagged-source `./install.sh "$TMP/target"` probe that records
+   pin `CCC0509/agent-skills@vX.Y.Z`.
+8. **Publish inventory / approval gate**: if another publish surface exists
+   beyond the pushed tag, first identify the exact surface and command or
+   platform action. Stop with `Status: ready-for-user-approval` before that
+   publish. If no separate publish surface exists, say so explicitly and do not
+   invent one.
+9. **Post-publish verification**: verify the published surface independently
+   where possible. If credentials, policy, CLI availability, or marketplace
+   semantics block verification, report the gap as a blocker or accepted
+   residual with a durable owner; do not route around credentials or policy.
+10. **Terminal closeout**: emit `Status: complete-no-action-needed` only when
+    tag, publish, and verification actions are complete and no user or
+    next-agent action remains. Otherwise follow the relay status rules in
+    `10-model-dispatch.md` §3.1.
+
+Approval does not transfer:
+
+- Metadata bump approval does not authorize tag creation.
+- Tag creation approval does not authorize pushing the tag unless the exact
+  text says so.
+- Pushing a tag does not authorize any separate marketplace, GitHub release,
+  package registry, plugin publish action, or adopting-repo install.
+- A prior release approval does not authorize a later version or later commit.
+- If the candidate commit changes after approval, approval is stale.
+
+Do not backfill missing tags for already-public trains unless a separate
+reviewed release-repair plan authorizes that exact backfill. The normal path is
+to tag the reviewed release head with the current manifest version.
 
 ## §4 Public Evidence Hygiene
 

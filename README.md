@@ -57,3 +57,7 @@ trigger；`skill-authoring` 是 maintainer / extraction 用 optional skill，需
 
 git tag `vX.Y.Z` 是唯一版本來源；`.claude-plugin/*.json` version 必須同號
 （install.sh source gate 與 `tests/install-smoke.sh` 兩處把關）。
+Release tag / publish lifecycle discipline stays approval-bound: metadata bump,
+annotated tag creation, tag push, publish inventory, and post-tag /
+post-publish smoke follow
+`skills/agent-operating-manual/25-change-discipline.md` §3.2.

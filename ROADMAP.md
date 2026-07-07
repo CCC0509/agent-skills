@@ -81,6 +81,11 @@ release scope.
   preserves release lifecycle, public PR discipline, private plan artifact
   boundary, post-push no-action closeout examples, ATK mechanism, vector / MCP
   retrieval, and broad skill splitting as separate follow-ups.
+- v0.5.6: release tag / publish lifecycle discipline defines metadata-train,
+  reviewed-candidate, annotated-tag, tag-push, publish-inventory, post-tag /
+  post-publish smoke, exact approval, no-backfill, and terminal closeout gates
+  while leaving public PR discipline, private plan artifact boundary, post-push
+  no-action examples, worker lifecycle, ATK mechanism, and retrieval open.
 
 ## Candidate Lanes
 
@@ -92,10 +97,6 @@ release scope.
   overlap audit`, and `Plan/spec lifecycle header convention text`. This lane
   owns rule discovery, trigger wording, context-load reduction, and the
   doctrine / ATK / adopting-repo split for generated or local trigger surfaces.
-- **Release Lifecycle Gap:** `Release tag / publish lifecycle discipline`. This
-  lane should later define metadata bump, push, tag, publish, version
-  consistency, post-tag / post-publish smoke, and exact approval gates as a
-  separate irreversible-action lifecycle.
 - **Public Artifact / Release Hygiene:** `Public repo PR / release train
   discipline`, `Private superpowers plan artifact boundary`, and
   `Post-push complete-no-action-needed closeout examples`. This lane owns public
@@ -131,7 +132,6 @@ routes them.
 | agent-skills doctrine | Extraction-candidate closeout protocol | agent-skills | Candidate triage is distinct from ordinary closeout memory routing; design it after the v0.5.0 baseline instead of treating it as implemented here. |
 | agent-skills doctrine | F2 handoff-contract file split | agent-skills | Deferred from v0.4.8; splitting §3.1 needs anchor / link / residual scan after relay control semantics stabilize. |
 | agent-skills doctrine | Branch / worker lifecycle hygiene | agent-skills | Separate from Shared checkout concurrency etiquette: the existing row covers simultaneous editing in shared checkouts; this covers worker spawn / wait / consume / close, concurrency caps, post-merge push state, and cleanup of merged worktrees / local branches after scoped work reaches review or merge; any validator mechanism belongs with ATK. |
-| agent-skills doctrine | Release tag / publish lifecycle discipline | agent-skills | Existing guardrails cover metadata / tag consistency and approval-bound tag identifiers, but no lifecycle owns metadata bump, push, tag, publish, post-tag / post-publish smoke, and exact approval gates as one irreversible-action flow. |
 | agent-skills doctrine / release process | Public repo PR / release train discipline | agent-skills | Direct-main trains through `9ebdfce` should not be rewritten, but future public-repo work needs a branch / PR / review / squash-or-release-commit lifecycle and a clear rule for when main closeout should be version-only versus evidence-bearing. |
 | agent-skills doctrine / artifact boundary | Private superpowers plan artifact boundary | agent-skills / private planning repo | Public specs and summaries can live here, but detailed superpowers plans, review paste blocks, local paths, and private evidence may belong in a private planning or audit repo; define the boundary before moving files. |
 | agent-skills doctrine | Post-push complete-no-action-needed closeout examples | agent-skills | Recent push closeout discussion showed agents can omit the no-action terminal status when a push truly has no remaining user or agent action; decide whether examples belong in handoff-relay, `10-model-dispatch.md`, or release lifecycle after the skill-surface audit. |
