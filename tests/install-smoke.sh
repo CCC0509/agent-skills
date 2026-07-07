@@ -38,6 +38,8 @@ grep -Fq 'cross-repo-reference-map.md' \
   || fail "imported manual SKILL missing reference map pointer"
 [ ! -e "$TMP/target/docs/imported-skills/skill-authoring" ] \
   || fail "skill-authoring installed by default"
+[ ! -e "$TMP/target/docs/imported-skills/work-discipline" ] \
+  || fail "work-discipline installed by default"
 [ "$(cat "$TMP/target/.agent-skills/pin")" = "CCC0509/agent-skills@v$VER" ] || fail "pin content"
 [ -f "$TMP/target/docs/agent-memory-index.md" ] || fail "missing agent-memory-index.md"
 grep -Fq '# Agent Memory Index' "$TMP/target/docs/agent-memory-index.md" \
@@ -319,17 +321,38 @@ grep -Fq 'docs/agent-memory-index.md' "$TMP/target/AGENTS.md" \
 printf '%s\n' "$OUT" | grep -q 'skipped missing entry files:.*CLAUDE\.md' || fail "expected CLAUDE.md in skipped list"
 printf '%s\n' "$OUT" | grep -q 'skipped missing entry files:.*GEMINI\.md' || fail "expected GEMINI.md in skipped list"
 
-# 13) optional skill-authoring installs only when explicitly requested
+# 13) optional skills install only when explicitly requested
 mktarget
-bash "$TMP/src/install.sh" "$TMP/target" --skills agent-operating-manual,handoff-relay,multi-angle-review,skill-authoring
+bash "$TMP/src/install.sh" "$TMP/target" --skills agent-operating-manual,handoff-relay,multi-angle-review,work-discipline,skill-authoring
 [ -f "$TMP/target/docs/imported-skills/skill-authoring/SKILL.md" ] \
   || fail "missing skill-authoring/SKILL.md"
 [ -f "$TMP/target/docs/imported-skills/skill-authoring/.managed-by-agent-skills" ] \
   || fail "missing skill-authoring sentinel"
+[ -f "$TMP/target/docs/imported-skills/work-discipline/SKILL.md" ] \
+  || fail "missing work-discipline/SKILL.md"
+[ -f "$TMP/target/docs/imported-skills/work-discipline/.managed-by-agent-skills" ] \
+  || fail "missing work-discipline sentinel"
 [ "$(grep -Fc 'docs/imported-skills/skill-authoring/SKILL.md' "$TMP/target/CLAUDE.md")" = 1 ] \
   || fail "CLAUDE.md missing skill-authoring pointer"
 [ "$(grep -Fc 'docs/imported-skills/handoff-relay/SKILL.md' "$TMP/target/CLAUDE.md")" = 1 ] \
   || fail "CLAUDE.md missing handoff-relay pointer with skill-authoring"
+[ "$(grep -Fc 'docs/imported-skills/work-discipline/SKILL.md' "$TMP/target/CLAUDE.md")" = 1 ] \
+  || fail "CLAUDE.md missing work-discipline pointer"
+grep -Fq 'trigger layer only' \
+  "$TMP/target/docs/imported-skills/work-discipline/SKILL.md" \
+  || fail "imported work-discipline missing trigger-only boundary"
+grep -Fq 'multica-ai/andrej-karpathy-skills' \
+  "$TMP/target/docs/imported-skills/work-discipline/SKILL.md" \
+  || fail "imported work-discipline missing upstream attribution"
+grep -Fq '2c606141936f' \
+  "$TMP/target/docs/imported-skills/work-discipline/SKILL.md" \
+  || fail "imported work-discipline missing source commit"
+grep -Fq 'surface assumptions' \
+  "$TMP/target/docs/imported-skills/work-discipline/SKILL.md" \
+  || fail "imported work-discipline missing assumptions reminder"
+grep -Fq 'verifiable success criteria' \
+  "$TMP/target/docs/imported-skills/work-discipline/SKILL.md" \
+  || fail "imported work-discipline missing verification reminder"
 [ "$(grep -Fc 'docs/agent-memory-index.md' "$TMP/target/CLAUDE.md")" = 1 ] \
   || fail "CLAUDE.md missing memory pointer with skill-authoring"
 

@@ -103,7 +103,7 @@ pointing to current canonical homes.
   surface; audit confirmation that Task 2 may add one wrapper without broad
   skill splitting.
 
-- [ ] **Step 1: Confirm branch, base, and source health**
+- [x] **Step 1: Confirm branch, base, and source health**
 
 Run:
 
@@ -127,7 +127,7 @@ Expected:
   `agent-skills: plugin directory missing`, no failure categories, and no
   failure drivers.
 
-- [ ] **Step 2: Reproduce the skill-surface audit inputs**
+- [x] **Step 2: Reproduce the skill-surface audit inputs**
 
 Run:
 
@@ -151,7 +151,7 @@ skills/skill-authoring/SKILL.md
 - The `rg` command shows `handoff-relay` in `DEFAULT_SKILLS`, shows
   `skill-authoring` as optional, and shows no existing `work-discipline` skill.
 
-- [ ] **Step 3: Confirm the plan-time audit decision**
+- [x] **Step 3: Confirm the plan-time audit decision**
 
 Read the files below and compare them to the `Plan-Time Audit Decision` table:
 
@@ -173,7 +173,7 @@ Expected:
 - No existing skill owns the four Karpathy-guidelines-inspired reminders as a
   small portable trigger surface.
 
-- [ ] **Step 4: Add red default non-install and explicit-install smoke checks**
+- [x] **Step 4: Add red default non-install and explicit-install smoke checks**
 
 In `tests/install-smoke.sh`, after:
 
@@ -237,7 +237,7 @@ grep -Fq 'verifiable success criteria' \
   || fail "imported work-discipline missing verification reminder"
 ```
 
-- [ ] **Step 5: Run smoke and verify the red failure**
+- [x] **Step 5: Run smoke and verify the red failure**
 
 Run:
 
@@ -251,7 +251,7 @@ Expected: exit `1` with this stderr line from `install.sh`:
 unknown skill: work-discipline
 ```
 
-- [ ] **Step 6: Commit red smoke coverage and checkbox update**
+- [x] **Step 6: Commit red smoke coverage and checkbox update**
 
 Run:
 
