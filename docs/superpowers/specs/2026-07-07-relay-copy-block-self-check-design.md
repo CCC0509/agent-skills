@@ -112,6 +112,8 @@ In scope:
   row after the landed entry exists.
 - Bump `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json` to
   `0.4.12`.
+- Commit the implementation changes on a work branch and merge to `main` only
+  after fresh review.
 
 Out of scope:
 
@@ -137,7 +139,7 @@ Implementation should verify:
 - A token scan such as:
 
 ```bash
-rg -n "Pre-handoff self-check|single `text` fenced copy block|three-line `Review:` contract|Target repo|Required user text|Accepted residuals|v0\\.4\\.12|0\\.4\\.12" skills/agent-operating-manual ROADMAP.md tests .claude-plugin
+rg -n 'Pre-handoff self-check|exactly one `text` fenced copy block|three-line `Review:` contract|Target repo|Required user text|Accepted residuals|v0\.4\.12|0\.4\.12' skills/agent-operating-manual ROADMAP.md tests .claude-plugin
 ```
 
 The implementation closeout should use `Status: review-needed`,
