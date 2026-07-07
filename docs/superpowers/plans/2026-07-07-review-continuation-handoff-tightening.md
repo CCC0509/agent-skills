@@ -476,7 +476,7 @@ git commit -m "docs: add review continuation handoff tightening"
 
 Expected: commit succeeds with doctrine, roadmap, metadata, and this plan changed. `tests/install-smoke.sh` is already committed from Task 1.
 
-- [ ] **Step 14: Run post-commit install smoke**
+- [x] **Step 14: Run post-commit install smoke**
 
 Run:
 
@@ -513,7 +513,7 @@ install smoke exposed a mismatch.
 - Consumes: Task 1 smoke commit and Task 2 doctrine commit.
 - Produces: verified review-ready implementation handoff.
 
-- [ ] **Step 1: Run full verification gates**
+- [x] **Step 1: Run full verification gates**
 
 Run:
 
@@ -536,7 +536,7 @@ Expected:
 - Both `git diff --check` commands exit `0` with no output.
 - `git status -sb` shows only this plan file modified for checkbox progress, or a clean tree if no checkbox edits remain.
 
-- [ ] **Step 2: Commit final plan checkbox progress if changed**
+- [x] **Step 2: Commit final plan checkbox progress if changed**
 
 If Task 3 checkbox updates changed this plan after Task 2's commit, run:
 
@@ -547,7 +547,7 @@ git commit -m "docs: mark review continuation plan closeout"
 
 Expected: commit succeeds if the plan changed. If there is no plan diff, skip this step and record that no closeout checkbox commit was needed.
 
-- [ ] **Step 3: Prepare final review handoff**
+- [x] **Step 3: Prepare final review handoff**
 
 Use this exact relay shape, replacing `<HEAD>` with the final commit hash and
 `<LAST_REVIEWED_TIP>` with the latest commit that passed plan-review /
