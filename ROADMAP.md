@@ -65,6 +65,39 @@ release scope.
   evidence while keeping worker lifecycle, release publishing, and retrieval
   strategy deferred.
 
+## Candidate Lanes
+
+Use these lanes to keep adjacent candidates visible without expanding a single
+release scope.
+
+- **Trigger Surface / Context Loading:** `Skill context loading / retrieval
+  strategy`, `F2 handoff-contract file split`, `Adopting-repo project-scope
+  overlap audit`, and `Plan/spec lifecycle header convention text`. This lane
+  owns rule discovery, trigger wording, context-load reduction, and the
+  doctrine / ATK / adopting-repo split for generated or local trigger surfaces.
+- **Portable Wrapper Pattern:** `Portable work-discipline /
+  Karpathy-guidelines uplift`. This lane studies the Stock Scanner wrapper shape
+  while preserving upstream attribution, removing domain overrides, and avoiding
+  duplicate homes for existing TDD / verification doctrine.
+- **Release Lifecycle Gap:** `Release tag / publish lifecycle discipline`. This
+  lane should later define metadata bump, push, tag, publish, version
+  consistency, post-tag / post-publish smoke, and exact approval gates as a
+  separate irreversible-action lifecycle.
+- **Execution / Worker Hygiene:** `Branch / worker lifecycle hygiene` and
+  `Shared checkout concurrency etiquette`. This lane owns worker spawn / wait /
+  consume / close, concurrency caps, post-merge push state, local branch cleanup,
+  and shared-checkout collision rules.
+- **Closeout / Evidence Taxonomy:** `Preflight self-report contract`, `Named
+  absence statuses for missing closeout evidence`, `Harness warning triage
+  contract`, `Probe catalog appendix`, and `Extraction-candidate closeout
+  protocol`. This lane owns evidence naming, warning classification, probe
+  cataloging, and preflight / closeout memory semantics.
+
+`Brainstorming decision-assist protocol`, `Starter memory templates`, and
+`Obsidian vault convention` remain outside the lane map as advisory / memory
+shape candidates; preserve them as unsolved rows unless a later spec explicitly
+routes them.
+
 ## Extraction Candidates
 
 | Bucket | Candidate | Likely home | Why deferred |
@@ -80,6 +113,7 @@ release scope.
 | agent-skills doctrine | Extraction-candidate closeout protocol | agent-skills | Candidate triage is distinct from ordinary closeout memory routing; design it after the v0.5.0 baseline instead of treating it as implemented here. |
 | agent-skills doctrine | F2 handoff-contract file split | agent-skills | Deferred from v0.4.8; splitting §3.1 needs anchor / link / residual scan after relay control semantics stabilize. |
 | agent-skills doctrine | Branch / worker lifecycle hygiene | agent-skills | Separate from Shared checkout concurrency etiquette: the existing row covers simultaneous editing in shared checkouts; this covers worker spawn / wait / consume / close, concurrency caps, post-merge push state, and cleanup of merged worktrees / local branches after scoped work reaches review or merge; any validator mechanism belongs with ATK. |
+| agent-skills doctrine | Release tag / publish lifecycle discipline | agent-skills | Existing guardrails cover metadata / tag consistency and approval-bound tag identifiers, but no lifecycle owns metadata bump, push, tag, publish, post-tag / post-publish smoke, and exact approval gates as one irreversible-action flow. |
 | agent-skills doctrine | Brainstorming decision-assist protocol | agent-skills | Advisory workflow for when the user or agent cannot choose during brainstorming; separate from closeout memory routing. |
 | agent-skills doctrine | Starter memory templates | agent-skills / adopting repos | Useful after closeout routing stabilizes, but templates would create stronger file-shape opinions than v0.5.0 needs. |
 | agent-skills doctrine | Obsidian vault convention | adopting repo or separate doctrine candidate | Cross-project vault layout and backlink conventions are personal or organization-specific; canonical repo memory remains portable markdown. |
