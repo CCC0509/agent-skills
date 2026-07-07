@@ -513,7 +513,7 @@ Expected: commit succeeds.
 - Produces: checked plan boxes, verification evidence, and a full-review
   handoff. Produces no push, tag, publish, merge, or release artifact.
 
-- [ ] **Step 1: Run source closeout and repo checks**
+- [x] **Step 1: Run source closeout and repo checks**
 
 Run:
 
@@ -534,7 +534,7 @@ Expected:
   checkbox update is committed.
 - `bash tests/install-smoke.sh` exits `0` with `install smoke ok`.
 
-- [ ] **Step 2: Verify scope boundaries**
+- [x] **Step 2: Verify scope boundaries**
 
 Run:
 
@@ -555,7 +555,7 @@ Expected:
 - `git log --oneline --decorate -6` shows the local branch commits only; no
   merge commit, tag, or publish action.
 
-- [ ] **Step 3: Verify version consistency and optional install behavior**
+- [x] **Step 3: Verify version consistency and optional install behavior**
 
 Run:
 
@@ -574,7 +574,7 @@ Expected:
 - `work-discipline` appears in the explicit install path, tests, README,
   metadata, and skill file.
 
-- [ ] **Step 4: Verify token coverage without plan self-match**
+- [x] **Step 4: Verify token coverage without plan self-match**
 
 Run:
 
@@ -604,7 +604,7 @@ Expected:
 - Do not include `docs/superpowers/plans` in this scan; a plan self-match must
   not mask missing implementation text.
 
-- [ ] **Step 5: Commit verification checkbox update**
+- [x] **Step 5: Commit verification checkbox update**
 
 Run:
 
