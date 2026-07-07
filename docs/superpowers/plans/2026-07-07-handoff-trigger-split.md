@@ -409,7 +409,7 @@ Expected: commit succeeds.
 - Consumes: implementation from Tasks 1 and 2.
 - Produces: verified implementation range ready for fresh review.
 
-- [ ] **Step 1: Re-run install smoke**
+- [x] **Step 1: Re-run install smoke**
 
 Run:
 
@@ -423,7 +423,7 @@ Expected:
 install smoke ok
 ```
 
-- [ ] **Step 2: Run whitespace check**
+- [x] **Step 2: Run whitespace check**
 
 Run:
 
@@ -433,7 +433,7 @@ git diff --check
 
 Expected: no output and exit `0`.
 
-- [ ] **Step 3: Run per-token scan and record counts**
+- [x] **Step 3: Run per-token scan and record counts**
 
 Run:
 
@@ -464,7 +464,7 @@ done
 Expected: every token prints a count greater than `0`. Preserve the printed
 counts in the review handoff summary so F3 is closed with per-token evidence.
 
-- [ ] **Step 4: Verify ROADMAP neighbors remain open**
+- [x] **Step 4: Verify ROADMAP neighbors remain open**
 
 Run:
 
@@ -478,7 +478,7 @@ rg -n --fixed-strings 'Portable work-discipline / Karpathy-guidelines uplift' RO
 Expected: each command exits `0` and prints at least one live candidate-row hit,
 not only the v0.5.4 Landed entry.
 
-- [ ] **Step 5: Run closeout session-check**
+- [x] **Step 5: Run closeout session-check**
 
 Run:
 
@@ -491,7 +491,7 @@ summary has no failure categories and no failure drivers. If the plugin version
 freshness advisory appears, carry it as part of the same ATK root-source
 boundary residual unless new failure categories or drivers appear.
 
-- [ ] **Step 6: Confirm git status and commit final plan progress**
+- [x] **Step 6: Confirm git status and commit final plan progress**
 
 Run:
 
@@ -508,7 +508,7 @@ Expected:
 - If no checkbox update remains because a previous task already committed it,
   do not create an empty commit; record that in the handoff.
 
-- [ ] **Step 7: Emit review-needed handoff**
+- [x] **Step 7: Emit review-needed handoff**
 
 Before writing the handoff, run:
 
