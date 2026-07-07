@@ -117,6 +117,24 @@ for f in CLAUDE.md AGENTS.md GEMINI.md; do
     || fail "$f pointer missing plan/rule-review scenario"
   grep -Fq 'docs/agent-memory-index.md' "$TMP/target/$f" \
     || fail "$f missing repo memory index pointer"
+  grep -Fq 'Closeout self-report and memory routing' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/15-repo-memory.md" \
+    || fail "$f imported repo memory manual missing closeout routing"
+  grep -Fq 'Memory closeout:' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/15-repo-memory.md" \
+    || fail "$f imported repo memory manual missing memory closeout shape"
+  grep -Fq 'Status memory update: <none | path + one-line reason>' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/15-repo-memory.md" \
+    || fail "$f imported repo memory manual missing status memory update line"
+  grep -Fq 'Mechanism evidence consumed: <none | source labels only>' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/15-repo-memory.md" \
+    || fail "$f imported repo memory manual missing mechanism evidence line"
+  grep -Fq 'Next-session seed: <none | status-memory path>' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/15-repo-memory.md" \
+    || fail "$f imported repo memory manual missing next-session seed line"
+  grep -Fq 'Obsidian-compatible markdown' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/15-repo-memory.md" \
+    || fail "$f imported repo memory manual missing obsidian-compatible boundary"
 done
 
 # 2) idempotency: second run must be byte-identical
