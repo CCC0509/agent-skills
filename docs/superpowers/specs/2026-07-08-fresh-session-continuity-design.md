@@ -236,3 +236,19 @@ failure, carry the accepted residual:
   creating new `Status:` values or route-display exceptions.
 - Whether the automated skill maintenance idea is safely captured as a deferred
   candidate rather than premature mechanism work.
+
+## Spec Review Disposition
+
+Plan/rule-review passed for `1d97020` over range `0395c70..1d97020`; the
+spec/roadmap capture is approved as-is. No edits were required to the reviewed
+commit.
+
+Carry these advisory notes into the later v0.5.10 implementation train:
+
+- Continuity-packet wording must carry the positive half of the Route display
+  rule: executable `ready-for-continuation` packets default to including a
+  recommended `Execution route:` block.
+- Do not restate a compressed `ready-for-continuation` precondition; defer to
+  canonical `Status:` semantics in `10-model-dispatch.md`.
+
+Push and any implementation-train start remain separate approval-bound actions.
