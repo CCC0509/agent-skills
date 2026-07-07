@@ -144,7 +144,7 @@ Expected: commit succeeds with only `tests/install-smoke.sh` and this plan file 
 - Consumes: failing smoke tokens from Task 1.
 - Produces: v0.5.2 doctrine text, release metadata, roadmap state, and a green focused smoke.
 
-- [ ] **Step 1: Add the Plan / PR lifecycle section**
+- [x] **Step 1: Add the Plan / PR lifecycle section**
 
 In `skills/agent-operating-manual/25-change-discipline.md`, after the `Approval-Bound Identifiers` section ending with:
 
@@ -201,7 +201,7 @@ validators, hooks, or outcome taxonomy.
 
 Expected: `25-change-discipline.md` becomes the canonical lifecycle home and references the relay-block rule instead of restating it.
 
-- [ ] **Step 2: Add the relay cross-reference**
+- [x] **Step 2: Add the relay cross-reference**
 
 In `skills/agent-operating-manual/10-model-dispatch.md`, after the paragraph ending with:
 
@@ -223,7 +223,7 @@ PR lifecycle state machine。
 
 Expected: `10-model-dispatch.md` points to the lifecycle home without adding relay fields, status values, or a local copy of the lifecycle state machine.
 
-- [ ] **Step 3: Update ROADMAP landed and candidate rows**
+- [x] **Step 3: Update ROADMAP landed and candidate rows**
 
 In `ROADMAP.md`, after the v0.5.1 landed entry:
 
@@ -258,7 +258,7 @@ After the `Plan/spec lifecycle header convention text` row, add:
 
 Expected: the v0.5.2 landed entry exists, the Plan / PR lifecycle candidate is retired, `Branch / worker lifecycle hygiene` remains, and the context-loading concern is durable but deferred.
 
-- [ ] **Step 4: Bump plugin metadata**
+- [x] **Step 4: Bump plugin metadata**
 
 In `.claude-plugin/plugin.json`, replace:
 
@@ -286,7 +286,7 @@ with:
 
 Expected: both plugin metadata files report `0.5.2`.
 
-- [ ] **Step 5: Run focused smoke and token scan**
+- [x] **Step 5: Run focused smoke and token scan**
 
 Run:
 
@@ -304,7 +304,7 @@ rg -ni 'Plan / PR Lifecycle Discipline|branch-first|PR stop|review-passed is not
 
 Expected: output includes hits in `25-change-discipline.md`, `10-model-dispatch.md`, `tests/install-smoke.sh`, `ROADMAP.md`, `.claude-plugin/plugin.json`, and `.claude-plugin/marketplace.json`.
 
-- [ ] **Step 6: Commit doctrine, roadmap, metadata, and plan progress**
+- [x] **Step 6: Commit doctrine, roadmap, metadata, and plan progress**
 
 Run:
 

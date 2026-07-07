@@ -51,6 +51,49 @@ Approval is evidence only for the concrete object it names. Do not transfer appr
 
 **Fail condition**：agent infers approval from tone, old approval, nearby conversation, or a different object.
 
+## §3.1 Plan / PR Lifecycle Discipline
+
+Use this lifecycle for work expected to become a PR, merge, release PR, or
+other approval-bound change. This section owns object identity and stop points.
+Relay fields, exact approval text, and copy-block formatting remain in
+[`10-model-dispatch.md`](10-model-dispatch.md) §3.1; do not fork those rules
+here.
+
+1. **branch-first / head-first before implementation**: Establish a concrete
+   work branch and current head before substantive implementation when the
+   harness permits it. If the environment is a detached head, externally managed
+   worktree, or single-checkout source repo, name the current head and the
+   constraint instead of pretending branch isolation exists.
+2. **plan / spec gate before implementation**: Normative doctrine, relay,
+   review, approval, release, and entrypoint changes remain plan-first. When
+   user approval is needed to begin implementation or execution, stop at the
+   exact-text approval gate defined by `10-model-dispatch.md` §3.1.
+3. **PR stop after implementation**: After scoped implementation and agreed
+   verification, stop at PR or review handoff. The author does not merge,
+   squash merge, tag, publish, deploy, or clean up branches as part of
+   implementation closeout unless the user gave a separate approval-bound
+   command for that exact action and identifier.
+4. **review-passed is not merge approval**: A passed full review or
+   fix-confirmation satisfies only the review gate. Merge approval is a separate
+   exact-text gate and must name the concrete object, such as `PR #123 at
+   <head-sha>` or `local branch <name> at <head-sha>`.
+5. **pre-merge recheck**: Before executing an approved merge, re-check that the
+   current PR/head still matches the approved identifier, review or
+   fix-confirmation still applies, required CI / smoke / repo gates still pass
+   or remain explicitly waived, mergeability is current, and accepted residuals
+   have durable owners. If the head changed, approval is stale.
+6. **squash merge evidence**: Squash merge is allowed only after the pre-merge
+   recheck and exact approval. The merge closeout must preserve proof that the
+   executed merge corresponds to the reviewed and approved content. Prefer a
+   tree equivalence probe: the squash merge commit tree should match the
+   approved PR/head tree. If the environment cannot check tree equivalence,
+   disclose the gap and name the remaining evidence.
+
+This lifecycle does not define release tagging, publishing, deploys, runtime
+actions, worker spawn / wait / consume / close, concurrency caps, worktree
+cleanup, local branch cleanup, post-merge push-state cleanup, Agent Trigger Kit
+validators, hooks, or outcome taxonomy.
+
 ## §4 Public Evidence Hygiene
 
 Doctrine releases can cite evidence, but public evidence must be sanitized.

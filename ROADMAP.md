@@ -60,6 +60,10 @@ release scope.
   exact-text approval gates, preserves pre-spec / design-framing conclusions, and
   tightens review deliverable copy fields without adding worker lifecycle or
   Plan / PR lifecycle doctrine.
+- v0.5.2: Plan / PR lifecycle discipline adds branch/head identity, PR stop,
+  review-passed-is-not-merge-approval, pre-merge recheck, and squash merge
+  evidence while keeping worker lifecycle, release publishing, and retrieval
+  strategy deferred.
 
 ## Extraction Candidates
 
@@ -67,8 +71,8 @@ release scope.
 |---|---|---|---|
 | agent-skills doctrine | Preflight self-report contract | agent-skills | Remaining half of the former preflight / closeout row; current session-start memory-index doctrine covers reading repo memory, but not whether agents should report preflight memory state. |
 | agent-skills doctrine | Portable work-discipline / Karpathy-guidelines uplift | agent-skills | Extract the reusable core of the Stock Scanner repo-local `karpathy-guidelines` wrapper -- clarify assumptions, keep designs simple, make surgical diffs, and define verification success -- while preserving attribution, removing domain overrides, and avoiding duplicate homes for existing TDD / verification doctrine. |
-| agent-skills doctrine | Plan / PR lifecycle discipline: branch-first, PR stop, explicit approval, squash merge | agent-skills | High-value shared state machine; needs careful wording across consumer repos. |
 | agent-skills doctrine | Plan/spec lifecycle header convention text | agent-skills | Doctrine belongs here; validator stays out of the markdown-only repo. |
+| agent-skills doctrine / tooling | Skill context loading / retrieval strategy | agent-skills / Agent Trigger Kit / optional MCP tooling | The Agent Operating Manual is large enough that agents may fail to apply all loaded rules under context pressure; investigate split, routing, retrieval, vector-index, or MCP-backed loading strategy separately so v0.5.2 remains lifecycle-only. |
 | agent-skills doctrine | Shared checkout concurrency etiquette | agent-skills | Useful but outside v0.4 change-discipline scope; needs wording that fits multiple harnesses and shared-worktree policies. |
 | agent-skills doctrine | Named absence statuses for missing closeout evidence | agent-skills / ATK | Agent Trigger Kit owns the canonical mechanism home for durable no-report classification; agent-skills doctrine should wait for the v0.5.0 closeout self-report baseline plus ATK taxonomy alignment so category names do not drift. |
 | agent-skills doctrine | Harness warning triage contract | agent-skills | Needs more portable examples so known harness noise is classified without normalizing ignored warnings. |
