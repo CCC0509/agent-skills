@@ -73,7 +73,7 @@ Run:
 
 Expected: exit `1` with `SMOKE FAIL: CLAUDE.md imported manual missing pre-handoff self-check`.
 
-- [ ] **Step 3: Commit the failing smoke test and plan progress**
+- [x] **Step 3: Commit the failing smoke test and plan progress**
 
 Run:
 
@@ -171,7 +171,7 @@ rg -n 'Pre-handoff self-check|current chat is waiting for a user reply|executabl
 
 Expected: output includes the new manual subsection, the execution-route gating token, the ROADMAP v0.4.12 entry, installed-smoke checks, and both plugin metadata versions.
 
-- [ ] **Step 6: Run install smoke and verify it passes**
+- [x] **Step 6: Run install smoke and verify it passes**
 
 Run:
 
@@ -181,7 +181,7 @@ Run:
 
 Expected: PASS with `install smoke ok`.
 
-- [ ] **Step 7: Commit doctrine, roadmap, metadata, and plan progress**
+- [x] **Step 7: Commit doctrine, roadmap, metadata, and plan progress**
 
 Run:
 
