@@ -46,7 +46,7 @@
 - Consumes: reviewed spec/disposition `docs/superpowers/specs/2026-07-08-fresh-session-continuity-design.md`.
 - Produces: executable smoke command `bash tests/fresh-session-continuity-smoke.sh` that later tasks must make pass.
 
-- [ ] **Step 1: Create the smoke script**
+- [x] **Step 1: Create the smoke script**
 
 Create `tests/fresh-session-continuity-smoke.sh` with this exact content:
 
@@ -165,7 +165,7 @@ require_contains "$INSTALLED_RELAY" 'skill-source provenance'
 echo "fresh session continuity smoke ok"
 ```
 
-- [ ] **Step 2: Make the smoke script executable**
+- [x] **Step 2: Make the smoke script executable**
 
 Run:
 
@@ -175,7 +175,7 @@ chmod +x tests/fresh-session-continuity-smoke.sh
 
 Expected: command exits `0`.
 
-- [ ] **Step 3: Run the smoke script and verify it fails red**
+- [x] **Step 3: Run the smoke script and verify it fails red**
 
 Run:
 
@@ -191,7 +191,7 @@ FRESH SESSION CONTINUITY SMOKE FAIL: skills/agent-operating-manual/10-model-disp
 
 If the first failure is a different missing token from the same new v0.5.10 token set, inspect the script ordering and source tree before continuing. Do not proceed if the script passes before Task 2.
 
-- [ ] **Step 4: Commit the red smoke**
+- [x] **Step 4: Commit the red smoke**
 
 Run:
 
