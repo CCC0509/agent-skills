@@ -236,7 +236,7 @@ review、approval、merge、tag、publish 邊界約束。
 Continuity packet：fresh-session handoff 不新增 `Status:` 值，使用既有 relay block。
 packet 至少帶 target repo / object、effective contract、proposal boundary、pending
 gates、verification state、next action、accepted residuals，以及 three-line `Review:`
-contract。review-only、findings-delivery、fix-confirmation-delivery 仍不顯示
+contract。blocked、plan-review、review-only、findings-delivery、fix-confirmation-delivery 仍不顯示
 `Execution route:`。Executable continuity packets include the recommended route block：
 當 packet 依 Route display rule 屬於 executable approval / continuation handoff 時，
 在 relay signal 後加入推薦的 `Execution route:`、`Route reason:`、`User approval needed:`
@@ -455,7 +455,7 @@ Use this relay shape. Replace the target SHA with the exact `git rev-parse HEAD`
 
 ```text
 Status: review-needed
-Target repo: CCC0509/agent-skills
+Target repo: <absolute local repo path for the unpushed checkout>
 Target: v0.5.10 Fresh Session Continuity implementation @ <implementation-head-sha>
 Required user text: n/a
 User action: self-review -> to-reviewer
@@ -468,9 +468,25 @@ Focus: context-health handoff semantics, skill-source provenance surface split, 
 Prev reviewed tip: <reviewed-plan-tip>
 ```
 
-Expected: no `Execution route:` block appears because this is a review-only handoff.
+Expected: replace `Target repo` with the absolute local checkout path when `main`
+is still unpushed, but keep this plan placeholder public-safe. No
+`Execution route:` block appears because this is a review-only handoff.
 
 ---
+
+## Plan Review Disposition
+
+Plan/rule-review passed for `58f4ae9` over range `bf31a11..58f4ae9`.
+The plan is approved for execution after this disposition records the required
+template fix and the route-exclusion advisory.
+
+- Required fix: the final relay template now directs the executor to fill
+  `Target repo:` with the absolute local checkout path while `main` is
+  unpushed, without hardcoding a private path into the public plan.
+- Advisory nit: the Task 2 doctrine text now includes `blocked` and
+  `plan-review` in the continuity packet route-exclusion examples.
+
+Push, tag, and publish remain out of scope and approval-bound.
 
 ## Plan Self-Review
 
