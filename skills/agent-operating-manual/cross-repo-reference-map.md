@@ -37,6 +37,70 @@ skill copies, MCP / codebase-index tooling, or cross-repo residual ownership.
 - MCP tooling is not canonical memory; repo-owned files remain the durable
   source of truth for future agents.
 
+## Cross-Repo Integration Intake
+
+Before changing another repo, or deciding that portable doctrine should be
+applied there, produce a compact intake packet. The packet is routing evidence,
+not permission to edit every repo it names.
+
+### Intake Packet
+
+- **Source repo / source object:** doctrine, spec, plan, PR, tag, rule, or
+  review finding that triggered the cross-repo question.
+- **Target repo / target head:** public repo name, branch, base, head, and
+  target identifier. Public summaries may name repo/head identifiers, but
+  local checkout paths stay in handoffs or private evidence; do not commit
+  machine-local paths, usernames, or private evidence to public artifacts.
+- **Current entrypoints:** AGENTS.md, CLAUDE.md, GEMINI.md, README pointers,
+  installed skill pointers, local plugin or skill wrappers, and repo-specific
+  conventions addenda.
+- **Installed source state:** `.agent-skills/pin`, plugin manifest or
+  marketplace metadata, generated imports, and whether updates come from
+  source doctrine, installer rerun, or local policy.
+- **Mechanism surfaces:** Agent Trigger Kit hooks, validators, session-check
+  and closeout behavior, outcome-store state, MCP or index configuration, and
+  harness-specific escalation or credential boundaries.
+- **Public artifact boundary:** evidence that is public-safe, evidence that
+  must remain private, and the durable public summary location.
+- **Ownership disposition:** one of `agent-skills`, `operator-bootstrap`,
+  `Agent Trigger Kit`, `adopting repo`, `MCP / local tooling`, or
+  `defer with owner`.
+- **Allowed write surface:** exact files or repos that may be changed in the
+  current train; every other repo remains read-only.
+- **Verification / residual plan:** cheap probes, expected gaps, and accepted
+  residual owners.
+
+If sandbox credential or remote metadata probes fail, retry the same minimal
+command through the sanctioned outside-sandbox path when policy permits before
+declaring a credential blocker. If policy blocks the retry, report the gap as
+policy-blocked evidence instead of routing around it.
+
+### Adopting-repo overlap audit
+
+Run this audit read-only before adopter cleanup, migration, or local rule
+replacement. It answers whether a target repo already has local rules that
+overlap with `agent-skills`, and where each overlap belongs.
+
+Audit these surfaces:
+
+- entrypoints: AGENTS.md, CLAUDE.md, GEMINI.md, README, plugin marketplace
+  pointers, and local command wrappers;
+- imported skills or generated copies under the target repo;
+- `.agent-skills/pin`, install metadata, plugin manifests, marketplace
+  entries, and default or optional skill lists;
+- local skill wrappers, project-scope skills, trigger rules, Cursor / Gemini /
+  Claude / Codex pointers, and Agent Trigger Kit trigger layers;
+- repo memory index, lesson / audit / status files, review logs, domain
+  playbooks, and private evidence locations;
+- release / PR flow, branch protections, tag / publish surfaces, and whether
+  the repo is public.
+
+Classify each overlap as `Source doctrine update`, `Bootstrap propagation`,
+`Mechanism update`, `Repo-local keep`, `Private evidence boundary`, or
+`No action`. Cleanup is always opt-in. The audit may recommend deleting
+duplicate local rules or generated residue, but implementation must stop for a
+separate approval-bound plan before changing adopter-owned files.
+
 ## Do Not Do
 
 - Do not edit generated imported copies in an adopting repo as a substitute for

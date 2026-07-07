@@ -30,6 +30,16 @@ MAP="$TMP/target/docs/imported-skills/agent-operating-manual/cross-repo-referenc
 grep -Fq 'operator-bootstrap' "$MAP" || fail "reference map missing operator-bootstrap"
 grep -Fq 'Agent Trigger Kit' "$MAP" || fail "reference map missing Agent Trigger Kit"
 grep -Fq '15-repo-memory.md' "$MAP" || fail "reference map missing repo-memory routing"
+grep -Fq 'Cross-Repo Integration Intake' "$MAP" \
+  || fail "reference map missing Cross-Repo Integration Intake"
+grep -Fq 'Allowed write surface' "$MAP" \
+  || fail "reference map missing Allowed write surface"
+grep -Fq 'Adopting-repo overlap audit' "$MAP" \
+  || fail "reference map missing Adopting-repo overlap audit"
+grep -Fq 'local checkout paths stay in handoffs or private evidence' "$MAP" \
+  || fail "reference map missing local-path public artifact boundary"
+grep -Fq 'sanctioned outside-sandbox path' "$MAP" \
+  || fail "reference map missing sandbox credential retry boundary"
 grep -Fq 'cross-repo-reference-map.md' \
   "$TMP/target/docs/imported-skills/agent-operating-manual/README.md" \
   || fail "imported manual README missing reference map pointer"

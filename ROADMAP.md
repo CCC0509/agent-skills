@@ -98,6 +98,12 @@ release scope.
   surfacing after install-facing merges. The release remains batched:
   v0.5.7 and v0.5.8 install-facing content require a later §3.2 tag before
   non-dev adopter delivery.
+- v0.5.9: Cross-Repo Integration Intake adds a compact read-only packet,
+  Allowed write surface field, and Adopting-repo overlap audit to the
+  cross-repo reference map, routes operator-bootstrap and Agent Trigger Kit
+  coordination without editing either repo, and records that v0.5.7, v0.5.8,
+  and v0.5.9 install-facing content require a later §3.2 tag before non-dev
+  adopter delivery.
 
 ## Candidate Lanes
 
@@ -105,10 +111,10 @@ Use these lanes to keep adjacent candidates visible without expanding a single
 release scope.
 
 - **Trigger Surface / Context Loading:** `Skill context loading / retrieval
-  strategy`, `F2 handoff-contract file split`, `Adopting-repo project-scope
-  overlap audit`, and `Plan/spec lifecycle header convention text`. This lane
-  owns rule discovery, trigger wording, context-load reduction, and the
-  doctrine / ATK / adopting-repo split for generated or local trigger surfaces.
+  strategy`, `F2 handoff-contract file split`, and `Plan/spec lifecycle header
+  convention text`. This lane owns rule discovery, trigger wording,
+  context-load reduction, and the doctrine / ATK / adopting-repo split for
+  generated or local trigger surfaces.
 - **Public Artifact / Release Hygiene:** `Private superpowers plan artifact
   boundary` plus `Portable release-governance skill TDD`. This lane owns
   private/public planning artifact boundaries and portable release-skill
@@ -148,7 +154,6 @@ routes them.
 | agent-skills doctrine | Brainstorming decision-assist protocol | agent-skills | Advisory workflow for when the user or agent cannot choose during brainstorming; separate from closeout memory routing. |
 | agent-skills doctrine | Starter memory templates | agent-skills / adopting repos | Useful after closeout routing stabilizes, but templates would create stronger file-shape opinions than v0.5.0 needs. |
 | agent-skills doctrine | Obsidian vault convention | adopting repo or separate doctrine candidate | Cross-project vault layout and backlink conventions are personal or organization-specific; canonical repo memory remains portable markdown. |
-| agent-skills installer / adoption | Adopting-repo project-scope overlap audit | agent-skills / Agent Trigger Kit | Before any install-time cleanup or migration, define a read-only audit for project-scope skills, trigger rules, playbooks, and entrypoint pointers that overlap or conflict with agent-skills; cleanup / adjustment must be explicit opt-in so ordinary install does not silently rewrite adopter-owned doctrine. |
 | ATK templates | `agent-impact-file-sets.mjs` classifier template | agent-trigger-kit | Mechanism/script, not doctrine. |
 | ATK templates | Plan/spec lifecycle checker template | agent-trigger-kit | Validator template belongs with trigger-layer mechanisms. |
 | ATK templates | MCP config validator template | agent-trigger-kit | Reusable validator; pair with agent-skills fallback doctrine later. |
