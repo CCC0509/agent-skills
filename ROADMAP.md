@@ -45,6 +45,11 @@ release scope.
   agent-operating-manual appendix for routing operator-bootstrap, agent-skills,
   Agent Trigger Kit, adopting-repo, and MCP ownership without adding external
   repo dependencies or daily startup load.
+- v0.4.12: relay copy-block self-check adds a compact pre-handoff
+  checklist for legal relay status, cross-field coherence, forwarded copy
+  block completeness, visible user-reply prompts, execution-route display
+  gating, and accepted residuals without adding a second normative home or
+  emitted attestation.
 
 ## Extraction Candidates
 
@@ -60,7 +65,6 @@ release scope.
 | agent-skills doctrine | Extraction-candidate closeout protocol | agent-skills | Wake condition reached by the v0.4.1 reviewer-conduct extraction and v0.4.2 review I/O contract shaping. Keep the protocol design out of v0.4.2; schedule it for v0.5.0. |
 | agent-skills doctrine | F2 handoff-contract file split | agent-skills | Deferred from v0.4.8; splitting §3.1 needs anchor / link / residual scan after relay control semantics stabilize. |
 | agent-skills doctrine | Branch / worker lifecycle hygiene | agent-skills | Separate from Shared checkout concurrency etiquette: the existing row covers simultaneous editing in shared checkouts; this covers worker spawn / wait / consume / close, concurrency caps, post-merge push state, and cleanup of merged worktrees / local branches after scoped work reaches review or merge; any validator mechanism belongs with ATK. |
-| agent-skills doctrine | Relay copy-block completeness self-check | agent-skills | Needs a pre-handoff checklist that validates legal `Status:` values, `User action:` / `Next agent action:` pairing, a single fenced copy block when forwarding to another agent, the `Review:` contract for the immediate next agent, and preserves review findings inside the fenced copy block. |
 | ATK templates | `agent-impact-file-sets.mjs` classifier template | agent-trigger-kit | Mechanism/script, not doctrine. |
 | ATK templates | Plan/spec lifecycle checker template | agent-trigger-kit | Validator template belongs with trigger-layer mechanisms. |
 | ATK templates | MCP config validator template | agent-trigger-kit | Reusable validator; pair with agent-skills fallback doctrine later. |

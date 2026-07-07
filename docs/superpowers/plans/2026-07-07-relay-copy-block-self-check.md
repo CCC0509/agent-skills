@@ -95,7 +95,7 @@ Expected: commit succeeds. The new smoke test is expected to fail until Task 2 a
 - Modify: `.claude-plugin/marketplace.json`
 - Update: `docs/superpowers/plans/2026-07-07-relay-copy-block-self-check.md`
 
-- [ ] **Step 1: Add the route/reply rule-home sentences and compact pre-handoff self-check subsection**
+- [x] **Step 1: Add the route/reply rule-home sentences and compact pre-handoff self-check subsection**
 
 In `skills/agent-operating-manual/10-model-dispatch.md`, update `User notes rule` by adding this sentence before `` `Required user text` 仍是 exact approval / disposition text 的唯一 home。``:
 
@@ -106,7 +106,7 @@ In `skills/agent-operating-manual/10-model-dispatch.md`, update `User notes rule
 In the same file, update the route rules block by adding this sentence after the paragraph that defines `Execution route:`, `Route reason:`, and `User approval needed:`:
 
 ```markdown
-`Execution route:` 只出現在 executable approval / continuation handoff：承接者就是會執行 routed work 的 agent/chat、該 routed work 的所有必要 review / fix-confirmation gate 已完成，且任何 named user approval / continuation reply 會依既有 approval-to-execute rule 直接授權該執行；blocked、review-only、plan-review、findings-delivery、fix-confirmation-delivery 或其他 cross-chat delivery handoff 不顯示 route block。
+Route display rule：`Execution route:` 只出現在 executable approval / continuation handoff：承接者就是會執行 routed work 的 agent/chat、該 routed work 的所有必要 review / fix-confirmation gate 已完成，且任何 named user approval / continuation reply 會依既有 approval-to-execute rule 直接授權該執行；blocked、review-only、plan-review，或 cross-chat delivery handoffs（例如 findings delivery、fix-confirmation delivery）不顯示 route block。
 ```
 
 Then insert this subsection after the `Normative control-contract changes` paragraphs and before the `---` divider that starts section 4:
@@ -115,7 +115,7 @@ Then insert this subsection after the `Normative control-contract changes` parag
 Pre-handoff self-check：送出 handoff 前，先默默跑一次這個 compact checklist；不要輸出 attestation、checklist dump、新 relay 欄位或新 `Status:`。若任何項目不成立，先修 handoff 再送出。
 
 - `Status:` 是否是合法 relay status？
-- `Review:` 是否和 `Status:`、`User action:` 一致；若出現 `Execution route:`，是否符合 route display rule 的 executable approval / continuation handoff，而不是 blocked、review-only、plan-review、findings-delivery 或 fix-confirmation-delivery handoff？
+- `Review:` 是否和 `Status:`、`User action:` 一致；若出現 `Execution route:`，是否符合 Route display rule 的 executable approval / continuation handoff，而不是 blocked、review-only、plan-review、findings-delivery 或 fix-confirmation-delivery handoff？
 - 需要 exact approval / disposition text 時，`Required user text:` 是否非 `n/a` 且精確；若 `User action:` 含 `reply-required-text`，copy block 外的人類說明是否清楚表示 current chat is waiting for a user reply，且沒有複製 exact text？
 - 有 repo-specific next action 時，`Target repo:` 是否非 `n/a`？
 - `User action:` 含 `to-reviewer` 或 `to-agent` 時，是否只有 exactly one `text` fenced copy block 供使用者轉貼？
@@ -124,7 +124,7 @@ Pre-handoff self-check：送出 handoff 前，先默默跑一次這個 compact c
 - 報告含 non-blocking findings、FYI、accepted residuals 或 out-of-repo follow-ups 時，`Accepted residuals:` 是否不是 `none`，且每項都有 durable tracker / owner？
 ```
 
-- [ ] **Step 2: Record the v0.4.12 ROADMAP landed entry**
+- [x] **Step 2: Record the v0.4.12 ROADMAP landed entry**
 
 In `ROADMAP.md`, add this landed entry after the v0.4.11 entry:
 
@@ -136,7 +136,7 @@ In `ROADMAP.md`, add this landed entry after the v0.4.11 entry:
   emitted attestation.
 ```
 
-- [ ] **Step 3: Retire the extraction candidate row**
+- [x] **Step 3: Retire the extraction candidate row**
 
 Remove this row from `ROADMAP.md` after the landed entry exists:
 
@@ -144,7 +144,7 @@ Remove this row from `ROADMAP.md` after the landed entry exists:
 | agent-skills doctrine | Relay copy-block completeness self-check | agent-skills | Needs a pre-handoff checklist that validates legal `Status:` values, `User action:` / `Next agent action:` pairing, a single fenced copy block when forwarding to another agent, the `Review:` contract for the immediate next agent, and preserves review findings inside the fenced copy block. |
 ```
 
-- [ ] **Step 4: Bump plugin metadata to 0.4.12**
+- [x] **Step 4: Bump plugin metadata to 0.4.12**
 
 Change `.claude-plugin/plugin.json` to:
 
@@ -161,7 +161,7 @@ Change `.claude-plugin/plugin.json` to:
 
 Change `.claude-plugin/marketplace.json` `plugins[0].version` from `0.4.11` to `0.4.12`. Leave all other fields unchanged.
 
-- [ ] **Step 5: Run focused token scan**
+- [x] **Step 5: Run focused token scan**
 
 Run:
 

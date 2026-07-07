@@ -129,7 +129,9 @@ copy，不要讓使用者猜哪些 finding 要保留。
 User notes rule：不要新增 `User notes handling:` 欄位。使用者在 fenced block 外補充的
 意見可以作為 reviewer 背景，但不覆寫 contract fields。若 author 要求下一個 agent
 必須處理使用者補充，應把該補充納入 copy block 脈絡，或在 `Required user text` 明確
-點名需要的裁決；`Required user text` 仍是 exact approval / disposition text 的唯一 home。
+點名需要的裁決；若 `User action:` 含 `reply-required-text`，copy block 外的人類說明
+應清楚表示 current chat is waiting for a user reply，但不得複製 exact approval /
+disposition text。`Required user text` 仍是 exact approval / disposition text 的唯一 home。
 
 `Accepted residuals` 是 non-blocking findings、FYI、out-of-repo follow-ups、
 accepted residuals 的唯一 home。若報告仍有 LOW / FYI / accepted residual /
@@ -187,6 +189,13 @@ Route reason: <why this immediate next action fits>
 User approval needed: <yes | no; exact wording lives in Required user text>
 ```
 
+Route display rule：`Execution route:` 只出現在 executable approval / continuation handoff：
+承接者就是會執行 routed work 的 agent/chat、該 routed work 的所有必要 review /
+fix-confirmation gate 已完成，且任何 named user approval / continuation reply 會依既有
+approval-to-execute rule 直接授權該執行；blocked、review-only、plan-review，或
+cross-chat delivery handoffs（例如 findings delivery、fix-confirmation delivery）不顯示
+route block。
+
 `Status` 說明現在在哪裡；`Execution route` 只說剩下的工作要怎麼做，兩者不得互相
 重寫。`review-only`、`merge-closeout`、`stop` 不是 route 值；那些狀態應由
 `Status`、`Next agent action`、`Blockers` 表達。`Required user text` 是核准文字的
@@ -211,6 +220,26 @@ review，除非使用者在同一 session 明確 waive review。
 repos 則是最後已 released tag，不是正在編輯的文字。新文字只在 fresh review 與
 merge/release 後生效。Proposed text 只有在比 effective contract 更保守時可提前演練；
 絕不能用來授權、放寬或跳過 effective contract 要求的步驟。
+
+Pre-handoff self-check：送出 handoff 前，先默默跑一次這個 compact checklist；不要輸出
+attestation、checklist dump、新 relay 欄位或新 `Status:`。若任何項目不成立，先修
+handoff 再送出。
+
+- `Status:` 是否是合法 relay status？
+- `Review:` 是否和 `Status:`、`User action:` 一致；若出現 `Execution route:`，是否
+  符合 Route display rule 的 executable approval / continuation handoff，而不是
+  blocked、review-only、plan-review、findings-delivery 或 fix-confirmation-delivery
+  handoff？
+- 需要 exact approval / disposition text 時，`Required user text:` 是否非 `n/a` 且精確；
+  若 `User action:` 含 `reply-required-text`，copy block 外的人類說明是否清楚表示
+  current chat is waiting for a user reply，且沒有複製 exact text？
+- 有 repo-specific next action 時，`Target repo:` 是否非 `n/a`？
+- `User action:` 含 `to-reviewer` 或 `to-agent` 時，是否只有 exactly one `text` fenced copy block 供使用者轉貼？
+- 該 copy block 是否包含完整 relay block 與 three-line `Review:` contract？
+- 對下一個 agent 有意義的 review findings、author dispositions、verification state、
+  user notes 是否在 copy block 內；不確定時是否偏向 Full-context copy rule？
+- 報告含 non-blocking findings、FYI、accepted residuals 或 out-of-repo follow-ups 時，
+  `Accepted residuals:` 是否不是 `none`，且每項都有 durable tracker / owner？
 
 ---
 
