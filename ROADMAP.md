@@ -66,6 +66,7 @@ release scope.
 | Bucket | Candidate | Likely home | Why deferred |
 |---|---|---|---|
 | agent-skills doctrine | Preflight self-report contract | agent-skills | Remaining half of the former preflight / closeout row; current session-start memory-index doctrine covers reading repo memory, but not whether agents should report preflight memory state. |
+| agent-skills doctrine | Portable work-discipline / Karpathy-guidelines uplift | agent-skills | Extract the reusable core of the Stock Scanner repo-local `karpathy-guidelines` wrapper -- clarify assumptions, keep designs simple, make surgical diffs, and define verification success -- while preserving attribution, removing domain overrides, and avoiding duplicate homes for existing TDD / verification doctrine. |
 | agent-skills doctrine | Plan / PR lifecycle discipline: branch-first, PR stop, explicit approval, squash merge | agent-skills | High-value shared state machine; needs careful wording across consumer repos. |
 | agent-skills doctrine | Plan/spec lifecycle header convention text | agent-skills | Doctrine belongs here; validator stays out of the markdown-only repo. |
 | agent-skills doctrine | Shared checkout concurrency etiquette | agent-skills | Useful but outside v0.4 change-discipline scope; needs wording that fits multiple harnesses and shared-worktree policies. |
@@ -78,6 +79,7 @@ release scope.
 | agent-skills doctrine | Brainstorming decision-assist protocol | agent-skills | Advisory workflow for when the user or agent cannot choose during brainstorming; separate from closeout memory routing. |
 | agent-skills doctrine | Starter memory templates | agent-skills / adopting repos | Useful after closeout routing stabilizes, but templates would create stronger file-shape opinions than v0.5.0 needs. |
 | agent-skills doctrine | Obsidian vault convention | adopting repo or separate doctrine candidate | Cross-project vault layout and backlink conventions are personal or organization-specific; canonical repo memory remains portable markdown. |
+| agent-skills installer / adoption | Adopting-repo project-scope overlap audit | agent-skills / Agent Trigger Kit | Before any install-time cleanup or migration, define a read-only audit for project-scope skills, trigger rules, playbooks, and entrypoint pointers that overlap or conflict with agent-skills; cleanup / adjustment must be explicit opt-in so ordinary install does not silently rewrite adopter-owned doctrine. |
 | ATK templates | `agent-impact-file-sets.mjs` classifier template | agent-trigger-kit | Mechanism/script, not doctrine. |
 | ATK templates | Plan/spec lifecycle checker template | agent-trigger-kit | Validator template belongs with trigger-layer mechanisms. |
 | ATK templates | MCP config validator template | agent-trigger-kit | Reusable validator; pair with agent-skills fallback doctrine later. |
