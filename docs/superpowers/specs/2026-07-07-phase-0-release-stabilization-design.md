@@ -20,13 +20,15 @@ state is intentionally newer than the F5 cross-repo reference-map increment:
   intentionally carry version `0.5.0`.
 
 The current failing gate is `tests/cross-repo-reference-map-smoke.sh`. It still
-contains F5-era assertions that were valid only while the relay copy-block
-self-check was deferred and plugin metadata was still `0.4.11`. Because the
-script fails fast, the first visible error is the missing candidate row, but the
-stale inventory contains six assertions:
+contains F5-era assertions that were valid only while later follow-up
+candidates were deferred and plugin metadata was still `0.4.11`. Because the
+script fails fast, the first visible error is the missing relay copy-block
+self-check candidate row, but the stale inventory contains eight assertions:
 
 | Line | Stale assertion | Current truth |
 |---|---|---|
+| 80 | `| agent-skills doctrine | Branch / worker lifecycle hygiene |` must remain in Extraction Candidates. | This is a future doctrine candidate and should not be pinned by an F5 smoke test. |
+| 81 | `simultaneous editing in shared checkouts` must appear as candidate rationale text. | This rationale belongs to a moving candidate-table row, not to the stable F5 invariant set. |
 | 82 | `| agent-skills doctrine | Relay copy-block completeness self-check |` must remain in Extraction Candidates. | The candidate intentionally landed as v0.4.12. |
 | 83 | `pre-handoff checklist` must appear as candidate rationale text. | The shipped v0.4.12 landed entry contains the concept across wrapped lines; it is no longer deferred rationale. |
 | 84 | `` `Review:` contract for the immediate next agent `` must appear as candidate rationale text. | That F5 candidate rationale was intentionally removed when v0.4.12 landed. |
@@ -62,11 +64,11 @@ increment:
 - `ROADMAP.md` no longer lists the F5 candidate in Extraction Candidates.
 - The installed copy includes the map and the README / SKILL pointers.
 
-Drop the F5-era assertions on relay copy-block self-check candidate rationale
-and exact `0.4.11` metadata. Do not replace them with assertions for current
-candidate-table contents or current exact version numbers. Re-pinning to
-today's release state would reproduce the same staleness class at the next
-release.
+Drop the F5-era assertions on Branch / worker lifecycle hygiene candidate
+state, relay copy-block self-check candidate rationale, and exact `0.4.11`
+metadata. Do not replace them with assertions for current candidate-table
+contents or current exact version numbers. Re-pinning to today's release state
+would reproduce the same staleness class at the next release.
 
 No new helper, parser, or test fixture is needed. The existing shell helpers
 are sufficient because this is a test-scope correction, not a new feature.
@@ -80,22 +82,31 @@ This spec incorporates the Phase 0 pre-spec framing review against local
   doctrine, roadmap, release-metadata, or new release-candidate change.
 - Single-file scope: accepted. The only implementation file is
   `tests/cross-repo-reference-map-smoke.sh`.
-- Six-assertion inventory: accepted. The spec enumerates all stale assertions
-  at lines 82-85 and 87-88 so fixing the first visible failure does not merely
-  reveal the next stale pin.
-- Time-bound guard caution: accepted. Lines 82-85 were guards that F5 did not
-  ship the relay self-check. Those guards should be removed now that v0.4.12
-  intentionally shipped that work.
+- Eight-assertion inventory: accepted after review. The spec enumerates all
+  stale assertions at lines 80-85 and 87-88 so fixing the first visible failure
+  does not merely reveal the next stale pin.
+- Time-bound guard caution: accepted. Lines 80-85 were guards that later
+  follow-up candidates remained deferred. Those guards should be removed
+  because candidate-table rows and rationale text are intentionally moving
+  state.
 - Version pin caution: accepted. Lines 87-88 should not be updated to `0.5.0`
   because this F5 smoke should not pin moving release metadata.
 - Route-display feedback: accepted. The pre-spec handoff was review-only /
   plan-review, so it correctly omitted `Execution route:` under the route
   display rule.
+- Review-format note: a later requested-change handoff used
+  `Status: review-needed` and a non-token `User action` even though review had
+  completed with author revisions required. Treat that as a relay-format miss;
+  the corrected shape is `Status: not-ready` with
+  `User action: self-review -> to-agent`. This note does not add implementation
+  scope.
 
 ## Scope
 
 In scope:
 
+- Remove the Branch / worker lifecycle hygiene candidate-row and
+  candidate-rationale checks from `tests/cross-repo-reference-map-smoke.sh`.
 - Remove the relay copy-block self-check candidate-row and candidate-rationale
   checks from `tests/cross-repo-reference-map-smoke.sh`.
 - Remove the exact `0.4.11` metadata checks from
