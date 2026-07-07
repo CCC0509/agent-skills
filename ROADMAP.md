@@ -64,6 +64,10 @@ release scope.
   review-passed-is-not-merge-approval, pre-merge recheck, and squash merge
   evidence while keeping worker lifecycle, release publishing, and retrieval
   strategy deferred.
+- v0.5.3: candidate lane map groups trigger-surface, portable-wrapper,
+  release-lifecycle, execution-hygiene, and closeout-taxonomy candidates, adds
+  the Release tag / publish lifecycle discipline candidate, and keeps advisory /
+  memory rows explicitly unlaned.
 
 ## Candidate Lanes
 
