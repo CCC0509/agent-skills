@@ -85,6 +85,11 @@ The copy block must preserve the actionable findings, the approved remainder of
 the scope if any, and the fix-confirmation focus. A reviewer report that leaves
 the requested changes outside the forwarded block is incomplete.
 
+The three-line `Review:` contract for this forwarded author-revision handoff
+must use `Review: none-FYI`, because the receiving acting agent is being asked
+to revise, not review. The returning handoff after revision must request
+`Review: fix-confirmation vs <prev-tip>`.
+
 ### 3. Review-Passed Continuation Handoffs
 
 When review or fix-confirmation passes and the next agent may execute an already
@@ -103,16 +108,27 @@ acting agent, it may execute `Next agent action` directly under the effective
 contract. It should not bounce the same `review-needed` or approval relay back to
 another reviewer. If the user must still reply with exact approval text, the
 handoff is not ready for continuation; use `ready-for-user-approval` instead.
+This release intentionally widens the `ready-for-user-approval` criteria from
+final-only gates to any exact-text approval gate, including approval to start
+implementation or execution. Implementation must update the
+`10-model-dispatch.md` status criteria so `ready-for-user-approval` covers
+exact-text approval gates generally, while still requiring `reply-required-text`
+and exact text in `Required user text:`.
 
 `Execution route:` may appear only on this executable approval / continuation
 handoff after all required review or fix-confirmation gates are complete. It
 must remain absent from findings-delivery, plan-review, pre-spec-review,
 review-only, and fix-confirmation-delivery handoffs.
 
+The three-line `Review:` contract for this forwarded continuation handoff must
+also use `Review: none-FYI`, because the receiving acting agent is being asked to
+execute the named continuation, not review it.
+
 ### 4. Final Merge / Closeout Handoffs
 
-Final merge, tag, deploy, release, or other irreversible approval gates keep
-using `Status: ready-for-user-approval` with exact text in `Required user text:`.
+Any exact-text approval gate uses `Status: ready-for-user-approval` with exact
+text in `Required user text:`. This includes approval to start implementation or
+execution, and final merge, tag, deploy, release, or other irreversible gates.
 Routine post-review execution that needs no exact user reply uses
 `Status: ready-for-continuation`. Fully closed work with no remaining user or
 agent action uses `Status: complete-no-action-needed`.
@@ -121,8 +137,8 @@ The tightening is that "review passed" alone is not enough to choose either
 shape. The handoff must name what remains:
 
 - another acting agent revision,
-- user approval for an execution / merge / release gate,
-- direct continuation after already supplied approval, or
+- user approval for an implementation / execution / merge / release gate,
+- direct continuation with no exact user reply still pending, or
 - no action.
 
 ## Durable Conclusion Capture
@@ -140,6 +156,11 @@ Use these homes:
 | Non-blocking finding, FYI, out-of-repo follow-up, or accepted residual | `Accepted residuals:` with a durable tracker / owner |
 | Reusable lesson, active next-session state, audit proof, or index change | Existing v0.5 memory routing in `15-repo-memory.md` |
 | Pure human explanation that does not affect future action | Prose outside the copy block |
+
+If pre-spec framing ends without a formal spec, do not leave its conclusions
+only in chat. Route them to `Accepted residuals:` when they are non-blocking
+follow-ups, or to repo memory through the v0.5 memory-routing rule when they are
+active state, audit evidence, or reusable lessons.
 
 If a report has a non-blocking follow-up but no durable tracker or owner, it
 must not present the work as ready or fully closed. The author should either add
@@ -163,6 +184,25 @@ action. But when the report asks the user to forward to an author, reviewer, or
 acting agent, the copy block must contain all findings and dispositions needed
 by that next agent.
 
+## Spec Review Disposition
+
+This spec incorporates the plan/rule-review findings against `8fa93c4`.
+
+- F1, `ready-for-user-approval` boundary ambiguity: accepted. The design now
+  states that implementation must widen `ready-for-user-approval` from
+  final-only gates to all exact-text approval gates, including approval to start
+  implementation or execution.
+- F2, missing `Review:` pairing for revision and continuation shapes: accepted.
+  Both forwarded author-revision and continuation handoffs use
+  `Review: none-FYI`; the returning author-revision handoff requests
+  `Review: fix-confirmation vs <prev-tip>`.
+- F3, verification list too thin: accepted. The verification scope now includes
+  the source-entrypoint smoke, cross-repo reference-map smoke, final status check,
+  and a ranged whitespace check.
+- F4, no-spec-follows pre-spec routing: accepted. Pre-spec conclusions with no
+  formal spec route to `Accepted residuals:` or repo memory according to their
+  durable home.
+
 ## Scope
 
 In scope:
@@ -176,6 +216,8 @@ In scope:
   tokens for the new doctrine.
 - Extend the relay status token list and consistency rules for
   `ready-for-continuation`.
+- Update the `ready-for-user-approval` status criteria so it covers all
+  exact-text approval gates, not only final approval gates.
 - Add a v0.5.1 landed entry to `ROADMAP.md`.
 - Retire the `Review deliverable handoff copy-field tightening` Extraction
   Candidate row after the landed entry exists.
@@ -205,7 +247,12 @@ Implementation should verify:
 
 - `agent-trigger-kit session-check`
 - `tests/install-smoke.sh`
+- `tests/source-entrypoint-smoke.sh`
+- `tests/cross-repo-reference-map-smoke.sh`
 - `git diff --check`
+- `git diff --check origin/main..HEAD` or the equivalent merge-base range for
+  the implementation branch
+- `git status -sb`
 - A token scan such as:
 
 ```bash
