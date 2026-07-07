@@ -2,9 +2,9 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Implement the approved v0.4.12 relay copy-block pre-handoff self-check doctrine, smoke coverage, roadmap entry, extraction-candidate retirement, and plugin metadata bump.
+**Goal:** Implement the v0.4.12 relay copy-block pre-handoff self-check doctrine, execution-route display gating, smoke coverage, roadmap entry, extraction-candidate retirement, and plugin metadata bump after the updated spec / plan review approves it.
 
-**Architecture:** Keep the new behavior inside the existing Agent Operating Manual relay contract as a compact pointer checklist. Installer smoke proves the installed manual carries the new anchor and representative checklist tokens; ROADMAP and `.claude-plugin` metadata record the release increment.
+**Architecture:** Keep the new behavior inside the existing Agent Operating Manual relay contract as a compact pointer checklist. Installer smoke proves the installed manual carries the new anchor and representative checklist tokens, including route-display gating; ROADMAP and `.claude-plugin` metadata record the release increment.
 
 **Tech Stack:** Markdown doctrine, Bash smoke test, JSON plugin metadata, Git.
 
@@ -12,18 +12,20 @@
 
 ## Source Contract
 
-- Base this work on approved spec commit `8f243ea` on branch `worktree-v0.4.12-relay-self-check`.
+- Base this work on approved spec commit `8f243ea` plus the branch-local route-display UX delta in this review pass.
+- Do not resume implementation until the updated spec and plan receive fresh review.
 - Implement on this work branch; merge to `main` only after fresh review.
 - Keep the self-check inline in `skills/agent-operating-manual/10-model-dispatch.md` section 3.1.
 - Add a compact pointer checklist. Do not duplicate section 3.1 rules as a second normative home.
 - Do not add an attestation line, checklist dump, new relay field, or new `Status:` value.
 - Keep exact approval / disposition text only in `Required user text`; human-facing prose may only say that the current chat is waiting for a user reply.
+- Include `Execution route:` only for an executable approval / continuation handoff where all required review / fix-confirmation gates are complete and any named user approval or continuation reply would authorize the next agent to execute.
 - Do not change Agent Trigger Kit, `operator-bootstrap`, adopting repos, generated imported copies, release tags, or the deferred F2 section 3.1 file split.
 - Known non-blocking source-repo residual: `ATK root-source boundary / documented in AGENTS.md / mechanism owner: Agent Trigger Kit follow-up`.
 
 ## File Plan
 
-- Modify `tests/install-smoke.sh`: add installed-manual token checks for `Pre-handoff self-check`, `current chat is waiting for a user reply`, `exactly one \`text\` fenced copy block`, and `three-line \`Review:\` contract`.
+- Modify `tests/install-smoke.sh`: add installed-manual token checks for `Pre-handoff self-check`, `current chat is waiting for a user reply`, `executable approval / continuation handoff`, `exactly one \`text\` fenced copy block`, and `three-line \`Review:\` contract`.
 - Modify `skills/agent-operating-manual/10-model-dispatch.md`: add the compact `Pre-handoff self-check` subsection near the end of section 3.1 after the rules it references.
 - Modify `ROADMAP.md`: add a v0.4.12 landed entry and remove the `Relay copy-block completeness self-check` Extraction Candidate row.
 - Modify `.claude-plugin/plugin.json`: bump version to `0.4.12`.
@@ -38,7 +40,7 @@
 - Modify: `tests/install-smoke.sh`
 - Update: `docs/superpowers/plans/2026-07-07-relay-copy-block-self-check.md`
 
-- [x] **Step 1: Add installed-manual smoke assertions**
+- [ ] **Step 1: Add installed-manual smoke assertions**
 
 In `tests/install-smoke.sh`, after the existing `User action consistency rule` assertion, add:
 
@@ -49,6 +51,9 @@ In `tests/install-smoke.sh`, after the existing `User action consistency rule` a
   grep -Fq 'current chat is waiting for a user reply' \
     "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
     || fail "$f imported manual missing reply-required-text human prompt check"
+  grep -Fq 'executable approval / continuation handoff' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    || fail "$f imported manual missing execution-route gating check"
   grep -Fq 'exactly one `text` fenced copy block' \
     "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
     || fail "$f imported manual missing exactly-one copy block check"
@@ -57,7 +62,7 @@ In `tests/install-smoke.sh`, after the existing `User action consistency rule` a
     || fail "$f imported manual missing review contract copy check"
 ```
 
-- [x] **Step 2: Run install smoke and verify it fails for the right reason**
+- [ ] **Step 2: Run install smoke and verify it fails for the right reason**
 
 Run:
 
@@ -76,7 +81,7 @@ git add tests/install-smoke.sh docs/superpowers/plans/2026-07-07-relay-copy-bloc
 git commit -m "test: add relay self-check smoke tokens"
 ```
 
-Expected: commit succeeds. The new smoke test is expected to fail until Task 2 adds the manual subsection.
+Expected: commit succeeds. The new smoke test is expected to fail until Task 2 adds the manual subsection. If a prior local commit already added a narrower smoke version, amend or add a follow-up test commit that includes the `executable approval / continuation handoff` token before continuing to Task 2.
 
 ---
 
@@ -97,7 +102,7 @@ In `skills/agent-operating-manual/10-model-dispatch.md`, insert this subsection 
 Pre-handoff self-check：送出 handoff 前，先默默跑一次這個 compact checklist；不要輸出 attestation、checklist dump、新 relay 欄位或新 `Status:`。若任何項目不成立，先修 handoff 再送出。
 
 - `Status:` 是否是合法 relay status？
-- `Review:` 是否和 `Status:`、`User action:` 一致？
+- `Review:` 是否和 `Status:`、`User action:` 一致；若出現 `Execution route:`，這是否是所有必要 review / fix-confirmation 已完成後的 executable approval / continuation handoff，而不是 blocked、review-only 或 plan-review handoff？
 - 需要 exact approval / disposition text 時，`Required user text:` 是否非 `n/a` 且精確；若 `User action:` 含 `reply-required-text`，copy block 外的人類說明是否清楚表示 current chat is waiting for a user reply，且沒有複製 exact text？
 - 有 repo-specific next action 時，`Target repo:` 是否非 `n/a`？
 - `User action:` 含 `to-reviewer` 或 `to-agent` 時，是否只有 exactly one `text` fenced copy block 供使用者轉貼？
@@ -113,8 +118,9 @@ In `ROADMAP.md`, add this landed entry after the v0.4.11 entry:
 ```markdown
 - v0.4.12: relay copy-block self-check adds a compact pre-handoff
   checklist for legal relay status, cross-field coherence, forwarded copy
-  block completeness, visible user-reply prompts, and accepted residuals
-  without adding a second normative home or emitted attestation.
+  block completeness, visible user-reply prompts, execution-route display
+  gating, and accepted residuals without adding a second normative home or
+  emitted attestation.
 ```
 
 - [ ] **Step 3: Retire the extraction candidate row**
@@ -147,10 +153,10 @@ Change `.claude-plugin/marketplace.json` `plugins[0].version` from `0.4.11` to `
 Run:
 
 ```bash
-rg -n 'Pre-handoff self-check|current chat is waiting for a user reply|exactly one `text` fenced copy block|three-line `Review:` contract|Target repo|Required user text|Accepted residuals|v0\.4\.12|0\.4\.12' skills/agent-operating-manual ROADMAP.md tests .claude-plugin
+rg -n 'Pre-handoff self-check|current chat is waiting for a user reply|executable approval / continuation handoff|exactly one `text` fenced copy block|three-line `Review:` contract|Target repo|Required user text|Accepted residuals|v0\.4\.12|0\.4\.12' skills/agent-operating-manual ROADMAP.md tests .claude-plugin
 ```
 
-Expected: output includes the new manual subsection, the ROADMAP v0.4.12 entry, installed-smoke checks, and both plugin metadata versions.
+Expected: output includes the new manual subsection, the execution-route gating token, the ROADMAP v0.4.12 entry, installed-smoke checks, and both plugin metadata versions.
 
 - [ ] **Step 6: Run install smoke and verify it passes**
 
@@ -188,11 +194,11 @@ Run:
 agent-trigger-kit session-check --closeout
 ./tests/install-smoke.sh
 git diff --check
-rg -n 'Pre-handoff self-check|current chat is waiting for a user reply|exactly one `text` fenced copy block|three-line `Review:` contract|Target repo|Required user text|Accepted residuals|v0\.4\.12|0\.4\.12' skills/agent-operating-manual ROADMAP.md tests .claude-plugin
+rg -n 'Pre-handoff self-check|current chat is waiting for a user reply|executable approval / continuation handoff|exactly one `text` fenced copy block|three-line `Review:` contract|Target repo|Required user text|Accepted residuals|v0\.4\.12|0\.4\.12' skills/agent-operating-manual ROADMAP.md tests .claude-plugin
 git status -sb
 ```
 
-Expected: `session-check --closeout` exits `1` only for the documented `agent-skills: plugin directory missing` source-repo boundary and possibly the related plugin freshness advisory; install smoke passes; `git diff --check` is clean; token scan includes the v0.4.12 surfaces; status is clean on `worktree-v0.4.12-relay-self-check`.
+Expected: `session-check --closeout` exits `1` only for the documented `agent-skills: plugin directory missing` source-repo boundary and possibly the related plugin freshness advisory; install smoke passes; `git diff --check` is clean; token scan includes the v0.4.12 surfaces and execution-route gating token; status is clean on `worktree-v0.4.12-relay-self-check`.
 
 - [ ] **Step 2: Commit final plan progress if changed**
 
@@ -220,7 +226,7 @@ Blockers: none
 Accepted residuals: ATK root-source boundary / documented in AGENTS.md / mechanism owner: Agent Trigger Kit follow-up; ATK plugin-version-freshness advisory indeterminate from same root-source cause / owner: Agent Trigger Kit follow-up; origin/main behind local main / push at or before v0.4.12 closeout / owner: user
 
 Review: full
-Focus: Pointer-checklist constraint, no emitted attestation or second normative home, reply-required-text UX clarity, and install-smoke coverage.
+Focus: Pointer-checklist constraint, no emitted attestation or second normative home, reply-required-text UX clarity, Execution route gating after review completion, and install-smoke coverage.
 Prev reviewed tip: 8f243ea
 ```
 
@@ -228,6 +234,6 @@ Prev reviewed tip: 8f243ea
 
 ## Self-Review Notes
 
-- Spec coverage: Task 1 covers smoke-first verification; Task 2 covers doctrine, ROADMAP, extraction-row retirement, metadata, token scan, and install smoke; Task 3 covers closeout and final review handoff.
+- Spec coverage: Task 1 covers smoke-first verification; Task 2 covers doctrine, execution-route gating, ROADMAP, extraction-row retirement, metadata, token scan, and install smoke; Task 3 covers closeout and final review handoff.
 - Placeholder scan: this plan contains no placeholder markers or unspecified implementation steps.
 - Scope check: this is one cohesive docs/test/metadata change and does not need decomposition.

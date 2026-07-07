@@ -18,7 +18,10 @@ The remaining failure mode is not missing doctrine. It is missed execution at
 handoff time. Authors can know the rules and still emit a relay block that drops
 review findings outside the copy block, forgets the three-line `Review:`
 contract, pairs `Review: none-FYI` with `to-reviewer`, or leaves the canonical
-ATK source-repo residual only in prose.
+ATK source-repo residual only in prose. A related route-display failure is
+showing `Execution route:` on a blocked, review-only, or plan-review delivery
+handoff, which makes the next agent think execution is authorized before all
+required review gates are complete.
 
 v0.4.12 should add the checklist moment without creating a second normative
 home for the same requirements.
@@ -44,7 +47,9 @@ handoff artifact is the evidence.
 The checklist should stay capped at roughly eight compact questions:
 
 - Is `Status:` one of the legal relay statuses?
-- Does `Review:` cohere with `Status:` and `User action:`?
+- Does `Review:` cohere with `Status:` and `User action:`, and if
+  `Execution route:` is present, is this an executable approval / continuation
+  handoff rather than a blocked, review-only, or plan-review handoff?
 - When exact approval or disposition text is required, is
   `Required user text:` non-`n/a` and exact, and does any
   `reply-required-text` handoff make clear outside the copy block that the
@@ -107,6 +112,11 @@ contract `main` at `b74f29a`.
   `User action:` includes `reply-required-text`, human-facing prose outside the
   copy block should make the pending user reply obvious without duplicating the
   exact approval or disposition text.
+- User route-display feedback: accepted as a narrow checklist refinement.
+  `Execution route:` should appear only when the handoff is executable after
+  all required review / fix-confirmation gates are complete and any named user
+  approval or continuation reply is supplied. It should be omitted from blocked,
+  review-only, fix-confirmation delivery, and plan-review handoffs.
 
 ## Scope
 
@@ -114,6 +124,8 @@ In scope:
 
 - Add the `Pre-handoff self-check` subsection to
   `skills/agent-operating-manual/10-model-dispatch.md`.
+- Clarify in that checklist that `Execution route:` is displayed only for an
+  executable approval / continuation handoff after required reviews are done.
 - Keep the subsection inline in section 3.1 for now. The deferred F2
   handoff-contract file split still waits until relay control semantics
   stabilize.
@@ -151,7 +163,7 @@ Implementation should verify:
 - A token scan such as:
 
 ```bash
-rg -n 'Pre-handoff self-check|current chat is waiting for a user reply|exactly one `text` fenced copy block|three-line `Review:` contract|Target repo|Required user text|Accepted residuals|v0\.4\.12|0\.4\.12' skills/agent-operating-manual ROADMAP.md tests .claude-plugin
+rg -n 'Pre-handoff self-check|current chat is waiting for a user reply|executable approval / continuation handoff|exactly one `text` fenced copy block|three-line `Review:` contract|Target repo|Required user text|Accepted residuals|v0\.4\.12|0\.4\.12' skills/agent-operating-manual ROADMAP.md tests .claude-plugin
 ```
 
 The implementation closeout should use `Status: review-needed`,
