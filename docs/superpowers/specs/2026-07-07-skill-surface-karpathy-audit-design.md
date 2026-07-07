@@ -168,7 +168,10 @@ Out of scope for v0.5.5:
 - Rewriting public `main` history or force-pushing away already-landed commits.
 - Moving existing `docs/superpowers/**` artifacts to a private repo.
 - Defining the full release tag / publish lifecycle.
-- Tagging, publishing, or changing release metadata.
+- Tagging or publishing; release metadata may change only if the reviewed
+  implementation plan chooses an install-facing wrapper or entry-pointer slice,
+  in which case it should bump to `0.5.5` per the v0.5.4 precedent while still
+  barring tag / publish authorization.
 - Adding Agent Trigger Kit validators, hooks, session-check semantics, or
   generated trigger-layer audits.
 - Implementing vector search, MCP indexing, or retrieval-augmented loading.
