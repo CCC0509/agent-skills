@@ -120,8 +120,11 @@ The implementation should add a concise release cadence rule to
 
 - If a reviewed train changes install-facing skill text, default skill choice,
   plugin metadata, marketplace metadata, installer behavior, or adopting-repo
-  install output, it should bump manifests and then proceed through the
-  release tag / publish lifecycle after review and merge.
+  install output, it should bump manifests and then proceed either directly or
+  as part of a later reviewed batch through the release tag / publish lifecycle
+  after review and merge; the tag targets the reviewed head at the then-current
+  manifest version, with no retroactive tags for intermediate bump-only
+  versions unless a separate reviewed release-repair plan authorizes them.
 - If a train changes only specs, implementation plans, private planning
   artifacts, non-installed roadmap text, or review evidence, it should not bump
   metadata or create a tag unless a reviewed release plan says otherwise.
@@ -130,9 +133,9 @@ The implementation should add a concise release cadence rule to
 - Publish is inventory-driven. If the pushed Git tag is the only delivery
   surface, say no separate publish surface exists and do not invent one.
 
-This answers "should tag and publish advance every update?" as: every
-install-facing version update should be carried to a reviewed tag, while
-non-install planning updates do not require a release.
+This answers "should tag and publish advance every update?" as: install-facing
+version updates should be delivered by a reviewed tag, either directly or in a
+reviewed batch, while non-install planning updates do not require a release.
 
 ### 5. Portable Release Skill Direction
 
