@@ -51,7 +51,7 @@
 - Consumes: existing default-install `25-change-discipline.md` greps around the release lifecycle assertions.
 - Produces: smoke assertions later satisfied by `25-change-discipline.md` §3.3.
 
-- [ ] **Step 1: Add failing assertions after the release lifecycle smoke greps**
+- [x] **Step 1: Add failing assertions after the release lifecycle smoke greps**
 
 Use `apply_patch`:
 
@@ -92,7 +92,7 @@ Use `apply_patch`:
 *** End Patch
 ```
 
-- [ ] **Step 2: Run the red smoke**
+- [x] **Step 2: Run the red smoke**
 
 Run:
 
@@ -106,7 +106,7 @@ Expected: exit nonzero with first failure:
 SMOKE FAIL: CLAUDE.md imported change discipline missing public PR release train section
 ```
 
-- [ ] **Step 3: Commit red smoke only**
+- [x] **Step 3: Commit red smoke only**
 
 Run:
 
@@ -134,7 +134,7 @@ Expected:
 - Consumes: red smoke assertions from Task 1.
 - Produces: installed public PR / release train doctrine, metadata version `0.5.8`, and ROADMAP closeout with pending batched-release record.
 
-- [ ] **Step 1: Insert §3.3 public PR / release train doctrine before §4**
+- [x] **Step 1: Insert §3.3 public PR / release train doctrine before §4**
 
 Use `apply_patch`:
 
@@ -209,7 +209,7 @@ Use `apply_patch`:
 *** End Patch
 ```
 
-- [ ] **Step 2: Bump plugin metadata to 0.5.8**
+- [x] **Step 2: Bump plugin metadata to 0.5.8**
 
 Use `apply_patch`:
 
@@ -226,7 +226,7 @@ Use `apply_patch`:
 *** End Patch
 ```
 
-- [ ] **Step 3: Update ROADMAP Landed entry, lane, and retired rows**
+- [x] **Step 3: Update ROADMAP Landed entry, lane, and retired rows**
 
 Use `apply_patch`:
 
@@ -267,7 +267,7 @@ Use `apply_patch`:
 *** End Patch
 ```
 
-- [ ] **Step 4: Inspect implementation diff before committing**
+- [x] **Step 4: Inspect implementation diff before committing**
 
 Run:
 
@@ -285,7 +285,7 @@ Expected:
 - ROADMAP no longer contains the candidate rows `Public repo PR / release train discipline` or `Post-push complete-no-action-needed closeout examples`.
 - ROADMAP still contains `Private superpowers plan artifact boundary`, `Portable release-governance skill TDD`, `Branch / worker lifecycle hygiene`, `Skill context loading / retrieval strategy`, and `F2 handoff-contract file split`.
 
-- [ ] **Step 5: Commit implementation before green smoke**
+- [x] **Step 5: Commit implementation before green smoke**
 
 Run:
 
@@ -299,7 +299,7 @@ Expected:
 - Commit succeeds.
 - No tag, tag push, publish, merge, remote push, branch cleanup, or adopting-repo install occurs.
 
-- [ ] **Step 6: Run green smoke against committed HEAD**
+- [x] **Step 6: Run green smoke against committed HEAD**
 
 Run:
 
@@ -313,7 +313,7 @@ Expected final line:
 install smoke ok
 ```
 
-- [ ] **Step 7: Run no-plan-self-match token scan**
+- [x] **Step 7: Run no-plan-self-match token scan**
 
 Run:
 
@@ -354,7 +354,7 @@ Expected:
 - Consumes: Task 1 red smoke commit and Task 2 implementation commit.
 - Produces: verification-mark commit and a full-review handoff.
 
-- [ ] **Step 1: Confirm the expected branch range files**
+- [x] **Step 1: Confirm the expected branch range files**
 
 Run:
 
@@ -374,7 +374,7 @@ skills/agent-operating-manual/25-change-discipline.md
 tests/install-smoke.sh
 ```
 
-- [ ] **Step 2: Run full range whitespace check**
+- [x] **Step 2: Run full range whitespace check**
 
 Run:
 
@@ -384,7 +384,7 @@ git diff --check origin/main..HEAD
 
 Expected: exit 0, no output.
 
-- [ ] **Step 3: Run placeholder scan on changed live surfaces**
+- [x] **Step 3: Run placeholder scan on changed live surfaces**
 
 Run:
 
@@ -399,7 +399,7 @@ rg -n '[T]BD|[T]ODO|[P]LACEHOLDER|[i]mplement later|[f]ill in details|[s]imilar 
 
 Expected: exit 1, no matches.
 
-- [ ] **Step 4: Re-run install smoke**
+- [x] **Step 4: Re-run install smoke**
 
 Run:
 
@@ -413,7 +413,7 @@ Expected final line:
 install smoke ok
 ```
 
-- [ ] **Step 5: Re-run token scan and record counts**
+- [x] **Step 5: Re-run token scan and record counts**
 
 Run:
 
@@ -443,7 +443,7 @@ Expected:
 - Every count is greater than zero.
 - Report exact counts in the author verification block.
 
-- [ ] **Step 6: Verify release and public-integration boundaries remained untouched**
+- [x] **Step 6: Verify release and public-integration boundaries remained untouched**
 
 Run:
 
@@ -460,7 +460,7 @@ Expected:
 - `git tag --points-at HEAD` prints no `v0.5.8` tag.
 - No hosted PR, push, merge, fast-forward, squash, tag push, publish, branch cleanup, or adopting-repo install has occurred.
 
-- [ ] **Step 7: Run closeout health check**
+- [x] **Step 7: Run closeout health check**
 
 Run:
 
@@ -474,7 +474,7 @@ Expected:
 - No unmarked outcome events.
 - Carry accepted residual: `ATK root-source boundary / documented in AGENTS.md / mechanism owner: Agent Trigger Kit follow-up`.
 
-- [ ] **Step 8: Commit plan checkbox ticks**
+- [x] **Step 8: Commit plan checkbox ticks**
 
 Run:
 
