@@ -218,7 +218,7 @@ Expected: commit succeeds. The new smoke is expected to fail until Task 2 adds t
 - Consumes: `tests/fresh-session-continuity-smoke.sh` red assertions.
 - Produces: v0.5.10 install-facing doctrine and metadata that make the new smoke pass.
 
-- [ ] **Step 1: Add canonical context-health and provenance doctrine**
+- [x] **Step 1: Add canonical context-health and provenance doctrine**
 
 In `skills/agent-operating-manual/10-model-dispatch.md`, insert the following subsection after the existing `Pre-handoff self-check` bullet list and before the horizontal rule that precedes `## §4 驗證不自驗（Verify, not self-verify）`:
 
@@ -267,7 +267,7 @@ surfaces，不要把 source、import、plugin cache、operator-bootstrap 混成�
 
 Expected: the inserted subsection contains every token asserted by `tests/fresh-session-continuity-smoke.sh` and does not create new relay fields or `Status:` values.
 
-- [ ] **Step 2: Add the handoff-relay trigger pointer**
+- [x] **Step 2: Add the handoff-relay trigger pointer**
 
 In `skills/handoff-relay/SKILL.md`, append this item to the numbered `## Apply` list after the current item 6:
 
@@ -280,7 +280,7 @@ In `skills/handoff-relay/SKILL.md`, append this item to the numbered `## Apply` 
 
 Expected: this stays pointer-only and does not copy the canonical relay state machine into the wrapper.
 
-- [ ] **Step 3: Update ROADMAP for v0.5.10**
+- [x] **Step 3: Update ROADMAP for v0.5.10**
 
 In `ROADMAP.md`, add this Landed entry after the v0.5.9 entry:
 
@@ -314,7 +314,7 @@ Then remove exactly these two rows from the `Extraction Candidates` table:
 
 Expected: `Skill context loading / retrieval strategy`, `F2 handoff-contract file split`, `Plan/spec lifecycle header convention text`, and `Automated skill maintenance / optimization protocol` remain open in `ROADMAP.md`.
 
-- [ ] **Step 4: Bump plugin metadata to 0.5.10**
+- [x] **Step 4: Bump plugin metadata to 0.5.10**
 
 In `.claude-plugin/plugin.json`, change only the version field:
 
@@ -330,7 +330,7 @@ In `.claude-plugin/marketplace.json`, change only `plugins[0].version`:
 
 Expected: no description, source, owner, category, or strict-field changes.
 
-- [ ] **Step 5: Run the new smoke and verify it passes green**
+- [x] **Step 5: Run the new smoke and verify it passes green**
 
 Run:
 
@@ -344,7 +344,7 @@ Expected:
 fresh session continuity smoke ok
 ```
 
-- [ ] **Step 6: Run the install smoke**
+- [x] **Step 6: Run the install smoke**
 
 Run:
 
@@ -358,7 +358,7 @@ Expected:
 install smoke ok
 ```
 
-- [ ] **Step 7: Commit doctrine, roadmap, metadata, and plan progress**
+- [x] **Step 7: Commit doctrine, roadmap, metadata, and plan progress**
 
 Run:
 

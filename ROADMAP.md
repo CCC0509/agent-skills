@@ -104,6 +104,13 @@ release scope.
   coordination without editing either repo, and records that v0.5.7, v0.5.8,
   and v0.5.9 install-facing content require a later §3.2 tag before non-dev
   adopter delivery.
+- v0.5.10: Fresh session continuity adds context-health handoff and
+  skill-source provenance reporting to the handoff / relay doctrine, records
+  when agents should continue in-session versus emit a continuity packet, and
+  distinguishes source checkout, imported skill copy, plugin cache, user-level
+  operator-bootstrap, and Agent Trigger Kit mechanism surfaces. The release
+  remains batched: v0.5.7, v0.5.8, v0.5.9, and v0.5.10 install-facing content
+  require a later §3.2 tag before non-dev adopter delivery.
 
 ## Candidate Lanes
 
@@ -111,12 +118,11 @@ Use these lanes to keep adjacent candidates visible without expanding a single
 release scope.
 
 - **Trigger Surface / Context Loading:** `Skill context loading / retrieval
-  strategy`, `Session continuity / context-health handoff`, `Skill source
-  provenance / freshness report`, `F2 handoff-contract file split`, and
-  `Plan/spec lifecycle header convention text`. This lane owns rule discovery,
-  trigger wording, context-load reduction, fresh-session continuity, source /
-  imported-copy / plugin-cache provenance, and the doctrine / ATK /
-  adopting-repo split for generated or local trigger surfaces.
+  strategy`, `F2 handoff-contract file split`, and `Plan/spec lifecycle header
+  convention text`. This lane owns remaining rule discovery, trigger wording,
+  context-load reduction, and the doctrine / ATK / adopting-repo split for
+  generated or local trigger surfaces after v0.5.10 covers fresh-session
+  continuity and skill-source provenance.
 - **Public Artifact / Release Hygiene:** `Private superpowers plan artifact
   boundary` plus `Portable release-governance skill TDD`. This lane owns
   private/public planning artifact boundaries and portable release-skill
@@ -145,8 +151,6 @@ explicitly routes them.
 | agent-skills doctrine | Preflight self-report contract | agent-skills | Remaining half of the former preflight / closeout row; current session-start memory-index doctrine covers reading repo memory, but not whether agents should report preflight memory state. |
 | agent-skills doctrine | Plan/spec lifecycle header convention text | agent-skills | Doctrine belongs here; validator stays out of the markdown-only repo. |
 | agent-skills doctrine / tooling | Skill context loading / retrieval strategy | agent-skills / Agent Trigger Kit / optional MCP tooling | The Agent Operating Manual is large enough that agents may fail to apply all loaded rules under context pressure; investigate split, routing, retrieval, vector-index, or MCP-backed loading strategy separately so v0.5.2 remains lifecycle-only. |
-| agent-skills doctrine | Session continuity / context-health handoff | agent-skills / Agent Trigger Kit / operator-bootstrap | Context compaction, slow sessions, or failed handoffs need a portable decision rule for when to continue in place, use a sanctioned fresh-context mechanism, or ask the user to open a new session with a complete relay packet; mechanisms and user-level propagation stay with their owners. |
-| agent-skills doctrine / freshness | Skill source provenance / freshness report | agent-skills / Agent Trigger Kit / operator-bootstrap / adopting repos | Agents need to distinguish source checkout reading, `.agent-skills/pin` imported copies, plugin cache/runtime discovery, and user-level bootstrap templates before blaming a miss on missing version bumps; machine-readable probes belong with ATK or the owning surface. |
 | agent-skills doctrine | Shared checkout concurrency etiquette | agent-skills | Useful but outside v0.4 change-discipline scope; needs wording that fits multiple harnesses and shared-worktree policies. |
 | agent-skills doctrine | Named absence statuses for missing closeout evidence | agent-skills / ATK | Agent Trigger Kit owns the canonical mechanism home for durable no-report classification; agent-skills doctrine should wait for the v0.5.0 closeout self-report baseline plus ATK taxonomy alignment so category names do not drift. |
 | agent-skills doctrine | Harness warning triage contract | agent-skills | Needs more portable examples so known harness noise is classified without normalizing ignored warnings. |

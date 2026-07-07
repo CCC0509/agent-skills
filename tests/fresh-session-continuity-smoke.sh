@@ -21,6 +21,17 @@ require_contains() {
   grep -Fq "$token" "$file" || fail "$file missing token: $token"
 }
 
+require_contains_normalized() {
+  local file="$1"
+  local token="$2"
+  local haystack
+  local needle
+
+  haystack="$(tr '\n\t' '  ' < "$file" | sed 's/[[:space:]][[:space:]]*/ /g')"
+  needle="$(printf '%s' "$token" | tr '\n\t' '  ' | sed 's/[[:space:]][[:space:]]*/ /g')"
+  [[ "$haystack" == *"$needle"* ]] || fail "$file missing token: $token"
+}
+
 require_not_contains() {
   local file="$1"
   local token="$2"
@@ -70,7 +81,7 @@ require_contains "$RELAY" 'skill-source provenance'
 require_contains "$RELAY" '10-model-dispatch.md'
 
 require_contains "$ROADMAP" 'v0.5.10: Fresh session continuity'
-require_contains "$ROADMAP" 'v0.5.7, v0.5.8, v0.5.9, and v0.5.10 install-facing content require a later §3.2 tag'
+require_contains_normalized "$ROADMAP" 'v0.5.7, v0.5.8, v0.5.9, and v0.5.10 install-facing content require a later §3.2 tag'
 require_not_contains "$ROADMAP" '| agent-skills doctrine | Session continuity / context-health handoff |'
 require_not_contains "$ROADMAP" '| agent-skills doctrine / freshness | Skill source provenance / freshness report |'
 require_contains "$ROADMAP" '| agent-skills doctrine / tooling | Skill context loading / retrieval strategy |'

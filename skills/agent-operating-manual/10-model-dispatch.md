@@ -284,6 +284,47 @@ handoff 再送出。
 - 報告含 non-blocking findings、FYI、accepted residuals 或 out-of-repo follow-ups 時，
   `Accepted residuals:` 是否不是 `none`，且每項都有 durable tracker / owner？
 
+Context-health handoff：當 current session 的 context 本身開始不可靠時，先判斷
+是否該繼續在本 session 作業，或改成 fresh-session handoff。可繼續的條件是：你能
+直接重新核對相關 doctrine file、target head、pending gates、verification state 與
+handoff fields。若出現多次 compaction / visible context loss、明顯 slowdown / hang、
+反覆失去 task thread、無法確認 skill source provenance、下一步是 approval-bound /
+review-bound / release-bound / control-contract change，或本 session 已產生或收到
+不合規 handoff，偏向產生 Continuity packet，讓使用者開新 session 或交給 sanctioned
+fresh-context worker。不要聲稱 agent 能靜默轉移 authority；fresh session 仍受既有
+review、approval、merge、tag、publish 邊界約束。
+
+Continuity packet：fresh-session handoff 不新增 `Status:` 值，使用既有 relay block。
+packet 至少帶 target repo / object、effective contract、proposal boundary、pending
+gates、verification state、next action、accepted residuals，以及 three-line `Review:`
+contract。blocked、plan-review、review-only、findings-delivery、fix-confirmation-delivery 仍不顯示
+`Execution route:`。Executable continuity packets include the recommended route block：
+當 packet 依 Route display rule 屬於 executable approval / continuation handoff 時，
+在 relay signal 後加入推薦的 `Execution route:`、`Route reason:`、`User approval needed:`
+block。Do not restate `ready-for-continuation` preconditions here；是否可 continuation
+完全依本節上方 canonical `Status:` semantics 和 Route display rule 判斷。
+
+Skill source provenance：當使用者問「是否沒讀到 skill」、「是否 version 沒 bump」、
+或 handoff / review miss 可能來自 stale skill surface 時，先分開報告 relevant
+surfaces，不要把 source、import、plugin cache、operator-bootstrap 混成一個 freshness
+判斷。
+
+- Source checkout：直接讀目前 checkout 的 source files；agent 檢查 source repo
+  不需要 plugin bump。Branch-local doctrine / entrypoint text 在 fresh review 與
+  merge 前仍是 proposal text，不能用來放寬 effective contract。
+- Imported skill copy：讀 adopting repo 的 `.agent-skills/pin`、managed imported files
+  和 install metadata。它只會在選定 release/tag/source reference 並 rerun installer /
+  upgrade path 後更新；不要手改 generated imported copies 代替 source doctrine。
+- Plugin cache：讀 installed plugin metadata 與 runtime discovery state。舊 installed
+  plugin version 不會知道新 skill；更新、upgrade、cache refresh、restart 規則屬於
+  plugin lifecycle / Agent Trigger Kit mechanism。
+- User-level operator bootstrap：讀 managed instruction block 與 template provenance。
+  更新 `agent-skills` source doctrine 不會自動改 user-level instructions；需要
+  operator-bootstrap propagation 才會更新。
+- Mechanism checks：validators、session-check、live-check、version-check、doctor /
+  repair flow 屬於 Agent Trigger Kit 或 owning surface；agent-skills 只記錄 portable
+  doctrine，不把 runtime collection 寫進 markdown skill。
+
 ---
 
 ## §4 驗證不自驗（Verify, not self-verify）

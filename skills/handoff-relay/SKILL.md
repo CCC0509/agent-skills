@@ -29,3 +29,7 @@ with a canonical file, follow the canonical file and fix this wrapper.
    `Accepted residuals:` with a durable owner.
 6. Do not add relay fields, rename `Status:` values, change the `Review:` enum,
    or copy the full relay state machine into this wrapper.
+7. For context-health, fresh-session, or skill-source provenance questions,
+   read `../agent-operating-manual/10-model-dispatch.md` before deciding
+   whether to continue in the current session, emit a continuity packet, or
+   explain source / imported-copy / plugin-cache freshness.
