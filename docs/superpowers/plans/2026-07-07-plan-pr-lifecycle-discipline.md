@@ -326,7 +326,7 @@ Expected: commit succeeds with the doctrine, roadmap, metadata, and plan progres
 - Consumes: Task 1 smoke coverage and Task 2 implementation.
 - Produces: final verification evidence, updated plan checkboxes, and a review-ready relay block.
 
-- [ ] **Step 1: Run source-repo health check**
+- [x] **Step 1: Run source-repo health check**
 
 Run:
 
@@ -342,7 +342,7 @@ agent-skills: plugin directory missing
 
 Expected: no unmarked outcome events. Record this accepted residual in the final relay.
 
-- [ ] **Step 2: Run all required smoke and whitespace gates**
+- [x] **Step 2: Run all required smoke and whitespace gates**
 
 Run:
 
@@ -363,7 +363,7 @@ cross-repo reference map smoke ok
 
 Expected: `tests/install-smoke.sh`, both `git diff --check` commands, and all smoke scripts exit `0`.
 
-- [ ] **Step 3: Run final token and status checks**
+- [x] **Step 3: Run final token and status checks**
 
 Run:
 
@@ -374,7 +374,7 @@ git status -sb
 
 Expected: token scan includes lifecycle doctrine, cross-reference, smoke tokens, roadmap landed/deferred rows, and both metadata versions. `git status -sb` shows only plan-file checkbox progress before the final plan-progress commit.
 
-- [ ] **Step 4: Commit final plan progress**
+- [x] **Step 4: Commit final plan progress**
 
 Run:
 
@@ -385,7 +385,7 @@ git commit -m "docs: mark plan pr lifecycle verification"
 
 Expected: commit succeeds with only this plan file changed.
 
-- [ ] **Step 5: Prepare final review relay**
+- [x] **Step 5: Prepare final review relay**
 
 Send a full-context copy block to the user with this exact shape, replacing `<HEAD>` with the actual commit hash and listing the verification commands that passed:
 
