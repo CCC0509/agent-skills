@@ -455,7 +455,7 @@ for token in \
   'Release tag / publish lifecycle discipline' \
   'Portable work-discipline / Karpathy-guidelines uplift'
 do
-  count="$(rg -n --fixed-strings "$token" skills README.md ROADMAP.md tests .claude-plugin docs/superpowers/plans/2026-07-07-handoff-trigger-split.md | wc -l | tr -d ' ')"
+  count="$(rg -n --fixed-strings "$token" skills README.md ROADMAP.md tests .claude-plugin | wc -l | tr -d ' ')"
   printf '%s\t%s\n' "$token" "$count"
   [ "$count" -gt 0 ] || exit 1
 done
@@ -518,7 +518,10 @@ git log -1 --format=%h -- docs/superpowers/plans/2026-07-07-handoff-trigger-spli
 ```
 
 Use the first output as the implementation head and the second output as the
-plan commit. Then emit one `text` fenced relay block with these field values:
+plan commit. Use the latest reviewed tip for the implementation plan as
+`Prev reviewed tip`; after the fix-confirmation for this plan revision passes,
+that value is the reviewed plan commit, not spec commit `2a19bb1`. Then emit
+one `text` fenced relay block with these field values:
 
 - `Status: review-needed`
 - `Target repo: /Users/jackchou/Desktop/agent-skills`
@@ -541,4 +544,5 @@ plan commit. Then emit one `text` fenced relay block with these field values:
   boundary, canonical relay / review / approval homes, ROADMAP neighbor
   preservation, metadata `0.5.4` without tag / publish authorization, and
   verification evidence.
-- `Prev reviewed tip: 2a19bb1`
+- `Prev reviewed tip:` the latest reviewed implementation-plan tip at execution
+  time.
