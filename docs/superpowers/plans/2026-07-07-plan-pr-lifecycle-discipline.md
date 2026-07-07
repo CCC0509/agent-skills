@@ -60,7 +60,7 @@
 - Consumes: installed imported skill paths already used by `tests/install-smoke.sh`.
 - Produces: failing smoke coverage that Task 2 satisfies through doctrine and metadata updates.
 
-- [ ] **Step 1: Add imported Plan / PR lifecycle smoke tokens**
+- [x] **Step 1: Add imported Plan / PR lifecycle smoke tokens**
 
 In `tests/install-smoke.sh`, inside the `for f in CLAUDE.md AGENTS.md GEMINI.md; do` loop, after the existing assertion:
 
@@ -101,7 +101,7 @@ add:
 
 Expected: the smoke now protects the new lifecycle home and the relay cross-reference after install.
 
-- [ ] **Step 2: Run the focused smoke and confirm it fails red**
+- [x] **Step 2: Run the focused smoke and confirm it fails red**
 
 Run:
 
@@ -117,7 +117,7 @@ SMOKE FAIL: CLAUDE.md imported change discipline missing Plan / PR lifecycle sec
 
 If the first missing token is a later Task 1 token, continue because the new smoke is still red for the intended reason.
 
-- [ ] **Step 3: Commit the failing smoke**
+- [x] **Step 3: Commit the failing smoke**
 
 Run:
 

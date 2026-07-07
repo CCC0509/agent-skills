@@ -140,6 +140,30 @@ for f in CLAUDE.md AGENTS.md GEMINI.md; do
   grep -Fq 'exact wording lives in Required user text' \
     "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
     || fail "$f imported manual missing approval-text home rule"
+  grep -Fq 'Plan / PR Lifecycle Discipline' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/25-change-discipline.md" \
+    || fail "$f imported change discipline missing Plan / PR lifecycle section"
+  grep -Fq 'branch-first' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/25-change-discipline.md" \
+    || fail "$f imported change discipline missing branch-first lifecycle rule"
+  grep -Fq 'PR stop' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/25-change-discipline.md" \
+    || fail "$f imported change discipline missing PR stop lifecycle rule"
+  grep -Fq 'review-passed is not merge approval' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/25-change-discipline.md" \
+    || fail "$f imported change discipline missing review-passed merge boundary"
+  grep -Fq 'pre-merge recheck' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/25-change-discipline.md" \
+    || fail "$f imported change discipline missing pre-merge recheck"
+  grep -Fq 'squash merge evidence' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/25-change-discipline.md" \
+    || fail "$f imported change discipline missing squash merge evidence"
+  grep -Fq 'tree equivalence' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/25-change-discipline.md" \
+    || fail "$f imported change discipline missing tree equivalence evidence"
+  grep -Fq 'Plan / PR Lifecycle Discipline' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    || fail "$f imported manual missing Plan / PR lifecycle cross-reference"
   grep -Fq 'plan/rule-review / fix-confirmation' "$TMP/target/$f" \
     || fail "$f pointer missing plan/rule-review scenario"
   grep -Fq 'docs/agent-memory-index.md' "$TMP/target/$f" \
