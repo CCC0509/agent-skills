@@ -77,15 +77,6 @@ require_must_read_not_contains skills/agent-operating-manual/SKILL.md 'cross-rep
 
 require_contains ROADMAP.md 'v0.4.11: F5 cross-repo reference map'
 require_not_contains ROADMAP.md '| agent-skills doctrine | F5 cross-repo reference map |'
-require_contains ROADMAP.md '| agent-skills doctrine | Branch / worker lifecycle hygiene |'
-require_contains ROADMAP.md 'simultaneous editing in shared checkouts'
-require_contains ROADMAP.md '| agent-skills doctrine | Relay copy-block completeness self-check |'
-require_contains ROADMAP.md 'pre-handoff checklist'
-require_contains ROADMAP.md '`Review:` contract for the immediate next agent'
-require_contains ROADMAP.md 'preserves review findings inside the fenced copy block'
-
-require_contains .claude-plugin/plugin.json '"version": "0.4.11"'
-require_contains .claude-plugin/marketplace.json '"version": "0.4.11"'
 
 copy_current_source_to_tmp_repo
 VER="$(sed -n 's/.*"version"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' \

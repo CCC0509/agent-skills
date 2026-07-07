@@ -38,7 +38,7 @@
 - Consumes: Approved design spec `docs/superpowers/specs/2026-07-07-phase-0-release-stabilization-design.md` at `843ba4d`.
 - Produces: `tests/cross-repo-reference-map-smoke.sh` that checks stable F5 invariants only and exits 0 on the current v0.5.0 branch.
 
-- [ ] **Step 1: Verify the intended checkout and current branch state**
+- [x] **Step 1: Verify the intended checkout and current branch state**
 
 Run:
 
@@ -58,7 +58,7 @@ untracked files except this plan file if it has not yet been committed. Any
 ahead count is acceptable because this repo is intentionally ahead of
 `origin/main` during the release train.
 
-- [ ] **Step 2: Reproduce the existing red smoke**
+- [x] **Step 2: Reproduce the existing red smoke**
 
 Run:
 
@@ -74,7 +74,7 @@ CROSS-REPO REFERENCE MAP SMOKE FAIL: ROADMAP.md missing token: | agent-skills do
 
 This confirms the existing test still pins moving candidate-table state.
 
-- [ ] **Step 3: Remove moving-state assertions**
+- [x] **Step 3: Remove moving-state assertions**
 
 In `tests/cross-repo-reference-map-smoke.sh`, replace the current ROADMAP / metadata block:
 
@@ -101,7 +101,7 @@ require_not_contains ROADMAP.md '| agent-skills doctrine | F5 cross-repo referen
 
 Do not add replacement checks for current candidate-table rows or exact plugin versions.
 
-- [ ] **Step 4: Run the focused green smoke**
+- [x] **Step 4: Run the focused green smoke**
 
 Run:
 
@@ -115,7 +115,7 @@ Expected: exit 0 and output ending with:
 cross-repo reference map smoke ok
 ```
 
-- [ ] **Step 5: Run full Phase 0 verification**
+- [x] **Step 5: Run full Phase 0 verification**
 
 Run:
 
@@ -162,7 +162,7 @@ git diff --check origin/main..HEAD
 
 both print nothing and exit 0. `git status -sb` shows only the intended modified plan/test files before the commit.
 
-- [ ] **Step 6: Commit the smoke repair and plan progress**
+- [x] **Step 6: Commit the smoke repair and plan progress**
 
 Mark the completed checkboxes in this plan, then run:
 
