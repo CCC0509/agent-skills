@@ -19,14 +19,15 @@
 - Add a compact pointer checklist. Do not duplicate section 3.1 rules as a second normative home.
 - Do not add an attestation line, checklist dump, new relay field, or new `Status:` value.
 - Keep exact approval / disposition text only in `Required user text`; human-facing prose may only say that the current chat is waiting for a user reply.
-- Include `Execution route:` only for an executable approval / continuation handoff where all required review / fix-confirmation gates are complete and any named user approval or continuation reply would authorize the next agent to execute.
+- Include `Execution route:` only on an executable approval / continuation handoff consumed by the agent/chat that will execute the routed work, after all required review / fix-confirmation gates on that routed work are complete, and where any named user approval or continuation reply would directly authorize that execution.
+- Omit `Execution route:` from blocked, review-only, plan-review, findings-delivery, fix-confirmation-delivery, and other cross-chat delivery handoffs.
 - Do not change Agent Trigger Kit, `operator-bootstrap`, adopting repos, generated imported copies, release tags, or the deferred F2 section 3.1 file split.
 - Known non-blocking source-repo residual: `ATK root-source boundary / documented in AGENTS.md / mechanism owner: Agent Trigger Kit follow-up`.
 
 ## File Plan
 
 - Modify `tests/install-smoke.sh`: add installed-manual token checks for `Pre-handoff self-check`, `current chat is waiting for a user reply`, `executable approval / continuation handoff`, `exactly one \`text\` fenced copy block`, and `three-line \`Review:\` contract`.
-- Modify `skills/agent-operating-manual/10-model-dispatch.md`: add the compact `Pre-handoff self-check` subsection near the end of section 3.1 after the rules it references.
+- Modify `skills/agent-operating-manual/10-model-dispatch.md`: add one reply-prompt sentence to `User notes rule`, one display-timing sentence to the route rules block, then add the compact `Pre-handoff self-check` subsection near the end of section 3.1 after the rules it references.
 - Modify `ROADMAP.md`: add a v0.4.12 landed entry and remove the `Relay copy-block completeness self-check` Extraction Candidate row.
 - Modify `.claude-plugin/plugin.json`: bump version to `0.4.12`.
 - Modify `.claude-plugin/marketplace.json`: bump the `agent-skills` plugin version to `0.4.12`.
@@ -94,15 +95,27 @@ Expected: commit succeeds. The new smoke test is expected to fail until Task 2 a
 - Modify: `.claude-plugin/marketplace.json`
 - Update: `docs/superpowers/plans/2026-07-07-relay-copy-block-self-check.md`
 
-- [ ] **Step 1: Add the compact pre-handoff self-check subsection**
+- [ ] **Step 1: Add the route/reply rule-home sentences and compact pre-handoff self-check subsection**
 
-In `skills/agent-operating-manual/10-model-dispatch.md`, insert this subsection after the `Normative control-contract changes` paragraphs and before the `---` divider that starts section 4:
+In `skills/agent-operating-manual/10-model-dispatch.md`, update `User notes rule` by adding this sentence before `` `Required user text` 仍是 exact approval / disposition text 的唯一 home。``:
+
+```markdown
+若 `User action:` 含 `reply-required-text`，copy block 外的人類說明應清楚表示 current chat is waiting for a user reply，但不得複製 exact approval / disposition text。
+```
+
+In the same file, update the route rules block by adding this sentence after the paragraph that defines `Execution route:`, `Route reason:`, and `User approval needed:`:
+
+```markdown
+`Execution route:` 只出現在 executable approval / continuation handoff：承接者就是會執行 routed work 的 agent/chat、該 routed work 的所有必要 review / fix-confirmation gate 已完成，且任何 named user approval / continuation reply 會依既有 approval-to-execute rule 直接授權該執行；blocked、review-only、plan-review、findings-delivery、fix-confirmation-delivery 或其他 cross-chat delivery handoff 不顯示 route block。
+```
+
+Then insert this subsection after the `Normative control-contract changes` paragraphs and before the `---` divider that starts section 4:
 
 ```markdown
 Pre-handoff self-check：送出 handoff 前，先默默跑一次這個 compact checklist；不要輸出 attestation、checklist dump、新 relay 欄位或新 `Status:`。若任何項目不成立，先修 handoff 再送出。
 
 - `Status:` 是否是合法 relay status？
-- `Review:` 是否和 `Status:`、`User action:` 一致；若出現 `Execution route:`，這是否是所有必要 review / fix-confirmation 已完成後的 executable approval / continuation handoff，而不是 blocked、review-only 或 plan-review handoff？
+- `Review:` 是否和 `Status:`、`User action:` 一致；若出現 `Execution route:`，是否符合 route display rule 的 executable approval / continuation handoff，而不是 blocked、review-only、plan-review、findings-delivery 或 fix-confirmation-delivery handoff？
 - 需要 exact approval / disposition text 時，`Required user text:` 是否非 `n/a` 且精確；若 `User action:` 含 `reply-required-text`，copy block 外的人類說明是否清楚表示 current chat is waiting for a user reply，且沒有複製 exact text？
 - 有 repo-specific next action 時，`Target repo:` 是否非 `n/a`？
 - `User action:` 含 `to-reviewer` 或 `to-agent` 時，是否只有 exactly one `text` fenced copy block 供使用者轉貼？
@@ -227,13 +240,13 @@ Accepted residuals: ATK root-source boundary / documented in AGENTS.md / mechani
 
 Review: full
 Focus: Pointer-checklist constraint, no emitted attestation or second normative home, reply-required-text UX clarity, Execution route gating after review completion, and install-smoke coverage.
-Prev reviewed tip: 8f243ea
+Prev reviewed tip: <tip approved by fix-confirmation after 7336a9c>
 ```
 
 ---
 
 ## Self-Review Notes
 
-- Spec coverage: Task 1 covers smoke-first verification; Task 2 covers doctrine, execution-route gating, ROADMAP, extraction-row retirement, metadata, token scan, and install smoke; Task 3 covers closeout and final review handoff.
+- Spec coverage: Task 1 covers smoke-first verification; Task 2 covers reply-prompt and route-display rule homes, checklist pointers, ROADMAP, extraction-row retirement, metadata, token scan, and install smoke; Task 3 covers closeout and final review handoff.
 - Placeholder scan: this plan contains no placeholder markers or unspecified implementation steps.
 - Scope check: this is one cohesive docs/test/metadata change and does not need decomposition.

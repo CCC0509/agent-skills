@@ -9,19 +9,22 @@ user approval gate.
 ## Problem
 
 The current relay contract in `skills/agent-operating-manual/10-model-dispatch.md`
-already defines the needed rules: legal `Status:` values, `Review:` / `Status:`
-precedence, `User action:` consistency, single fenced copy blocks for forwarded
-handoffs, full-context copy defaults, `Accepted residuals:` ownership, and
-`Required user text:` as the exact approval / disposition field.
+already defines most needed rules: legal `Status:` values, `Review:` /
+`Status:` precedence, `User action:` consistency, single fenced copy blocks for
+forwarded handoffs, full-context copy defaults, `Accepted residuals:`
+ownership, and `Required user text:` as the exact approval / disposition field.
+v0.4.12 should add two one-line clarifications to the original rule homes for
+reply prompts and route-display timing, then point the new checklist at those
+homes.
 
-The remaining failure mode is not missing doctrine. It is missed execution at
-handoff time. Authors can know the rules and still emit a relay block that drops
-review findings outside the copy block, forgets the three-line `Review:`
-contract, pairs `Review: none-FYI` with `to-reviewer`, or leaves the canonical
-ATK source-repo residual only in prose. A related route-display failure is
-showing `Execution route:` on a blocked, review-only, or plan-review delivery
-handoff, which makes the next agent think execution is authorized before all
-required review gates are complete.
+The remaining failure mode is partly missed execution at handoff time. Authors
+can know the rules and still emit a relay block that drops review findings
+outside the copy block, forgets the three-line `Review:` contract, pairs
+`Review: none-FYI` with `to-reviewer`, or leaves the canonical ATK source-repo
+residual only in prose. A related route-display failure is showing
+`Execution route:` on a blocked, review-only, plan-review, findings-delivery, or
+fix-confirmation-delivery handoff, which makes the next agent think execution
+is authorized before all required review gates are complete.
 
 v0.4.12 should add the checklist moment without creating a second normative
 home for the same requirements.
@@ -35,9 +38,12 @@ the stable English heading:
 Pre-handoff self-check
 ```
 
-The subsection should come after the relay, copy, residual, status, readiness,
-user-action, blocker, approval-text, route, and normative control-contract rules
-it references. It should be a pointer checklist, not a restatement of the rules.
+Before adding the subsection, add one normative sentence to `User notes rule`
+for the reply prompt and one normative sentence to the route rules block for
+`Execution route:` display timing. Then place the subsection after the relay,
+copy, residual, status, readiness, user-action, blocker, approval-text, route,
+and normative control-contract rules it references. It should be a pointer
+checklist, not a restatement of the rules.
 
 The self-check is performed silently before emitting a handoff. It must not add
 an attestation line, checklist dump, new relay field, or new `Status:` value. If
@@ -49,7 +55,8 @@ The checklist should stay capped at roughly eight compact questions:
 - Is `Status:` one of the legal relay statuses?
 - Does `Review:` cohere with `Status:` and `User action:`, and if
   `Execution route:` is present, is this an executable approval / continuation
-  handoff rather than a blocked, review-only, or plan-review handoff?
+  handoff under the route display rule rather than a blocked, review-only,
+  plan-review, findings-delivery, or fix-confirmation-delivery handoff?
 - When exact approval or disposition text is required, is
   `Required user text:` non-`n/a` and exact, and does any
   `reply-required-text` handoff make clear outside the copy block that the
@@ -72,12 +79,23 @@ fields:
 Co-occurrence tie-breaker, Full-context copy rule, User notes rule,
 `Accepted residuals`, Status criteria, Relay readiness rule, User action
 consistency rule, `Required user text`, `Target repo`, and Normative
-control-contract changes.
+control-contract changes. After this increment, Q2 points at the route display
+rule in the route block and Q3 points at the reply-prompt sentence in User
+notes rule; the checklist does not originate either rule.
 
 The `reply-required-text` prompt is a human-facing clarity check, not a second
 approval-text authority. The exact approval or disposition text still lives only
 in `Required user text`; prose outside the copy block should only say that the
 current chat is waiting for a user reply.
+
+The canonical route-display rule is: `Execution route:` appears only on an
+executable approval / continuation handoff consumed by the agent/chat that will
+execute the routed work, after all required review / fix-confirmation gates on
+that routed work are complete, and where any named user approval or
+continuation reply would directly authorize that execution under the existing
+approval-to-execute rule. Omit it from blocked, review-only, plan-review,
+findings-delivery, fix-confirmation-delivery, and other cross-chat delivery
+handoffs.
 
 ## Pre-Spec Review Disposition
 
@@ -113,10 +131,14 @@ contract `main` at `b74f29a`.
   copy block should make the pending user reply obvious without duplicating the
   exact approval or disposition text.
 - User route-display feedback: accepted as a narrow checklist refinement.
-  `Execution route:` should appear only when the handoff is executable after
-  all required review / fix-confirmation gates are complete and any named user
-  approval or continuation reply is supplied. It should be omitted from blocked,
-  review-only, fix-confirmation delivery, and plan-review handoffs.
+- User route-display feedback: accepted as a narrow rule-home clarification
+  plus checklist pointer. `Execution route:` should appear only on an
+  executable approval / continuation handoff consumed by the agent/chat that
+  will execute the routed work, after all required review / fix-confirmation
+  gates on that routed work are complete, and where any named user approval or
+  continuation reply would directly authorize that execution. It should be
+  omitted from blocked, review-only, plan-review, findings-delivery,
+  fix-confirmation-delivery, and other cross-chat delivery handoffs.
 
 ## Scope
 
@@ -124,8 +146,13 @@ In scope:
 
 - Add the `Pre-handoff self-check` subsection to
   `skills/agent-operating-manual/10-model-dispatch.md`.
-- Clarify in that checklist that `Execution route:` is displayed only for an
-  executable approval / continuation handoff after required reviews are done.
+- Add one sentence to `User notes rule` making clear that a
+  `reply-required-text` handoff should say outside the copy block that the
+  current chat is waiting for a user reply without duplicating exact text.
+- Add one sentence to the route rules block making clear that `Execution
+  route:` is displayed only for an executable approval / continuation handoff
+  consumed by the agent/chat that will execute the routed work after required
+  review / fix-confirmation gates are complete.
 - Keep the subsection inline in section 3.1 for now. The deferred F2
   handoff-contract file split still waits until relay control semantics
   stabilize.
