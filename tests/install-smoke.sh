@@ -201,6 +201,27 @@ for f in CLAUDE.md AGENTS.md GEMINI.md; do
   grep -Fq 'Metadata bump approval does not authorize tag creation' \
     "$TMP/target/docs/imported-skills/agent-operating-manual/25-change-discipline.md" \
     || fail "$f imported change discipline missing approval non-transfer rule"
+  grep -Fq 'Public PR / Release Train Discipline' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/25-change-discipline.md" \
+    || fail "$f imported change discipline missing public PR release train section"
+  grep -Fq 'public train branch' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/25-change-discipline.md" \
+    || fail "$f imported change discipline missing public train branch"
+  grep -Fq 'hosted PR' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/25-change-discipline.md" \
+    || fail "$f imported change discipline missing hosted PR path"
+  grep -Fq 'local equivalent' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/25-change-discipline.md" \
+    || fail "$f imported change discipline missing local equivalent path"
+  grep -Fq 'version-only' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/25-change-discipline.md" \
+    || fail "$f imported change discipline missing version-only evidence rule"
+  grep -Fq 'release choice' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/25-change-discipline.md" \
+    || fail "$f imported change discipline missing release choice rule"
+  grep -Fq 'complete-no-action-needed means no release remains' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/25-change-discipline.md" \
+    || fail "$f imported change discipline missing post-push no-action example"
   grep -Fq 'Plan / PR Lifecycle Discipline' \
     "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
     || fail "$f imported manual missing Plan / PR lifecycle cross-reference"
