@@ -86,6 +86,12 @@ release scope.
   post-publish smoke, exact approval, no-backfill, and terminal closeout gates
   while leaving public PR discipline, private plan artifact boundary, post-push
   no-action examples, worker lifecycle, ATK mechanism, and retrieval open.
+- v0.5.7: skill-surface split discipline adds Skill Surface Disposition,
+  trigger-focused frontmatter guidance, default-vs-optional install reasoning,
+  and batched release cadence for install-facing changes while preserving
+  portable release-governance skill TDD, public PR discipline, private plan
+  artifact boundary, post-push no-action examples, worker hygiene, ATK
+  mechanism, and retrieval candidates as separate follow-ups.
 
 ## Candidate Lanes
 
