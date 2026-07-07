@@ -130,7 +130,6 @@ contract `main` at `b74f29a`.
   `User action:` includes `reply-required-text`, human-facing prose outside the
   copy block should make the pending user reply obvious without duplicating the
   exact approval or disposition text.
-- User route-display feedback: accepted as a narrow checklist refinement.
 - User route-display feedback: accepted as a narrow rule-home clarification
   plus checklist pointer. `Execution route:` should appear only on an
   executable approval / continuation handoff consumed by the agent/chat that
