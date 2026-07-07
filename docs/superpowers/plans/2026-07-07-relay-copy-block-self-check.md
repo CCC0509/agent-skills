@@ -199,7 +199,7 @@ Expected: commit succeeds.
 **Files:**
 - Update: `docs/superpowers/plans/2026-07-07-relay-copy-block-self-check.md`
 
-- [ ] **Step 1: Run final verification**
+- [x] **Step 1: Run final verification**
 
 Run:
 
@@ -213,7 +213,7 @@ git status -sb
 
 Expected: `session-check --closeout` exits `1` only for the documented `agent-skills: plugin directory missing` source-repo boundary and possibly the related plugin freshness advisory; install smoke passes; `git diff --check` is clean; token scan includes the v0.4.12 surfaces and execution-route gating token; status is clean on `worktree-v0.4.12-relay-self-check`.
 
-- [ ] **Step 2: Commit final plan progress if changed**
+- [x] **Step 2: Commit final plan progress if changed**
 
 Run:
 
@@ -224,7 +224,7 @@ git commit -m "docs: mark relay self-check plan closeout"
 
 Expected: commit succeeds if the plan checkbox update changed the file. If there is no staged plan change, do not create an empty commit.
 
-- [ ] **Step 3: Prepare final handoff**
+- [x] **Step 3: Prepare final handoff**
 
 Use this relay shape:
 
@@ -240,7 +240,7 @@ Accepted residuals: ATK root-source boundary / documented in AGENTS.md / mechani
 
 Review: full
 Focus: Pointer-checklist constraint, no emitted attestation or second normative home, reply-required-text UX clarity, Execution route gating after review completion, and install-smoke coverage.
-Prev reviewed tip: <tip approved by fix-confirmation after 7336a9c>
+Prev reviewed tip: 8301404
 ```
 
 ---
