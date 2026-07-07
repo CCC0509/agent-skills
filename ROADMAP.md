@@ -68,6 +68,13 @@ release scope.
   release-lifecycle, execution-hygiene, and closeout-taxonomy candidates, adds
   the Release tag / publish lifecycle discipline candidate, and keeps advisory /
   memory rows explicitly unlaned.
+- v0.5.4: default handoff-relay trigger wrapper adds a small install-facing
+  handoff / relay / exact-approval entry surface, keeps relay semantics
+  canonical in Agent Operating Manual section 3.1 and review behavior in
+  multi-angle-review, and leaves F2 handoff-contract file split, skill context
+  loading / retrieval, release tag / publish lifecycle, ATK mechanism,
+  vector / MCP retrieval, and portable Karpathy-guidelines uplift open.
+  Adopters need a later reviewed tag / publish train for non-dev delivery.
 
 ## Candidate Lanes
 

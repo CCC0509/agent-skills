@@ -213,7 +213,7 @@ Expected: commit succeeds. The smoke test is expected to fail until Task 2.
 - Produces: default wrapper install surface and `0.5.4` metadata that Task 3
   verifies.
 
-- [ ] **Step 1: Create the trigger-only wrapper skill**
+- [x] **Step 1: Create the trigger-only wrapper skill**
 
 Create `skills/handoff-relay/SKILL.md`:
 
@@ -251,7 +251,7 @@ with a canonical file, follow the canonical file and fix this wrapper.
    or copy the full relay state machine into this wrapper.
 ```
 
-- [ ] **Step 2: Add `handoff-relay` to default install order**
+- [x] **Step 2: Add `handoff-relay` to default install order**
 
 In `install.sh`, replace:
 
@@ -265,7 +265,7 @@ with:
 DEFAULT_SKILLS="agent-operating-manual,handoff-relay,multi-angle-review"
 ```
 
-- [ ] **Step 3: Add the entry-pointer line**
+- [x] **Step 3: Add the entry-pointer line**
 
 In the `case "$name" in` block in `install.sh`, after the
 `agent-operating-manual)` case and before `multi-angle-review)`, add:
@@ -276,7 +276,7 @@ In the `case "$name" in` block in `install.sh`, after the
 " ;;
 ```
 
-- [ ] **Step 4: Update README skill list and install examples**
+- [x] **Step 4: Update README skill list and install examples**
 
 In `README.md`, add this row after `agent-operating-manual`:
 
@@ -308,7 +308,7 @@ with:
 ./install.sh <target-repo-path> --skills agent-operating-manual,handoff-relay,multi-angle-review,skill-authoring
 ```
 
-- [ ] **Step 5: Update plugin metadata**
+- [x] **Step 5: Update plugin metadata**
 
 Replace `.claude-plugin/plugin.json` with:
 
@@ -350,7 +350,7 @@ In `.claude-plugin/marketplace.json`, set the plugin entry to:
 }
 ```
 
-- [ ] **Step 6: Add the v0.5.4 ROADMAP Landed entry without closing neighbors**
+- [x] **Step 6: Add the v0.5.4 ROADMAP Landed entry without closing neighbors**
 
 In `ROADMAP.md`, add this Landed item after v0.5.3:
 
@@ -373,7 +373,7 @@ Release tag / publish lifecycle discipline
 Portable work-discipline / Karpathy-guidelines uplift
 ```
 
-- [ ] **Step 7: Run the install smoke and verify it passes**
+- [x] **Step 7: Run the install smoke and verify it passes**
 
 Run:
 
@@ -387,7 +387,7 @@ Expected:
 install smoke ok
 ```
 
-- [ ] **Step 8: Commit implementation surfaces and checkbox update**
+- [x] **Step 8: Commit implementation surfaces and checkbox update**
 
 Run:
 

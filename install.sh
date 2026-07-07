@@ -3,7 +3,7 @@ set -euo pipefail
 
 REPO_SLUG="CCC0509/agent-skills"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-DEFAULT_SKILLS="agent-operating-manual,multi-angle-review"
+DEFAULT_SKILLS="agent-operating-manual,handoff-relay,multi-angle-review"
 ENTRY_FILES=("CLAUDE.md" "AGENTS.md" "GEMINI.md")
 MARKER_BEGIN="<!-- agent-skills:begin -->"
 MARKER_END="<!-- agent-skills:end -->"
@@ -93,6 +93,9 @@ for name in "${SKILL_ARR[@]}"; do
   case "$name" in
     agent-operating-manual)
       POINTER_LINES="${POINTER_LINES}非 trivial 任務（委派、選模型、驗證、何時停）先讀 [$DEST/agent-operating-manual/SKILL.md]($DEST/agent-operating-manual/SKILL.md)。
+" ;;
+    handoff-relay)
+      POINTER_LINES="${POINTER_LINES}Agent handoff / relay / approval / reviewer forwarding 時讀 [$DEST/handoff-relay/SKILL.md]($DEST/handoff-relay/SKILL.md)。
 " ;;
     multi-angle-review)
       POINTER_LINES="${POINTER_LINES}Read-only review（PR / commit range / plan/rule-review / fix-confirmation）套 [$DEST/multi-angle-review/SKILL.md]($DEST/multi-angle-review/SKILL.md)。

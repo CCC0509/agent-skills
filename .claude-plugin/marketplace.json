@@ -4,14 +4,14 @@
     "name": "Jack Chou"
   },
   "metadata": {
-    "description": "Portable agent doctrine skills: dispatch economy, adversarial review, and skill authoring"
+    "description": "Portable agent doctrine skills: dispatch economy, handoff relay, adversarial review, and skill authoring"
   },
   "plugins": [
     {
       "name": "agent-skills",
       "source": "./",
-      "description": "Portable agent doctrine skills: agent-operating-manual (dispatch economy), multi-angle-review (adversarial review pipeline), and optional skill-authoring.",
-      "version": "0.5.2",
+      "description": "Portable agent doctrine skills: agent-operating-manual (dispatch economy), handoff-relay (handoff / approval trigger surface), multi-angle-review (adversarial review pipeline), and optional skill-authoring.",
+      "version": "0.5.4",
       "author": {
         "name": "Jack Chou"
       },
