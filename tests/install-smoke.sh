@@ -183,6 +183,24 @@ for f in CLAUDE.md AGENTS.md GEMINI.md; do
   grep -Fq 'tree equivalence' \
     "$TMP/target/docs/imported-skills/agent-operating-manual/25-change-discipline.md" \
     || fail "$f imported change discipline missing tree equivalence evidence"
+  grep -Fq 'Release Tag / Publish Lifecycle Discipline' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/25-change-discipline.md" \
+    || fail "$f imported change discipline missing release lifecycle section"
+  grep -Fq 'approve create annotated tag' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/25-change-discipline.md" \
+    || fail "$f imported change discipline missing tag-create approval example"
+  grep -Fq 'approve push tag' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/25-change-discipline.md" \
+    || fail "$f imported change discipline missing tag-push approval example"
+  grep -Fq 'Post-tag smoke' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/25-change-discipline.md" \
+    || fail "$f imported change discipline missing post-tag smoke"
+  grep -Fq 'Post-publish verification' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/25-change-discipline.md" \
+    || fail "$f imported change discipline missing post-publish verification"
+  grep -Fq 'Metadata bump approval does not authorize tag creation' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/25-change-discipline.md" \
+    || fail "$f imported change discipline missing approval non-transfer rule"
   grep -Fq 'Plan / PR Lifecycle Discipline' \
     "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
     || fail "$f imported manual missing Plan / PR lifecycle cross-reference"
@@ -328,6 +346,9 @@ bash "$TMP/src/install.sh" "$TMP/target" --skills agent-operating-manual,handoff
   || fail "missing skill-authoring/SKILL.md"
 [ -f "$TMP/target/docs/imported-skills/skill-authoring/.managed-by-agent-skills" ] \
   || fail "missing skill-authoring sentinel"
+grep -Fq 'Release tag / publish lifecycle discipline' \
+  "$TMP/target/docs/imported-skills/skill-authoring/SKILL.md" \
+  || fail "imported skill-authoring missing release lifecycle pointer"
 [ -f "$TMP/target/docs/imported-skills/work-discipline/SKILL.md" ] \
   || fail "missing work-discipline/SKILL.md"
 [ -f "$TMP/target/docs/imported-skills/work-discipline/.managed-by-agent-skills" ] \

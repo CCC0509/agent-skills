@@ -92,7 +92,7 @@ publishes nothing, and does not push.
 - Produces: failing smoke assertions for the lifecycle doctrine and checklist
   pointer that Task 2 must satisfy.
 
-- [ ] **Step 1: Confirm branch, reviewed spec, and source health**
+- [x] **Step 1: Confirm branch, reviewed spec, and source health**
 
 Run:
 
@@ -117,7 +117,7 @@ Expected:
   `agent-skills: plugin directory missing`, no failure categories, and no
   failure drivers.
 
-- [ ] **Step 2: Add red release-lifecycle assertions to the default install**
+- [x] **Step 2: Add red release-lifecycle assertions to the default install**
 
 In `tests/install-smoke.sh`, after the existing assertion:
 
@@ -150,7 +150,7 @@ add:
     || fail "$f imported change discipline missing approval non-transfer rule"
 ```
 
-- [ ] **Step 3: Add red release-lifecycle assertion to optional skill-authoring**
+- [x] **Step 3: Add red release-lifecycle assertion to optional skill-authoring**
 
 In `tests/install-smoke.sh`, in section `# 13) optional skills install only
 when explicitly requested`, after:
@@ -168,7 +168,7 @@ grep -Fq 'Release tag / publish lifecycle discipline' \
   || fail "imported skill-authoring missing release lifecycle pointer"
 ```
 
-- [ ] **Step 4: Run smoke and verify the red failure**
+- [x] **Step 4: Run smoke and verify the red failure**
 
 Run:
 
