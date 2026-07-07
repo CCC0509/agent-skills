@@ -51,7 +51,7 @@
 - Consumes: existing optional install block in `tests/install-smoke.sh` lines 342-351.
 - Produces: smoke assertions later satisfied by `skills/skill-authoring/SKILL.md`.
 
-- [ ] **Step 1: Add failing assertions after the existing skill-authoring release pointer check**
+- [x] **Step 1: Add failing assertions after the existing skill-authoring release pointer check**
 
 Use `apply_patch`:
 
@@ -82,7 +82,7 @@ Use `apply_patch`:
 *** End Patch
 ```
 
-- [ ] **Step 2: Run the red smoke**
+- [x] **Step 2: Run the red smoke**
 
 Run:
 
@@ -96,7 +96,7 @@ Expected: exit nonzero with first failure:
 SMOKE FAIL: imported skill-authoring missing skill surface disposition
 ```
 
-- [ ] **Step 3: Commit the red smoke only**
+- [x] **Step 3: Commit the red smoke only**
 
 Run:
 
@@ -125,7 +125,7 @@ Expected:
 - Consumes: red smoke assertions from Task 1.
 - Produces: installed optional `skill-authoring` text with the required tokens; metadata version `0.5.7`; v0.5.7 ROADMAP Landed entry.
 
-- [ ] **Step 1: Replace `skills/skill-authoring/SKILL.md` with the v0.5.7 canonical text**
+- [x] **Step 1: Replace `skills/skill-authoring/SKILL.md` with the v0.5.7 canonical text**
 
 Use `apply_patch`:
 
@@ -235,7 +235,7 @@ Use `apply_patch`:
 *** End Patch
 ```
 
-- [ ] **Step 2: Bump plugin metadata to 0.5.7**
+- [x] **Step 2: Bump plugin metadata to 0.5.7**
 
 Use `apply_patch`:
 
@@ -252,7 +252,7 @@ Use `apply_patch`:
 *** End Patch
 ```
 
-- [ ] **Step 3: Add the v0.5.7 ROADMAP Landed entry without closing future candidates**
+- [x] **Step 3: Add the v0.5.7 ROADMAP Landed entry without closing future candidates**
 
 Use `apply_patch`:
 
@@ -274,7 +274,7 @@ Use `apply_patch`:
 *** End Patch
 ```
 
-- [ ] **Step 4: Inspect the implementation diff before committing**
+- [x] **Step 4: Inspect the implementation diff before committing**
 
 Run:
 
@@ -289,7 +289,7 @@ Expected:
 - ROADMAP has one new `v0.5.7` Landed entry.
 - ROADMAP still contains `Portable release-governance skill TDD`, `Public repo PR / release train discipline`, `Private superpowers plan artifact boundary`, `Post-push complete-no-action-needed closeout examples`, `Skill context loading / retrieval strategy`, and `F2 handoff-contract file split`.
 
-- [ ] **Step 5: Commit implementation before the green smoke**
+- [x] **Step 5: Commit implementation before the green smoke**
 
 Run:
 
@@ -304,7 +304,7 @@ Expected:
 - No tag, tag push, publish, merge, or remote push occurs.
 - `docs/superpowers/plans/2026-07-07-skill-surface-split-discipline.md` remains unstaged if checkbox ticks were edited.
 
-- [ ] **Step 6: Run the green smoke against committed HEAD**
+- [x] **Step 6: Run the green smoke against committed HEAD**
 
 Run:
 
@@ -318,7 +318,7 @@ Expected final line:
 install smoke ok
 ```
 
-- [ ] **Step 7: Run a no-plan-self-match token scan**
+- [x] **Step 7: Run a no-plan-self-match token scan**
 
 Run:
 
@@ -355,7 +355,7 @@ Expected:
 - Consumes: Task 1 red smoke commit and Task 2 implementation commit.
 - Produces: verification-mark commit and a full-review handoff.
 
-- [ ] **Step 1: Confirm the expected branch range files**
+- [x] **Step 1: Confirm the expected branch range files**
 
 Run:
 
@@ -375,7 +375,7 @@ skills/skill-authoring/SKILL.md
 tests/install-smoke.sh
 ```
 
-- [ ] **Step 2: Run full range whitespace check**
+- [x] **Step 2: Run full range whitespace check**
 
 Run:
 
@@ -385,7 +385,7 @@ git diff --check origin/main..HEAD
 
 Expected: exit 0, no output.
 
-- [ ] **Step 3: Run placeholder scan on the changed live surfaces**
+- [x] **Step 3: Run placeholder scan on the changed live surfaces**
 
 Run:
 
@@ -400,7 +400,7 @@ rg -n '[T]BD|[T]ODO|[P]LACEHOLDER' \
 
 Expected: exit 1, no matches.
 
-- [ ] **Step 4: Re-run install smoke**
+- [x] **Step 4: Re-run install smoke**
 
 Run:
 
@@ -414,7 +414,7 @@ Expected final line:
 install smoke ok
 ```
 
-- [ ] **Step 5: Re-run token scan and record counts**
+- [x] **Step 5: Re-run token scan and record counts**
 
 Run:
 
@@ -440,7 +440,7 @@ Expected:
 - Every count is greater than zero.
 - Report the exact counts in the author verification block.
 
-- [ ] **Step 6: Verify release boundaries remained untouched**
+- [x] **Step 6: Verify release boundaries remained untouched**
 
 Run:
 
@@ -457,7 +457,7 @@ Expected:
 - `git tag --points-at HEAD` prints no `v0.5.7` tag.
 - No push, tag push, publish, merge, branch cleanup, or adopting-repo install has occurred.
 
-- [ ] **Step 7: Run closeout health check**
+- [x] **Step 7: Run closeout health check**
 
 Run:
 
@@ -471,7 +471,7 @@ Expected:
 - No unmarked outcome events.
 - Carry accepted residual: `ATK root-source boundary / documented in AGENTS.md / mechanism owner: Agent Trigger Kit follow-up`.
 
-- [ ] **Step 8: Commit plan checkbox ticks**
+- [x] **Step 8: Commit plan checkbox ticks**
 
 Run:
 
