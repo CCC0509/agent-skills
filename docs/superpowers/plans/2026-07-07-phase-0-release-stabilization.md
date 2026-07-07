@@ -182,7 +182,7 @@ Expected: commit succeeds with only the test and this plan file changed.
 - Consumes: Task 1 commit and verification output.
 - Produces: Review-ready closeout relay for the Phase 0 stale-smoke stabilization patch.
 
-- [ ] **Step 1: Re-run final status checks after the commit**
+- [x] **Step 1: Re-run final status checks after the commit**
 
 Run:
 
@@ -193,7 +193,7 @@ git log --oneline -3
 
 Expected: working tree is clean; latest commit is `test: repair phase 0 cross-repo smoke`.
 
-- [ ] **Step 2: Prepare the final relay**
+- [x] **Step 2: Prepare the final relay**
 
 Run:
 
@@ -221,7 +221,7 @@ approval relay embedded in the `Prev reviewed tip:` line. If
 `PLAN_REVIEWED_TIP` is unset, the command fails before printing a malformed
 relay.
 
-- [ ] **Step 3: Commit final plan checkbox progress if changed**
+- [x] **Step 3: Commit final plan checkbox progress if changed**
 
 If Task 2 checkbox updates changed this plan after Task 1's commit, run:
 
