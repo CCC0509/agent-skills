@@ -178,10 +178,11 @@ Use `apply_patch`:
 +   the verification gap. Fast-forwarding a multi-commit train into public
 +   `main` is exceptional after this rule lands and must be explicitly chosen.
 +6. **public main closeout**: after merge and push, verify remote `main` points
-+   at the executed merge object. `complete-no-action-needed means no release
-+   remains`, no next-agent action remains, and all accepted residuals have
-+   owners. If install-facing metadata changed, surface the release choice:
-+   direct §3.2 pre-tag approval, or an explicit batched release train record.
++   at the executed merge object.
++   `complete-no-action-needed means no release remains`, no next-agent action
++   remains, and all accepted residuals have owners. If install-facing metadata
++   changed, surface the release choice: direct §3.2 pre-tag approval, or an
++   explicit batched release train record.
 +
 +`version-only` public history is allowed only after evidence is durably
 +captured elsewhere. A terse version commit, squash subject, or closeout cannot
