@@ -55,6 +55,11 @@ release scope.
   index, and mechanism evidence memory, including next-session seed and
   Obsidian-compatible markdown boundaries without adding new memory types,
   templates, vault rules, validators, or runtime mechanisms.
+- v0.5.1: review continuation handoff tightening adds the narrow
+  `ready-for-continuation` relay status, widens `ready-for-user-approval` to all
+  exact-text approval gates, preserves pre-spec / design-framing conclusions, and
+  tightens review deliverable copy fields without adding worker lifecycle or
+  Plan / PR lifecycle doctrine.
 
 ## Extraction Candidates
 
@@ -73,7 +78,6 @@ release scope.
 | agent-skills doctrine | Brainstorming decision-assist protocol | agent-skills | Advisory workflow for when the user or agent cannot choose during brainstorming; separate from closeout memory routing. |
 | agent-skills doctrine | Starter memory templates | agent-skills / adopting repos | Useful after closeout routing stabilizes, but templates would create stronger file-shape opinions than v0.5.0 needs. |
 | agent-skills doctrine | Obsidian vault convention | adopting repo or separate doctrine candidate | Cross-project vault layout and backlink conventions are personal or organization-specific; canonical repo memory remains portable markdown. |
-| agent-skills doctrine | Review deliverable handoff copy-field tightening | agent-skills | Control-contract work over multi-angle-review and Agent Operating Manual section 3.1; separate from closeout memory routing. |
 | ATK templates | `agent-impact-file-sets.mjs` classifier template | agent-trigger-kit | Mechanism/script, not doctrine. |
 | ATK templates | Plan/spec lifecycle checker template | agent-trigger-kit | Validator template belongs with trigger-layer mechanisms. |
 | ATK templates | MCP config validator template | agent-trigger-kit | Reusable validator; pair with agent-skills fallback doctrine later. |

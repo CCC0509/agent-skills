@@ -145,7 +145,7 @@ Expected: commit succeeds with only `tests/install-smoke.sh` and this plan file 
 - Consumes: failing smoke tokens from Task 1.
 - Produces: v0.5.1 doctrine text, release metadata, roadmap state, and a green focused smoke.
 
-- [ ] **Step 1: Update the relay block status enum**
+- [x] **Step 1: Update the relay block status enum**
 
 In `skills/agent-operating-manual/10-model-dispatch.md`, replace this line in the relay block:
 
@@ -161,7 +161,7 @@ Status: <review-needed | ready-for-user-approval | ready-for-continuation | comp
 
 Expected: the relay block declares the new status value exactly once in the enum line.
 
-- [ ] **Step 2: Update common User action mappings**
+- [x] **Step 2: Update common User action mappings**
 
 In the "common defaults" paragraph under `User action`, replace this sequence:
 
@@ -190,7 +190,7 @@ revision 可用的 `not-ready` 用 `none`；
 
 Expected: `ready-for-continuation` has the default `self-review -> to-agent`.
 
-- [ ] **Step 3: Add pre-spec copy wording to Full-context copy rule**
+- [x] **Step 3: Add pre-spec copy wording to Full-context copy rule**
 
 In the `Full-context copy rule` paragraph, replace:
 
@@ -217,7 +217,7 @@ target 已足夠，copy block 可以較短；不確定時偏向 full-context cop
 
 Expected: pre-spec / design-framing is a first-class copy-block case.
 
-- [ ] **Step 4: Add the Durable conclusion capture subsection**
+- [x] **Step 4: Add the Durable conclusion capture subsection**
 
 In `skills/agent-operating-manual/10-model-dispatch.md`, after the `Accepted residuals` paragraph ending with:
 
@@ -242,7 +242,7 @@ spec / plan。
 
 Expected: the AOM has a stable `Durable conclusion capture` heading, the `Pre-Spec Review Disposition` token, and an explicit pre-spec labeling rule.
 
-- [ ] **Step 5: Replace Status criteria**
+- [x] **Step 5: Replace Status criteria**
 
 Replace the current `Status 判準：` bullet list:
 
@@ -293,7 +293,7 @@ Status 判準：
 
 Expected: this resolves the accepted residual by retiring execution authorization from bundled `review-needed` approval text.
 
-- [ ] **Step 6: Update User action consistency rule**
+- [x] **Step 6: Update User action consistency rule**
 
 In `User action consistency rule`, replace:
 
@@ -318,7 +318,7 @@ block 與三行 `Review:` 合約。
 
 Expected: author-revision and continuation pairings are normative.
 
-- [ ] **Step 7: Replace approval-text paragraph**
+- [x] **Step 7: Replace approval-text paragraph**
 
 Replace the paragraph:
 
@@ -342,7 +342,7 @@ execution、merge、tag、deploy、release），`Status` 必須是 `ready-for-us
 
 Expected: the old bundled `review-needed` approval-text path no longer authorizes execution.
 
-- [ ] **Step 8: Update Route display rule and pre-handoff checklist**
+- [x] **Step 8: Update Route display rule and pre-handoff checklist**
 
 In the `Route display rule` paragraph, replace:
 
@@ -368,7 +368,7 @@ In the pre-handoff self-check bullet that starts with `` `Status:` 是否是合�
 
 Expected: route display and self-check both recognize the continuation status.
 
-- [ ] **Step 9: Update multi-angle-review Phase 4**
+- [x] **Step 9: Update multi-angle-review Phase 4**
 
 In `skills/multi-angle-review/SKILL.md`, after the existing bullet:
 
@@ -398,7 +398,7 @@ add:
 
 Expected: the review skill carries the three surfaces and the two relay pairings.
 
-- [ ] **Step 10: Update ROADMAP**
+- [x] **Step 10: Update ROADMAP**
 
 In `ROADMAP.md`, after the v0.5.0 landed entry, add:
 
@@ -418,7 +418,7 @@ Then delete this Extraction Candidate row:
 
 Expected: the v0.5.1 landed entry exists, the review-deliverable candidate is retired, and the `Plan / PR lifecycle discipline` plus `Branch / worker lifecycle hygiene` rows remain.
 
-- [ ] **Step 11: Bump plugin metadata**
+- [x] **Step 11: Bump plugin metadata**
 
 In `.claude-plugin/plugin.json`, change:
 
@@ -446,7 +446,7 @@ to:
 
 Expected: both metadata files carry version `0.5.1`.
 
-- [ ] **Step 12: Run pre-commit focused verification**
+- [x] **Step 12: Run pre-commit focused verification**
 
 Run:
 
@@ -465,7 +465,7 @@ that smoke clones committed `HEAD`, while the doctrine edits are still
 uncommitted working-tree changes. The green install-smoke gate runs after Step
 13 commits the doctrine.
 
-- [ ] **Step 13: Commit doctrine and release metadata**
+- [x] **Step 13: Commit doctrine and release metadata**
 
 Run:
 
