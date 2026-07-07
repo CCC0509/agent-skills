@@ -380,7 +380,7 @@ Expected: commit succeeds and contains no operator-bootstrap, Agent Trigger Kit,
 - Consumes: Task 1 red smoke and Task 2 green implementation.
 - Produces: verification commit plus a review-needed relay for the implementation train.
 
-- [ ] **Step 1: Run the full verification set**
+- [x] **Step 1: Run the full verification set**
 
 Run:
 
@@ -402,7 +402,7 @@ Expected:
 - `git diff --check origin/main..HEAD` exits `0`.
 - The token scan includes source doctrine, installed-smoke coverage, ROADMAP v0.5.10, metadata `0.5.10`, the preserved automated-maintenance row, and the reviewed spec / plan references.
 
-- [ ] **Step 2: Verify proposal-only scope and release boundaries**
+- [x] **Step 2: Verify proposal-only scope and release boundaries**
 
 Run:
 
@@ -428,7 +428,7 @@ Expected:
   `tests/fresh-session-continuity-smoke.sh`, and `tests/install-smoke.sh`.
 - `git tag --points-at HEAD` prints nothing. If it prints a tag, stop and investigate because this plan does not authorize tag creation.
 
-- [ ] **Step 3: Commit verification checkbox updates**
+- [x] **Step 3: Commit verification checkbox updates**
 
 After marking completed checkboxes in this plan, run:
 
