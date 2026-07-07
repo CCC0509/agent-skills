@@ -62,6 +62,15 @@ for f in CLAUDE.md AGENTS.md GEMINI.md; do
   grep -Fq 'complete-no-action-needed' \
     "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
     || fail "$f imported manual missing completion relay signal"
+  grep -Fq 'Status: <review-needed | ready-for-user-approval | ready-for-continuation | complete-no-action-needed | not-ready>' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    || fail "$f imported manual missing ready-for-continuation relay status"
+  grep -Fq 'ready-for-continuation' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    || fail "$f imported manual missing continuation relay signal"
+  grep -Fq 'exact-text approval gate' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    || fail "$f imported manual missing exact-text approval gate rule"
   grep -Fq 'Co-occurrence tie-breaker' \
     "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
     || fail "$f imported manual missing Review/Status tie-breaker"
@@ -74,6 +83,15 @@ for f in CLAUDE.md AGENTS.md GEMINI.md; do
   grep -Fq 'Full-context copy rule' \
     "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
     || fail "$f imported manual missing full-context copy rule"
+  grep -Fq 'pre-spec / design-framing' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    || fail "$f imported manual missing pre-spec handoff rule"
+  grep -Fq 'Durable conclusion capture' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    || fail "$f imported manual missing durable conclusion capture rule"
+  grep -Fq 'Pre-Spec Review Disposition' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    || fail "$f imported manual missing pre-spec disposition home"
   grep -Fq 'User action consistency rule' \
     "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
     || fail "$f imported manual missing user action consistency rule"
@@ -104,6 +122,15 @@ for f in CLAUDE.md AGENTS.md GEMINI.md; do
   grep -Fq 'Accepted residuals: <none | short finding label + disposition + durable tracker/owner>' \
     "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
     || fail "$f imported manual missing accepted residuals contract"
+  grep -Fq 'Review deliverable copy-field tightening' \
+    "$TMP/target/docs/imported-skills/multi-angle-review/SKILL.md" \
+    || fail "$f imported review skill missing deliverable copy-field tightening"
+  grep -Fq 'paste-ready relay block' \
+    "$TMP/target/docs/imported-skills/multi-angle-review/SKILL.md" \
+    || fail "$f imported review skill missing paste-ready relay block surface"
+  grep -Fq 'Durable residual list' \
+    "$TMP/target/docs/imported-skills/multi-angle-review/SKILL.md" \
+    || fail "$f imported review skill missing durable residual list surface"
   grep -Fq 'sanctioned sandbox escalation 或 outside-sandbox retry' \
     "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
     || fail "$f imported manual missing sandbox escalation retry rule"

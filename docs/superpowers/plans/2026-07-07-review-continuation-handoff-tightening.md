@@ -48,7 +48,7 @@
 - Consumes: current installed-copy smoke helper structure in `tests/install-smoke.sh`.
 - Produces: failing smoke tokens that Task 2 satisfies through doctrine and metadata updates.
 
-- [ ] **Step 1: Add imported manual status and approval-token checks**
+- [x] **Step 1: Add imported manual status and approval-token checks**
 
 In `tests/install-smoke.sh`, inside the `for f in CLAUDE.md AGENTS.md GEMINI.md; do` loop, after the existing `complete-no-action-needed` assertion, add:
 
@@ -66,7 +66,7 @@ In `tests/install-smoke.sh`, inside the `for f in CLAUDE.md AGENTS.md GEMINI.md;
 
 Expected: the script now probes both the relay enum line and the status semantics.
 
-- [ ] **Step 2: Add imported manual pre-spec and durable-capture checks**
+- [x] **Step 2: Add imported manual pre-spec and durable-capture checks**
 
 In the same loop, after the existing `Full-context copy rule` assertion, add:
 
@@ -84,7 +84,7 @@ In the same loop, after the existing `Full-context copy rule` assertion, add:
 
 Expected: the smoke distinguishes pre-spec handoff labeling from general full-context copy.
 
-- [ ] **Step 3: Add imported review-skill checks**
+- [x] **Step 3: Add imported review-skill checks**
 
 In the same loop, after the existing `Accepted residuals` contract assertion and before the sandbox escalation assertion, add:
 
@@ -102,7 +102,7 @@ In the same loop, after the existing `Accepted residuals` contract assertion and
 
 Expected: the installed review skill must carry the review-output surfaces from the spec.
 
-- [ ] **Step 4: Run the focused smoke and confirm it fails red**
+- [x] **Step 4: Run the focused smoke and confirm it fails red**
 
 Run:
 
@@ -118,7 +118,7 @@ SMOKE FAIL: CLAUDE.md imported manual missing ready-for-continuation relay statu
 
 If the first missing token differs but is one of the new Task 1 tokens, continue.
 
-- [ ] **Step 5: Commit the failing smoke**
+- [x] **Step 5: Commit the failing smoke**
 
 Run:
 
