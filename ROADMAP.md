@@ -99,10 +99,11 @@ release scope.
   doctrine / ATK / adopting-repo split for generated or local trigger surfaces.
 - **Public Artifact / Release Hygiene:** `Public repo PR / release train
   discipline`, `Private superpowers plan artifact boundary`, and
-  `Post-push complete-no-action-needed closeout examples`. This lane owns public
-  main-history hygiene, private/public planning artifact boundaries, and
-  terminal closeout examples; it stays adjacent to but separate from the
-  release lifecycle state machine.
+  `Post-push complete-no-action-needed closeout examples`, plus
+  `Portable release-governance skill TDD`. This lane owns public main-history
+  hygiene, private/public planning artifact boundaries, terminal closeout
+  examples, and portable release-skill extraction; it stays adjacent to but
+  separate from the release lifecycle state machine.
 - **Execution / Worker Hygiene:** `Branch / worker lifecycle hygiene` and
   `Shared checkout concurrency etiquette`. This lane owns worker spawn / wait /
   consume / close, concurrency caps, post-merge push state, local branch cleanup,
@@ -135,6 +136,7 @@ routes them.
 | agent-skills doctrine / release process | Public repo PR / release train discipline | agent-skills | Direct-main trains through `9ebdfce` should not be rewritten, but future public-repo work needs a branch / PR / review / squash-or-release-commit lifecycle and a clear rule for when main closeout should be version-only versus evidence-bearing. |
 | agent-skills doctrine / artifact boundary | Private superpowers plan artifact boundary | agent-skills / private planning repo | Public specs and summaries can live here, but detailed superpowers plans, review paste blocks, local paths, and private evidence may belong in a private planning or audit repo; define the boundary before moving files. |
 | agent-skills doctrine | Post-push complete-no-action-needed closeout examples | agent-skills | Recent push closeout discussion showed agents can omit the no-action terminal status when a push truly has no remaining user or agent action; decide whether examples belong in handoff-relay, `10-model-dispatch.md`, or release lifecycle after the skill-surface audit. |
+| agent-skills doctrine / portable skill | Portable release-governance skill TDD | agent-skills / future portable skill | The v0.5.6 lifecycle works for this repo, but broad reuse needs `writing-skills` RED/GREEN pressure scenarios across Git-tag-only, hosted release, package registry, plugin marketplace, and no-publish-surface repos before extracting a portable release skill. |
 | agent-skills doctrine | Brainstorming decision-assist protocol | agent-skills | Advisory workflow for when the user or agent cannot choose during brainstorming; separate from closeout memory routing. |
 | agent-skills doctrine | Starter memory templates | agent-skills / adopting repos | Useful after closeout routing stabilizes, but templates would create stronger file-shape opinions than v0.5.0 needs. |
 | agent-skills doctrine | Obsidian vault convention | adopting repo or separate doctrine candidate | Cross-project vault layout and backlink conventions are personal or organization-specific; canonical repo memory remains portable markdown. |
