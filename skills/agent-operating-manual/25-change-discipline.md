@@ -159,6 +159,63 @@ Do not backfill missing tags for already-public trains unless a separate
 reviewed release-repair plan authorizes that exact backfill. The normal path is
 to tag the reviewed release head with the current manifest version.
 
+## §3.3 Public PR / Release Train Discipline
+
+Use this lifecycle in public source repos where branch, PR, public `main`
+history, and release evidence are visible to adopters. It extends §3.1 and
+enters §3.2; relay fields, exact approval text placement, and copy-block shape
+remain in [`10-model-dispatch.md`](10-model-dispatch.md) §3.1.
+
+1. **public train branch**: substantive public-repo work starts on a named
+   branch with a named base commit. Normative doctrine, release, entrypoint,
+   installer, metadata, and public artifact changes remain plan-first. Direct
+   public `main` edits require an explicit emergency or tiny administrative
+   repair approval, and closeout must say why branch / PR routing did not
+   apply.
+2. **hosted PR or local equivalent**: when network and platform access allow
+   it, push the branch and open a hosted PR before merge. If the harness cannot
+   open a hosted PR, the local equivalent is a review handoff naming exact
+   branch, base, head, and range. Local-only work is still review-bound.
+3. **evidence-bearing PR**: keep public-safe specs, plans, review results,
+   smoke evidence, and author verification on the branch, in the PR body, in
+   the squash body, release notes, or another durable public record. Do not
+   publish raw private paths, raw local logs, or secret-like evidence.
+4. **public merge candidate**: after full review or fix-confirmation, follow
+   §3.1 rule 4 for exact merge approval naming the PR/head or local
+   branch/head. Do not restate or weaken that gate here.
+5. **merge shape chosen**: prefer hosted PR squash merge when the PR preserves
+   detailed evidence. Hosted rebase or merge commits are allowed when commit
+   granularity is intentionally public and each commit has a clear probe. A
+   local squash / release commit is allowed when hosted PR tooling is
+   unavailable; prove tree equivalence to the approved branch head or disclose
+   the verification gap. Fast-forwarding a multi-commit train into public
+   `main` is exceptional after this rule lands and must be explicitly chosen.
+6. **public main closeout**: after merge and push, verify remote `main` points
+   at the executed merge object.
+   `complete-no-action-needed means no release remains`, no next-agent action
+   remains, and all accepted residuals have owners. If install-facing metadata
+   changed, surface the release choice: direct §3.2 pre-tag approval, or an
+   explicit batched release train record.
+
+`version-only` public history is allowed only after evidence is durably
+captured elsewhere. A terse version commit, squash subject, or closeout cannot
+erase review, probe, approval, residual, or tree-equivalence evidence required
+by §2 and §3.1.
+
+Post-push examples:
+
+- No release remains: a docs-only PR is merged and pushed, remote `main`
+  matches the executed commit, no residuals remain, and
+  `Status: complete-no-action-needed` is correct.
+- Release choice remains: an install-facing PR is merged and pushed; stop at
+  direct §3.2 tag approval or record the batched release train before claiming
+  terminal closeout.
+- Review remains: a branch is pushed but review has not passed, so use
+  `Status: review-needed`.
+- Merge approval remains: full review passed but exact PR/head merge approval
+  has not been given, so use `Status: ready-for-user-approval` under
+  `10-model-dispatch.md` §3.1.
+
 ## §4 Public Evidence Hygiene
 
 Doctrine releases can cite evidence, but public evidence must be sanitized.
