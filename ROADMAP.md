@@ -111,10 +111,12 @@ Use these lanes to keep adjacent candidates visible without expanding a single
 release scope.
 
 - **Trigger Surface / Context Loading:** `Skill context loading / retrieval
-  strategy`, `F2 handoff-contract file split`, and `Plan/spec lifecycle header
-  convention text`. This lane owns rule discovery, trigger wording,
-  context-load reduction, and the doctrine / ATK / adopting-repo split for
-  generated or local trigger surfaces.
+  strategy`, `Session continuity / context-health handoff`, `Skill source
+  provenance / freshness report`, `F2 handoff-contract file split`, and
+  `Plan/spec lifecycle header convention text`. This lane owns rule discovery,
+  trigger wording, context-load reduction, fresh-session continuity, source /
+  imported-copy / plugin-cache provenance, and the doctrine / ATK /
+  adopting-repo split for generated or local trigger surfaces.
 - **Public Artifact / Release Hygiene:** `Private superpowers plan artifact
   boundary` plus `Portable release-governance skill TDD`. This lane owns
   private/public planning artifact boundaries and portable release-skill
@@ -130,10 +132,11 @@ release scope.
   protocol`. This lane owns evidence naming, warning classification, probe
   cataloging, and preflight / closeout memory semantics.
 
-`Brainstorming decision-assist protocol`, `Starter memory templates`, and
-`Obsidian vault convention` remain outside the lane map as advisory / memory
-shape candidates; preserve them as unsolved rows unless a later spec explicitly
-routes them.
+`Brainstorming decision-assist protocol`, `Starter memory templates`,
+`Obsidian vault convention`, and `Automated skill maintenance / optimization
+protocol` remain outside the lane map as advisory, memory-shape, or
+skill-authoring candidates; preserve them as unsolved rows unless a later spec
+explicitly routes them.
 
 ## Extraction Candidates
 
@@ -142,6 +145,8 @@ routes them.
 | agent-skills doctrine | Preflight self-report contract | agent-skills | Remaining half of the former preflight / closeout row; current session-start memory-index doctrine covers reading repo memory, but not whether agents should report preflight memory state. |
 | agent-skills doctrine | Plan/spec lifecycle header convention text | agent-skills | Doctrine belongs here; validator stays out of the markdown-only repo. |
 | agent-skills doctrine / tooling | Skill context loading / retrieval strategy | agent-skills / Agent Trigger Kit / optional MCP tooling | The Agent Operating Manual is large enough that agents may fail to apply all loaded rules under context pressure; investigate split, routing, retrieval, vector-index, or MCP-backed loading strategy separately so v0.5.2 remains lifecycle-only. |
+| agent-skills doctrine | Session continuity / context-health handoff | agent-skills / Agent Trigger Kit / operator-bootstrap | Context compaction, slow sessions, or failed handoffs need a portable decision rule for when to continue in place, use a sanctioned fresh-context mechanism, or ask the user to open a new session with a complete relay packet; mechanisms and user-level propagation stay with their owners. |
+| agent-skills doctrine / freshness | Skill source provenance / freshness report | agent-skills / Agent Trigger Kit / operator-bootstrap / adopting repos | Agents need to distinguish source checkout reading, `.agent-skills/pin` imported copies, plugin cache/runtime discovery, and user-level bootstrap templates before blaming a miss on missing version bumps; machine-readable probes belong with ATK or the owning surface. |
 | agent-skills doctrine | Shared checkout concurrency etiquette | agent-skills | Useful but outside v0.4 change-discipline scope; needs wording that fits multiple harnesses and shared-worktree policies. |
 | agent-skills doctrine | Named absence statuses for missing closeout evidence | agent-skills / ATK | Agent Trigger Kit owns the canonical mechanism home for durable no-report classification; agent-skills doctrine should wait for the v0.5.0 closeout self-report baseline plus ATK taxonomy alignment so category names do not drift. |
 | agent-skills doctrine | Harness warning triage contract | agent-skills | Needs more portable examples so known harness noise is classified without normalizing ignored warnings. |
@@ -152,6 +157,7 @@ routes them.
 | agent-skills doctrine / artifact boundary | Private superpowers plan artifact boundary | agent-skills / private planning repo | Public specs and summaries can live here, but detailed superpowers plans, review paste blocks, local paths, and private evidence may belong in a private planning or audit repo; define the boundary before moving files. |
 | agent-skills doctrine / portable skill | Portable release-governance skill TDD | agent-skills / future portable skill | The v0.5.6 lifecycle works for this repo, but broad reuse needs `writing-skills` RED/GREEN pressure scenarios across Git-tag-only, hosted release, package registry, plugin marketplace, and no-publish-surface repos before extracting a portable release skill. |
 | agent-skills doctrine | Brainstorming decision-assist protocol | agent-skills | Advisory workflow for when the user or agent cannot choose during brainstorming; separate from closeout memory routing. |
+| agent-skills doctrine / skill maintenance | Automated skill maintenance / optimization protocol | agent-skills / Agent Trigger Kit / adopting repos | Older repo-local plans mention automatic skill cleanup or optimization, but portable automation needs public-safe source material, `writing-skills` RED/GREEN pressure scenarios, ownership classification, and ATK mechanism boundaries before any scanner, doctor, or cleanup flow is allowed. |
 | agent-skills doctrine | Starter memory templates | agent-skills / adopting repos | Useful after closeout routing stabilizes, but templates would create stronger file-shape opinions than v0.5.0 needs. |
 | agent-skills doctrine | Obsidian vault convention | adopting repo or separate doctrine candidate | Cross-project vault layout and backlink conventions are personal or organization-specific; canonical repo memory remains portable markdown. |
 | ATK templates | `agent-impact-file-sets.mjs` classifier template | agent-trigger-kit | Mechanism/script, not doctrine. |
