@@ -214,9 +214,27 @@ release lifecycle doctrine.
 
 - [ ] **Step 1: Add release lifecycle doctrine**
 
-In `skills/agent-operating-manual/25-change-discipline.md`, insert this section
-after `§3.1 Plan / PR Lifecycle Discipline` and before `§4 Public Evidence
-Hygiene`:
+In `skills/agent-operating-manual/25-change-discipline.md`, first replace the
+existing `§3.1 Plan / PR Lifecycle Discipline` boundary paragraph:
+
+```markdown
+This lifecycle does not define release tagging, publishing, deploys, runtime
+actions, worker spawn / wait / consume / close, concurrency caps, worktree
+cleanup, local branch cleanup, post-merge push-state cleanup, Agent Trigger Kit
+validators, hooks, or outcome taxonomy.
+```
+
+with:
+
+```markdown
+This Plan / PR lifecycle does not define deploys, runtime actions, worker spawn
+/ wait / consume / close, concurrency caps, worktree cleanup, local branch
+cleanup, post-merge push-state cleanup, Agent Trigger Kit validators, hooks, or
+outcome taxonomy; release tagging and publishing are defined in §3.2 below.
+```
+
+Then insert this section after that replaced boundary paragraph and before
+`§4 Public Evidence Hygiene`:
 
 ```markdown
 ## §3.2 Release Tag / Publish Lifecycle Discipline
@@ -379,7 +397,30 @@ Do not remove these rows:
 | agent-skills doctrine | Branch / worker lifecycle hygiene | agent-skills | Separate from Shared checkout concurrency etiquette: the existing row covers simultaneous editing in shared checkouts; this covers worker spawn / wait / consume / close, concurrency caps, post-merge push state, and cleanup of merged worktrees / local branches after scoped work reaches review or merge; any validator mechanism belongs with ATK. |
 ```
 
-- [ ] **Step 6: Run smoke and token checks**
+- [ ] **Step 6: Commit implementation surfaces before smoke**
+
+Run:
+
+```bash
+git add \
+  skills/agent-operating-manual/25-change-discipline.md \
+  skills/skill-authoring/SKILL.md \
+  README.md \
+  tests/install-smoke.sh \
+  .claude-plugin/plugin.json \
+  .claude-plugin/marketplace.json \
+  ROADMAP.md
+git commit -m "docs: add release lifecycle discipline"
+```
+
+Expected:
+
+- Commit succeeds. No tag, tag push, publish, merge, or remote push is
+  performed.
+- Do not stage this plan file in this step. Plan checkbox ticks ride Task 3
+  Step 5 after verification.
+
+- [ ] **Step 7: Run smoke and token checks after the implementation commit**
 
 Run:
 
@@ -412,26 +453,6 @@ Expected:
   `Private superpowers plan artifact boundary`,
   `Post-push complete-no-action-needed closeout examples`, and
   `Branch / worker lifecycle hygiene` still hit `ROADMAP.md`.
-
-- [ ] **Step 7: Commit implementation and checkbox update**
-
-Run:
-
-```bash
-git add \
-  skills/agent-operating-manual/25-change-discipline.md \
-  skills/skill-authoring/SKILL.md \
-  README.md \
-  tests/install-smoke.sh \
-  .claude-plugin/plugin.json \
-  .claude-plugin/marketplace.json \
-  ROADMAP.md \
-  docs/superpowers/plans/2026-07-07-release-tag-publish-lifecycle.md
-git commit -m "docs: add release lifecycle discipline"
-```
-
-Expected: commit succeeds. No tag, tag push, publish, merge, or remote push is
-performed.
 
 ---
 
