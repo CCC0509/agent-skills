@@ -38,7 +38,7 @@
 - Modify: `tests/install-smoke.sh`
 - Update: `docs/superpowers/plans/2026-07-07-relay-copy-block-self-check.md`
 
-- [ ] **Step 1: Add installed-manual smoke assertions**
+- [x] **Step 1: Add installed-manual smoke assertions**
 
 In `tests/install-smoke.sh`, after the existing `User action consistency rule` assertion, add:
 
@@ -57,7 +57,7 @@ In `tests/install-smoke.sh`, after the existing `User action consistency rule` a
     || fail "$f imported manual missing review contract copy check"
 ```
 
-- [ ] **Step 2: Run install smoke and verify it fails for the right reason**
+- [x] **Step 2: Run install smoke and verify it fails for the right reason**
 
 Run:
 

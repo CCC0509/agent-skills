@@ -77,6 +77,18 @@ for f in CLAUDE.md AGENTS.md GEMINI.md; do
   grep -Fq 'User action consistency rule' \
     "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
     || fail "$f imported manual missing user action consistency rule"
+  grep -Fq 'Pre-handoff self-check' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    || fail "$f imported manual missing pre-handoff self-check"
+  grep -Fq 'current chat is waiting for a user reply' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    || fail "$f imported manual missing reply-required-text human prompt check"
+  grep -Fq 'exactly one `text` fenced copy block' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    || fail "$f imported manual missing exactly-one copy block check"
+  grep -Fq 'three-line `Review:` contract' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    || fail "$f imported manual missing review contract copy check"
   grep -Fq 'Relay readiness rule' \
     "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
     || fail "$f imported manual missing not-ready relay authority rule"
