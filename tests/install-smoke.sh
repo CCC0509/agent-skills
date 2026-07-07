@@ -83,6 +83,9 @@ for f in CLAUDE.md AGENTS.md GEMINI.md; do
   grep -Fq 'current chat is waiting for a user reply' \
     "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
     || fail "$f imported manual missing reply-required-text human prompt check"
+  grep -Fq 'executable approval / continuation handoff' \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    || fail "$f imported manual missing execution-route gating check"
   grep -Fq 'exactly one `text` fenced copy block' \
     "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
     || fail "$f imported manual missing exactly-one copy block check"
