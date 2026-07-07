@@ -25,4 +25,4 @@ Codex / Gemini sessions must read their adapter file before applying Claude Code
 4. **驗證不自驗**：檔案 read-back、程式碼實跑、高風險加第二意見——都派新 context。
 5. 小模型錯一次直接升、中階同任務錯兩次帶軌跡升、**最多 2 輪、之後停下問人**；不確定就查、查不到就明說。
 6. 有 TodoWrite 類工具也要同步 plan checkbox；沒有工具時 checkbox 就是 todo list。排序看正在跑的時鐘，驗證副作用與 env kill switch 影響要揭露。
-7. Repo memory 先讀 `docs/agent-memory-index.md`；狀態記憶可關閉，教訓記憶 append-only 到第 3 次升 rubric，audit 記憶永久 append。
+7. Repo memory 先讀 `docs/agent-memory-index.md`；closeout 時用 `15-repo-memory.md` 的 `Closeout self-report and memory routing` 決定 status / lesson / audit / index / none；狀態記憶可關閉，教訓記憶 append-only 到第 3 次升 rubric，audit 記憶永久 append。

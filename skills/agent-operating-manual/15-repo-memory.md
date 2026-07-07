@@ -27,6 +27,84 @@ that future agents must read and update.
 5. Promote the third same-class lesson to `20-judgment-rubrics.md` or a
    repo-equivalent rule.
 6. Write review, deploy, smoke, and observation facts to audit memory.
+7. At closeout, use `Closeout self-report and memory routing` below to decide
+   whether closing facts belong in status, lesson, audit, index, mechanism
+   evidence, or no repo memory update.
+
+## Closeout self-report and memory routing
+
+At closeout, read `docs/agent-memory-index.md` when present, then classify each
+closing fact by destination. This subsection adds the closeout-time decision
+procedure; the memory lifecycle table above remains the canonical taxonomy.
+
+| Destination | Use when | Do not use for |
+|---|---|---|
+| Status memory | Future agents need active state, next actions, blockers, current risks, or a compact next-session seed. | Permanent proof that work happened. |
+| Lesson memory | A reusable pitfall, repeated correction, review finding pattern, or ATK closeout signal should teach future agents. | One-off task facts or ordinary completion notes. |
+| Audit memory | The repo needs durable evidence of review, verification, deploy, smoke, production observation, release, or completion. | Active worklists or conversational context. |
+| Index memory | Memory locations changed, or the first concrete lesson, status, or audit path is chosen. | Routine task notes. |
+| Mechanism evidence | ATK outcome stores, CI logs, MCP caches, command output, or scratch artifacts inform the closeout. | Canonical storage; summarize reusable facts into repo memory instead. |
+
+Run this compact self-report mentally before final response or relay:
+
+```text
+Memory closeout:
+- Status memory update: <none | path + one-line reason>
+- Lesson memory update: <none | path + lesson class>
+- Audit memory update: <none | path + evidence type>
+- Index memory update: <none | path + location change>
+- Mechanism evidence consumed: <none | source labels only>
+- Next-session seed: <none | status-memory path>
+```
+
+The `Next-session seed` line is a status-memory subset. When a seed is written,
+the same path may appear in both `Status memory update` and
+`Next-session seed`; do not invent a separate seed file just to make the lines
+differ.
+
+This shape is a self-report discipline, not a new relay block and not a
+required final-output field for every task. For ordinary small tasks where no
+repo memory changes are warranted, keep it internal unless the user requested a
+memory closeout report or the absence of memory updates is important to avoid
+ambiguity.
+
+When repo memory files are updated, the diff or commit is the self-evidencing
+artifact. The final response does not need to print the self-report shape
+unless the user requested it or the handoff is a relay.
+
+When a task emits the Agent Operating Manual relay block, put any memory facts
+needed by the next agent in the forwarded context or in `Accepted residuals:`
+when they are non-blocking residuals. The memory self-report does not override
+`Status:`, `User action:`, `Blockers:`, or `Accepted residuals:`.
+
+Closeout routing rules:
+
+1. Read `docs/agent-memory-index.md` when present before deciding paths.
+2. Route facts to existing memory types only. Do not create new peer types.
+3. Prefer status memory for active state a near-future session needs to act
+   safely.
+4. Prefer audit memory for durable proof: review, verification, deploy, smoke,
+   production observation, release, or completion evidence.
+5. Prefer lesson memory only when the fact is reusable across future work.
+6. Update index memory only when memory locations change or the repo chooses a
+   concrete path that was previously absent.
+7. Treat mechanism evidence as input. Do not paste raw logs, outcome stores, or
+   cache data into portable doctrine.
+8. If closeout says no memory update is needed, that means no future agent
+   needs active state, no reusable lesson appeared, and durable evidence is
+   unnecessary or already recorded by repo convention.
+
+### Obsidian-compatible markdown
+
+Repo-owned memory should stay portable markdown that tools such as Obsidian can
+open and connect. Use normal relative markdown links for repo files. Do not
+require `[[wikilinks]]`, Dataview queries, YAML frontmatter, tags, or Obsidian
+plugins in canonical repo memory.
+
+A personal or cross-project vault may mirror or index repo memory, but it is an
+accelerator. Decision-grade facts flow from repo memory to the vault, not from
+the vault back into canonical memory unless an agent explicitly writes the
+corresponding repo-owned file through normal repo governance.
 
 ## Boundaries
 

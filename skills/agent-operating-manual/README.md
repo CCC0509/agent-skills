@@ -15,7 +15,7 @@
 4. **驗證不自驗**：檔案 read-back、程式碼實跑、高風險加第二意見——都派**新 context**。
 5. 小模型錯一次直接升、中階同任務錯兩次帶軌跡升、**最多 2 輪，之後停下問人**；不確定就查，查不到就明說。
 6. 有 TodoWrite 類工具也要同步 plan checkbox；沒有工具時 checkbox 就是 todo list。排序看正在跑的時鐘，驗證副作用與 env kill switch 影響要揭露。
-7. Repo memory 先讀 `docs/agent-memory-index.md`；狀態記憶可關閉，教訓記憶 append-only 到第 3 次升 rubric，audit 記憶永久 append。
+7. Repo memory 先讀 `docs/agent-memory-index.md`；closeout 時用 `15-repo-memory.md` 的 `Closeout self-report and memory routing` 決定 status / lesson / audit / index / none；狀態記憶可關閉，教訓記憶 append-only 到第 3 次升 rubric，audit 記憶永久 append。
 
 ---
 
@@ -24,7 +24,7 @@
 | 檔 | 內容 | 何時讀 |
 |---|---|---|
 | [`10-model-dispatch.md`](10-model-dispatch.md) | **C** 指揮官不下場、派工三件套、模型/effort、升降級、驗證不自驗 | **每個 session 的核心；不熟就從這開始** |
-| [`15-repo-memory.md`](15-repo-memory.md) | **B** repo-owned shared memory：index、status / lesson / audit lifecycle、ATK / MCP boundaries | Session start、closeout、或要寫 repo memory 時 |
+| [`15-repo-memory.md`](15-repo-memory.md) | **B** repo-owned shared memory：index、status / lesson / audit lifecycle、closeout self-report routing、ATK / MCP boundaries | Session start、closeout、或要寫 repo memory 時 |
 | [`cross-repo-reference-map.md`](cross-repo-reference-map.md) | Cross-repo ownership map for doctrine, bootstrap, mechanism, adopting-repo, and MCP routing | When a task crosses repo boundaries or asks where a change belongs |
 | [`20-judgment-rubrics.md`](20-judgment-rubrics.md) | **D** 何時升級/算完成/停下問人/該換路/驗品質（各附正反例） | 卡在判斷時查對應 § |
 | [`25-change-discipline.md`](25-change-discipline.md) | **H** convention migration、verifiable commit structure、approval-bound identifiers、public evidence hygiene | 改制 / 改名 / migration / release PR / explicit approval closeout 時 |

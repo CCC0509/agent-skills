@@ -50,21 +50,30 @@ release scope.
   block completeness, visible user-reply prompts, execution-route display
   gating, and accepted residuals without adding a second normative home or
   emitted attestation.
+- v0.5.0: closeout self-report and memory routing adds a compact
+  closeout-time decision procedure over repo-owned status, lesson, audit,
+  index, and mechanism evidence memory, including next-session seed and
+  Obsidian-compatible markdown boundaries without adding new memory types,
+  templates, vault rules, validators, or runtime mechanisms.
 
 ## Extraction Candidates
 
 | Bucket | Candidate | Likely home | Why deferred |
 |---|---|---|---|
-| agent-skills doctrine | Preflight / closeout self-report contract | agent-skills | Pure text doctrine, but separate from v0.2.0 skill-authoring and outcome triage. |
+| agent-skills doctrine | Preflight self-report contract | agent-skills | Remaining half of the former preflight / closeout row; current session-start memory-index doctrine covers reading repo memory, but not whether agents should report preflight memory state. |
 | agent-skills doctrine | Plan / PR lifecycle discipline: branch-first, PR stop, explicit approval, squash merge | agent-skills | High-value shared state machine; needs careful wording across consumer repos. |
 | agent-skills doctrine | Plan/spec lifecycle header convention text | agent-skills | Doctrine belongs here; validator stays out of the markdown-only repo. |
 | agent-skills doctrine | Shared checkout concurrency etiquette | agent-skills | Useful but outside v0.4 change-discipline scope; needs wording that fits multiple harnesses and shared-worktree policies. |
-| agent-skills doctrine | Named absence statuses for missing closeout evidence | agent-skills / ATK | Agent Trigger Kit now owns the canonical mechanism home for durable no-report classification; agent-skills doctrine should still wait for the closeout self-report work so categories do not drift. |
+| agent-skills doctrine | Named absence statuses for missing closeout evidence | agent-skills / ATK | Agent Trigger Kit owns the canonical mechanism home for durable no-report classification; agent-skills doctrine should wait for the v0.5.0 closeout self-report baseline plus ATK taxonomy alignment so category names do not drift. |
 | agent-skills doctrine | Harness warning triage contract | agent-skills | Needs more portable examples so known harness noise is classified without normalizing ignored warnings. |
 | agent-skills doctrine | Probe catalog appendix | agent-skills | v0.4 adds examples inline; a full catalog should wait until enough probes justify an appendix. |
-| agent-skills doctrine | Extraction-candidate closeout protocol | agent-skills | Wake condition reached by the v0.4.1 reviewer-conduct extraction and v0.4.2 review I/O contract shaping. Keep the protocol design out of v0.4.2; schedule it for v0.5.0. |
+| agent-skills doctrine | Extraction-candidate closeout protocol | agent-skills | Candidate triage is distinct from ordinary closeout memory routing; design it after the v0.5.0 baseline instead of treating it as implemented here. |
 | agent-skills doctrine | F2 handoff-contract file split | agent-skills | Deferred from v0.4.8; splitting §3.1 needs anchor / link / residual scan after relay control semantics stabilize. |
 | agent-skills doctrine | Branch / worker lifecycle hygiene | agent-skills | Separate from Shared checkout concurrency etiquette: the existing row covers simultaneous editing in shared checkouts; this covers worker spawn / wait / consume / close, concurrency caps, post-merge push state, and cleanup of merged worktrees / local branches after scoped work reaches review or merge; any validator mechanism belongs with ATK. |
+| agent-skills doctrine | Brainstorming decision-assist protocol | agent-skills | Advisory workflow for when the user or agent cannot choose during brainstorming; separate from closeout memory routing. |
+| agent-skills doctrine | Starter memory templates | agent-skills / adopting repos | Useful after closeout routing stabilizes, but templates would create stronger file-shape opinions than v0.5.0 needs. |
+| agent-skills doctrine | Obsidian vault convention | adopting repo or separate doctrine candidate | Cross-project vault layout and backlink conventions are personal or organization-specific; canonical repo memory remains portable markdown. |
+| agent-skills doctrine | Review deliverable handoff copy-field tightening | agent-skills | Control-contract work over multi-angle-review and Agent Operating Manual section 3.1; separate from closeout memory routing. |
 | ATK templates | `agent-impact-file-sets.mjs` classifier template | agent-trigger-kit | Mechanism/script, not doctrine. |
 | ATK templates | Plan/spec lifecycle checker template | agent-trigger-kit | Validator template belongs with trigger-layer mechanisms. |
 | ATK templates | MCP config validator template | agent-trigger-kit | Reusable validator; pair with agent-skills fallback doctrine later. |
