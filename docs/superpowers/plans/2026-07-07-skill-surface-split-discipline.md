@@ -203,13 +203,14 @@ Use `apply_patch`:
 +- The skill is optional unless it is needed by most consumer sessions.
 +- Installer tests cover default install, explicit install, idempotency, and
 +  managed sentinel files.
-+- If a reviewed train changes install-facing skill text, default skill choice,
-+  plugin metadata, marketplace metadata, installer behavior, or adopting-repo
-+  install output, bump manifests and proceed through the release lifecycle
-+  directly or as part of a later reviewed batch after review and merge; the tag
-+  targets the reviewed head at the then-current manifest version, with no
-+  retroactive tags for intermediate bump-only versions unless a separate
-+  reviewed release-repair plan authorizes them. Follow
++- Release metadata and tag agree before publishing. If a reviewed train changes
++  install-facing skill text, default skill choice, plugin metadata, marketplace
++  metadata, installer behavior, or adopting-repo install output, bump manifests
++  and proceed through the release lifecycle directly or as part of a later
++  reviewed batch after review and merge; the tag targets the reviewed head at
++  the then-current manifest version, with no retroactive tags for intermediate
++  bump-only versions unless a separate reviewed release-repair plan authorizes
++  them. Follow
 +  `agent-operating-manual/25-change-discipline.md` §3.2
 +  `Release tag / publish lifecycle discipline` for the release gates.
 +- If a train changes only specs, implementation plans, private planning
