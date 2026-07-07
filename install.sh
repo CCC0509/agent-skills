@@ -97,6 +97,9 @@ for name in "${SKILL_ARR[@]}"; do
     handoff-relay)
       POINTER_LINES="${POINTER_LINES}Agent handoff / relay / approval / reviewer forwarding 時讀 [$DEST/handoff-relay/SKILL.md]($DEST/handoff-relay/SKILL.md)。
 " ;;
+    work-discipline)
+      POINTER_LINES="${POINTER_LINES}寫作 / 修改 docs、skills、plans、tests、scripts、trigger layers 時讀 [$DEST/work-discipline/SKILL.md]($DEST/work-discipline/SKILL.md) 控制 assumptions、scope、surgical diff、verification。
+" ;;
     multi-angle-review)
       POINTER_LINES="${POINTER_LINES}Read-only review（PR / commit range / plan/rule-review / fix-confirmation）套 [$DEST/multi-angle-review/SKILL.md]($DEST/multi-angle-review/SKILL.md)。
 " ;;

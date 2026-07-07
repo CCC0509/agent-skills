@@ -281,7 +281,7 @@ optional skill and installer pointer.
 - Produces: optional install-facing `work-discipline` wrapper, metadata
   `0.5.5`, and ROADMAP closeout for the two solved v0.5.5 rows.
 
-- [ ] **Step 1: Create the optional trigger-only wrapper**
+- [x] **Step 1: Create the optional trigger-only wrapper**
 
 Create `skills/work-discipline/SKILL.md`:
 
@@ -332,7 +332,7 @@ manuals remain canonical.
    - Do not turn one wrapper or cleanup into a full doctrine migration.
 ```
 
-- [ ] **Step 2: Add an explicit-install entry pointer**
+- [x] **Step 2: Add an explicit-install entry pointer**
 
 In `install.sh`, after the existing `handoff-relay)` case, add:
 
@@ -348,7 +348,7 @@ Do not change this line:
 DEFAULT_SKILLS="agent-operating-manual,handoff-relay,multi-angle-review"
 ```
 
-- [ ] **Step 3: Update README public skill list and optional install example**
+- [x] **Step 3: Update README public skill list and optional install example**
 
 In `README.md`, add this row after `multi-angle-review`:
 
@@ -375,7 +375,7 @@ trigger；`skill-authoring` 是 maintainer / extraction 用 optional skill，需
     ./install.sh <target-repo-path> --skills agent-operating-manual,handoff-relay,multi-angle-review,work-discipline,skill-authoring
 ```
 
-- [ ] **Step 4: Bump plugin metadata to 0.5.5 and name the optional wrapper**
+- [x] **Step 4: Bump plugin metadata to 0.5.5 and name the optional wrapper**
 
 Replace `.claude-plugin/plugin.json` with:
 
@@ -409,7 +409,7 @@ Then replace the plugin object description and version with:
       "version": "0.5.5",
 ```
 
-- [ ] **Step 5: Update ROADMAP landed entry and solved rows**
+- [x] **Step 5: Update ROADMAP landed entry and solved rows**
 
 In `ROADMAP.md`, after the v0.5.4 Landed entry, add:
 
@@ -449,7 +449,7 @@ Do not remove these rows:
 | agent-skills doctrine | Post-push complete-no-action-needed closeout examples | agent-skills | Recent push closeout discussion showed agents can omit the no-action terminal status when a push truly has no remaining user or agent action; decide whether examples belong in handoff-relay, `10-model-dispatch.md`, or release lifecycle after the skill-surface audit. |
 ```
 
-- [ ] **Step 6: Run smoke and token checks**
+- [x] **Step 6: Run smoke and token checks**
 
 Run:
 
@@ -482,7 +482,7 @@ Expected:
   `Post-push complete-no-action-needed`, and
   `Release tag / publish lifecycle` still hit `ROADMAP.md`.
 
-- [ ] **Step 7: Commit implementation and checkbox update**
+- [x] **Step 7: Commit implementation and checkbox update**
 
 Run:
 

@@ -75,6 +75,12 @@ release scope.
   loading / retrieval, release tag / publish lifecycle, ATK mechanism,
   vector / MCP retrieval, and portable Karpathy-guidelines uplift open.
   Adopters need a later reviewed tag / publish train for non-dev delivery.
+- v0.5.5: repo-wide skill-surface audit uses the Karpathy-guidelines lens to
+  confirm canonical homes, adds optional `work-discipline` as a small
+  assumptions / simplicity / surgical-diff / verification trigger wrapper, and
+  preserves release lifecycle, public PR discipline, private plan artifact
+  boundary, post-push no-action closeout examples, ATK mechanism, vector / MCP
+  retrieval, and broad skill splitting as separate follow-ups.
 
 ## Candidate Lanes
 
@@ -86,12 +92,6 @@ release scope.
   overlap audit`, and `Plan/spec lifecycle header convention text`. This lane
   owns rule discovery, trigger wording, context-load reduction, and the
   doctrine / ATK / adopting-repo split for generated or local trigger surfaces.
-- **Portable Wrapper Pattern:** `Repo-wide skill-surface audit /
-  simplification pass` and `Portable work-discipline / Karpathy-guidelines
-  uplift`. This lane studies the Stock Scanner wrapper shape while preserving
-  upstream attribution, removing domain overrides, auditing existing trigger
-  surfaces before splitting more wrappers, and avoiding duplicate homes for
-  existing TDD / verification doctrine.
 - **Release Lifecycle Gap:** `Release tag / publish lifecycle discipline`. This
   lane should later define metadata bump, push, tag, publish, version
   consistency, post-tag / post-publish smoke, and exact approval gates as a
@@ -122,8 +122,6 @@ routes them.
 | Bucket | Candidate | Likely home | Why deferred |
 |---|---|---|---|
 | agent-skills doctrine | Preflight self-report contract | agent-skills | Remaining half of the former preflight / closeout row; current session-start memory-index doctrine covers reading repo memory, but not whether agents should report preflight memory state. |
-| agent-skills doctrine | Repo-wide skill-surface audit / simplification pass | agent-skills | Use the Stock Scanner `karpathy-guidelines` lens to audit every current skill and manual file for overbroad triggers, duplicated canonical homes, oversized must-read sets, and overbuilt process text before splitting more wrappers. |
-| agent-skills doctrine | Portable work-discipline / Karpathy-guidelines uplift | agent-skills | Extract the reusable core of the Stock Scanner repo-local `karpathy-guidelines` wrapper -- clarify assumptions, keep designs simple, make surgical diffs, and define verification success -- while preserving attribution, removing domain overrides, and avoiding duplicate homes for existing TDD / verification doctrine. |
 | agent-skills doctrine | Plan/spec lifecycle header convention text | agent-skills | Doctrine belongs here; validator stays out of the markdown-only repo. |
 | agent-skills doctrine / tooling | Skill context loading / retrieval strategy | agent-skills / Agent Trigger Kit / optional MCP tooling | The Agent Operating Manual is large enough that agents may fail to apply all loaded rules under context pressure; investigate split, routing, retrieval, vector-index, or MCP-backed loading strategy separately so v0.5.2 remains lifecycle-only. |
 | agent-skills doctrine | Shared checkout concurrency etiquette | agent-skills | Useful but outside v0.4 change-discipline scope; needs wording that fits multiple harnesses and shared-worktree policies. |
