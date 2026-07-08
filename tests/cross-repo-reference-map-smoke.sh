@@ -59,6 +59,8 @@ cd "$ROOT"
 MAP="skills/agent-operating-manual/cross-repo-reference-map.md"
 
 require_file "$MAP"
+require_file CHANGELOG.md
+require_file ROADMAP.md
 require_contains "$MAP" '# Cross-Repo Reference Map'
 require_contains "$MAP" 'operator-bootstrap'
 require_contains "$MAP" 'Agent Trigger Kit'
@@ -81,8 +83,11 @@ require_contains skills/agent-operating-manual/README.md 'cross-repo-reference-m
 require_contains skills/agent-operating-manual/SKILL.md 'cross-repo-reference-map.md'
 require_must_read_not_contains skills/agent-operating-manual/SKILL.md 'cross-repo-reference-map.md'
 
-require_contains ROADMAP.md 'v0.4.11: F5 cross-repo reference map'
-require_not_contains ROADMAP.md '| agent-skills doctrine | F5 cross-repo reference map |'
+require_contains CHANGELOG.md 'v0.4.11: F5 cross-repo reference map'
+require_not_contains CHANGELOG.md '## Candidate Lanes'
+require_not_contains CHANGELOG.md '## Extraction Candidates'
+require_contains ROADMAP.md 'Public release history now lives in [CHANGELOG.md](CHANGELOG.md).'
+require_contains ROADMAP.md 'compatibility pointer'
 
 copy_current_source_to_tmp_repo
 VER="$(sed -n 's/.*"version"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' \
