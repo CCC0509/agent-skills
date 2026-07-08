@@ -105,17 +105,17 @@ Public tool repos keep:
 
 Moving detailed review evidence private must not weaken public merge, tag, or
 release gates. Every public repo change that depends on private review evidence
-needs a public-safe attestation in a durable public surface such as a commit
-body, PR body, public CHANGELOG entry, or release note.
+needs a public-safe attestation in a durable public surface. The primary home
+is the public commit body for the merge, release, or change object. PR bodies,
+public CHANGELOG entries, and release notes may mirror or point to the same
+attestation, but verifiers should know to start from the commit body.
 
 The attestation reuses existing relay and review vocabulary. It is not a new
-parallel review system. A public attestation should include this subset when
-applicable:
+parallel review system. It records durable review facts, not live handoff
+state. A public attestation should include this subset when applicable:
 
 ```text
-Status: <existing relay status>
 Target: <public repo/object identifier>
-Next agent action: <public-safe action or n/a>
 Accepted residuals: <public-safe residuals with owners, or none>
 
 Review: <full | plan/rule-review | fix-confirmation vs <prev-tip> | closeout-sanity | none-FYI>
@@ -127,8 +127,9 @@ Private evidence ref: <opaque private workspace reference>
 
 Rules:
 
-- `Status:` must be an existing relay status; do not add values for
-  attestation.
+- Do not include live relay control fields such as `Status:` or
+  `Next agent action:` in durable attestations. Those fields remain in live
+  handoffs where stale state can be acted on immediately and retired.
 - `Review:` must use the existing enum.
 - `Accepted residuals:` uses the same durable-owner rule as relay handoffs.
 - `Private evidence ref:` is audit metadata, not a relay field and not
@@ -286,7 +287,9 @@ Out of scope for this spec:
    private living document only if a reviewed plan says that pointer is
    public-safe.
 5. Add a forward-only public release-history note that v0.5.10 closed the
-   v0.5.7 to v0.5.10 install-facing batch.
+   v0.5.7 to v0.5.10 install-facing batch. This does not depend on private
+   workspace creation and may run independently any time after this spec
+   passes review.
 6. Migrate historical specs, plans, reviews, and roadmap candidates in
    batches. Preserve historical review blocks intact.
 7. Only after migration evidence and public attestations exist, plan public repo
@@ -306,9 +309,12 @@ rg -ni 'Private Toolchain Workspace|public review attestation|Private evidence r
 
 In this source repo, `agent-trigger-kit session-check` may exit 1 only for the
 documented root-source boundary:
-`agent-skills: plugin directory missing`. When a relay signal is present, carry
-the accepted residual:
-`ATK root-source boundary / documented in AGENTS.md / mechanism owner: Agent Trigger Kit follow-up`.
+`agent-skills: plugin directory missing`. A plugin-version-freshness advisory
+that is indeterminate from the same root-source cause is the same accepted
+residual. When a relay signal is present, carry:
+`ATK root-source boundary / documented in AGENTS.md / mechanism owner: Agent Trigger Kit follow-up`
+and, when reported,
+`ATK plugin-version-freshness advisory indeterminate from same root-source cause / owner: Agent Trigger Kit follow-up`.
 
 ## Pre-Spec Direction Disposition
 
@@ -333,9 +339,9 @@ the accepted residual:
   CHANGELOG / release history; candidate lanes and extraction candidates move
   to the private portfolio roadmap.
 - Attestation vocabulary finding: accepted. Attestations reuse existing
-  `Status:`, `Accepted residuals:`, and three-line `Review:` contract
-  vocabulary, adding only an opaque private evidence reference as audit
-  metadata.
+  `Accepted residuals:` and three-line `Review:` contract vocabulary, add only
+  an opaque private evidence reference as audit metadata, and exclude live
+  relay control fields such as `Status:` and `Next agent action:`.
 
 ## Review Focus
 
