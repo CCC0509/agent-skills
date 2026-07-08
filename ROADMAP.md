@@ -111,6 +111,11 @@ release scope.
   operator-bootstrap, and Agent Trigger Kit mechanism surfaces. The release
   remains batched: v0.5.7, v0.5.8, v0.5.9, and v0.5.10 install-facing content
   require a later §3.2 tag before non-dev adopter delivery.
+- Release history note (2026-07-08): annotated tag `v0.5.10` was published
+  after the v0.5.10 implementation train and closes the batched install-facing
+  release for v0.5.7, v0.5.8, v0.5.9, and v0.5.10. Historical entries above
+  are not backfilled; treat this note as the current release-state record for
+  that batch.
 
 ## Candidate Lanes
 
