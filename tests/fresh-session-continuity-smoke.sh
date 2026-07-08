@@ -60,11 +60,13 @@ cd "$ROOT"
 
 AOM="skills/agent-operating-manual/10-model-dispatch.md"
 RELAY="skills/handoff-relay/SKILL.md"
+CHANGELOG="CHANGELOG.md"
 ROADMAP="ROADMAP.md"
 
 require_file "$AOM"
 require_file "$RELAY"
 require_file "$ROADMAP"
+require_file "$CHANGELOG"
 
 require_contains "$AOM" 'Context-health handoff'
 require_contains "$AOM" 'Continuity packet'
@@ -80,12 +82,12 @@ require_contains "$RELAY" 'context-health'
 require_contains "$RELAY" 'skill-source provenance'
 require_contains "$RELAY" '10-model-dispatch.md'
 
-require_contains "$ROADMAP" 'v0.5.10: Fresh session continuity'
-require_contains_normalized "$ROADMAP" 'v0.5.7, v0.5.8, v0.5.9, and v0.5.10 install-facing content require a later §3.2 tag'
-require_not_contains "$ROADMAP" '| agent-skills doctrine | Session continuity / context-health handoff |'
-require_not_contains "$ROADMAP" '| agent-skills doctrine / freshness | Skill source provenance / freshness report |'
-require_contains "$ROADMAP" '| agent-skills doctrine / tooling | Skill context loading / retrieval strategy |'
-require_contains "$ROADMAP" '| agent-skills doctrine / skill maintenance | Automated skill maintenance / optimization protocol |'
+require_contains "$CHANGELOG" 'v0.5.10: Fresh session continuity'
+require_contains_normalized "$CHANGELOG" 'v0.5.7, v0.5.8, v0.5.9, and v0.5.10 install-facing content require a later §3.2 tag'
+require_not_contains "$CHANGELOG" '## Candidate Lanes'
+require_not_contains "$CHANGELOG" '## Extraction Candidates'
+require_contains "$ROADMAP" 'Public release history now lives in [CHANGELOG.md](CHANGELOG.md).'
+require_contains "$ROADMAP" 'compatibility pointer'
 
 require_contains .claude-plugin/plugin.json '"version": "0.5.10"'
 require_contains .claude-plugin/marketplace.json '"version": "0.5.10"'

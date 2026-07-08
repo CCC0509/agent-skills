@@ -5,7 +5,10 @@ This checkout is the `agent-skills` source repo for `CCC0509/agent-skills`. It i
 ## Source Layout
 
 - Source doctrine lives under `skills/**`.
-- Design specs and implementation plans live under `docs/superpowers/**`.
+- Public release history lives in `CHANGELOG.md`; `ROADMAP.md` remains as a
+  compatibility pointer for older roadmap links.
+- Detailed tool-development specs, implementation plans, and review evidence
+  live outside this public source repo after the 2026-07 public cleanup.
 - Release metadata lives under `.claude-plugin/**`.
 
 ## Source-Repo Rules

@@ -46,11 +46,20 @@ for entry in AGENTS.md CLAUDE.md GEMINI.md; do
   require_not_contains "$entry" '<!-- agent-skills:end -->'
 done
 
+require_file CHANGELOG.md
+require_file ROADMAP.md
+
 require_contains AGENTS.md 'This checkout is the `agent-skills` source repo'
 require_contains AGENTS.md 'not an adopting repo'
 require_contains AGENTS.md 'not an install target'
 require_contains AGENTS.md 'Source doctrine lives under `skills/**`'
-require_contains AGENTS.md 'Design specs and implementation plans live under `docs/superpowers/**`'
+require_contains AGENTS.md 'Public release history lives in `CHANGELOG.md`'
+require_contains AGENTS.md '`ROADMAP.md` remains as a'
+require_contains AGENTS.md 'Detailed tool-development specs, implementation plans, and review evidence'
+require_contains AGENTS.md 'live outside this public source repo after the 2026-07 public cleanup'
+require_contains ROADMAP.md 'Public release history now lives in [CHANGELOG.md](CHANGELOG.md).'
+require_contains ROADMAP.md 'compatibility pointer'
+require_contains CHANGELOG.md 'v0.5.10: Fresh session continuity'
 require_contains AGENTS.md 'Release metadata lives under `.claude-plugin/**`'
 require_contains AGENTS.md 'Do not run `./install.sh` against this repo'
 require_contains AGENTS.md 'Do not edit generated imported copies in adopting repos'
