@@ -488,6 +488,16 @@ template fix and the route-exclusion advisory.
 
 Push, tag, and publish remain out of scope and approval-bound.
 
+## Implementation Review Disposition
+
+Full implementation review passed for `16fa6c9` over range
+`58f4ae9..16fa6c9`.
+
+- Documentation note: the committed smoke uses `require_contains_normalized`
+  for the ROADMAP batched-release assertion because that sentence wraps across
+  lines; the assertion is equivalent-or-stronger than the plan's original
+  single-line grep token.
+
 ## Plan Self-Review
 
 - Spec coverage: Task 1 covers source and installed-copy pressure tests; Task 2 covers canonical doctrine, trigger-wrapper pointer, ROADMAP, metadata, green smoke, and both review advisories; Task 3 covers full verification, proposal-boundary checks, no-tag check, and final review handoff.
