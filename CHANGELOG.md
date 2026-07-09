@@ -121,6 +121,12 @@ public-safe attestations and private promotion-ledger mappings.
   handling, operator-observation routing, and a model-routing guard that keeps
   model names out of the surface field. The release remains pending until a
   later reviewed tag / release train.
+- v0.5.12: Public train fresh gates add reviewed-range carry-forward after
+  metadata-only PR creation, object-bound approval menus, input-object versus
+  unknown-object approval boundaries, preserve-reviewed-commits as the
+  agent-skills default, and universal fresh gates with the single
+  `freshness-unverified` outcome. The release remains pending until a later
+  reviewed tag / release train.
 - Release history note (2026-07-08): annotated tag `v0.5.10` was published
   after the v0.5.10 implementation train and closes the batched install-facing
   release for v0.5.7, v0.5.8, v0.5.9, and v0.5.10. Historical entries above
