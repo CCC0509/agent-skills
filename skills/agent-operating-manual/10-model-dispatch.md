@@ -158,6 +158,10 @@ User action: self-review -> to-reviewer
 Next agent action: review the implementation plan against the formal spec
 Blockers: none
 Accepted residuals: none
+
+Review: plan/rule-review
+Focus: <what you are unsure about or want checked>
+Prev reviewed tip: <hash or n/a>
 ```
 
 Examples:

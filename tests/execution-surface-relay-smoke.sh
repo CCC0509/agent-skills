@@ -110,6 +110,6 @@ require_contains "$INSTALLED_RELAY" 'surface-sensitive'
 require_not_contains "$INSTALLED_AOM" 'not_logged_in'
 
 [ "$(cat "$TMP/target/.agent-skills/pin")" = "CCC0509/agent-skills@v0.5.13" ] \
-  || fail "pin did not resolve v0.5.12"
+  || fail "pin did not resolve v0.5.13"
 
 echo "execution surface relay smoke ok"

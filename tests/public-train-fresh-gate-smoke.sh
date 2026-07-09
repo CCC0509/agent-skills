@@ -112,6 +112,6 @@ require_not_contains "$INSTALLED_CHANGE" 'freshness_unknown'
 require_contains_normalized "$INSTALLED_DISPATCH" 'Reviewed-range carry-forward, approval menus, merge-shape policy, and universal fresh gates live in `25-change-discipline.md` §3.4.'
 
 [ "$(cat "$TMP/target/.agent-skills/pin")" = "CCC0509/agent-skills@v0.5.13" ] \
-  || fail "pin did not resolve v0.5.12"
+  || fail "pin did not resolve v0.5.13"
 
 echo "public train fresh gate smoke ok"
