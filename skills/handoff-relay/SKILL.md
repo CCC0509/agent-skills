@@ -1,6 +1,6 @@
 ---
 name: handoff-relay
-description: "Use when preparing, reviewing, consuming, or forwarding agent handoffs, relay blocks, exact approval text, Status/User action decisions, Review contracts, or paste-ready copy blocks."
+description: "Use when preparing, reviewing, consuming, or forwarding agent handoffs, relay blocks, exact approval text, Status/User action decisions, Execution surface constraints, Review contracts, or paste-ready copy blocks."
 ---
 
 # Handoff Relay
@@ -22,14 +22,18 @@ with a canonical file, follow the canonical file and fix this wrapper.
    block the user should forward to a reviewer.
 3. If exact user approval is pending, put the exact text only in
    `Required user text`; surrounding prose can say the chat is waiting.
-4. If the user must forward context to a reviewer or acting agent, emit exactly
+4. For surface-sensitive handoffs, ensure the relay block carries
+   `Execution surface:` and read `10-model-dispatch.md` §3.1 for canonical
+   values, missing-field blockers, and conflict handling. Keep this wrapper as
+   a pointer; do not restate the field's full state machine here.
+5. If the user must forward context to a reviewer or acting agent, emit exactly
    one `text` fenced copy block containing the complete relay block and
    `Review:` contract.
-5. Put every non-blocking finding, FYI, external follow-up, or accepted gap in
+6. Put every non-blocking finding, FYI, external follow-up, or accepted gap in
    `Accepted residuals:` with a durable owner.
-6. Do not add relay fields, rename `Status:` values, change the `Review:` enum,
+7. Do not add relay fields, rename `Status:` values, change the `Review:` enum,
    or copy the full relay state machine into this wrapper.
-7. For context-health, fresh-session, or skill-source provenance questions,
+8. For context-health, fresh-session, or skill-source provenance questions,
    read `../agent-operating-manual/10-model-dispatch.md` before deciding
    whether to continue in the current session, emit a continuity packet, or
    explain source / imported-copy / plugin-cache freshness.

@@ -93,6 +93,7 @@ Status: <review-needed | ready-for-user-approval | ready-for-continuation | comp
 Target repo: <owner/repo or absolute local repo path, or n/a>
 Target: <PR/branch/task + head SHA, or n/a>
 Required user text: <exact approval/merge text, required user input, or n/a>
+Execution surface: <any | codex-current-session | codex-fresh-session | codex-host-cli | claude-code-current-session | claude-code-fresh-session | claude-code-host-cli | user-executed | multi-surface: ...>
 User action: <self-review | to-reviewer | to-agent | reply-required-text | none>[ -> ...]
 Next agent action: <what another agent should do, or none>
 Blockers: <none, or concise blockers>
@@ -104,6 +105,37 @@ Accepted residuals: <none | short finding label + disposition + durable tracker/
 repo-specific next action 時才用 `n/a`。`Target` 保持原本語意，只描述該 repo 內的
 PR、branch、task、head SHA 或其他 work item。不要只把 intended repo 藏在 relay
 block 外的散文。
+
+Execution surface routes surface-sensitive work to the required runtime, sandbox, auth, or user-execution boundary. It does not grant approval, choose a model, choose an implementation route, or make a blocked action safe.
+
+The field is optional for ordinary relay blocks and mandatory for new surface-sensitive handoffs. Surface-sensitive work includes fresh-session or live behavior probes, credential-store / keychain / auth / plugin-cache / global-config checks, Claude Code versus Codex command execution, user-executed terminal commands, multi-agent workflow steps, and work where the user or reviewed plan says only one agent or one surface should execute the next step.
+
+Canonical values:
+
+- `any`
+- `codex-current-session`
+- `codex-fresh-session`
+- `codex-host-cli`
+- `claude-code-current-session`
+- `claude-code-fresh-session`
+- `claude-code-host-cli`
+- `user-executed`
+- `multi-surface: <controlled token roles and constraints>`
+
+Freeform role text is allowed only after `multi-surface:`. Single-surface tokens stay controlled. Do not put model names, model aliases, intelligence labels, effort names, account names, or cost tiers in `Execution surface:`.
+Model choice belongs to capability-based model routing and the relevant model adapter.
+
+Missing, ambiguous, or conflicting `Execution surface:` is a blocker for surface-sensitive work. The field never overrides `Status:`, `Review:`, a reviewed plan, exact approval boundaries, `User action:`, `Next agent action:`, or `Execution route:`.
+
+Older relay blocks without `Execution surface:` remain valid. Absence means
+unconstrained unless the receiving agent can identify that the next action is
+surface-sensitive. If surface sensitivity is discovered during consumption,
+stop for a handoff repair, route decision, or plan revision instead of
+guessing.
+
+Single-surface requirements must not be broadened into multi-surface fallback without a reviewed plan or later user decision. If the named surface reports `tool_unavailable` or `blocked_by_policy`, record the evidence and stop at the appropriate route decision or blocker. Do not try another surface by habit.
+
+User-observed GUI concerns about repeated auth failures, surprising retries, or no-progress loops are valid control-contract input. Treat them as surface-routing evidence when they concern surface selection, auth visibility, sandbox behavior, external-service egress, or surface mismatch. The agent should pause, explain the surface evidence, and return to the relevant review, route, or plan gate instead of silently continuing retries.
 
 `User action` 是給使用者的人類 routing hint，使用 short tokens 串成有序 sequence；
 token 之間用 ` -> `。`self-review` 表示使用者應先自行閱讀 / 判斷；`to-reviewer`
@@ -277,6 +309,7 @@ handoff 再送出。
   若 `User action:` 含 `reply-required-text`，copy block 外的人類說明是否清楚表示
   current chat is waiting for a user reply，且沒有複製 exact text？
 - 有 repo-specific next action 時，`Target repo:` 是否非 `n/a`？
+- 下一步是否 surface-sensitive；若是，`Execution surface:` 是否存在、是否使用 canonical token、是否不含 model names / aliases / intelligence labels？
 - `User action:` 含 `to-reviewer` 或 `to-agent` 時，是否只有 exactly one `text` fenced copy block 供使用者轉貼？
 - 該 copy block 是否包含完整 relay block 與 three-line `Review:` contract？
 - 對下一個 agent 有意義的 review findings、author dispositions、verification state、
