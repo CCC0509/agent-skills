@@ -127,6 +127,13 @@ public-safe attestations and private promotion-ledger mappings.
   agent-skills default, and universal fresh gates with the single
   `freshness-unverified` outcome. The release remains pending until a later
   reviewed tag / release train.
+- v0.5.13: Completion-report relay stage adds pre-relay `Completed task:` and
+  `Recommended next task:` stage lines for closeouts where one scoped task
+  reached its proof-backed stop point and another task, approval-bound object,
+  or later lane remains. The stage is documented as advisory orientation, not a
+  relay field or new `Status:` value, with examples for review, approval,
+  continuation, and no-action closeouts. The release remains pending until a
+  later reviewed tag / release train.
 - Release history note (2026-07-08): annotated tag `v0.5.10` was published
   after the v0.5.10 implementation train and closes the batched install-facing
   release for v0.5.7, v0.5.8, v0.5.9, and v0.5.10. Historical entries above
