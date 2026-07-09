@@ -226,6 +226,33 @@ Single-surface requirements must not be broadened into multi-surface fallback wi
 
 User-observed GUI concerns about repeated auth failures, surprising retries, or no-progress loops are valid control-contract input. Treat them as surface-routing evidence when they concern surface selection, auth visibility, sandbox behavior, external-service egress, or surface mismatch. The agent should pause, explain the surface evidence, and return to the relevant review, route, or plan gate instead of silently continuing retries.
 
+Capability/surface preflight applies before new surface-sensitive execution. It checks whether the requested surface can safely perform the next action, whether the handoff allows one surface or multiple surfaces, whether auth and egress are visible from the executing surface, and when to stop instead of trying fallback routes.
+
+Use the existing surface-sensitive definition above. For this preflight, host or sandbox checks are also surface-sensitive, and relay text is another source of one-surface requirements when the relay itself constrains the next action.
+
+Organization names are also forbidden in `Execution surface:`.
+
+The preflight has six layers:
+
+1. **Handoff surface parse.** Identify whether the next action is unconstrained, controlled single-surface, `multi-surface:` with role text, `user-executed`, missing, ambiguous, or conflicting. If surface-sensitive work lacks a usable `Execution surface:`, stop for handoff repair, route decision, or plan revision. The field never overrides `Status:`, `Review:`, a reviewed plan, exact approval boundaries, `User action:`, `Next agent action:`, or `Execution route:`.
+2. **Capability inventory.** Check only the capabilities needed by the immediate next action, such as subagent launcher availability, worker wait/result/cleanup lifecycle, background job status/result/cancel lifecycle, CLI visibility, browser/app connector/MCP availability, filesystem or sandbox access, and user-executed command ownership. Missing capability is a capability gap, not agent error.
+3. **Runtime smoke where safe.** Help text, binary discovery, a command path, or launcher presence proves only presence. A surface execution claim requires the smallest non-destructive invocation that exercises the relevant surface. If that invocation would cross external-service egress, credential-store access, plugin refresh, package install, global config mutation, live behavior evidence, or another approval gate, record the surface as blocked or unproven and stop.
+4. **Presence-only auth visibility.** Check auth from the surface that will execute the action. Host auth does not prove sandbox auth. Sandbox-missing auth does not prove the user is logged out on the host. Plain-language classes are: not required; not checked; status visible: a status-only check is available and safe from the executing surface, but has not yet produced a `present` or `missing` result; present; missing; blocked. Do not record secret values, account identifiers, organization identifiers, tokens, key material, raw credential-store output, or private auth logs.
+5. **Policy and egress check.** External-service egress is route authorization, not merely login status. Classify policy and egress gaps in prose, such as sandbox boundary, network or external-service egress block, credential-store or keychain boundary, account or organization boundary, host permission boundary, plugin-cache or global-config boundary, user-owned terminal decision, or public/private evidence boundary.
+6. **Execution disposition.** Proceed only when the named surface passes the needed checks. Otherwise stop for handoff repair, route decision, reviewed plan or plan amendment, exact user approval naming the action and object, or accepted residual with durable owner. `Execution route:` remains governed by the existing route display rule.
+
+Single-surface fallback requires a reviewed plan, reviewed plan amendment, or explicit user route decision naming the replacement surface. The consumer must not broaden to another agent, host shell, fresh session, current session, user terminal, or external service merely because that alternative might work.
+
+For `multi-surface:` handoffs, each role needs its own named surface, capability check, auth/egress visibility when relevant, and stop condition. One multi-surface role passing does not satisfy another role.
+
+Plans that require subagent-driven execution or fresh-context verification must preflight launcher support before trying to spawn workers. Minimum inventory is launcher availability, wait or completion observation, result retrieval, and cleanup or cancellation semantics when relevant. If a load-bearing piece is missing, record a capability gap and stop. Do not repeatedly call unavailable tools.
+
+Preflight results are immediate, surface-bound, and time-bound. Use them to decide whether the next action can proceed; do not treat them as permanent proof that future sessions, accounts, policies, or tools have the same capabilities. Carry results in existing relay prose, `Blockers:`, `Accepted residuals:`, review records, or status memory. Do not add relay fields for preflight results.
+
+No new machine-readable outcome tokens are introduced by capability/surface preflight. Only `tool_unavailable` and `blocked_by_policy` are reviewed machine tokens for this lane. Login-status wording is not a machine token for this lane. Capability gap, auth-visibility gap, policy block, egress block, and surface mismatch are prose classifications. Any durable taxonomy extension belongs to Agent Trigger Kit through a reviewed mechanism plan.
+
+Ordinary low-risk docs work does not need a full capability/surface preflight unless it introduces or depends on a surface-sensitive action.
+
 `User action` 是給使用者的人類 routing hint，使用 short tokens 串成有序 sequence；
 token 之間用 ` -> `。`self-review` 表示使用者應先自行閱讀 / 判斷；`to-reviewer`
 表示把完整 copy block 貼給 reviewer agent；`to-agent` 表示貼給下一個 acting agent，
