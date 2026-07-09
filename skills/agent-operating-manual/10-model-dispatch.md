@@ -100,6 +100,91 @@ Blockers: <none, or concise blockers>
 Accepted residuals: <none | short finding label + disposition + durable tracker/owner>
 ```
 
+Completion-report stage: when a named scoped task, task slice, or train stage
+has finished to its
+current stop point and the closeout pivots to another task, approval-bound
+object, or later lane, add this stage immediately before the relay block or
+approval menu:
+
+```text
+Completed task: <specific completed task or object, with compact durable evidence pointer>
+Recommended next task: <one recommended next task, or n/a>
+```
+
+These are stage lines, not relay fields. The stage does not add a relay field
+or a `Status:` value. Do not use `Completed task:` to make partial or blocked
+work look terminal.
+
+Use the stage when all of these are true:
+
+- a named scoped task, task slice, or train stage finished to the task's
+  current proof-backed stop point;
+- the closeout pivots to another task, approval-bound object, or later lane;
+- the next action is not merely the same unfinished task continuing under the
+  same blocker.
+
+The completed task needs a compact durable evidence pointer, such as a commit,
+PR, tag, review record, closeout record, smoke result, or public-safe
+attestation. The stage creates no new authority: it cannot turn skipped
+verification into verification, author confidence into review, or a pending
+approval-bound object into an approved action.
+
+`Recommended next task:` is advisory orientation. It must name exactly one
+recommended task, or `n/a`. `Status:` remains authoritative for the immediate
+relay state. `Required user text:` remains the only exact-approval text home.
+`Accepted residuals:` remains the non-blocking residual home. `Execution route:`
+remains governed by the existing route display rule. If `Recommended next
+task:` contradicts `Next agent action:`, the handoff is defective and must be
+fixed before forwarding.
+
+When a handoff is forwarded to another agent or reviewer, include the stage
+inside the same fenced `text` copy block above `Status:`. When an approval menu
+is needed, the approval menu can follow the stage, but every executable item
+still needs exact object identity under the existing approval rules.
+`Recommended next task:` may identify one preferred approval item, but it does
+not approve it.
+
+Forwarded copy-block placement example:
+
+```text
+Completed task: formal spec authored and checked; evidence reviews/example-formal-spec-review.md
+Recommended next task: request plan/rule-review of the implementation plan
+
+Status: review-needed
+Target repo: owner/repo
+Target: plans/example-implementation.md at abc1234
+Required user text: n/a
+User action: self-review -> to-reviewer
+Next agent action: review the implementation plan against the formal spec
+Blockers: none
+Accepted residuals: none
+```
+
+Examples:
+
+- `Status: review-needed`: `Completed task: formal spec authored and checked;
+  evidence specs/portfolio/example-design.md plus review request`, then
+  `Recommended next task: request plan/rule-review of the implementation plan`.
+- `Status: ready-for-user-approval`: `Completed task: reviewed branch reached
+  merge stop point; evidence PR #123 at abc1234`, then `Recommended next task:
+  request exact merge approval for PR #123 at abc1234`.
+- `Status: ready-for-continuation`: `Completed task: fix-confirmation passed
+  for the formal spec; evidence reviews/portfolio/example-fix-confirmation.md`,
+  then `Recommended next task: author the implementation plan`.
+- `Status: complete-no-action-needed`: `Completed task: docs-only closeout
+  recorded; evidence reviews/portfolio/example-closeout.md`, then
+  `Recommended next task: n/a`.
+
+Allowed difference example: `Recommended next task: request plan/rule-review of
+the implementation plan` differs from `Next agent action:` without
+contradicting it when `Next agent action:` says `review the implementation plan
+against the formal spec`; both point to the same review lane.
+
+Blocking difference example: `Recommended next task: update imported copies`
+conflicts with `Next agent action: revise the current requested-changes
+finding`; the difference is a blocker because it points the receiver at a
+different immediate task and could imply an approval-bound imported-copy action.
+
 `Target repo` 是 cross-repo handoff 的 durable routing field。已知 remote identity 時用
 `owner/repo`；下一步依賴 local checkout 時用 absolute local repo path；只有沒有
 repo-specific next action 時才用 `n/a`。`Target` 保持原本語意，只描述該 repo 內的
