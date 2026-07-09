@@ -96,8 +96,8 @@ require_contains_normalized "$RELAY" 'stage lines before the relay block'
 require_contains "$RELAY" 'not relay fields'
 
 require_contains "$CHANGELOG" 'v0.5.13: Completion-report relay stage'
-require_contains .claude-plugin/plugin.json '"version": "0.5.13"'
-require_contains .claude-plugin/marketplace.json '"version": "0.5.13"'
+require_contains .claude-plugin/plugin.json '"version": "0.5.14"'
+require_contains .claude-plugin/marketplace.json '"version": "0.5.14"'
 
 copy_current_source_to_tmp_repo
 VER="$(sed -n 's/.*"version"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' \
@@ -133,7 +133,7 @@ require_contains "$INSTALLED_RELAY" 'completion-report closeouts'
 require_contains_normalized "$INSTALLED_RELAY" 'stage lines before the relay block'
 require_contains "$INSTALLED_RELAY" 'not relay fields'
 
-[ "$(cat "$TMP/target/.agent-skills/pin")" = "CCC0509/agent-skills@v0.5.13" ] \
-  || fail "pin did not resolve v0.5.13"
+[ "$(cat "$TMP/target/.agent-skills/pin")" = "CCC0509/agent-skills@v0.5.14" ] \
+  || fail "pin did not resolve v0.5.14"
 
 echo "completion report relay stage smoke ok"
