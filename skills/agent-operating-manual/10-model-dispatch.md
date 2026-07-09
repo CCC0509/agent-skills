@@ -248,9 +248,10 @@ execution、merge、tag、deploy、release），`Status` 必須是 `ready-for-us
 Plan / PR lifecycle routing：branch-first、PR stop、review-passed is not merge
 approval、pre-merge recheck、squash merge evidence 等 object-identity /
 merge stop-point 規則的 canonical home 是 `25-change-discipline.md` §3.1
-`Plan / PR Lifecycle Discipline`。本 §3.1 只維護 relay fields、approval text
-home、copy-block formatting、Status / User action coherence；不要在這裡重寫
-PR lifecycle state machine。
+`Plan / PR Lifecycle Discipline`。Reviewed-range carry-forward, approval menus,
+merge-shape policy, and universal fresh gates live in `25-change-discipline.md`
+§3.4. 本 §3.1 只維護 relay fields、approval text home、copy-block formatting、
+Status / User action coherence；不要在這裡重寫 PR lifecycle state machine。
 
 當下一個 agent 還需要選擇執行方式時，預設由交接者直接推薦 route，不要把例行的
 「用哪種方式執行」丟回給使用者選。把 route 接在 relay signal 後面：
