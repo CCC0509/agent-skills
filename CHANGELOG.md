@@ -142,6 +142,14 @@ public-safe attestations and private promotion-ledger mappings.
   keeps capability/auth/policy gaps as prose classifications, and defers Agent
   Trigger Kit taxonomy or mechanism work to a later reviewed batch. The release
   remains pending until a later reviewed tag / release train.
+- v0.5.16: Claude plugin namespace route repair changes the Claude marketplace
+  id to `ccc-agent-skills` while keeping the plugin entry name `agent-skills`,
+  so the intended installed id is `agent-skills@ccc-agent-skills`. The GitHub
+  repository name remains `CCC0509/agent-skills`, `v0.5.15` remains
+  immutable, source smoke coverage proves the manifest and README route, and
+  plugin-entry name acceptance remains an install-time assumption if no safe
+  read-only validation surface proves it. The release remains pending until a
+  later reviewed tag / release train.
 - v0.5.15: Workflow adoption framework adds portable doctrine for discovering
   adopting-repo release, deploy, publish, rollback, cleanup, promotion,
   install, plugin-refresh, imported-copy, and cross-agent handoff workflows;

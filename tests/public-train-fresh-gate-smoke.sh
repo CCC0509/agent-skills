@@ -83,8 +83,8 @@ require_not_contains "$CHANGE" 'freshness_unknown'
 require_contains_normalized "$DISPATCH" 'Reviewed-range carry-forward, approval menus, merge-shape policy, and universal fresh gates live in `25-change-discipline.md` §3.4.'
 
 require_contains "$CHANGELOG" 'v0.5.12: Public train fresh gates'
-require_contains .claude-plugin/plugin.json '"version": "0.5.15"'
-require_contains .claude-plugin/marketplace.json '"version": "0.5.15"'
+require_contains .claude-plugin/plugin.json '"version": "0.5.16"'
+require_contains .claude-plugin/marketplace.json '"version": "0.5.16"'
 
 copy_current_source_to_tmp_repo
 VER="$(sed -n 's/.*"version"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' \
@@ -111,7 +111,7 @@ require_not_contains "$INSTALLED_CHANGE" 'freshness_unavailable'
 require_not_contains "$INSTALLED_CHANGE" 'freshness_unknown'
 require_contains_normalized "$INSTALLED_DISPATCH" 'Reviewed-range carry-forward, approval menus, merge-shape policy, and universal fresh gates live in `25-change-discipline.md` §3.4.'
 
-[ "$(cat "$TMP/target/.agent-skills/pin")" = "CCC0509/agent-skills@v0.5.15" ] \
-  || fail "pin did not resolve v0.5.15"
+[ "$(cat "$TMP/target/.agent-skills/pin")" = "CCC0509/agent-skills@v0.5.16" ] \
+  || fail "pin did not resolve v0.5.16"
 
 echo "public train fresh gate smoke ok"
