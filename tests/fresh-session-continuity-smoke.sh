@@ -89,8 +89,8 @@ require_not_contains "$CHANGELOG" '## Extraction Candidates'
 require_contains "$ROADMAP" 'Public release history now lives in [CHANGELOG.md](CHANGELOG.md).'
 require_contains "$ROADMAP" 'compatibility pointer'
 
-require_contains .claude-plugin/plugin.json '"version": "0.5.14"'
-require_contains .claude-plugin/marketplace.json '"version": "0.5.14"'
+require_contains .claude-plugin/plugin.json '"version": "0.5.15"'
+require_contains .claude-plugin/marketplace.json '"version": "0.5.15"'
 
 copy_current_source_to_tmp_repo
 VER="$(sed -n 's/.*"version"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' \
@@ -119,7 +119,7 @@ require_contains "$INSTALLED_AOM" 'Do not restate `ready-for-continuation` preco
 require_contains "$INSTALLED_RELAY" 'context-health'
 require_contains "$INSTALLED_RELAY" 'skill-source provenance'
 
-[ "$(cat "$TMP/target/.agent-skills/pin")" = "CCC0509/agent-skills@v0.5.14" ] \
-  || fail "pin did not resolve v0.5.14"
+[ "$(cat "$TMP/target/.agent-skills/pin")" = "CCC0509/agent-skills@v0.5.15" ] \
+  || fail "pin did not resolve v0.5.15"
 
 echo "fresh session continuity smoke ok"

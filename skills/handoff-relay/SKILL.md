@@ -1,6 +1,6 @@
 ---
 name: handoff-relay
-description: "Use when preparing, reviewing, consuming, or forwarding agent handoffs, relay blocks, completion-report closeouts, exact approval text, Status/User action decisions, Execution surface constraints, capability/surface preflight, Review contracts, or paste-ready copy blocks."
+description: "Use when preparing, reviewing, consuming, or forwarding agent handoffs, relay blocks, completion-report closeouts, exact approval text, Status/User action decisions, Execution surface constraints, capability/surface preflight, workflow adoption packet splitting, Review contracts, or paste-ready copy blocks."
 ---
 
 # Handoff Relay
@@ -33,14 +33,18 @@ with a canonical file, follow the canonical file and fix this wrapper.
    this wrapper as a trigger pointer; do not restate the six-layer preflight,
    auth class list, fallback rules, or Agent Trigger Kit taxonomy boundary
    here.
-7. If the user must forward context to a reviewer or acting agent, emit exactly
+7. For workflow adoption packet splitting, read
+   `../agent-operating-manual/25-change-discipline.md` §3.5. Keep this wrapper
+   as a trigger pointer; do not restate the workflow inventory, canonical gate
+   map, profile shape, or session provenance rules here.
+8. If the user must forward context to a reviewer or acting agent, emit exactly
    one `text` fenced copy block containing the complete relay block and
    `Review:` contract.
-8. Put every non-blocking finding, FYI, external follow-up, or accepted gap in
+9. Put every non-blocking finding, FYI, external follow-up, or accepted gap in
    `Accepted residuals:` with a durable owner.
-9. Do not add relay fields, rename `Status:` values, change the `Review:` enum,
+10. Do not add relay fields, rename `Status:` values, change the `Review:` enum,
    or copy the full relay state machine into this wrapper.
-10. For context-health, fresh-session, or skill-source provenance questions,
+11. For context-health, fresh-session, or skill-source provenance questions,
    read `../agent-operating-manual/10-model-dispatch.md` before deciding
    whether to continue in the current session, emit a continuity packet, or
    explain source / imported-copy / plugin-cache freshness.
