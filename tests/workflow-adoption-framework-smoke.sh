@@ -108,7 +108,8 @@ git -C "$TMP/src" tag -f "v$VER" >/dev/null
 mkdir "$TMP/target"
 git -C "$TMP/target" init -q
 printf '# AGENTS.md\nexisting content\n' > "$TMP/target/AGENTS.md"
-bash "$TMP/src/install.sh" "$TMP/target"
+bash "$TMP/src/install.sh" "$TMP/target" \
+  --skills agent-operating-manual,handoff-relay,multi-angle-review,work-discipline
 
 INSTALLED_CHANGE="$TMP/target/docs/imported-skills/agent-operating-manual/25-change-discipline.md"
 INSTALLED_RELAY="$TMP/target/docs/imported-skills/handoff-relay/SKILL.md"
@@ -128,3 +129,7 @@ require_contains "$INSTALLED_CHANGE" 'public-safe attestation and an adopting-re
 require_contains "$INSTALLED_RELAY" 'workflow adoption'
 require_contains "$INSTALLED_WORK" 'workflow profiles'
 
+[ "$(cat "$TMP/target/.agent-skills/pin")" = "CCC0509/agent-skills@v0.5.15" ] \
+  || fail "pin did not resolve v0.5.15"
+
+echo "workflow adoption framework smoke ok"

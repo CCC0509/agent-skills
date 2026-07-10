@@ -142,6 +142,14 @@ public-safe attestations and private promotion-ledger mappings.
   keeps capability/auth/policy gaps as prose classifications, and defers Agent
   Trigger Kit taxonomy or mechanism work to a later reviewed batch. The release
   remains pending until a later reviewed tag / release train.
+- v0.5.15: Workflow adoption framework adds portable doctrine for discovering
+  adopting-repo release, deploy, publish, rollback, cleanup, promotion,
+  install, plugin-refresh, imported-copy, and cross-agent handoff workflows;
+  mapping them to canonical gates; initializing repo-local workflow profiles
+  when absent; requiring receiver-specific packet splitting; preserving
+  session provenance; and keeping private evidence behind public-safe
+  attestations plus adopting-repo-owned promotion ledgers or equivalents. The
+  release remains pending until a later reviewed tag / release train.
 - Release history note (2026-07-08): annotated tag `v0.5.10` was published
   after the v0.5.10 implementation train and closes the batched install-facing
   release for v0.5.7, v0.5.8, v0.5.9, and v0.5.10. Historical entries above
