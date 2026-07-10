@@ -40,7 +40,7 @@ trigger；`skill-authoring` 是 maintainer / extraction 用 optional skill，需
 ## Claude Code plugin（選配）
 
     claude plugin marketplace add CCC0509/agent-skills --scope project
-    claude plugin install agent-skills@agent-skills --scope project
+    claude plugin install agent-skills@ccc-agent-skills --scope project
 
 ## 採用 checklist（新 repo）
 

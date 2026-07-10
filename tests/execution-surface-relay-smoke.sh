@@ -80,8 +80,8 @@ require_contains "$RELAY" 'surface-sensitive'
 require_contains "$RELAY" '10-model-dispatch.md'
 
 require_contains "$CHANGELOG" 'v0.5.11: Execution surface relay field'
-require_contains .claude-plugin/plugin.json '"version": "0.5.15"'
-require_contains .claude-plugin/marketplace.json '"version": "0.5.15"'
+require_contains .claude-plugin/plugin.json '"version": "0.5.16"'
+require_contains .claude-plugin/marketplace.json '"version": "0.5.16"'
 
 copy_current_source_to_tmp_repo
 VER="$(sed -n 's/.*"version"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' \
@@ -109,7 +109,7 @@ require_contains "$INSTALLED_RELAY" 'Execution surface'
 require_contains "$INSTALLED_RELAY" 'surface-sensitive'
 require_not_contains "$INSTALLED_AOM" 'not_logged_in'
 
-[ "$(cat "$TMP/target/.agent-skills/pin")" = "CCC0509/agent-skills@v0.5.15" ] \
-  || fail "pin did not resolve v0.5.15"
+[ "$(cat "$TMP/target/.agent-skills/pin")" = "CCC0509/agent-skills@v0.5.16" ] \
+  || fail "pin did not resolve v0.5.16"
 
 echo "execution surface relay smoke ok"

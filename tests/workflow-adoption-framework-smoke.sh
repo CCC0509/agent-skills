@@ -97,8 +97,8 @@ require_contains "$WORK" 'workflow adoption'
 require_contains "$WORK" '25-change-discipline.md'
 
 require_contains "$CHANGELOG" 'v0.5.15: Workflow adoption framework'
-require_contains .claude-plugin/plugin.json '"version": "0.5.15"'
-require_contains .claude-plugin/marketplace.json '"version": "0.5.15"'
+require_contains .claude-plugin/plugin.json '"version": "0.5.16"'
+require_contains .claude-plugin/marketplace.json '"version": "0.5.16"'
 
 copy_current_source_to_tmp_repo
 VER="$(sed -n 's/.*"version"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' \
@@ -129,7 +129,7 @@ require_contains "$INSTALLED_CHANGE" 'public-safe attestation and an adopting-re
 require_contains "$INSTALLED_RELAY" 'workflow adoption'
 require_contains "$INSTALLED_WORK" 'workflow profiles'
 
-[ "$(cat "$TMP/target/.agent-skills/pin")" = "CCC0509/agent-skills@v0.5.15" ] \
-  || fail "pin did not resolve v0.5.15"
+[ "$(cat "$TMP/target/.agent-skills/pin")" = "CCC0509/agent-skills@v0.5.16" ] \
+  || fail "pin did not resolve v0.5.16"
 
 echo "workflow adoption framework smoke ok"
