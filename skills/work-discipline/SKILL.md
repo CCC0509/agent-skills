@@ -1,6 +1,6 @@
 ---
 name: work-discipline
-description: "Use when writing, reviewing, refactoring, or modifying docs, skills, plans, tests, scripts, trigger layers, or release surfaces to reduce common LLM mistakes: surface assumptions, keep scope simple and surgical, and define verifiable success criteria."
+description: "Use when writing, reviewing, refactoring, or modifying docs, skills, plans, tests, scripts, trigger layers, workflow profiles, or release surfaces to reduce common LLM mistakes: surface assumptions, keep scope simple and surgical, and define verifiable success criteria."
 ---
 
 # Work Discipline
@@ -12,7 +12,7 @@ manuals remain canonical.
 
 ## Must Read
 
-- [`../agent-operating-manual/25-change-discipline.md`](../agent-operating-manual/25-change-discipline.md) -- read for convention migrations, release PRs, approval-bound identifiers, public evidence hygiene, and verifiable commit structure.
+- [`../agent-operating-manual/25-change-discipline.md`](../agent-operating-manual/25-change-discipline.md) -- read for convention migrations, workflow adoption profiles, release PRs, approval-bound identifiers, public evidence hygiene, and verifiable commit structure.
 - [`../agent-operating-manual/10-model-dispatch.md`](../agent-operating-manual/10-model-dispatch.md) -- read for delegation, context management, verification, progress tracking, and when to stop.
 - [`../handoff-relay/SKILL.md`](../handoff-relay/SKILL.md) -- read before emitting handoff, review, approval, continuation, or no-action closeout signals.
 - [`../multi-angle-review/SKILL.md`](../multi-angle-review/SKILL.md) -- read when reviewing a plan, rule, PR, commit range, or fix.
@@ -42,3 +42,7 @@ manuals remain canonical.
 5. Route excess scope.
    - Put adjacent concerns in ROADMAP or `Accepted residuals` with an owner.
    - Do not turn one wrapper or cleanup into a full doctrine migration.
+   - Before planning or performing approval-bound release, deploy, publish,
+     promotion, cleanup, install, plugin refresh, imported-copy update, or
+     cross-agent workflow handoff work, check whether workflow adoption in
+     `25-change-discipline.md` §3.5 is triggered.
