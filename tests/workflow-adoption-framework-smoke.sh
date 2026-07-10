@@ -96,7 +96,7 @@ require_contains "$WORK" 'workflow profiles'
 require_contains "$WORK" 'workflow adoption'
 require_contains "$WORK" '25-change-discipline.md'
 
-require_contains "$CHANGELOG" 'v0.5.16: Claude plugin namespace route repair'
+require_contains "$CHANGELOG" 'v0.5.15: Workflow adoption framework'
 require_contains .claude-plugin/plugin.json '"version": "0.5.16"'
 require_contains .claude-plugin/marketplace.json '"version": "0.5.16"'
 
