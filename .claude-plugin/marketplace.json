@@ -11,7 +11,7 @@
       "name": "agent-skills",
       "source": "./",
       "description": "Portable agent doctrine skills: agent-operating-manual (dispatch economy), handoff-relay (handoff / approval trigger surface), multi-angle-review (adversarial review pipeline), optional work-discipline (scope / simplicity / verification guardrails), and optional skill-authoring.",
-      "version": "0.5.13",
+      "version": "0.5.14",
       "author": {
         "name": "Jack Chou"
       },

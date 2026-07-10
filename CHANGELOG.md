@@ -134,6 +134,14 @@ public-safe attestations and private promotion-ledger mappings.
   relay field or new `Status:` value, with examples for review, approval,
   continuation, and no-action closeouts. The release remains pending until a
   later reviewed tag / release train.
+- v0.5.14: Capability/surface preflight adds a six-layer preflight before
+  surface-sensitive execution, covering handoff surface parsing, capability
+  inventory, safe runtime-smoke semantics, presence-only auth visibility,
+  policy/egress checks, and execution disposition. The doctrine preserves
+  existing `Execution surface:` tokens, prevents single-surface fallback loops,
+  keeps capability/auth/policy gaps as prose classifications, and defers Agent
+  Trigger Kit taxonomy or mechanism work to a later reviewed batch. The release
+  remains pending until a later reviewed tag / release train.
 - Release history note (2026-07-08): annotated tag `v0.5.10` was published
   after the v0.5.10 implementation train and closes the batched install-facing
   release for v0.5.7, v0.5.8, v0.5.9, and v0.5.10. Historical entries above
