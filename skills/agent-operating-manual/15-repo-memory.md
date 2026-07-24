@@ -34,6 +34,19 @@ This is a template, not a mechanism: no automation, numbering, or collision
 handling is implied. Repos may keep an existing lesson-memory format
 instead; this is a recommended default, not a requirement.
 
+### REFERENCE (inactive; automation-gated) -- log-write safety pattern
+
+This block is a labeled reference, not an active rule. It applies only if
+memory writes ever become concurrent or multi-agent; today's single-writer
+invariant already prevents the collision this pattern guards against.
+
+Borrow-adapt from rebelytics/one-skill-to-rule-them-all `task-observer`'s
+Observation-log mechanics: bounded-entry mutation, a pre-write assertion
+that the target slot is free, a post-write structural-invariant count
+check, and a survival re-check after write. If multi-writer memory work is
+ever scoped, adapt this pattern instead of reinventing it; do not
+implement it now.
+
 ## Session protocol
 
 1. Read `docs/agent-memory-index.md` when present.
