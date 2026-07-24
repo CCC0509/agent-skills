@@ -29,6 +29,7 @@ manuals remain canonical.
    - Build the minimum change that satisfies the request and repo rules.
    - Avoid speculative configurability, side features, and single-use abstractions.
    - If the solution is growing faster than the problem, shrink the slice.
+   - No-op pruning test (borrow-adapt, mattpocock/skills `writing-great-skills`): before keeping a new sentence, clause, or example, check whether deleting it would change any agent's behavior versus the default. If deleting it changes nothing, delete it instead of adding it.
 
 3. Make surgical changes.
    - Touch only files needed for this turn.
