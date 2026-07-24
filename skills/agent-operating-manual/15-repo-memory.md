@@ -16,6 +16,24 @@ that future agents must read and update.
 | Index memory | `docs/agent-memory-index.md` | Repo-owned index, updated in place | Memory locations change, or the first lesson path is chosen | Never treat as managed generated content; validators may check existence, not prose |
 | Mechanism evidence | ATK outcome store, CI logs, MCP graph cache, local scratch | Not canonical memory | It helps diagnose, triage, or review | Summarize reusable lessons or audit facts into repo-owned files; do not copy wholesale |
 
+## Recommended lesson-memory entry template
+
+Lesson memory has no fixed schema, but this structured shape (borrow-adapt,
+rebelytics/one-skill-to-rule-them-all `task-observer`'s Observation-log
+format) is a low-risk default when a repo has not already chosen one:
+
+```text
+### <date> -- <one-line title>
+Issue: <what pitfall or gap was observed>
+Suggested improvement: <the concrete change that would prevent recurrence>
+Principle: <the reusable rule this generalizes to>
+Status: OPEN <date> | ACTIONED <date> | DECLINED <date>
+```
+
+This is a template, not a mechanism: no automation, numbering, or collision
+handling is implied. Repos may keep an existing lesson-memory format
+instead; this is a recommended default, not a requirement.
+
 ## Session protocol
 
 1. Read `docs/agent-memory-index.md` when present.
