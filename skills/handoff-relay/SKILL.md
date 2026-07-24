@@ -49,3 +49,8 @@ with a canonical file, follow the canonical file and fix this wrapper.
    read `../agent-operating-manual/12-relay-decisions.md` before deciding
    whether to continue in the current session, emit a continuity packet, or
    explain source / imported-copy / plugin-cache freshness.
+12. Redact PII, secrets, tokens, credentials, and other sensitive values
+   before they enter a handoff (borrow-adapt, mattpocock/skills `handoff`).
+   When the underlying evidence already lives in a durable artifact (a
+   commit, file, log, or review record), reference that artifact by
+   path/hash instead of duplicating its content into the handoff body.
