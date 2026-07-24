@@ -35,6 +35,11 @@ surface. Keep the boundary sharp:
 7. Document consumer adoption separately from implementation details: exact tag,
    install command, default-vs-optional skill choice, and expected entrypoint
    pointer updates.
+8. Leading-words compaction (borrow-adapt, mattpocock/skills
+   `writing-great-skills`, lightweight): prefer a well-known term or phrase
+   over a paraphrase that restates the same idea in more words. A
+   recognizable term costs fewer tokens and is easier for a model to
+   pattern-match than a freshly-worded restatement.
 
 ## Skill Surface Disposition
 
