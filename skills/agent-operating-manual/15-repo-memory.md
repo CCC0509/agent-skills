@@ -47,6 +47,19 @@ check, and a survival re-check after write. If multi-writer memory work is
 ever scoped, adapt this pattern instead of reinventing it; do not
 implement it now.
 
+### REFERENCE (inactive; concept only) -- periodic review over accumulated backlog
+
+This block is a labeled reference, not an active rule; it records a
+pattern, not an obligation. Borrow-adapt from
+rebelytics/one-skill-to-rule-them-all `task-observer`'s README and Session
+Start Protocol: pairing continuous per-session observation with a
+periodic (its default: weekly) review pass over the accumulated backlog,
+so pitfalls surface even when no single session triggers a promotion on
+its own. If a repo later adopts a periodic review cadence over its own
+lesson/audit backlog, this is a concrete instance to adapt rather than
+reinvent. No automation, schedule, or self-triggering is implied or
+adopted here.
+
 ## Session protocol
 
 1. Read `docs/agent-memory-index.md` when present.
