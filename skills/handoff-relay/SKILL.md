@@ -11,8 +11,8 @@ with a canonical file, follow the canonical file and fix this wrapper.
 
 ## Must Read
 
-- [`../agent-operating-manual/11-relay-fields.md`](../agent-operating-manual/11-relay-fields.md) §3.1 — relay fields, copy-block formatting, execution-route display rules.
-- [`../agent-operating-manual/12-relay-decisions.md`](../agent-operating-manual/12-relay-decisions.md) §3.1 — `Status:` semantics, exact approval text, `User action`, `Accepted residuals`, and the pre-handoff self-check.
+- [`../agent-operating-manual/11-relay-fields.md`](../agent-operating-manual/11-relay-fields.md) §3.1 — relay fields, copy-block formatting, execution-surface + capability/surface preflight.
+- [`../agent-operating-manual/12-relay-decisions.md`](../agent-operating-manual/12-relay-decisions.md) §3.1 — `Status:` semantics, exact approval text, `User action`, `Accepted residuals`, execution-route display rules, and the pre-handoff self-check.
 - [`../multi-angle-review/SKILL.md`](../multi-angle-review/SKILL.md) — read when a review, plan/rule-review, fix-confirmation, requested-changes revision, or review-passed continuation is involved.
 - [`../agent-operating-manual/25-change-discipline.md`](../agent-operating-manual/25-change-discipline.md) — read when the handoff touches PR, merge, tag, publish, deploy, release, or another approval-bound object. See also [`26-fresh-gate.md`](../agent-operating-manual/26-fresh-gate.md) for carry-forward and fresh-gate checks.
 

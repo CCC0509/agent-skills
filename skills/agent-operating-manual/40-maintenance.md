@@ -99,6 +99,19 @@ vocabulary only; it does not change the existing structure.
    version，不符 fail loud。
 3. 🟦（Claude Code 專屬）段落維持圍欄；新 harness 變體另立檔案，不混寫。
 
+### Skill Surface Disposition (S10, FINAL)
+
+`25-change-discipline.md` (with `26-fresh-gate.md` and
+`27-workflow-adoption.md`) has no `SKILL.md` frontmatter; each is reached
+only by first loading `handoff-relay`, `work-discipline`, or
+`skill-authoring`.
+
+**ADJUDICATED (branch review, hs, 2026-07-24): a standalone trigger shim is
+declined.** Those three sibling wrappers already carry the relevant trigger
+words and Must-Read already points here; the gap is hypothetical, not an
+observed miss, so a new shim would be speculative canonical growth. Revisit
+and add a thin `change-discipline` shim if repeated real misses occur.
+
 ---
 
 *last reviewed: 2026-07-03*

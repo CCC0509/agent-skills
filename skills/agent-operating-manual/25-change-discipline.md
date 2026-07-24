@@ -3,21 +3,6 @@
 > 讀者：要改制、改名、遷移慣例、切 PR、或執行需要明確 approval 的 agent。
 > 目的：把「今天做對了」的 change craft 寫成可查核步驟，讓弱模型不靠記憶、不靠語氣推斷、不靠大而全的最後驗證。
 
-> **Skill Surface Disposition (S10, proposed -- branch review to
-> adjudicate):** this file, `26-fresh-gate.md`, and
-> `27-workflow-adoption.md` have no `SKILL.md` frontmatter of their own;
-> none can be model-invoked by its own trigger words
-> (release/merge/tag/publish/deploy) without first loading
-> `handoff-relay/SKILL.md`, `work-discipline/SKILL.md`, or
-> `skill-authoring/SKILL.md`. Disposition: **decline a standalone trigger
-> shim for now** -- those three existing wrappers already carry the
-> relevant trigger words and already point here, and skill-authoring's own
-> bias is to prefer a pointer over new canonical growth ("one observed miss
-> is not enough to create a new skill"). If a session repeatedly reaches
-> change-discipline content without first loading one of those wrappers,
-> revisit this disposition and add a thin `change-discipline` trigger shim
-> instead.
-
 ---
 
 ## §1 Convention Migration Discipline
