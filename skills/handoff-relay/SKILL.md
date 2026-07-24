@@ -11,9 +11,10 @@ with a canonical file, follow the canonical file and fix this wrapper.
 
 ## Must Read
 
-- [`../agent-operating-manual/10-model-dispatch.md`](../agent-operating-manual/10-model-dispatch.md) §3.1 — relay fields, copy-block formatting, `Status:` semantics, exact approval text, `User action`, `Accepted residuals`, and execution-route display rules.
+- [`../agent-operating-manual/11-relay-fields.md`](../agent-operating-manual/11-relay-fields.md) §3.1 — relay fields, copy-block formatting, execution-route display rules.
+- [`../agent-operating-manual/12-relay-decisions.md`](../agent-operating-manual/12-relay-decisions.md) §3.1 — `Status:` semantics, exact approval text, `User action`, `Accepted residuals`, and the pre-handoff self-check.
 - [`../multi-angle-review/SKILL.md`](../multi-angle-review/SKILL.md) — read when a review, plan/rule-review, fix-confirmation, requested-changes revision, or review-passed continuation is involved.
-- [`../agent-operating-manual/25-change-discipline.md`](../agent-operating-manual/25-change-discipline.md) — read when the handoff touches PR, merge, tag, publish, deploy, release, or another approval-bound object.
+- [`../agent-operating-manual/25-change-discipline.md`](../agent-operating-manual/25-change-discipline.md) — read when the handoff touches PR, merge, tag, publish, deploy, release, or another approval-bound object. See also [`26-fresh-gate.md`](../agent-operating-manual/26-fresh-gate.md) for carry-forward and fresh-gate checks.
 
 ## Apply
 
@@ -22,19 +23,19 @@ with a canonical file, follow the canonical file and fix this wrapper.
    block the user should forward to a reviewer.
 3. If exact user approval is pending, put the exact text only in
    `Required user text`; surrounding prose can say the chat is waiting.
-4. For completion-report closeouts, read `../agent-operating-manual/10-model-dispatch.md`
+4. For completion-report closeouts, read `../agent-operating-manual/11-relay-fields.md`
    §3.1. Keep the completion-report lines as stage lines before the relay
    block, not relay fields.
 5. For surface-sensitive handoffs, ensure the relay block carries
-   `Execution surface:` and read `10-model-dispatch.md` §3.1 for canonical
+   `Execution surface:` and read `11-relay-fields.md` §3.1 for canonical
    values, missing-field blockers, and conflict handling. Keep this wrapper as
    a pointer; do not restate the field's full state machine here.
-6. For capability/surface preflight, read `10-model-dispatch.md` §3.1. Keep
+6. For capability/surface preflight, read `11-relay-fields.md` §3.1. Keep
    this wrapper as a trigger pointer; do not restate the six-layer preflight,
    auth class list, fallback rules, or Agent Trigger Kit taxonomy boundary
    here.
 7. For workflow adoption packet splitting, read
-   `../agent-operating-manual/25-change-discipline.md` §3.5. Keep this wrapper
+   `../agent-operating-manual/27-workflow-adoption.md` §3.5. Keep this wrapper
    as a trigger pointer; do not restate the workflow inventory, canonical gate
    map, profile shape, or session provenance rules here.
 8. If the user must forward context to a reviewer or acting agent, emit exactly
@@ -45,6 +46,6 @@ with a canonical file, follow the canonical file and fix this wrapper.
 10. Do not add relay fields, rename `Status:` values, change the `Review:` enum,
    or copy the full relay state machine into this wrapper.
 11. For context-health, fresh-session, or skill-source provenance questions,
-   read `../agent-operating-manual/10-model-dispatch.md` before deciding
+   read `../agent-operating-manual/12-relay-decisions.md` before deciding
    whether to continue in the current session, emit a continuity packet, or
    explain source / imported-copy / plugin-cache freshness.

@@ -12,7 +12,7 @@ Canonical content lives alongside this file in this skill directory ([README.md]
 - [`10-model-dispatch.md`](10-model-dispatch.md) — 核心：指揮官不下場、派工三件套、模型/effort、升降級、驗證不自驗。
 - [`15-repo-memory.md`](15-repo-memory.md) — repo-owned shared memory：index、LESSONS lifecycle、audit boundaries、ATK / MCP 非 canonical。
 
-For convention migrations, release PRs, approval-bound merge / deploy / runtime actions, or public evidence tables, also read [`25-change-discipline.md`](25-change-discipline.md).
+For convention migrations, release PRs, or approval-bound merge / deploy / runtime actions, also read [`25-change-discipline.md`](25-change-discipline.md). For reviewed-range carry-forward and fresh-gate checks, also read [`26-fresh-gate.md`](26-fresh-gate.md). For workflow adoption or public evidence tables, also read [`27-workflow-adoption.md`](27-workflow-adoption.md).
 
 For cross-repo routing, ownership, codebase MCP availability, or residual owner questions, also read [`cross-repo-reference-map.md`](cross-repo-reference-map.md).
 
