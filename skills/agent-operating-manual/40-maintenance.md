@@ -2,6 +2,12 @@
 
 > 給未來較弱模型：**怎麼安全地更新這套 manual**，以及**怎麼把它 skill 化給所有 agent / repo**。
 
+**Vocabulary note (borrow-adapt, no restructure)**: this skill's `SKILL.md`
+shim plus its numbered docs already form a **deep module** — a small public
+interface (the shim + `README.md`'s file map) hiding rich internals (the
+numbered docs, this file included) behind one seam. Naming it borrows
+vocabulary only; it does not change the existing structure.
+
 ---
 
 ## §1 你可以自己改、不用先問
