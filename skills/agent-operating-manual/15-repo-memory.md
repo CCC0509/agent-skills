@@ -16,6 +16,50 @@ that future agents must read and update.
 | Index memory | `docs/agent-memory-index.md` | Repo-owned index, updated in place | Memory locations change, or the first lesson path is chosen | Never treat as managed generated content; validators may check existence, not prose |
 | Mechanism evidence | ATK outcome store, CI logs, MCP graph cache, local scratch | Not canonical memory | It helps diagnose, triage, or review | Summarize reusable lessons or audit facts into repo-owned files; do not copy wholesale |
 
+## Recommended lesson-memory entry template
+
+Lesson memory has no fixed schema, but this structured shape (borrow-adapt,
+rebelytics/one-skill-to-rule-them-all `task-observer`'s Observation-log
+format) is a low-risk default when a repo has not already chosen one:
+
+```text
+### <date> -- <one-line title>
+Issue: <what pitfall or gap was observed>
+Suggested improvement: <the concrete change that would prevent recurrence>
+Principle: <the reusable rule this generalizes to>
+Status: OPEN <date> | ACTIONED <date> | DECLINED <date>
+```
+
+This is a template, not a mechanism: no automation, numbering, or collision
+handling is implied. Repos may keep an existing lesson-memory format
+instead; this is a recommended default, not a requirement.
+
+### REFERENCE (inactive; automation-gated) -- log-write safety pattern
+
+This block is a labeled reference, not an active rule. It applies only if
+memory writes ever become concurrent or multi-agent; today's single-writer
+invariant already prevents the collision this pattern guards against.
+
+Borrow-adapt from rebelytics/one-skill-to-rule-them-all `task-observer`'s
+Observation-log mechanics: bounded-entry mutation, a pre-write assertion
+that the target slot is free, a post-write structural-invariant count
+check, and a survival re-check after write. If multi-writer memory work is
+ever scoped, adapt this pattern instead of reinventing it; do not
+implement it now.
+
+### REFERENCE (inactive; concept only) -- periodic review over accumulated backlog
+
+This block is a labeled reference, not an active rule; it records a
+pattern, not an obligation. Borrow-adapt from
+rebelytics/one-skill-to-rule-them-all `task-observer`'s README and Session
+Start Protocol: pairing continuous per-session observation with a
+periodic (its default: weekly) review pass over the accumulated backlog,
+so pitfalls surface even when no single session triggers a promotion on
+its own. If a repo later adopts a periodic review cadence over its own
+lesson/audit backlog, this is a concrete instance to adapt rather than
+reinvent. No automation, schedule, or self-triggering is implied or
+adopted here.
+
 ## Session protocol
 
 1. Read `docs/agent-memory-index.md` when present.

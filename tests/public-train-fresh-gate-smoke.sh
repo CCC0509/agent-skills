@@ -58,8 +58,8 @@ copy_current_source_to_tmp_repo() {
 
 cd "$ROOT"
 
-CHANGE="skills/agent-operating-manual/25-change-discipline.md"
-DISPATCH="skills/agent-operating-manual/10-model-dispatch.md"
+CHANGE="skills/agent-operating-manual/26-fresh-gate.md"
+DISPATCH="skills/agent-operating-manual/12-relay-decisions.md"
 CHANGELOG="CHANGELOG.md"
 
 require_file "$CHANGE"
@@ -80,7 +80,7 @@ require_contains "$CHANGE" 'Publication actions may not proceed under `freshness
 require_not_contains "$CHANGE" 'freshness_unavailable'
 require_not_contains "$CHANGE" 'freshness_unknown'
 
-require_contains_normalized "$DISPATCH" 'Reviewed-range carry-forward, approval menus, merge-shape policy, and universal fresh gates live in `25-change-discipline.md` §3.4.'
+require_contains_normalized "$DISPATCH" 'Reviewed-range carry-forward, approval menus, merge-shape policy, and universal fresh gates live in `26-fresh-gate.md` §3.4.'
 
 require_contains "$CHANGELOG" 'v0.5.12: Public train fresh gates'
 require_contains .claude-plugin/plugin.json '"version": "0.5.16"'
@@ -96,8 +96,8 @@ git -C "$TMP/target" init -q
 printf '# AGENTS.md\nexisting content\n' > "$TMP/target/AGENTS.md"
 bash "$TMP/src/install.sh" "$TMP/target"
 
-INSTALLED_CHANGE="$TMP/target/docs/imported-skills/agent-operating-manual/25-change-discipline.md"
-INSTALLED_DISPATCH="$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md"
+INSTALLED_CHANGE="$TMP/target/docs/imported-skills/agent-operating-manual/26-fresh-gate.md"
+INSTALLED_DISPATCH="$TMP/target/docs/imported-skills/agent-operating-manual/12-relay-decisions.md"
 require_file "$INSTALLED_CHANGE"
 require_file "$INSTALLED_DISPATCH"
 
@@ -109,7 +109,7 @@ require_contains_normalized "$INSTALLED_CHANGE" '`freshness-unverified` is the o
 require_contains "$INSTALLED_CHANGE" 'Publication actions may not proceed under `freshness-unverified`.'
 require_not_contains "$INSTALLED_CHANGE" 'freshness_unavailable'
 require_not_contains "$INSTALLED_CHANGE" 'freshness_unknown'
-require_contains_normalized "$INSTALLED_DISPATCH" 'Reviewed-range carry-forward, approval menus, merge-shape policy, and universal fresh gates live in `25-change-discipline.md` §3.4.'
+require_contains_normalized "$INSTALLED_DISPATCH" 'Reviewed-range carry-forward, approval menus, merge-shape policy, and universal fresh gates live in `26-fresh-gate.md` §3.4.'
 
 [ "$(cat "$TMP/target/.agent-skills/pin")" = "CCC0509/agent-skills@v0.5.16" ] \
   || fail "pin did not resolve v0.5.16"

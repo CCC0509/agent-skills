@@ -47,7 +47,7 @@ copy_current_source_to_tmp_repo() {
 
 cd "$ROOT"
 
-CHANGE="skills/agent-operating-manual/25-change-discipline.md"
+CHANGE="skills/agent-operating-manual/27-workflow-adoption.md"
 RELAY="skills/handoff-relay/SKILL.md"
 WORK="skills/work-discipline/SKILL.md"
 CHANGELOG="CHANGELOG.md"
@@ -91,10 +91,10 @@ require_not_contains "$CHANGE" '/private/'
 
 require_contains "$RELAY" 'workflow adoption'
 require_contains "$RELAY" 'packet splitting'
-require_contains "$RELAY" '25-change-discipline.md'
+require_contains "$RELAY" '27-workflow-adoption.md'
 require_contains "$WORK" 'workflow profiles'
 require_contains "$WORK" 'workflow adoption'
-require_contains "$WORK" '25-change-discipline.md'
+require_contains "$WORK" '27-workflow-adoption.md'
 
 require_contains "$CHANGELOG" 'v0.5.15: Workflow adoption framework'
 require_contains .claude-plugin/plugin.json '"version": "0.5.16"'
@@ -111,7 +111,7 @@ printf '# AGENTS.md\nexisting content\n' > "$TMP/target/AGENTS.md"
 bash "$TMP/src/install.sh" "$TMP/target" \
   --skills agent-operating-manual,handoff-relay,multi-angle-review,work-discipline
 
-INSTALLED_CHANGE="$TMP/target/docs/imported-skills/agent-operating-manual/25-change-discipline.md"
+INSTALLED_CHANGE="$TMP/target/docs/imported-skills/agent-operating-manual/27-workflow-adoption.md"
 INSTALLED_RELAY="$TMP/target/docs/imported-skills/handoff-relay/SKILL.md"
 INSTALLED_WORK="$TMP/target/docs/imported-skills/work-discipline/SKILL.md"
 require_file "$INSTALLED_CHANGE"

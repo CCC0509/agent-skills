@@ -12,7 +12,8 @@ manuals remain canonical.
 
 ## Must Read
 
-- [`../agent-operating-manual/25-change-discipline.md`](../agent-operating-manual/25-change-discipline.md) -- read for convention migrations, workflow adoption profiles, release PRs, approval-bound identifiers, public evidence hygiene, and verifiable commit structure.
+- [`../agent-operating-manual/25-change-discipline.md`](../agent-operating-manual/25-change-discipline.md) -- read for convention migrations, release PRs, approval-bound identifiers, and verifiable commit structure.
+- [`../agent-operating-manual/27-workflow-adoption.md`](../agent-operating-manual/27-workflow-adoption.md) -- read for workflow adoption profiles and public evidence hygiene.
 - [`../agent-operating-manual/10-model-dispatch.md`](../agent-operating-manual/10-model-dispatch.md) -- read for delegation, context management, verification, progress tracking, and when to stop.
 - [`../handoff-relay/SKILL.md`](../handoff-relay/SKILL.md) -- read before emitting handoff, review, approval, continuation, or no-action closeout signals.
 - [`../multi-angle-review/SKILL.md`](../multi-angle-review/SKILL.md) -- read when reviewing a plan, rule, PR, commit range, or fix.
@@ -28,6 +29,8 @@ manuals remain canonical.
    - Build the minimum change that satisfies the request and repo rules.
    - Avoid speculative configurability, side features, and single-use abstractions.
    - If the solution is growing faster than the problem, shrink the slice.
+   - No-op pruning test (borrow-adapt, mattpocock/skills `writing-great-skills`): before keeping a new sentence, clause, or example, check whether deleting it would change any agent's behavior versus the default. If deleting it changes nothing, delete it instead of adding it.
+   - Leading-words compaction (borrow-adapt, mattpocock/skills `writing-great-skills`, lightweight): prefer a well-known term or phrase over a paraphrase that restates the same idea in more words; a recognizable term costs fewer tokens and is easier to pattern-match.
 
 3. Make surgical changes.
    - Touch only files needed for this turn.
@@ -45,4 +48,4 @@ manuals remain canonical.
    - Before planning or performing approval-bound release, deploy, publish,
      promotion, cleanup, install, plugin refresh, imported-copy update, or
      cross-agent workflow handoff work, check whether workflow adoption in
-     `25-change-discipline.md` §3.5 is triggered.
+     `27-workflow-adoption.md` §3.5 is triggered.

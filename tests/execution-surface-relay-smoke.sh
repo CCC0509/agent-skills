@@ -47,7 +47,7 @@ copy_current_source_to_tmp_repo() {
 
 cd "$ROOT"
 
-AOM="skills/agent-operating-manual/10-model-dispatch.md"
+AOM="skills/agent-operating-manual/11-relay-fields.md"
 RELAY="skills/handoff-relay/SKILL.md"
 CHANGELOG="CHANGELOG.md"
 
@@ -77,7 +77,7 @@ require_not_contains "$AOM" 'not_logged_in'
 
 require_contains "$RELAY" 'Execution surface'
 require_contains "$RELAY" 'surface-sensitive'
-require_contains "$RELAY" '10-model-dispatch.md'
+require_contains "$RELAY" '11-relay-fields.md'
 
 require_contains "$CHANGELOG" 'v0.5.11: Execution surface relay field'
 require_contains .claude-plugin/plugin.json '"version": "0.5.16"'
@@ -93,7 +93,7 @@ git -C "$TMP/target" init -q
 printf '# AGENTS.md\nexisting content\n' > "$TMP/target/AGENTS.md"
 bash "$TMP/src/install.sh" "$TMP/target"
 
-INSTALLED_AOM="$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md"
+INSTALLED_AOM="$TMP/target/docs/imported-skills/agent-operating-manual/11-relay-fields.md"
 INSTALLED_RELAY="$TMP/target/docs/imported-skills/handoff-relay/SKILL.md"
 require_file "$INSTALLED_AOM"
 require_file "$INSTALLED_RELAY"

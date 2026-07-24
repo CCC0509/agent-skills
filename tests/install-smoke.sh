@@ -73,7 +73,7 @@ for f in CLAUDE.md AGENTS.md GEMINI.md; do
   grep -Fq 'trigger layer only' \
     "$TMP/target/docs/imported-skills/handoff-relay/SKILL.md" \
     || fail "$f imported handoff relay missing trigger-only boundary"
-  grep -Fq '10-model-dispatch.md' \
+  grep -Fq '11-relay-fields.md' \
     "$TMP/target/docs/imported-skills/handoff-relay/SKILL.md" \
     || fail "$f imported handoff relay missing relay canonical pointer"
   grep -Fq 'multi-angle-review/SKILL.md' \
@@ -89,70 +89,70 @@ for f in CLAUDE.md AGENTS.md GEMINI.md; do
     "$TMP/target/docs/imported-skills/handoff-relay/SKILL.md" \
     || fail "$f imported handoff relay missing accepted-residuals reminder"
   grep -Fq 'ready-for-user-approval' \
-    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/11-relay-fields.md" \
     || fail "$f imported manual missing merge relay signal"
   grep -Fq 'complete-no-action-needed' \
-    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/11-relay-fields.md" \
     || fail "$f imported manual missing completion relay signal"
   grep -Fq 'Status: <review-needed | ready-for-user-approval | ready-for-continuation | complete-no-action-needed | not-ready>' \
-    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/11-relay-fields.md" \
     || fail "$f imported manual missing ready-for-continuation relay status"
   grep -Fq 'ready-for-continuation' \
-    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/11-relay-fields.md" \
     || fail "$f imported manual missing continuation relay signal"
   grep -Fq 'exact-text approval gate' \
-    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/12-relay-decisions.md" \
     || fail "$f imported manual missing exact-text approval gate rule"
   grep -Fq 'Co-occurrence tie-breaker' \
-    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/11-relay-fields.md" \
     || fail "$f imported manual missing Review/Status tie-breaker"
   grep -Fq 'Target repo: <owner/repo or absolute local repo path, or n/a>' \
-    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/11-relay-fields.md" \
     || fail "$f imported manual missing target repo relay field"
   grep -Fq 'User action: <self-review | to-reviewer | to-agent | reply-required-text | none>[ -> ...]' \
-    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/11-relay-fields.md" \
     || fail "$f imported manual missing user action relay field"
   grep -Fq 'Full-context copy rule' \
-    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/12-relay-decisions.md" \
     || fail "$f imported manual missing full-context copy rule"
   grep -Fq 'pre-spec / design-framing' \
-    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/12-relay-decisions.md" \
     || fail "$f imported manual missing pre-spec handoff rule"
   grep -Fq 'Durable conclusion capture' \
-    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/12-relay-decisions.md" \
     || fail "$f imported manual missing durable conclusion capture rule"
   grep -Fq 'Pre-Spec Review Disposition' \
-    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/12-relay-decisions.md" \
     || fail "$f imported manual missing pre-spec disposition home"
   grep -Fq 'User action consistency rule' \
-    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/12-relay-decisions.md" \
     || fail "$f imported manual missing user action consistency rule"
   grep -Fq 'Pre-handoff self-check' \
-    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/12-relay-decisions.md" \
     || fail "$f imported manual missing pre-handoff self-check"
   grep -Fq 'current chat is waiting for a user reply' \
-    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/12-relay-decisions.md" \
     || fail "$f imported manual missing reply-required-text human prompt check"
   grep -Fq 'executable approval / continuation handoff' \
-    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/12-relay-decisions.md" \
     || fail "$f imported manual missing execution-route gating check"
   grep -Fq 'exactly one `text` fenced copy block' \
-    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/12-relay-decisions.md" \
     || fail "$f imported manual missing exactly-one copy block check"
   grep -Fq 'three-line `Review:` contract' \
-    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/12-relay-decisions.md" \
     || fail "$f imported manual missing review contract copy check"
   grep -Fq 'Relay readiness rule' \
-    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/12-relay-decisions.md" \
     || fail "$f imported manual missing not-ready relay authority rule"
   grep -Fq 'Normative control-contract changes' \
-    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/12-relay-decisions.md" \
     || fail "$f imported manual missing control-contract review gate"
   grep -Fq 'Execution route: <direct-apply | plan-first | subagent-driven | inline-execution>' \
-    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/12-relay-decisions.md" \
     || fail "$f imported manual missing execution route contract"
   grep -Fq 'Accepted residuals: <none | short finding label + disposition + durable tracker/owner>' \
-    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/11-relay-fields.md" \
     || fail "$f imported manual missing accepted residuals contract"
   grep -Fq 'Review deliverable copy-field tightening' \
     "$TMP/target/docs/imported-skills/multi-angle-review/SKILL.md" \
@@ -164,13 +164,13 @@ for f in CLAUDE.md AGENTS.md GEMINI.md; do
     "$TMP/target/docs/imported-skills/multi-angle-review/SKILL.md" \
     || fail "$f imported review skill missing durable residual list surface"
   grep -Fq 'sanctioned sandbox escalation 或 outside-sandbox retry' \
-    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/12-relay-decisions.md" \
     || fail "$f imported manual missing sandbox escalation retry rule"
   grep -Fq 'Trigger Kit durable no-report taxonomy' \
-    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/12-relay-decisions.md" \
     || fail "$f imported manual missing blocked_by_policy canonical home"
   grep -Fq 'exact wording lives in Required user text' \
-    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/12-relay-decisions.md" \
     || fail "$f imported manual missing approval-text home rule"
   grep -Fq 'Plan / PR Lifecycle Discipline' \
     "$TMP/target/docs/imported-skills/agent-operating-manual/25-change-discipline.md" \
@@ -233,7 +233,7 @@ for f in CLAUDE.md AGENTS.md GEMINI.md; do
     "$TMP/target/docs/imported-skills/agent-operating-manual/25-change-discipline.md" \
     || fail "$f imported change discipline missing post-push no-action example"
   grep -Fq 'Plan / PR Lifecycle Discipline' \
-    "$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md" \
+    "$TMP/target/docs/imported-skills/agent-operating-manual/12-relay-decisions.md" \
     || fail "$f imported manual missing Plan / PR lifecycle cross-reference"
   grep -Fq 'plan/rule-review / fix-confirmation' "$TMP/target/$f" \
     || fail "$f pointer missing plan/rule-review scenario"

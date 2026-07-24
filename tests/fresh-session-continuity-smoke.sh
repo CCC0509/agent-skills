@@ -58,7 +58,7 @@ copy_current_source_to_tmp_repo() {
 
 cd "$ROOT"
 
-AOM="skills/agent-operating-manual/10-model-dispatch.md"
+AOM="skills/agent-operating-manual/12-relay-decisions.md"
 RELAY="skills/handoff-relay/SKILL.md"
 CHANGELOG="CHANGELOG.md"
 ROADMAP="ROADMAP.md"
@@ -80,7 +80,7 @@ require_contains "$AOM" 'Do not restate `ready-for-continuation` preconditions h
 
 require_contains "$RELAY" 'context-health'
 require_contains "$RELAY" 'skill-source provenance'
-require_contains "$RELAY" '10-model-dispatch.md'
+require_contains "$RELAY" '12-relay-decisions.md'
 
 require_contains "$CHANGELOG" 'v0.5.10: Fresh session continuity'
 require_contains_normalized "$CHANGELOG" 'v0.5.7, v0.5.8, v0.5.9, and v0.5.10 install-facing content require a later §3.2 tag'
@@ -102,7 +102,7 @@ git -C "$TMP/target" init -q
 printf '# AGENTS.md\nexisting content\n' > "$TMP/target/AGENTS.md"
 bash "$TMP/src/install.sh" "$TMP/target"
 
-INSTALLED_AOM="$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md"
+INSTALLED_AOM="$TMP/target/docs/imported-skills/agent-operating-manual/12-relay-decisions.md"
 INSTALLED_RELAY="$TMP/target/docs/imported-skills/handoff-relay/SKILL.md"
 require_file "$INSTALLED_AOM"
 require_file "$INSTALLED_RELAY"
