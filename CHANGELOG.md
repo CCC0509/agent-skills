@@ -158,6 +158,15 @@ public-safe attestations and private promotion-ledger mappings.
   plugin-entry name acceptance remains an install-time assumption if no safe
   read-only validation surface proves it. The release remains pending until a
   later reviewed tag / release train.
+- v0.5.17: Skills polish batch adds eight borrow-adapt editing and discipline
+  improvements across the five skills, re-slices `10-model-dispatch.md` and
+  `25-change-discipline.md` under the ~250-line cap into six files with zero
+  rule-text drift (new: `11-relay-fields.md`, `12-relay-decisions.md`,
+  `26-fresh-gate.md`, and `27-workflow-adoption.md`), retargets cross-links
+  and test assertions to the re-sliced files, and records the
+  change-discipline trigger-surface disposition (a standalone trigger shim is
+  declined; the revisit trigger is retained). The release remains pending
+  until a later reviewed tag / release train.
 - Release history note (2026-07-08): annotated tag `v0.5.10` was published
   after the v0.5.10 implementation train and closes the batched install-facing
   release for v0.5.7, v0.5.8, v0.5.9, and v0.5.10. Historical entries above

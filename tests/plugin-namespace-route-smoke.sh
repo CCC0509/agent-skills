@@ -67,10 +67,10 @@ marketplace_plugin_version() {
   || fail "marketplace plugin entry name changed"
 [ "$(first_name_value .claude-plugin/plugin.json)" = "agent-skills" ] \
   || fail "plugin entry name changed"
-[ "$(first_version_value .claude-plugin/plugin.json)" = "0.5.16" ] \
-  || fail "plugin manifest version is not 0.5.16"
-[ "$(marketplace_plugin_version)" = "0.5.16" ] \
-  || fail "marketplace plugin version is not 0.5.16"
+[ "$(first_version_value .claude-plugin/plugin.json)" = "0.5.17" ] \
+  || fail "plugin manifest version is not 0.5.17"
+[ "$(marketplace_plugin_version)" = "0.5.17" ] \
+  || fail "marketplace plugin version is not 0.5.17"
 
 require_contains README.md 'claude plugin marketplace add CCC0509/agent-skills --scope project'
 require_contains README.md 'claude plugin install agent-skills@ccc-agent-skills --scope project'

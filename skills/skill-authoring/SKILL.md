@@ -35,6 +35,11 @@ surface. Keep the boundary sharp:
 7. Document consumer adoption separately from implementation details: exact tag,
    install command, default-vs-optional skill choice, and expected entrypoint
    pointer updates.
+8. Leading-words compaction (borrow-adapt, mattpocock/skills
+   `writing-great-skills`, lightweight): prefer a well-known term or phrase
+   over a paraphrase that restates the same idea in more words. A
+   recognizable term costs fewer tokens and is easier for a model to
+   pattern-match than a freshly-worded restatement.
 
 ## Skill Surface Disposition
 
@@ -50,6 +55,11 @@ the reason:
   or conditional for `SKILL.md`, but still belong to the same skill.
 - **Split into separate optional skill**: split when trigger, audience, must-read
   set, or install choice differs enough that bundling increases context load.
+  Two concrete tests (borrow-adapt, mattpocock/skills `writing-great-skills`):
+  **split-by-invocation** — would a consumer ever need one part without the
+  other firing at the same time? If yes, split. **split-by-sequence** — do
+  the parts always fire together in the same order for the same task? If so,
+  keep them as sequential steps inside one skill instead of splitting.
 - **Make default-installed**: install by default only when most ordinary
   adopting-repo sessions need the trigger surface; otherwise keep explicit
   install.
@@ -64,6 +74,9 @@ smoke assertion closes the gap.
 
 ## Release Checklist
 
+- No-op pruning test applied (borrow-adapt, mattpocock/skills
+  `writing-great-skills`): every new or edited sentence changes some agent's
+  behavior versus the default; delete sentences that would not.
 - The skill folder name matches the frontmatter `name`.
 - The skill is optional unless it is needed by most consumer sessions.
 - Installer tests cover default install, explicit install, idempotency, and

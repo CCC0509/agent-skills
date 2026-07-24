@@ -58,7 +58,7 @@ copy_current_source_to_tmp_repo() {
 
 cd "$ROOT"
 
-AOM="skills/agent-operating-manual/10-model-dispatch.md"
+AOM="skills/agent-operating-manual/12-relay-decisions.md"
 RELAY="skills/handoff-relay/SKILL.md"
 CHANGELOG="CHANGELOG.md"
 ROADMAP="ROADMAP.md"
@@ -80,7 +80,7 @@ require_contains "$AOM" 'Do not restate `ready-for-continuation` preconditions h
 
 require_contains "$RELAY" 'context-health'
 require_contains "$RELAY" 'skill-source provenance'
-require_contains "$RELAY" '10-model-dispatch.md'
+require_contains "$RELAY" '12-relay-decisions.md'
 
 require_contains "$CHANGELOG" 'v0.5.10: Fresh session continuity'
 require_contains_normalized "$CHANGELOG" 'v0.5.7, v0.5.8, v0.5.9, and v0.5.10 install-facing content require a later §3.2 tag'
@@ -89,8 +89,8 @@ require_not_contains "$CHANGELOG" '## Extraction Candidates'
 require_contains "$ROADMAP" 'Public release history now lives in [CHANGELOG.md](CHANGELOG.md).'
 require_contains "$ROADMAP" 'compatibility pointer'
 
-require_contains .claude-plugin/plugin.json '"version": "0.5.16"'
-require_contains .claude-plugin/marketplace.json '"version": "0.5.16"'
+require_contains .claude-plugin/plugin.json '"version": "0.5.17"'
+require_contains .claude-plugin/marketplace.json '"version": "0.5.17"'
 
 copy_current_source_to_tmp_repo
 VER="$(sed -n 's/.*"version"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' \
@@ -102,7 +102,7 @@ git -C "$TMP/target" init -q
 printf '# AGENTS.md\nexisting content\n' > "$TMP/target/AGENTS.md"
 bash "$TMP/src/install.sh" "$TMP/target"
 
-INSTALLED_AOM="$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md"
+INSTALLED_AOM="$TMP/target/docs/imported-skills/agent-operating-manual/12-relay-decisions.md"
 INSTALLED_RELAY="$TMP/target/docs/imported-skills/handoff-relay/SKILL.md"
 require_file "$INSTALLED_AOM"
 require_file "$INSTALLED_RELAY"
@@ -119,7 +119,7 @@ require_contains "$INSTALLED_AOM" 'Do not restate `ready-for-continuation` preco
 require_contains "$INSTALLED_RELAY" 'context-health'
 require_contains "$INSTALLED_RELAY" 'skill-source provenance'
 
-[ "$(cat "$TMP/target/.agent-skills/pin")" = "CCC0509/agent-skills@v0.5.16" ] \
-  || fail "pin did not resolve v0.5.16"
+[ "$(cat "$TMP/target/.agent-skills/pin")" = "CCC0509/agent-skills@v0.5.17" ] \
+  || fail "pin did not resolve v0.5.17"
 
 echo "fresh session continuity smoke ok"
