@@ -58,7 +58,7 @@ copy_current_source_to_tmp_repo() {
 
 cd "$ROOT"
 
-AOM="skills/agent-operating-manual/10-model-dispatch.md"
+AOM="skills/agent-operating-manual/11-relay-fields.md"
 RELAY="skills/handoff-relay/SKILL.md"
 CHANGELOG="CHANGELOG.md"
 
@@ -109,7 +109,7 @@ git -C "$TMP/target" init -q
 printf '# AGENTS.md\nexisting content\n' > "$TMP/target/AGENTS.md"
 bash "$TMP/src/install.sh" "$TMP/target"
 
-INSTALLED_AOM="$TMP/target/docs/imported-skills/agent-operating-manual/10-model-dispatch.md"
+INSTALLED_AOM="$TMP/target/docs/imported-skills/agent-operating-manual/11-relay-fields.md"
 INSTALLED_RELAY="$TMP/target/docs/imported-skills/handoff-relay/SKILL.md"
 require_file "$INSTALLED_AOM"
 require_file "$INSTALLED_RELAY"
