@@ -50,6 +50,11 @@ the reason:
   or conditional for `SKILL.md`, but still belong to the same skill.
 - **Split into separate optional skill**: split when trigger, audience, must-read
   set, or install choice differs enough that bundling increases context load.
+  Two concrete tests (borrow-adapt, mattpocock/skills `writing-great-skills`):
+  **split-by-invocation** — would a consumer ever need one part without the
+  other firing at the same time? If yes, split. **split-by-sequence** — do
+  the parts always fire together in the same order for the same task? If so,
+  keep them as sequential steps inside one skill instead of splitting.
 - **Make default-installed**: install by default only when most ordinary
   adopting-repo sessions need the trigger surface; otherwise keep explicit
   install.
