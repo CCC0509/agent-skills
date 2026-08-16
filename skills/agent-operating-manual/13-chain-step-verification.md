@@ -1,7 +1,7 @@
 # Chain-Step Verification and Claim Verification
 
-Continues [`10-model-dispatch.md`](10-model-dispatch.md) §4 (驗證不自驗 /
-Verify, not self-verify). Split out only for the ~250-line cap in
+Continues [`10-model-dispatch.md`](10-model-dispatch.md) §4 (Verify, not
+self-verify). Split out only for the ~250-line cap in
 `40-maintenance.md` §4. The write-time chain law and the audit-time
 claim/record-verification doctrine sit together in one file because the
 second is the audit-time cousin of the first.
