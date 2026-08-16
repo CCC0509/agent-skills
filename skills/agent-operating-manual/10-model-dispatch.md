@@ -99,6 +99,18 @@ Read both in order.
 
 ---
 
+## §4.2 鏈式驗證與宣稱驗證（Chain-Step / Claim Verification）— pointer
+
+Split out for length (`40-maintenance.md` §4's ~250-line cap); no §4 rule
+text changed, only a new pointer. §4 的表講「產出後怎麼驗」；這裡補兩條更細
+的規則，寫在獨立檔：**寫入時**——多步驟編輯 / 產生鏈要逐步驗自己的 exit
+condition，regenerated artifact 的宣告清單要逐次 byte-verify；**事後宣稱
+時**——記錄本身描述工作也是一種宣稱，需要同等證據紀律，不能只被自己說服。
+兩條規則的完整文字都在
+[`13-chain-step-verification.md`](13-chain-step-verification.md)。
+
+---
+
 ## §5 🟦 模型選擇表（Claude Code 專屬）
 
 **已查證事實**：Agent 工具的 `model` 可指定 `haiku` / `sonnet` / `opus` / `fable`（或完整 model ID）；不指定時**繼承主對話模型**。

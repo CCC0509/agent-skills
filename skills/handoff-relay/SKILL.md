@@ -54,3 +54,7 @@ with a canonical file, follow the canonical file and fix this wrapper.
    When the underlying evidence already lives in a durable artifact (a
    commit, file, log, or review record), reference that artifact by
    path/hash instead of duplicating its content into the handoff body.
+   For whether a record's own claim about what it touched can be trusted
+   without a byte-level check, read
+   [`../agent-operating-manual/13-chain-step-verification.md`](../agent-operating-manual/13-chain-step-verification.md)
+   ("Claim Verification" section).
