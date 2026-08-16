@@ -16,6 +16,30 @@ that future agents must read and update.
 | Index memory | `docs/agent-memory-index.md` | Repo-owned index, updated in place | Memory locations change, or the first lesson path is chosen | Never treat as managed generated content; validators may check existence, not prose |
 | Mechanism evidence | ATK outcome store, CI logs, MCP graph cache, local scratch | Not canonical memory | It helps diagnose, triage, or review | Summarize reusable lessons or audit facts into repo-owned files; do not copy wholesale |
 
+## Stale-Surface Auto-Iteration
+
+A surface whose premise has died — a config token naming a retired
+setting, a checklist item for a component that no longer exists, a
+pinned constant referring to a since-renamed object, a law paragraph
+whose referent has been superseded — should be repaired on discovery,
+not filed away for a later cleanup pass that may never come.
+
+The correct sequence is probe-before-flip: verify the premise is
+actually dead at the evidence before treating it as stale, because a
+stale-looking claim is sometimes still the current one, and the surface
+holding it is right.
+
+Once confirmed dead, repair routes by ownership: fix in place when the
+agent doing the discovery owns the surface; route to that surface's own
+review or approval process when it is a governed or pinned artifact;
+hand off to the human owner when the surface sits outside agent
+authority entirely.
+
+The failure this forecloses is silent inheritance — a stale label
+copied forward unexamined across many successive uses, each copy
+treated as freshly true, until the gap between claim and reality is
+large enough to cause a real error.
+
 ## Recommended lesson-memory entry template
 
 Lesson memory has no fixed schema, but this structured shape (borrow-adapt,
