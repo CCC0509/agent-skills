@@ -83,8 +83,8 @@ require_contains "$RELAY" 'surface-sensitive'
 require_contains "$RELAY" '11-relay-fields.md'
 
 require_contains "$CHANGELOG" 'v0.5.14: Capability/surface preflight'
-require_contains .claude-plugin/plugin.json '"version": "0.5.17"'
-require_contains .claude-plugin/marketplace.json '"version": "0.5.17"'
+require_contains .claude-plugin/plugin.json '"version": "0.5.18"'
+require_contains .claude-plugin/marketplace.json '"version": "0.5.18"'
 
 copy_current_source_to_tmp_repo
 VER="$(sed -n 's/.*"version"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' \
@@ -124,7 +124,7 @@ require_not_contains "$INSTALLED_AOM" 'present, missing, visible, blocked, or pl
 require_contains "$INSTALLED_RELAY" 'capability/surface preflight'
 require_contains "$INSTALLED_RELAY" 'surface-sensitive'
 
-[ "$(cat "$TMP/target/.agent-skills/pin")" = "CCC0509/agent-skills@v0.5.17" ] \
-  || fail "pin did not resolve v0.5.17"
+[ "$(cat "$TMP/target/.agent-skills/pin")" = "CCC0509/agent-skills@v0.5.18" ] \
+  || fail "pin did not resolve v0.5.18"
 
 echo "capability surface preflight smoke ok"

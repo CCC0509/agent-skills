@@ -2,9 +2,10 @@
 
 Extends [`10-model-dispatch.md`](10-model-dispatch.md) §4 (Verify, not
 self-verify) with rules new in this file, not resliced from it; kept
-separate for the ~250-line cap in `40-maintenance.md` §4. The write-time chain law and the audit-time
-claim/record-verification doctrine sit together in one file because the
-second is the audit-time cousin of the first.
+separate for the ~250-line cap in `40-maintenance.md` §4. The write-time
+chain law and the audit-time claim/record-verification doctrine sit
+together in one file because the second is the audit-time cousin of the
+first.
 
 ---
 

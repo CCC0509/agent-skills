@@ -167,6 +167,20 @@ public-safe attestations and private promotion-ledger mappings.
   change-discipline trigger-surface disposition (a standalone trigger shim is
   declined; the revisit trigger is retained). The release remains pending
   until a later reviewed tag / release train.
+- v0.5.18: Doctrine extraction batch adds four operating-manual
+  increments: new `13-chain-step-verification.md` (chain-step
+  verification for multi-step edit/generation chains plus claim
+  verification for records and completion reports), new
+  `16-selector-economy.md` (delegated-decision economy: advance and
+  report by default, two stop-and-ask classes anchored to the canonical
+  `20-judgment-rubrics.md` §3 triggers, turn-end shapes), a
+  stale-surface auto-iteration rule in `15-repo-memory.md`, and a
+  derive-by-query enumeration rule in `27-workflow-adoption.md` §4;
+  registers both new files in the README routing table
+  (**C.3**/**C.4**) and SKILL.md pointers with cross-links from
+  `10-model-dispatch.md` §4.2, `12-relay-decisions.md`, and
+  `handoff-relay/SKILL.md`. The release remains pending until a later
+  reviewed tag / release train.
 - Release history note (2026-07-08): annotated tag `v0.5.10` was published
   after the v0.5.10 implementation train and closes the batched install-facing
   release for v0.5.7, v0.5.8, v0.5.9, and v0.5.10. Historical entries above
