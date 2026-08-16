@@ -15,6 +15,7 @@ with a canonical file, follow the canonical file and fix this wrapper.
 - [`../agent-operating-manual/12-relay-decisions.md`](../agent-operating-manual/12-relay-decisions.md) §3.1 — `Status:` semantics, exact approval text, `User action`, `Accepted residuals`, execution-route display rules, and the pre-handoff self-check.
 - [`../multi-angle-review/SKILL.md`](../multi-angle-review/SKILL.md) — read when a review, plan/rule-review, fix-confirmation, requested-changes revision, or review-passed continuation is involved.
 - [`../agent-operating-manual/25-change-discipline.md`](../agent-operating-manual/25-change-discipline.md) — read when the handoff touches PR, merge, tag, publish, deploy, release, or another approval-bound object. See also [`26-fresh-gate.md`](../agent-operating-manual/26-fresh-gate.md) for carry-forward and fresh-gate checks.
+- [`../agent-operating-manual/16-selector-economy.md`](../agent-operating-manual/16-selector-economy.md) — read when deciding whether a fork should be decided-and-reported versus stopped on, or when closing out a turn.
 
 ## Apply
 

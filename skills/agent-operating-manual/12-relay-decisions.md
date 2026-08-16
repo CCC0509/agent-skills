@@ -4,6 +4,12 @@ Continues [`11-relay-fields.md`](11-relay-fields.md), itself part of
 [`10-model-dispatch.md`](10-model-dispatch.md) §3.1. Split out only for the
 ~250-line cap in `40-maintenance.md` §4; no rule text changed.
 
+For the decision point upstream of the `Status:` / `User action:`
+semantics below — whether a fork should be decided on the agent's own
+judgment and reported, or genuinely warrants a stop-and-ask, and how a
+turn should always end in exactly one of "execute" or "pose a genuine
+fork" — read [`16-selector-economy.md`](16-selector-economy.md).
+
 ---
 
 
