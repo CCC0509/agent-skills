@@ -26,7 +26,9 @@
 | [`10-model-dispatch.md`](10-model-dispatch.md) | **C** 指揮官不下場、派工三件套、模型/effort、升降級、驗證不自驗 | **每個 session 的核心；不熟就從這開始** |
 | [`11-relay-fields.md`](11-relay-fields.md) | **C.1** Hand-off Request Contract part 1/2：relay block 欄位、completion-report stage、copy-block 範例、execution surface / capability preflight | 寫 handoff / relay block 欄位或 preflight 時 |
 | [`12-relay-decisions.md`](12-relay-decisions.md) | **C.2** Hand-off Request Contract part 2/2：`Status:` 判準、relay readiness/consistency rule、execution route、pre-handoff self-check、continuity packet | 決定 `Status:` / route，或送出前 self-check 時 |
+| [`13-chain-step-verification.md`](13-chain-step-verification.md) | **C.3** Chain-step verification（多步驟鏈逐步驗自己的 exit condition、regenerated artifact 的宣告清單逐次 byte-verify）與 claim verification（紀錄本身也是一種宣稱，需要同等證據紀律） | 寫多步驟編輯 / 產生鏈，或審查完成報告 / changelog 等宣稱是否可信時 |
 | [`15-repo-memory.md`](15-repo-memory.md) | **B** repo-owned shared memory：index、status / lesson / audit lifecycle、closeout self-report routing、ATK / MCP boundaries | Session start、closeout、或要寫 repo memory 時 |
+| [`16-selector-economy.md`](16-selector-economy.md) | **C.4** 委任決策經濟：預設用自己的判斷推進並回報、哪兩類分岔才真的該停下問人、每個 turn 該怎麼收尾 | 決定要不要停下問使用者，或收尾一個 turn 時 |
 | [`cross-repo-reference-map.md`](cross-repo-reference-map.md) | Cross-repo ownership map for doctrine, bootstrap, mechanism, adopting-repo, and MCP routing | When a task crosses repo boundaries or asks where a change belongs |
 | [`20-judgment-rubrics.md`](20-judgment-rubrics.md) | **D** 何時升級/算完成/停下問人/該換路/驗品質（各附正反例） | 卡在判斷時查對應 § |
 | [`25-change-discipline.md`](25-change-discipline.md) | **H** convention migration、verifiable commit structure、approval-bound identifiers | 改制 / 改名 / migration / release PR / explicit approval closeout 時 |

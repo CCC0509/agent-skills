@@ -14,6 +14,8 @@ Canonical content lives alongside this file in this skill directory ([README.md]
 
 For convention migrations, release PRs, or approval-bound merge / deploy / runtime actions, also read [`25-change-discipline.md`](25-change-discipline.md). For reviewed-range carry-forward and fresh-gate checks, also read [`26-fresh-gate.md`](26-fresh-gate.md). For workflow adoption or public evidence tables, also read [`27-workflow-adoption.md`](27-workflow-adoption.md).
 
+For chain-step or regenerated-artifact verification, or for whether a record's own claim needs a byte-level check before it is trusted, also read [`13-chain-step-verification.md`](13-chain-step-verification.md). For the default-to-advance delegation economy and turn-ending discipline, also read [`16-selector-economy.md`](16-selector-economy.md).
+
 For cross-repo routing, ownership, codebase MCP availability, or residual owner questions, also read [`cross-repo-reference-map.md`](cross-repo-reference-map.md).
 
 Codex / Gemini sessions must read their adapter file before applying Claude Code model / effort / workflow sections.

@@ -132,6 +132,27 @@ Not allowed in public doctrine / PR bodies:
 When evidence is local or private, write a compact public summary and keep the
 raw detail in the adopting repo's audit memory.
 
+### Derive-By-Query: Registries Belong In The Record As A Live Query
+
+Any registry or enumeration that must appear inside a periodic record —
+a closing report, a status update, a summary paragraph — should be
+produced by querying the live registry at write time, never hand-typed
+or carried forward from memory of what it last contained.
+
+A hand-typed or count-only enumeration silently rots the moment the
+underlying registry changes between the last hand-check and the current
+write, and a bare count in place of enumerated content is exactly the
+failure mode this doctrine forecloses: a reader cannot audit a count,
+only enumerated content.
+
+The fix is mechanical and small: a short query/emit routine reads the
+registry's current state and prints the exact content block to paste
+into the record, so the record's enumeration is always a live
+derivation rather than a stale snapshot. This is a specific instance of
+a wider "derive, don't narrate" principle — anywhere a record states a
+fact that a script could instead compute from current state, prefer the
+computed answer.
+
 ## Evidence Seeds
 
 | Evidence | Why it matters | Public-safe form |
